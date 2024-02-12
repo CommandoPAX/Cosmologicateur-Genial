@@ -16,6 +16,8 @@ from colossus.cosmology import cosmology
 from colossus.lss import mass_function
 import os
 
+import Mailateur_genial as mail
+
 cosmology.setCosmology('planck18')
 
 ds=yt.load('../output_00002/info_00002.txt')
@@ -26,6 +28,6 @@ q.set_unit('particle_mass', 'Msun')
 #q.zoom(4)
 #q.annotate_timestamp(corner='upper_left', time=True, redshift=False, draw_inset_box=True,time_format='t = {time:.1f}', time_unit='code_time')
 q.annotate_scale()
-q.show()
-#q.save()
+#q.show()
+q.save()
 
