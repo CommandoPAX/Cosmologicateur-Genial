@@ -41,7 +41,7 @@ def main(argv):
             outputfile = arg
 
 
-    monofonic = open("./monofonic/monofonic.conf","r")
+    monofonic = open("../monofonic/monofonic.conf","r")
     lignes = []
     gridres = 0
     sizebox = 0
@@ -54,7 +54,7 @@ def main(argv):
         ligne = ligne.split(" ")
         if "GridRes" in ligne : gridres = ligne[2]
 
-    outputfile+=str(gridres)
+    outputfile = outputfile[:-4]+"-"+str(gridres)+outputfile[-4:]
 
     cosmology.setCosmology('planck18')
 
