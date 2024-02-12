@@ -41,6 +41,16 @@ def main(argv):
             outputfile = arg
 
 
+    monofonic = open("./monofonic/monofonic.conf","r")
+    lignes = []
+    while 1 :
+        ligne = monofonic.readline()
+        for i in range(10):
+            ligne = ligne.replace ("  ", " ")
+        if ligne =="" : break
+        else : lignes.append(ligne.split(" "))
+        print(ligne)
+
     cosmology.setCosmology('planck18')
 
     ds=yt.load(inputfile)
