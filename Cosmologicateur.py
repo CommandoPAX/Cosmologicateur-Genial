@@ -53,8 +53,10 @@ def main(argv):
         if ligne =="" : break
         ligne = ligne.split(" ")
         if ligne[0] == "GridRes" : gridres = ligne[2]
+        if ligne[0] == "BoxLength" : sizebox = ligne[2]
 
     outputfile = outputfile[:-4]+"-"+str(gridres)+outputfile[-4:]
+    outputfile = outputfile[:-4]+"-"+str(sizebox)+" Mpc"+outputfile[-4:]
 
     cosmology.setCosmology('planck18')
 
