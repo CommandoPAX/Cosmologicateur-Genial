@@ -1,3 +1,4 @@
+import matplotlib.cm
 import yt
 import numpy as np
 from scipy import interpolate
