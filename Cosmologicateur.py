@@ -52,7 +52,7 @@ def main(argv):
     #q.annotate_timestamp(corner='upper_left', time=True, redshift=False, draw_inset_box=True,time_format='t = {time:.1f}', time_unit='code_time')
     q.annotate_scale()
     #q.show()
-    q.save("Resultat.png")
+    q.save(outputfile)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
