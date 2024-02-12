@@ -6,7 +6,6 @@ import density_field_library as DFL
 import Pk_library as PKL
 import MAS_library as MASL
 
-%matplotlib inline
 import matplotlib.pyplot as plt
 import matplotlib
 
