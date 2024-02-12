@@ -52,7 +52,7 @@ def main(argv):
             ligne = ligne.replace ("  ", " ")
         if ligne =="" : break
         ligne = ligne.split(" ")
-        if "GridRes" in ligne : gridres = ligne[2]
+        if ligne[0] == "GridRes" : gridres = ligne[2]
 
     outputfile = outputfile[:-4]+"-"+str(gridres)+outputfile[-4:]
 
