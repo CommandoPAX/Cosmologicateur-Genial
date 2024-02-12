@@ -1,4 +1,4 @@
-import matplotlib.cm
+import matplotlib.colormaps
 import yt
 import numpy as np
 from scipy import interpolate
