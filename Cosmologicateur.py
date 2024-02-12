@@ -43,13 +43,18 @@ def main(argv):
 
     monofonic = open("./monofonic/monofonic.conf","r")
     lignes = []
+    gridres = 0
+    sizebox = 0
+
     while 1 :
         ligne = monofonic.readline()
         for i in range(10):
             ligne = ligne.replace ("  ", " ")
         if ligne =="" : break
-        else : lignes.append(ligne.split(" "))
-        print(ligne)
+        ligne = ligne.split(" ")
+        if "GridRes" in ligne : gridres = ligne[2]
+
+    outputfile+=str(gridres)
 
     cosmology.setCosmology('planck18')
 
