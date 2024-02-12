@@ -1,4 +1,6 @@
-import matplotlib.colormaps
+import matplotlib.pyplot as plt
+import matplotlib
+
 import yt
 import numpy as np
 from scipy import interpolate
@@ -6,9 +8,6 @@ from scipy import interpolate
 import density_field_library as DFL
 import Pk_library as PKL
 import MAS_library as MASL
-
-import matplotlib.pyplot as plt
-import matplotlib
 
 import mass_function_library as MFL
 from yt.extensions.astro_analysis.halo_analysis import HaloCatalog
