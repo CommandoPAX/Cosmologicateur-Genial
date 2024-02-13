@@ -64,6 +64,7 @@ if autre == "o" :
 os.system("rm -fr ../monofonic/build")
 os.system("mkdir ../monofonic/build")
 os.system("cd ../monofonic/build ; cmake ..")
+os.system("cd ../monofonic/build ; make")
 os.system("cd ../monofonic; build/monofonIC monofonic.conf")
 os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab")
 os.system("cd ../ramses/bin; make clean")
