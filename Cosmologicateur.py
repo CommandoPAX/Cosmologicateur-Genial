@@ -27,7 +27,7 @@ def main(argv):
     
     for root, dirs, files in os.walk("../") :
         for filename in files : 
-            if filename.startswith("output") : 
+            if filename.startswith("info") and: 
                 list_.append(filename[-9:-4])
 
     try:
