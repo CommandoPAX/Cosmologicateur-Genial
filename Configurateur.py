@@ -51,7 +51,7 @@ monofonic.close()
 
 ramses.close()
 ramses = open("../ramses/namelist/ramses-test.nml","w")
-ramses.write(output_monofonic)
+ramses.write(output_ramses)
 ramses.close()
 
 if autre == "o" :
