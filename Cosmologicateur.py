@@ -44,7 +44,7 @@ def main(argv):
         elif opt in ("-o", "--ofile"):
             outputfile = arg
 
-"""
+    """
     monofonic = open("../monofonic/monofonic.conf","r")
     lignes = []
     gridres = 0
@@ -61,7 +61,7 @@ def main(argv):
 
     outputfile = outputfile[:-4]+"-"+str(gridres)+outputfile[-4:]
     outputfile = outputfile[:-4]+"-"+str(sizebox)+"-Mpc"+outputfile[-4:]
-"""
+    """
     cosmology.setCosmology('planck18')
 
     for index in list_ : 
