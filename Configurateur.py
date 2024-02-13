@@ -21,6 +21,7 @@ while 1 :
 
     i  = 0
     for k in ligne :
+        print(ligne)
         output_monofonic += k
         if not k == "\n" and not i== 0: 
             output_monofonic+=" "
