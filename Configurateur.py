@@ -25,6 +25,8 @@ while 1 :
         if not "\n" in k and not i== 0: 
             output_monofonic+=" "
         i = 1
+monofonic.close()
+
 
 output_ramses = ""
 while 1 :
@@ -39,6 +41,7 @@ while 1 :
         output_ramses += k
         if not "\n" in k : 
             output_ramses+="="
+ramses.close()
 
 output_monofonic = output_monofonic.replace("="," = ")
 output_monofonic = output_monofonic.replace("#"," # ")
@@ -46,12 +49,10 @@ output_monofonic = output_monofonic.replace("# #"," # ")
 
 autre = input("Changer d'autres paramètres ? (o/n)")
 
-monofonic.close()
 monofonic = open("../monofonic/monofonic.conf","w")
 monofonic.write(output_monofonic)
 monofonic.close()
 
-ramses.close()
 ramses = open("../ramses/namelist/ramses.nml","w")
 ramses.write(output_ramses)
 ramses.close()
