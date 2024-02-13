@@ -45,7 +45,7 @@ ramses.close()
 
 output_monofonic = output_monofonic.replace("="," = ")
 output_monofonic = output_monofonic.replace("#"," # ")
-output_monofonic = output_monofonic.replace("# #"," # ")
+output_monofonic = output_monofonic.replace("#  #"," # ")
 
 autre = input("Changer d'autres paramètres ? (o/n)")
 
