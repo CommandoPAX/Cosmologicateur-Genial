@@ -21,7 +21,7 @@ while 1 :
 
     for k in ligne :
         output_monofonic += k
-        if not k == " " : 
+        if not k == "\n" : 
             output_monofonic+=" "
 
 autre = input("Changer d'autres paramètres ? (o/n)")
