@@ -32,15 +32,13 @@ while 1 :
     if ligne == "" : break
     for i in range(10): ligne = ligne.replace("  "," ")
     ligne = ligne.split("=")
-    if ligne[0] == "levelmin" : ligne[1] = ngrid
-    if ligne[0] == "levelmiax" : ligne[1] = ngrid+6
+    if ligne[0] == "levelmin" : ligne[1] = ngrid+"\n"
+    if ligne[0] == "levelmax" : ligne[1] = str(int(ngrid)+6)+"\n"
 
-    i  = 0
     for k in ligne :
         output_ramses += k
         if not "\n" in k : 
             output_ramses+="="
-        i = 1
 
 autre = input("Changer d'autres paramètres ? (o/n)")
 
