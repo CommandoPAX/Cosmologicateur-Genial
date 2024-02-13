@@ -19,7 +19,7 @@ while 1 :
     if ligne[0] == "BoxLength" : ligne[2] = taille
 
     for k in ligne :
-        output_monofonic += k
+        output_monofonic += k+" "
 
 autre = input("Changer d'autres paramètres ? (o/n)")
 
