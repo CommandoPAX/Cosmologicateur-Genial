@@ -21,17 +21,9 @@ while 1 :
 
     for k in ligne :
         output_monofonic += k
-        if not k == " " : output_monofonic+=" "
-"""
-output_ramses = ""
+        if not k == " " : 
+            output_monofonic+=" "
 
-while 1 :
-    ligne = ramses.readline()
-    if ligne == "" : break
-    for i in range(10): ligne = ligne.replace("  "," ")
-    ligne = ligne.split(" ")
-    if ligne[0] == "GridRes" : ligne[2] = str(2**int(ngrid))
-    if ligne[0] == "BoxLength" : ligne[2] = taille"""
 
     for k in ligne :
         output_monofonic += k+" "
