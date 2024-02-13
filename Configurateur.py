@@ -66,3 +66,5 @@ os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab
 os.system("cd ../ramses/bin; make clean")
 os.system("cd ../ramses/bin; make NDIM=3 ")
 os.system("../ramses/bin/ramses3d ../ramses/namelist/ramses.nml")
+os.system("rm input*")
+os.system("rm -r ics_ramses")
