@@ -37,9 +37,9 @@ while 1 :
 
     i  = 0
     for k in ligne :
-        output_monofonic += k
+        output_ramses += k
         if not "\n" in k and not i== 0: 
-            output_monofonic+="="
+            output_ramses+="="
         i = 1
 
 autre = input("Changer d'autres paramètres ? (o/n)")
