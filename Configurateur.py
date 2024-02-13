@@ -19,10 +19,12 @@ while 1 :
     if ligne[0] == "GridRes" : ligne[2] = str(2**int(ngrid))
     if ligne[0] == "BoxLength" : ligne[2] = taille
 
+    i  = 0
     for k in ligne :
         output_monofonic += k
-        if not k == " " : 
+        if not "\n" in k and not i== 0: 
             output_monofonic+=" "
+        i = 1
 
 autre = input("Changer d'autres paramètres ? (o/n)")
 
