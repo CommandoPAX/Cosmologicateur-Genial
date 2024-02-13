@@ -51,7 +51,7 @@ monofonic.write(output_monofonic)
 monofonic.close()
 
 ramses.close()
-ramses = open("../ramses/namelist/ramses-test.nml","w")
+ramses = open("../ramses/namelist/ramses.nml","w")
 ramses.write(output_ramses)
 ramses.close()
 
@@ -61,4 +61,3 @@ if autre == "o" :
 
 os.system("../monofonic/build/monofonIC ../monofonic/monofonic.conf")
 os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab")
-os.system("rm input*")
