@@ -24,10 +24,6 @@ while 1 :
         if not k == " " : 
             output_monofonic+=" "
 
-
-    for k in ligne :
-        output_monofonic += k+" "
-
 autre = input("Changer d'autres paramètres ? (o/n)")
 
 monofonic.close()
