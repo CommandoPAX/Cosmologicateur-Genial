@@ -61,7 +61,10 @@ if autre == "o" :
     os.system("nano ../monofonic/monofonic.conf")
     os.system("nano ../ramses/namelist/ramses.nml")
 
-os.system("../monofonic/build/monofonIC ../monofonic/monofonic.conf")
+os.system("rm -fr ../monofonic/build")
+os.system("mkdir ../monofonic/build")
+os.system("cd ../monofonic/build ; cmake ..")
+os.system("cd ../monofonic; build/monofonIC monofonic.conf")
 os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab")
 os.system("cd ../ramses/bin; make clean")
 os.system("cd ../ramses/bin; make NDIM=3 ")
