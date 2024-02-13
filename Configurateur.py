@@ -42,8 +42,6 @@ while 1 :
 
 output_monofonic = output_monofonic.replace("="," = ")
 
-output_ramses = output_ramses.replace()
-
 autre = input("Changer d'autres paramètres ? (o/n)")
 
 monofonic.close()
