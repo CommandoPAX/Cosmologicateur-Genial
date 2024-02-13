@@ -10,7 +10,7 @@ import Pk_library as PKL
 import MAS_library as MASL
 
 import mass_function_library as MFL
-from yt.extensions.astro_analysis.halo_analysis import HaloCatalog
+#from yt.extensions.astro_analysis.halo_analysis import HaloCatalog
 from HaloStats import halo_MF
 from colossus.cosmology import cosmology
 from colossus.lss import mass_function
@@ -23,16 +23,12 @@ import sys, getopt
 
 def main(argv):
 
-    inputf_ = []
+    list_ = []
     
     for root, dirs, files in os.walk("../") :
         for directories in dirs : 
             if directories.startswith("output") : 
-                N = directories[-1]
-        
-    
-    inputfile = '../output_00002/info_00002.txt'
-    outputfile = "Resultat.png"
+                list_.append(directories[-5:])
 
     try:
       opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
@@ -48,7 +44,7 @@ def main(argv):
         elif opt in ("-o", "--ofile"):
             outputfile = arg
 
-
+    """
     monofonic = open("../monofonic/monofonic.conf","r")
     lignes = []
     gridres = 0
@@ -65,19 +61,23 @@ def main(argv):
 
     outputfile = outputfile[:-4]+"-"+str(gridres)+outputfile[-4:]
     outputfile = outputfile[:-4]+"-"+str(sizebox)+"-Mpc"+outputfile[-4:]
-
+    """
     cosmology.setCosmology('planck18')
 
-    ds=yt.load(inputfile)
+    for index in list_ : 
+        input_ = "../output_" + index + "/info_" + index + ".txt"
+        output_ = "./RESULT/" + index  + ".png" # Ajouter la résolution 
+    
+        ds=yt.load(input_)
 
-    #plot
-    q = yt.ParticlePlot(ds, 'particle_position_x', 'particle_position_y','particle_mass')
-    q.set_unit('particle_mass', 'Msun')
-    #q.zoom(4)
-    #q.annotate_timestamp(corner='upper_left', time=True, redshift=False, draw_inset_box=True,time_format='t = {time:.1f}', time_unit='code_time')
-    q.annotate_scale()
-    #q.show()
-    q.save(outputfile)
+        #plot
+        Plot_ = yt.ParticlePlot(ds, 'particle_position_x', 'particle_position_y','particle_mass')
+        Plot_.set_unit('particle_mass', 'Msun')
+        #Plot_.zoom(4)
+        #Plot_.annotate_timestamp(corner='upper_left', time=True, redshift=False, draw_inset_box=True,time_format='t = {time:.1f}', time_unit='code_time')
+        Plot_.annotate_scale()
+        #Plot_.show()
+        Plot_.save(output_)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
