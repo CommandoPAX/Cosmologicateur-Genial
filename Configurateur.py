@@ -24,7 +24,7 @@ while 1 :
 autre = input("Changer d'autres paramètres ? (o/n)")
 
 monofonic.close()
-monofonic = open()"../monofonic/monofonic.conf","w")
+monofonic = open("../monofonic/monofonic.conf","w")
 monofonic.write(output_monofonic)
 monofonic.close()
 
