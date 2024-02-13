@@ -6,7 +6,7 @@ import os
 monofonic= open("../monofonic/monofonic.conf","r")
 
 ngrid = input("Nombre de cellules : 2^")
-print("n^"+ngrid +" = "+2**int(ngrid))
+print("n^"+ngrid +" = "+str(2**int(ngrid)))
 taille = input("Taille de la boite : ")
 
 output_monofonic = ""
