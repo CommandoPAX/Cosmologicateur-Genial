@@ -26,9 +26,9 @@ def main(argv):
     list_ = []
     
     for root, dirs, files in os.walk("../") :
-        for directories in dirs : 
-            if directories.startswith("output") : 
-                list_.append(directories[-5:])
+        for filename in files : 
+            if filename.startswith("output") : 
+                list_.append(filename[-9:-4])
 
     try:
       opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
