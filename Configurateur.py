@@ -23,6 +23,11 @@ while 1 :
 
 autre = input("Changer d'autres paramètres ? (o/n)")
 
+monofonic.close()
+monofonic = open()"../monofonic/monofonic.conf","w")
+monofonic.write(output_monofonic)
+monofonic.close()
+
 if autre == "o" :
     os.system("nano ../monofonic/monofonic.conf")
     os.system("nano ../ramses/namelist/ramses.nml")
@@ -30,4 +35,3 @@ if autre == "o" :
 os.system("../monofonic/build/monofonIC ../monofonic/monofonic.conf")
 os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab")
 
-monofonic.close()
