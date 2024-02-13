@@ -1,9 +1,9 @@
 # coding: utf-8
-##### Test connection à un serveur local pour transmettre les données
 
 import socket
 
-hote = "localhost"
+hote = socket.gethostbyname(socket.gethostname())
+
 port = 15555
 
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
