@@ -3,7 +3,7 @@
 
 import os
 
-monofonic= open("/monofonic/monofonic.conf","r")
+monofonic= open("../monofonic/monofonic.conf","r")
 
 ngrid = input("Nombre de cellules : 2^")
 print("n^"+ngrid +" = "+2**int(ngrid))
