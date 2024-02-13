@@ -38,7 +38,7 @@ while 1 :
     i  = 0
     for k in ligne :
         output_ramses += k
-        if not "\n" in k and not i== 0: 
+        if not "\n" in k : 
             output_ramses+="="
         i = 1
 
