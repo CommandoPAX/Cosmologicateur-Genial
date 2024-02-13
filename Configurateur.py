@@ -40,6 +40,10 @@ while 1 :
         if not "\n" in k : 
             output_ramses+="="
 
+output_monofonic = output_monofonic.replace("="," = ")
+
+output_ramses = output_ramses.replace()
+
 autre = input("Changer d'autres paramètres ? (o/n)")
 
 monofonic.close()
@@ -58,4 +62,4 @@ if autre == "o" :
 
 os.system("../monofonic/build/monofonIC ../monofonic/monofonic.conf")
 os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab")
-
+os.system("rm input*")
