@@ -23,6 +23,14 @@ import sys, getopt
 
 def main(argv):
 
+    inputf_ = []
+    
+    for root, dirs, files in os.walk("../") :
+        for directories in dirs : 
+            if directories.startswith("output") : 
+                N = directories[-1]
+        
+    
     inputfile = '../output_00002/info_00002.txt'
     outputfile = "Resultat.png"
 
