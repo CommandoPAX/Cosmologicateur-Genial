@@ -29,6 +29,7 @@ def main(argv):
         for filename in files : 
             if filename.startswith("info") and filename[-9:-8] == "0": 
                 list_.append(filename[-9:-4])
+                print(files)
 
     try:
       opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
