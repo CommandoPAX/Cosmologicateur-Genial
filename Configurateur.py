@@ -4,6 +4,7 @@
 import os
 
 monofonic= open("../monofonic/monofonic.conf","r")
+ramses = open("../ramses/namelist/ramses.nml","r")
 
 ngrid = input("Nombre de cellules : 2^")
 print("n^"+ngrid +" = "+str(2**int(ngrid)))
@@ -17,6 +18,20 @@ while 1 :
     ligne = ligne.split(" ")
     if ligne[0] == "GridRes" : ligne[2] = str(2**int(ngrid))
     if ligne[0] == "BoxLength" : ligne[2] = taille
+
+    for k in ligne :
+        output_monofonic += k
+        if not k == " " : output_monofonic+=" "
+"""
+output_ramses = ""
+
+while 1 :
+    ligne = ramses.readline()
+    if ligne == "" : break
+    for i in range(10): ligne = ligne.replace("  "," ")
+    ligne = ligne.split(" ")
+    if ligne[0] == "GridRes" : ligne[2] = str(2**int(ngrid))
+    if ligne[0] == "BoxLength" : ligne[2] = taille"""
 
     for k in ligne :
         output_monofonic += k+" "
