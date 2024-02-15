@@ -26,9 +26,9 @@ def main(argv):
     list_ = []
     
     for root, dirs, files in os.walk("../") :
-        for directories in dirs : 
-            if directories.startswith("output") : 
-                list_.append(directories[-5:])
+        for filename in files : 
+            if filename.startswith("info") and filename[-9:-8] == "0": 
+                list_.append(filename[-9:-4])
 
     try:
       opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
@@ -44,7 +44,7 @@ def main(argv):
         elif opt in ("-o", "--ofile"):
             outputfile = arg
 
-
+    
     monofonic = open("../monofonic/monofonic.conf","r")
     lignes = []
     gridres = 0
@@ -59,14 +59,11 @@ def main(argv):
         if ligne[0] == "GridRes" : gridres = ligne[2]
         if ligne[0] == "BoxLength" : sizebox = ligne[2]
 
-    outputfile = outputfile[:-4]+"-"+str(gridres)+outputfile[-4:]
-    outputfile = outputfile[:-4]+"-"+str(sizebox)+"-Mpc"+outputfile[-4:]
-
     cosmology.setCosmology('planck18')
 
     for index in list_ : 
-        input_ = "../output_" + index + "/info_" + index + ".txt"
-        output_ = "./RESULT/" + index  + ".png" # Ajouter la résolution 
+        input_ = "../output_" + index + "/info_"+ index + ".txt"
+        output_ = "./RESULT/" + index  +"_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png" # Ajouter la résolution 
     
         ds=yt.load(input_)
 
