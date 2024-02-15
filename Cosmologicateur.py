@@ -160,19 +160,33 @@ def Get_Simu_Info(DATA, index) : #Not sure if there will be a different one for 
         pass 
 
 def main(argv):
+    POT = False 
+    VEL = False 
+    SPE = False 
+    HAL = False 
+    INF = False 
+    
     try: # W.I.P.
-      opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+        # Predicted particle mass will be enabled by default for the pretty pictures
+        # p for potential 
+        # v for velocity 
+        # s for power spectrum 
+        # m for halo mass (no need for help function)
+        opts, args = getopt.getopt(argv,"pvsmi")
     except getopt.GetoptError:
-        print ('test.py -i <inputfile> -o <outputfile>')
+        print ('test.py -p -v -s -m, -i')
         sys.exit(2)
     for opt, arg in opts:
-        if opt == '-h':
-            print ('test.py -i <inputfile> -o <outputfile>')
-            sys.exit()
-        elif opt in ("-i", "--ifile"):
-            inputfile = arg
-        elif opt in ("-o", "--ofile"):
-            outputfile = arg
+        if opt in ("-p"):
+            POT = True
+        elif opt in ("-v"):
+            VEL = True
+        elif opt in ("-s"):
+            SPE = True 
+        elif opt in ("-m"): 
+            HAL = True
+        elif opt in ("-i") : 
+            INF = True
 
     Grid_Res, Size_Box = Get_Config_Info()
     
@@ -188,11 +202,11 @@ def main(argv):
             input_ = "../output_" + str(i-1) + "/info_"+ str(i-1) + ".txt" #Sets the value back to the last correct one, just in case we need it
             break 
         Predicted_Particle_Mass(ds, i, Grid_Res, Size_Box)
-        Potential(ds, i, Grid_Res, Size_Box)
-        Velocity(ds, i, Grid_Res, Size_Box)
-        Power_Spectrum(rds, i, Grid_Res, Size_Box)
-        Halo(rds, i, Grid_Res, Size_Box)
-        Get_Simu_Info(rds, i)
+        if POT : Potential(ds, i, Grid_Res, Size_Box)
+        if VEL : Velocity(ds, i, Grid_Res, Size_Box)
+        if SPE : Power_Spectrum(rds, i, Grid_Res, Size_Box)
+        if HAL : Halo(rds, i, Grid_Res, Size_Box)
+        if INF : Get_Simu_Info(rds, i)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
