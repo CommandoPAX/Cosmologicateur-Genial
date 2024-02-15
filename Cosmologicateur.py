@@ -192,6 +192,7 @@ def main(argv):
         Velocity(ds, i, Grid_Res, Size_Box)
         Power_Spectrum(rds, i, Grid_Res, Size_Box)
         Halo(rds, i, Grid_Res, Size_Box)
+        Get_Simu_Info(rds, i)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
