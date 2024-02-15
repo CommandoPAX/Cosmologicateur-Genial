@@ -1,3 +1,5 @@
+# Handles data processing
+
 import matplotlib.pyplot as plt
 
 import yt
@@ -17,6 +19,9 @@ import sys, getopt
 
 # Utilisation :
 # python Cosmologicateur.py -i entree -o sortie
+
+# T.B.A. :
+# - Dump dans un json les paramètres de la simu pour pouvoir tout récup facilement
 
 Result_Path = "./RESULT/" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 Ramses_Path = "../ramses/"
@@ -150,6 +155,14 @@ def Halo(DATA, index, gridres, sizebox) :
         plt.savefig(output_)
     except : 
         pass
+
+def Get_Simu_Info(DATA, index) : #Not sure if there will be a different one for each dataset
+    try : 
+        output_ = Result_Path + index  +"_" + "PAR"+".json"
+        with open(output_, "rw") as f : 
+            f.dump(DATA.parameters)
+    except : 
+        pass 
 
 def main(argv):
     try: # W.I.P.
