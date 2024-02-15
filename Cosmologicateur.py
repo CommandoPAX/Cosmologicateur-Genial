@@ -1,27 +1,22 @@
 # Handles data processing
 
 import matplotlib.pyplot as plt
-
 import yt
 import numpy as np
 from scipy import interpolate
-
 import density_field_library as DFL
 import Pk_library as PKL
 import MAS_library as MASL
-
 import mass_function_library as MFL
 from yt.extensions.astro_analysis.halo_analysis import HaloCatalog
 from HaloStats import halo_MF
 from colossus.cosmology import cosmology
 from colossus.lss import mass_function
 import sys, getopt
+import json, datetime 
 
-# Utilisation :
+# Utilisation (not currently functionnal):
 # python Cosmologicateur.py -i entree -o sortie
-
-# T.B.A. :
-# - Dump dans un json les paramètres de la simu pour pouvoir tout récup facilement
 
 Result_Path = "./RESULT/" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 Ramses_Path = "../ramses/"
@@ -158,9 +153,9 @@ def Halo(DATA, index, gridres, sizebox) :
 
 def Get_Simu_Info(DATA, index) : #Not sure if there will be a different one for each dataset
     try : 
-        output_ = Result_Path + index  +"_" + "PAR"+".json"
-        with open(output_, "rw") as f : 
-            f.dump(DATA.parameters)
+        output_ = Result_Path + index  +"_" + "PAR"+ str(datetime.datetime.now()) + ".json"
+        with open(output_, "w") as outf : 
+            json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
     except : 
         pass 
 
