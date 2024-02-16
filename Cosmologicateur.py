@@ -12,7 +12,7 @@ from yt.extensions.astro_analysis.halo_analysis import HaloCatalog
 from HaloStats import halo_MF
 from colossus.cosmology import cosmology
 from colossus.lss import mass_function
-import sys, getopt
+import os, sys, getopt
 import json, datetime 
 
 # Utilisation (not currently functionnal):
@@ -39,9 +39,9 @@ def Get_Config_Info() :
     return gridres, sizebox
 
 
-def Predicted_Particle_Mass(DATA, index : int, gridres, sizebox) : 
+def Predicted_Particle_Mass(DATA, index : int, gridres, sizebox, path : str) : 
     try :
-        output_ = Result_Path + index  +"_" + "PPM" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "PPM" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
         #plot
         PPM = yt.ParticlePlot(DATA, 'particle_position_x', 'particle_position_y','particle_mass')
         PPM.set_unit('particle_mass', 'Msun')
@@ -52,18 +52,18 @@ def Predicted_Particle_Mass(DATA, index : int, gridres, sizebox) :
     except : 
         pass
 
-def Potential(DATA, index : int, gridres, sizebox) : 
+def Potential(DATA, index : int, gridres, sizebox, path : str) : 
     try : 
-        output_ = Result_Path + index  +"_" + "POT" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "POT" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
         POT = yt.SlicePlot(DATA, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
         POT.annotate_cell_edges()
         POT.save(output_)
     except : 
         pass 
 
-def Velocity(DATA, index : int, gridres, sizebox) : 
+def Velocity(DATA, index : int, gridres, sizebox, path : str) : 
     try : 
-        output_ = Result_Path + index  +"_" + "VEL" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "VEL" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
         VEL = yt.ParticlePlot(DATA, 'particle_velocity_x', 'particle_velocity_y','particle_mass')
         VEL.set_unit('particle_velocity_x', 'km/s')
         VEL.set_unit('particle_velocity_y', 'km/s')
@@ -72,10 +72,10 @@ def Velocity(DATA, index : int, gridres, sizebox) :
     except : 
         pass
 
-def Power_Spectrum(DATA, index : int, gridres, sizebox) :
+def Power_Spectrum(DATA, index : int, gridres, sizebox, path : str) :
     try :  
         # Define important parameters
-        output_ = Result_Path + index  +"_" + "POW" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "POW" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
         grid = 64    #grid size
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
@@ -115,9 +115,9 @@ def Power_Spectrum(DATA, index : int, gridres, sizebox) :
     except :
         pass
 
-def Halo(DATA, index, gridres, sizebox) : 
+def Halo(DATA, index, gridres, sizebox, path : str) : 
     try :
-        output_ = Result_Path + index  +"_" + "HAL" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "HAL" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
         hc = HaloCatalog(data_ds=DATA, finder_method="hop") #Run halo Finder
@@ -151,9 +151,10 @@ def Halo(DATA, index, gridres, sizebox) :
     except : 
         pass
 
-def Get_Simu_Info(DATA, index) : #Not sure if there will be a different one for each dataset
+def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
     try : 
-        output_ = Result_Path + index  +"_" + "PAR"+ str(datetime.datetime.now()) + ".json"
+        output_ = path + str(index)  +"_" + "PAR"+ str(datetime.datetime.now()) + ".json"
+        os.system(f"touch {output_}")
         with open(output_, "w") as outf : 
             json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
     except : 
@@ -192,6 +193,9 @@ def main(argv):
     
     cosmology.setCosmology('planck18')
     
+    Output_Path = Result_Path + str(datetime.datetime.now())
+    os.system(f"mkdir {Output_Path}")
+    
     for i in range(1, 10) : 
         try : #Will load files until they don't exist anymore
             input_ = "../output_0000" + str(i) + "/info_0000"+ str(i) + ".txt"
@@ -201,12 +205,12 @@ def main(argv):
         except : 
             input_ = "../output_" + str(i-1) + "/info_"+ str(i-1) + ".txt" #Sets the value back to the last correct one, just in case we need it
             break 
-        Predicted_Particle_Mass(ds, i, Grid_Res, Size_Box)
-        if POT : Potential(ds, i, Grid_Res, Size_Box)
-        if VEL : Velocity(ds, i, Grid_Res, Size_Box)
-        if SPE : Power_Spectrum(rds, i, Grid_Res, Size_Box)
-        if HAL : Halo(rds, i, Grid_Res, Size_Box)
-        if INF : Get_Simu_Info(rds, i)
+        Predicted_Particle_Mass(ds, i, Grid_Res, Size_Box, Output_Path)
+        if POT : Potential(ds, i, Grid_Res, Size_Box, Output_Path)
+        if VEL : Velocity(ds, i, Grid_Res, Size_Box, Output_Path)
+        if SPE : Power_Spectrum(rds, i, Grid_Res, Size_Box, Output_Path)
+        if HAL : Halo(rds, i, Grid_Res, Size_Box, Output_Path)
+        if INF : Get_Simu_Info(rds, i, Output_Path)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
