@@ -118,7 +118,7 @@ def Power_Spectrum(DATA, index : int, gridres, sizebox, path : str) :
         plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
         plt.savefig(output_)
     except Exception as e : 
-        LogError("Get_Config_Info", e)
+        LogError("Power_Spectrum", e)
         print(e)
 
 def Halo(DATA, index, gridres, sizebox, path : str) : 
@@ -155,7 +155,7 @@ def Halo(DATA, index, gridres, sizebox, path : str) :
         plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
         plt.savefig(output_)
     except Exception as e : 
-        LogError("Get_Config_Info", e)
+        LogError("Halo", e)
         print(e)
 
 def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
@@ -165,7 +165,7 @@ def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a differ
         with open(output_, "w") as outf : 
             json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
     except Exception as e : 
-        LogError("Get_Config_Info", e)
+        LogError("Get_Simu_Info", e)
         print(e) 
 
 def main(argv):
