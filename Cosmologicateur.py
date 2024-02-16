@@ -14,6 +14,7 @@ from colossus.cosmology import cosmology
 from colossus.lss import mass_function
 import os, sys, getopt
 import json, datetime 
+from Errorateur import LogError
 
 # Utilisation (not currently functionnal):
 # python Cosmologicateur.py -i entree -o sortie
@@ -34,8 +35,9 @@ def Get_Config_Info() :
             ligne = ligne.split(" ")
             if ligne[0] == "GridRes" : gridres = ligne[2]
             if ligne[0] == "BoxLength" : sizebox = ligne[2]
-    except : 
-        pass
+    except Exception as e : 
+        LogError("Get_Config_Info", e)
+        print(e)
     return gridres, sizebox
 
 
@@ -49,8 +51,9 @@ def Predicted_Particle_Mass(DATA, index : int, gridres, sizebox, path : str) :
         #PPM.annotate_timestamp(corner='upper_left', time=True, redshift=False, draw_inset_box=True,time_format='t = {time:.1f}', time_unit='code_time')
         PPM.annotate_scale()
         PPM.save(output_)
-    except : 
-        pass
+    except Exception as e : 
+        LogError("Predicted_Particle_Mass", e)
+        print(e)
 
 def Potential(DATA, index : int, gridres, sizebox, path : str) : 
     try : 
@@ -58,8 +61,9 @@ def Potential(DATA, index : int, gridres, sizebox, path : str) :
         POT = yt.SlicePlot(DATA, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
         POT.annotate_cell_edges()
         POT.save(output_)
-    except : 
-        pass 
+    except Exception as e : 
+        LogError("Potential", e)
+        print(e)
 
 def Velocity(DATA, index : int, gridres, sizebox, path : str) : 
     try : 
@@ -69,8 +73,9 @@ def Velocity(DATA, index : int, gridres, sizebox, path : str) :
         VEL.set_unit('particle_velocity_y', 'km/s')
         VEL.set_unit('particle_mass', 'Msun')
         VEL.save(output_)
-    except : 
-        pass
+    except Exception as e : 
+        LogError("Velocity", e)
+        print(e)
 
 def Power_Spectrum(DATA, index : int, gridres, sizebox, path : str) :
     try :  
@@ -112,8 +117,9 @@ def Power_Spectrum(DATA, index : int, gridres, sizebox, path : str) :
         plt.xlabel("k [h/Mpc]")
         plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
         plt.savefig(output_)
-    except :
-        pass
+    except Exception as e : 
+        LogError("Get_Config_Info", e)
+        print(e)
 
 def Halo(DATA, index, gridres, sizebox, path : str) : 
     try :
@@ -148,8 +154,9 @@ def Halo(DATA, index, gridres, sizebox, path : str) :
         plt.xlabel(r'Mass ($M_{\odot}$)]', fontsize = 14)
         plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
         plt.savefig(output_)
-    except : 
-        pass
+    except Exception as e : 
+        LogError("Get_Config_Info", e)
+        print(e)
 
 def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
     try : 
@@ -157,8 +164,9 @@ def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a differ
         os.system(f"touch {output_}")
         with open(output_, "w") as outf : 
             json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
-    except : 
-        pass 
+    except Exception as e : 
+        LogError("Get_Config_Info", e)
+        print(e) 
 
 def main(argv):
     POT = False 
