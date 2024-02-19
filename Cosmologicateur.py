@@ -205,6 +205,7 @@ def main(argv):
     os.system(f"mkdir {Output_Path}")
     
     for i in range(1, 10) : 
+        print(f'---------------------------------{i}----------------------------------------')
         try : #Will load files until they don't exist anymore
             input_ = "../output_0000" + str(i) + "/info_0000"+ str(i) + ".txt"
             ramses_input_ = Ramses_Path + "output_0000" +str(i) + "/info_0000" + str(i) + ".txt"
