@@ -128,7 +128,7 @@ def Halo(DATA, index, gridres, sizebox, path : str) :
         BoxSize = pBoxSize[0].value #Mpc/h
         hc = HaloCatalog(data_ds=DATA, finder_method="hop") #Run halo Finder
         hc.create()
-        ds = yt.load("halo_catalogs/info_00002/info_00002.0.h5") #Get the file saved by hc.create
+        ds = yt.load(f"./halo_catalogs/info_0000{index}/info_0000{index}.0.h5") #Get the file saved by hc.create
         ad = ds.all_data()
         # The halo mass
         haloM=ad["halos", "particle_mass"]        
