@@ -160,7 +160,7 @@ def Halo(DATA, index, gridres, sizebox, path : str) :
 
 def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
     try : 
-        output_ = path + str(index)  +"_" + "PAR"+ str(datetime.datetime.now()) + ".json"
+        output_ = path + str(index)  +"_" + "PAR" + ".json"
         os.system(f"touch {output_}")
         with open(output_, "w") as outf : 
             json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
@@ -201,7 +201,7 @@ def main(argv):
     
     cosmology.setCosmology('planck18')
     
-    Output_Path = Result_Path + str(datetime.datetime.now()) + "/"
+    Output_Path = Result_Path + str(datetime.datetime.now())[:-7] + "/"
     os.system(f"mkdir {Output_Path}")
     
     for i in range(1, 10) : 
