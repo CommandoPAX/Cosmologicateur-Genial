@@ -36,7 +36,7 @@ def Get_Config_Info() :
             if ligne[0] == "GridRes" : gridres = ligne[2]
             if ligne[0] == "BoxLength" : sizebox = ligne[2]
     except Exception as e : 
-        #LogError("Get_Config_Info", e)
+        LogError("Get_Config_Info", e)
         print(e)
     return gridres, sizebox
 
@@ -52,7 +52,7 @@ def Predicted_Particle_Mass(DATA, index : int, gridres, sizebox, path : str) :
         PPM.annotate_scale()
         PPM.save(output_)
     except Exception as e : 
-        #LogError("Predicted_Particle_Mass", e)
+        LogError("Predicted_Particle_Mass", e)
         print(e)
 
 def Potential(DATA, index : int, gridres, sizebox, path : str) : 
@@ -62,7 +62,7 @@ def Potential(DATA, index : int, gridres, sizebox, path : str) :
         POT.annotate_cell_edges()
         POT.save(output_)
     except Exception as e : 
-        #LogError("Potential", e)
+        LogError("Potential", e)
         print(e)
 
 def Velocity(DATA, index : int, gridres, sizebox, path : str) : 
@@ -74,7 +74,7 @@ def Velocity(DATA, index : int, gridres, sizebox, path : str) :
         VEL.set_unit('particle_mass', 'Msun')
         VEL.save(output_)
     except Exception as e : 
-        #LogError("Velocity", e)
+        LogError("Velocity", e)
         print(e)
 
 def Power_Spectrum(DATA, index : int, gridres, sizebox, path : str) :
@@ -118,7 +118,7 @@ def Power_Spectrum(DATA, index : int, gridres, sizebox, path : str) :
         plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
         plt.savefig(output_)
     except Exception as e : 
-        #LogError("Power_Spectrum", e)
+        LogError("Power_Spectrum", e)
         print(e)
 
 def Halo(DATA, index, gridres, sizebox, path : str) : 
@@ -155,7 +155,7 @@ def Halo(DATA, index, gridres, sizebox, path : str) :
         plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
         plt.savefig(output_)
     except Exception as e : 
-        #LogError("Halo", e)
+        LogError("Halo", e)
         print(e)
 
 def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
@@ -165,7 +165,7 @@ def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a differ
         with open(output_, "w") as outf : 
             json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
     except Exception as e : 
-        #LogError("Get_Simu_Info", e)
+        LogError("Get_Simu_Info", e)
         print(e) 
 
 def main(argv):
@@ -202,7 +202,7 @@ def main(argv):
     cosmology.setCosmology('planck18')
     
     Output_Path = Result_Path + str(datetime.datetime.now())[:-7] + "/"
-    os.system(f"mkdir {Output_Path}")
+    #os.system(f"mkdir {Output_Path}")
     
     for i in range(1, 10) : 
         print(f'---------------------------------{i}----------------------------------------')
