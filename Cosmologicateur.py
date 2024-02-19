@@ -201,7 +201,7 @@ def main(argv):
     
     cosmology.setCosmology('planck18')
     
-    Output_Path = Result_Path + str(datetime.datetime.now())
+    Output_Path = Result_Path + str(datetime.datetime.now()) + "/"
     os.system(f"mkdir {Output_Path}")
     
     for i in range(1, 10) : 
