@@ -169,6 +169,9 @@ def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a differ
         print(e) 
 
 def main(argv):
+    global Result_Path
+    global Ramses_Path
+    
     POT = False 
     VEL = False 
     SPE = False 
