@@ -214,6 +214,7 @@ def main(argv):
             ds=yt.load(input_)
             rds = yt.load(ramses_input_)
         except : 
+            print("File not found, break")
             input_ = "../output_" + str(i-1) + "/info_"+ str(i-1) + ".txt" #Sets the value back to the last correct one, just in case we need it
             break 
         Predicted_Particle_Mass(ds, i, Grid_Res, Size_Box, Output_Path)
