@@ -202,11 +202,8 @@ def main(argv):
     cosmology.setCosmology('planck18')
     
     Output_Path = Result_Path + str(datetime.datetime.now())
-    try :
-        os.system(f"mkdir {Output_Path}")
-    except :
-        pass 
-    print("Salut c'est moi, la Simu")
+    os.system(f"mkdir {Output_Path}")
+    
     for i in range(1, 10) : 
         try : #Will load files until they don't exist anymore
             input_ = "../output_0000" + str(i) + "/info_0000"+ str(i) + ".txt"
