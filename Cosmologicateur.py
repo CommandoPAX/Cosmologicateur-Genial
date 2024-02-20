@@ -161,7 +161,6 @@ def Halo(DATA, index, gridres, sizebox, path : str) :
 def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
     try : 
         output_ = path + str(index)  +"_" + "PAR" + ".json"
-        #os.system(f"touch {output_}")
         with open(output_, "w") as outf : 
             json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
     except Exception as e : 
@@ -176,7 +175,6 @@ def main(argv):
     VEL = False 
     SPE = False 
     HAL = False 
-    INF = False 
     
     try: # W.I.P.
         # Predicted particle mass will be enabled by default for the pretty pictures
@@ -184,9 +182,9 @@ def main(argv):
         # v for velocity 
         # s for power spectrum 
         # m for halo mass (no need for help function)
-        opts, args = getopt.getopt(argv,"pvsmi")
+        opts, args = getopt.getopt(argv,"pvsm")
     except getopt.GetoptError:
-        print ('test.py -p -v -s -m, -i')
+        print ('test.py -p -v -s -m')
         sys.exit(2)
     for opt, arg in opts:
         if opt in ("-p"):
@@ -197,8 +195,6 @@ def main(argv):
             SPE = True 
         elif opt in ("-m"): 
             HAL = True
-        elif opt in ("-i") : 
-            INF = True
 
     Grid_Res, Size_Box = Get_Config_Info()
     
@@ -219,11 +215,11 @@ def main(argv):
             input_ = "../output_" + str(i-1) + "/info_"+ str(i-1) + ".txt" #Sets the value back to the last correct one, just in case we need it
             break 
         Predicted_Particle_Mass(ds, i, Grid_Res, Size_Box, Output_Path)
+        Get_Simu_Info(rds, i, Output_Path)
         if POT : Potential(ds, i, Grid_Res, Size_Box, Output_Path)
         if VEL : Velocity(ds, i, Grid_Res, Size_Box, Output_Path)
         if SPE : Power_Spectrum(rds, i, Grid_Res, Size_Box, Output_Path)
         if HAL : Halo(rds, i, Grid_Res, Size_Box, Output_Path)
-        if INF : Get_Simu_Info(rds, i, Output_Path)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
