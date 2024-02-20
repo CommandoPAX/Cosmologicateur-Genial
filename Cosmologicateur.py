@@ -22,6 +22,7 @@ from Errorateur import LogError
 Result_Path = "./RESULT/" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 Ramses_Path = "../ramses/"
 
+"""
 def Get_Config_Info() : 
     gridres = 0
     sizebox = 0
@@ -39,11 +40,11 @@ def Get_Config_Info() :
         LogError("Get_Config_Info", e)
         print(e)
     return gridres, sizebox
+"""
 
-
-def Predicted_Particle_Mass(DATA, index : int, gridres, sizebox, path : str) : 
+def Predicted_Particle_Mass(DATA, index : int, path : str) :
     try :
-        output_ = path + str(index)  +"_" + "PPM" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "PPM" +".png"
         #plot
         PPM = yt.ParticlePlot(DATA, 'particle_position_x', 'particle_position_y','particle_mass')
         PPM.set_unit('particle_mass', 'Msun')
@@ -55,9 +56,9 @@ def Predicted_Particle_Mass(DATA, index : int, gridres, sizebox, path : str) :
         LogError("Predicted_Particle_Mass", e)
         print(e)
 
-def Potential(DATA, index : int, gridres, sizebox, path : str) : 
+def Potential(DATA, index : int, path : str) : 
     try : 
-        output_ = path + str(index)  +"_" + "POT" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "POT" + ".png"
         POT = yt.SlicePlot(DATA, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
         POT.annotate_cell_edges()
         POT.save(output_)
@@ -65,9 +66,9 @@ def Potential(DATA, index : int, gridres, sizebox, path : str) :
         LogError("Potential", e)
         print(e)
 
-def Velocity(DATA, index : int, gridres, sizebox, path : str) : 
+def Velocity(DATA, index : int, path : str) : 
     try : 
-        output_ = path + str(index)  +"_" + "VEL" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "VEL" + ".png"
         VEL = yt.ParticlePlot(DATA, 'particle_velocity_x', 'particle_velocity_y','particle_mass')
         VEL.set_unit('particle_velocity_x', 'km/s')
         VEL.set_unit('particle_velocity_y', 'km/s')
@@ -77,10 +78,10 @@ def Velocity(DATA, index : int, gridres, sizebox, path : str) :
         LogError("Velocity", e)
         print(e)
 
-def Power_Spectrum(DATA, index : int, gridres, sizebox, path : str) :
+def Power_Spectrum(DATA, index : int, path : str) :
     try :  
         # Define important parameters
-        output_ = path + str(index)  +"_" + "POW" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "POW" + ".png"
         grid = 64    #grid size
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
@@ -121,9 +122,9 @@ def Power_Spectrum(DATA, index : int, gridres, sizebox, path : str) :
         LogError("Power_Spectrum", e)
         print(e)
 
-def Halo(DATA, index, gridres, sizebox, path : str) : 
+def Halo(DATA, index, path : str) : 
     try :
-        output_ = path + str(index)  +"_" + "HAL" + "_" +str(gridres)+"_"+str(sizebox)+"-Mpc" +".png"
+        output_ = path + str(index)  +"_" + "HAL" + ".png"
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
         hc = HaloCatalog(data_ds=DATA, finder_method="hop") #Run halo Finder
@@ -195,8 +196,6 @@ def main(argv):
             SPE = True 
         elif opt in ("-m"): 
             HAL = True
-
-    Grid_Res, Size_Box = Get_Config_Info()
     
     cosmology.setCosmology('planck18')
     
@@ -214,12 +213,12 @@ def main(argv):
             print("File not found, break")
             input_ = "../output_" + str(i-1) + "/info_"+ str(i-1) + ".txt" #Sets the value back to the last correct one, just in case we need it
             break 
-        Predicted_Particle_Mass(ds, i, Grid_Res, Size_Box, Output_Path)
+        Predicted_Particle_Mass(ds, i, Output_Path)
         Get_Simu_Info(rds, i, Output_Path)
-        if POT : Potential(ds, i, Grid_Res, Size_Box, Output_Path)
-        if VEL : Velocity(ds, i, Grid_Res, Size_Box, Output_Path)
-        if SPE : Power_Spectrum(rds, i, Grid_Res, Size_Box, Output_Path)
-        if HAL : Halo(rds, i, Grid_Res, Size_Box, Output_Path)
+        if POT : Potential(ds, i, Output_Path)
+        if VEL : Velocity(ds, i, Output_Path)
+        if SPE : Power_Spectrum(rds, i, Output_Path)
+        if HAL : Halo(rds, i, Output_Path)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
