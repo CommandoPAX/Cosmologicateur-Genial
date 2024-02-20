@@ -24,7 +24,7 @@ Ramses_Path = "../ramses"
 
 def Copy_Mono_Config(path : str) : 
     try : 
-        os.system(f"cp ../monofonic_exp/config.conf {path}/config.conf")
+        os.system(f'cp ../monofonic_exp/config.conf "{path}/config.conf"')
     except Exception as e : 
         LogError("Copy_Mono_Config", e)
         print(e)
