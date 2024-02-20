@@ -1,6 +1,10 @@
 ##### Le configurateur génial
 ##### Automatise la configuration de Ramses et monofonic
 
+
+
+
+
 import os
 
 ramses = open("../ramses/namelist/ramses.nml","r")
