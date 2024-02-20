@@ -22,24 +22,12 @@ from Errorateur import LogError
 Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 Ramses_Path = "../ramses"
 
-
-def Get_Config_Info() : 
-    gridres = 0
-    sizebox = 0
+def Copy_Mono_Config(path : str) : 
     try : 
-        monofonic = open("../monofonic/monofonic.conf","r")
-        while 1 :
-            ligne = monofonic.readline()
-            for i in range(10):
-                ligne = ligne.replace ("  ", " ")
-            if ligne =="" : break
-            ligne = ligne.split(" ")
-            if ligne[0] == "GridRes" : gridres = ligne[2]
-            if ligne[0] == "BoxLength" : sizebox = ligne[2]
+        os.system(f'cp ../monofonic_exp/config.conf "{path}/config.conf"')
     except Exception as e : 
-        LogError("Get_Config_Info", e)
+        LogError("Copy_Mono_Config", e)
         print(e)
-    return gridres, sizebox
 
 def Predicted_Particle_Mass(DATA, index : int, path : str) :
     try :
@@ -158,14 +146,11 @@ def Halo(DATA, index, path : str) :
         LogError("Halo", e)
         print(e)
 
-def Get_Simu_Info(DATA, index, path : str, grid, size) : #Not sure if there will be a different one for each dataset
+def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
     try : 
-        #output_ = path + str(index)  +"_" + "PAR" + ".json"
         output_ = f"{path}/{index}_PAR.json"
         with open(output_, "w") as outf : 
             Simu_Info = DATA.parameters
-            Simu_Info["Grid_Res"] = grid 
-            Simu_Info["Box_Size"] = size
             json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
     except Exception as e : 
         LogError("Get_Simu_Info", e)
@@ -207,8 +192,6 @@ def main(argv):
     
     cosmology.setCosmology('planck18')
     
-    GridRes, SizeBox = Get_Config_Info()
-    
     Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
     
     for i in range(1, 10) : 
@@ -222,11 +205,14 @@ def main(argv):
             print("File not found, breaking Thomas Delzant's legs")
             break 
         Predicted_Particle_Mass(ds, i, Output_Path)
-        Get_Simu_Info(rds, i, Output_Path, GridRes, SizeBox)
+        Get_Simu_Info(rds, i, Output_Path)
         if POT : Potential(ds, i, Output_Path)
         if VEL : Velocity(ds, i, Output_Path)
         if SPE : Power_Spectrum(rds, i, Output_Path)
         if HAL : Halo(rds, i, Output_Path)
+        os.system(f'cp {input_} "{Output_Path}/info_0000{i}.txt"')
+        os.system(f'cp {ramses_input_} "{Output_Path}/rinfo_0000{i}.txt"')
+    Copy_Mono_Config(Output_Path)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
