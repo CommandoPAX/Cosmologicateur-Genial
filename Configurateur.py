@@ -57,7 +57,11 @@ output_monofonic = output_monofonic.replace("#  #"," # ")
 
 autre = input("Changer d'autres paramètres ? (o/n)")
 
-monofonic = open("../monofonic/monofonic.conf","w")
+if type_mono == "cdm" :
+    monofonic= open("../monofonic/monofonic.conf","w")
+else :
+    monfonic = open("../monofonic_exp/PNG/NG.conf","w")
+
 monofonic.write(output_monofonic)
 monofonic.close()
 
@@ -66,15 +70,27 @@ ramses.write(output_ramses)
 ramses.close()
 
 if autre == "o" :
-    os.system("nano ../monofonic/monofonic.conf")
+    if type_mono == "cdm" :
+        os.system("nano ../monofonic/monofonic.conf")
+    else :
+        os.system("nano ../monofonic_exp/PNG/NG.conf")
+
     os.system("nano ../ramses/namelist/ramses.nml")
 
-os.system("rm -fr ../monofonic/build")
-os.system("mkdir ../monofonic/build")
-os.system("cd ../monofonic/build ; cmake ..")
-os.system("cd ../monofonic/build ; make")
-os.system("cd ../monofonic; build/monofonIC monofonic.conf")
-os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab")
+if type_mono == "cdm":
+    os.system("rm -fr ../monofonic/build")
+    os.system("mkdir ../monofonic/build")
+    os.system("cd ../monofonic/build ; cmake ..")
+    os.system("cd ../monofonic/build ; make")
+    os.system("cd ../monofonic; build/monofonIC monofonic.conf")
+    os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab")
+else :
+    os.system("rm -fr ../monofonic_exp/build")
+    os.system("mkdir ../monofonic_exp/build")
+    os.system("cd ../monofonic_exp/build ; cmake ..")
+    os.system("cd ../monofonic_exp/build ; make")
+    os.system("cd ../monofonic_exp; build/monofonIC ./PNG/NG.conf")
+    os.system("cp ../monofonic_exp/ics_ramses/ic_poscx ../monofonic_exp/ics_ramses/ic_deltab")
 os.system("cd ../ramses/bin; make clean")
 os.system("cd ../ramses/bin; make NDIM=3 ")
 #os.system("../ramses/bin/ramses3d ../ramses/namelist/ramses.nml")  le fichier bash le fait déjà
