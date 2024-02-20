@@ -52,7 +52,7 @@ while 1 :
 ramses.close()
 
 output_monofonic = output_monofonic.replace("="," = ")
-output_monofonic = output_monofonic.replace("#"," # ")
+output_monofonic = output_monofonic.replace(" # ","#")
 output_monofonic = output_monofonic.replace("#  #"," # ")
 
 autre = input("Changer d'autres paramètres ? (o/n)")
@@ -86,11 +86,26 @@ if type_mono == "cdm":
     os.system("cp ../monofonic/ics_ramses/ic_poscx ../monofonic/ics_ramses/ic_deltab")
 else :
     os.system("rm -fr ../monofonic_exp/build")
+    os.system("pause")
     os.system("mkdir ../monofonic_exp/build")
+    os.system("pause")
+
     os.system("cd ../monofonic_exp/build ; cmake ..")
+    os.system("pause")
+
     os.system("cd ../monofonic_exp/build ; make")
+    os.system("pause")
+
     os.system("cd ../monofonic_exp; build/monofonIC ./PNG/NG.conf")
+    os.system("pause")
+
     os.system("cp ../monofonic_exp/ics_ramses/ic_poscx ../monofonic_exp/ics_ramses/ic_deltab")
+    os.system("pause")
+
 os.system("cd ../ramses/bin; make clean")
+os.system("pause")
+
 os.system("cd ../ramses/bin; make NDIM=3 ")
+os.system("pause")
+
 #os.system("../ramses/bin/ramses3d ../ramses/namelist/ramses.nml")  le fichier bash le fait déjà
