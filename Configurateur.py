@@ -49,6 +49,9 @@ while 1 :
         output_ramses += k
         if not "\n" in k : 
             output_ramses+="="
+if type_mono == "wdm" : output_ramses = output_ramses.replace("initfile(1)='monofonic/","initfile(1)='monofonic_exp/")
+else : output_ramses = output_ramses.replace("initfile(1)='monofonic_exp/","initfile(1)='monofonic/")
+
 ramses.close()
 
 output_monofonic = output_monofonic.replace("="," = ")
