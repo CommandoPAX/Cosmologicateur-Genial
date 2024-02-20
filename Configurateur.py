@@ -60,7 +60,7 @@ autre = input("Changer d'autres paramètres ? (o/n)")
 if type_mono == "cdm" :
     monofonic= open("../monofonic/monofonic.conf","w")
 else :
-    monfonic = open("../monofonic_exp/PNG/NG.conf","w")
+    monofonic = open("../monofonic_exp/PNG/NG.conf","w")
 
 monofonic.write(output_monofonic)
 monofonic.close()
