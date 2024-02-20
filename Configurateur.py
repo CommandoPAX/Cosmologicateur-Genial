@@ -59,7 +59,9 @@ ParameterSet    = none # Planck2018EE+BAO+SN  # specify a pre-defined parameter 
 """
 
 
-if wdm == "n" :
+if wdm == "o" :
+    wdmmass = input("Masse de la matière noire (keV) ")
+
     COSMOLOGY += """
 Omega_c         = 0.0
 N_ncdm          = 1     
@@ -70,7 +72,7 @@ Omega_b         = 0.0494
 
 Omega_L         = 0.6842
 
-WDMmass=1
+WDMmass="""+wdmmass+"""
 """    
 
 
@@ -222,8 +224,8 @@ while 1 :
         output_ramses += k
         if not "\n" in k : 
             output_ramses+="="
-#if type_mono == "wdm" : output_ramses = output_ramses.replace("initfile(1)='monofonic/","initfile(1)='monofonic_exp/")
-#else : output_ramses = output_ramses.replace("initfile(1)='monofonic_exp/","initfile(1)='monofonic/")
+
+    output_ramses = output_ramses.replace("initfile(1)='monofonic/","initfile(1)='monofonic_exp/")
 
 ramses.close()
 
