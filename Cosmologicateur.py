@@ -19,8 +19,8 @@ from Errorateur import LogError
 # Utilisation (not currently functionnal):
 # python Cosmologicateur.py -i entree -o sortie
 
-Result_Path = "./RESULT/" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
-Ramses_Path = "../ramses/"
+Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
+Ramses_Path = "../ramses"
 
 """
 def Get_Config_Info() : 
@@ -44,7 +44,8 @@ def Get_Config_Info() :
 
 def Predicted_Particle_Mass(DATA, index : int, path : str) :
     try :
-        output_ = path + str(index)  +"_" + "PPM" +".png"
+        #output_ = path + str(index)  +"_" + "PPM" +".png"
+        output_ = f"{path}/{index}_PPM.png"
         #plot
         PPM = yt.ParticlePlot(DATA, 'particle_position_x', 'particle_position_y','particle_mass')
         PPM.set_unit('particle_mass', 'Msun')
@@ -58,7 +59,8 @@ def Predicted_Particle_Mass(DATA, index : int, path : str) :
 
 def Potential(DATA, index : int, path : str) : 
     try : 
-        output_ = path + str(index)  +"_" + "POT" + ".png"
+        #output_ = path + str(index)  +"_" + "POT" + ".png"
+        output_ = f"{path}/{index}_POT.png"
         POT = yt.SlicePlot(DATA, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
         POT.annotate_cell_edges()
         POT.save(output_)
@@ -68,7 +70,8 @@ def Potential(DATA, index : int, path : str) :
 
 def Velocity(DATA, index : int, path : str) : 
     try : 
-        output_ = path + str(index)  +"_" + "VEL" + ".png"
+        #output_ = path + str(index)  +"_" + "VEL" + ".png"
+        output_ = f"{path}/{index}_VEL.png"
         VEL = yt.ParticlePlot(DATA, 'particle_velocity_x', 'particle_velocity_y','particle_mass')
         VEL.set_unit('particle_velocity_x', 'km/s')
         VEL.set_unit('particle_velocity_y', 'km/s')
@@ -81,7 +84,8 @@ def Velocity(DATA, index : int, path : str) :
 def Power_Spectrum(DATA, index : int, path : str) :
     try :  
         # Define important parameters
-        output_ = path + str(index)  +"_" + "POW" + ".png"
+        #output_ = path + str(index)  +"_" + "POW" + ".png"
+        output_ = f"{path}/{index}_POW.png"
         grid = 64    #grid size
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
@@ -124,7 +128,8 @@ def Power_Spectrum(DATA, index : int, path : str) :
 
 def Halo(DATA, index, path : str) : 
     try :
-        output_ = path + str(index)  +"_" + "HAL" + ".png"
+        #output_ = path + str(index)  +"_" + "HAL" + ".png"
+        output_ = f"{path}/{index}_HAL.png"
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
         hc = HaloCatalog(data_ds=DATA, finder_method="hop") #Run halo Finder
@@ -161,7 +166,8 @@ def Halo(DATA, index, path : str) :
 
 def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
     try : 
-        output_ = path + str(index)  +"_" + "PAR" + ".json"
+        #output_ = path + str(index)  +"_" + "PAR" + ".json"
+        output_ = f"{path}/{index}_PAR.json"
         with open(output_, "w") as outf : 
             json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
     except Exception as e : 
@@ -177,7 +183,7 @@ def main(argv):
     SPE = False 
     HAL = False 
     
-    try: # W.I.P.
+    try:
         # Predicted particle mass will be enabled by default for the pretty pictures
         # p for potential 
         # v for velocity 
@@ -196,22 +202,26 @@ def main(argv):
             SPE = True 
         elif opt in ("-m"): 
             HAL = True
+        elif opt in ("-a"): 
+            POT, VEL, SPE, HAL = True 
     
     cosmology.setCosmology('planck18')
     
-    Output_Path = Result_Path + str(datetime.datetime.now())[:-7] + "/"
+    #Output_Path = Result_Path + str(datetime.datetime.now())[:-7] + "/"
+    Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
     #os.system(f"mkdir {Output_Path}")
     
     for i in range(1, 10) : 
         print(f'---------------------------------{i}----------------------------------------')
         try : #Will load files until they don't exist anymore
-            input_ = "../output_0000" + str(i) + "/info_0000"+ str(i) + ".txt"
-            ramses_input_ = Ramses_Path + "output_0000" +str(i) + "/info_0000" + str(i) + ".txt"
+            #input_ = "../output_0000" + str(i) + "/info_0000"+ str(i) + ".txt" 
+            input_ = f"../output_0000{i}/info_0000{i}.txt"
+            #ramses_input_ = Ramses_Path + "output_0000" +str(i) + "/info_0000" + str(i) + ".txt"
+            ramses_input_ = f"{Ramses_Path}/output_0000{i}/info_0000{i}.txt"
             ds=yt.load(input_)
             rds = yt.load(ramses_input_)
         except : 
             print("File not found, break")
-            input_ = "../output_" + str(i-1) + "/info_"+ str(i-1) + ".txt" #Sets the value back to the last correct one, just in case we need it
             break 
         Predicted_Particle_Mass(ds, i, Output_Path)
         Get_Simu_Info(rds, i, Output_Path)
