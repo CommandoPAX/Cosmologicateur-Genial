@@ -17,14 +17,16 @@ ngrid = input("Nombre de cellules : 2^")
 print("n^"+ngrid +" = "+str(2**int(ngrid)))
 
 SETUP += "GridRes         = "+str(2**int(ngrid))+"""      # number of grid cells per linear dimension for calculations 
-                           #   = particles for sc initial load"""
+                           #   = particles for sc initial load
+                           """
 
 taille = input("Taille de la boite (MPc / h): ")
 
 SETUP += "BoxLength       = "+str(taille)+"      # length of the box in Mpc/h"
 
 
-SETUP += """zstart          = 32.0     # starting redshift
+SETUP += """
+zstart          = 32.0     # starting redshift
 
 LPTorder        = 2        # order of the LPT to be used (1,2 or 3)
 
@@ -41,7 +43,8 @@ ParticleLoad    = sc       # particle load, can be 'sc' (1x), 'bcc' (2x) or 'fcc
 # GlassFileName   = glass128.hdf5
 # GlassTiles      = 1
 
-#########################################################################################"""
+#########################################################################################
+"""
 
 
 while 1 :
@@ -52,7 +55,8 @@ COSMOLOGY = """
 [cosmology]
 ## transfer = ... specifies the Einstein-Boltzmann plugin module
 
-ParameterSet    = none # Planck2018EE+BAO+SN  # specify a pre-defined parameter set, or set to 'none' and set manually below"""
+ParameterSet    = none # Planck2018EE+BAO+SN  # specify a pre-defined parameter set, or set to 'none' and set manually below
+"""
 
 
 if wdm == "n" :
@@ -71,7 +75,8 @@ WDMmass=1
 
 
 else: 
-    COSMOLOGY += """Omega_c         = 0.26067  
+    COSMOLOGY += """
+    Omega_c         = 0.26067  
 N_ncdm          = 0       
 Omega_ncdm      = 0.0     
 m_ncdm          = 0       
@@ -97,7 +102,8 @@ m_nu3           = 0.0
 w_0             = -1.0  # not supported yet!
 w_a             = 0.0   # not supported yet!
 transfer        = CLASS          
-ztarget         = 2.5             # target redshift for CLASS module, output at ztarget will be back-scaled to zstart"""
+ztarget         = 2.5             # target redshift for CLASS module, output at ztarget will be back-scaled to zstart
+"""
 
 
 while 1:
@@ -116,7 +122,8 @@ if ng =="o":
 
 
 COSMOLOGY+="""
-######################################################################################### """
+######################################################################################### 
+"""
 
 RANDOM = """
 [random]
@@ -192,7 +199,8 @@ OUTPUT = """
 ##> Generic HDF5 output format for testing or PT-based calculations
 # format          = generic
 # filename        = debug.hdf5
-# generic_out_eulerian = yes  # if yes then uses PPT for output"""
+# generic_out_eulerian = yes  # if yes then uses PPT for output
+"""
 
 MONOFONIC = SETUP + COSMOLOGY + RANDOM + EXECUTION + OUTPUT
 
