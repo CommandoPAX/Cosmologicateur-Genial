@@ -18,7 +18,7 @@ print("n^"+ngrid +" = "+str(2**int(ngrid)))
 
 SETUP += "GridRes         = "+str(2**int(ngrid))+"""      # number of grid cells per linear dimension for calculations 
                            #   = particles for sc initial load
-                           """
+"""
 
 taille = input("Taille de la boite (MPc / h): ")
 
@@ -61,7 +61,7 @@ ParameterSet    = none # Planck2018EE+BAO+SN  # specify a pre-defined parameter 
 
 if wdm == "n" :
     COSMOLOGY += """
-    Omega_c         = 0.0
+Omega_c         = 0.0
 N_ncdm          = 1     
 Omega_ncdm      = 0.26377    
 m_ncdm          = 1000      
@@ -76,7 +76,7 @@ WDMmass=1
 
 else: 
     COSMOLOGY += """
-    Omega_c         = 0.26067  
+Omega_c         = 0.26067  
 N_ncdm          = 0       
 Omega_ncdm      = 0.0     
 m_ncdm          = 0       
