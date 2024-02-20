@@ -47,23 +47,17 @@ ParticleLoad    = sc       # particle load, can be 'sc' (1x), 'bcc' (2x) or 'fcc
 while 1 :
     wdm = input("Matière noire chaude ? (o/n)")
     if wdm in ("o","n") : break
-while 1:
-    ng = input("Non gaussianités ? (o/n)")
-    if ng in ("o","n") : break
-
 
 COSMOLOGY = """
 [cosmology]
 ## transfer = ... specifies the Einstein-Boltzmann plugin module
 
-ParameterSet    =  none #Planck2018EE+BAO+SN  # specify a pre-defined parameter set, or set to 'none' and set manually below
+ParameterSet    = none # Planck2018EE+BAO+SN  # specify a pre-defined parameter set, or set to 'none' and set manually below"""
 
-# cosmological parameters, to set, choose ParameterSet = none,
-# default values (those not specified) are set to the values
-# from 'Planck2018EE+BAO+SN', we currently assume flatness
-# Omega_m         = 0.31317 # 0.3158
 
-Omega_c         = 0.0
+if wdm == "n" :
+    COSMOLOGY += """
+    Omega_c         = 0.0
 N_ncdm          = 1     
 Omega_ncdm      = 0.26377    
 m_ncdm          = 1000      
@@ -71,10 +65,29 @@ m_ncdm          = 1000
 Omega_b         = 0.0494
 
 Omega_L         = 0.6842
-H0              = 67.321
-n_s             = 0.9661
-sigma_8         = 0.8102
-A_s             = 2.148752e-09  # can use A_s instead of sigma_8 when using CLASS 
+
+WDMmass=1
+"""    
+
+
+else: 
+    COSMOLOGY += """Omega_c         = 0.26067  
+N_ncdm          = 0       
+Omega_ncdm      = 0.0     
+m_ncdm          = 0       
+Omega_b         = 0.04897 
+Omega_L         = 0.6889 
+
+"""
+
+
+
+COSMOLOGY += """
+H0              = 67.66
+n_s             = 0.9665
+#sigma_8         = 0.8102
+A_s             = 2.1052e-9  # can use A_s instead of sigma_8 when using CLASS 
+norm            = 1.0
 Tcmb            = 2.7255
 k_p             = 0.05
 N_ur            = 2.046
@@ -83,41 +96,26 @@ m_nu2           = 0.0
 m_nu3           = 0.0
 w_0             = -1.0  # not supported yet!
 w_a             = 0.0   # not supported yet!
-
-WDMmass=1
-
-#ZeroRadiation   = false  # For Back-scaling only: set to true if your simulation code 
-                         # cannot deal with Omega_r!=0 in its background FLRW model
-
-## Use below for anisotropic large scale tidal field ICs up to 2LPT
-## see Stuecker+2020 (https://arxiv.org/abs/2003.06427)
-# LSS_aniso_lx    = +0.1
-# LSS_aniso_ly    = +0.1
-# LSS_aniso_lz    = -0.2
-
-### MODULES: ###
-
-##> Eisenstein & Hu (1997) fitting formulae 
-## this is fast, but not too accurate. Also baryons trace CDM here. 
-## see https://arxiv.org/abs/astro-ph/9709112
-
- #transfer        = eisenstein_wdm
-   
-
-##> CAMB transfer function file module
-## This should be transfer function output with CAMB (https://camb.info)
-## at the *target* redshift
-
-# transfer        = file_CAMB    # CAMB file to be specified as 'transfer_file = ...'
-# transfer_file   = wmap5_transfer_out_z0.dat
-
-##> CLASS module, which links to the actual CLASS C-code.
-## note that CLASS needs to be cloned as a git submodule and enabled in CMake file
-
 transfer        = CLASS          
-ztarget         = 2.5             # target redshift for CLASS module, output at ztarget will be back-scaled to zstart
+ztarget         = 2.5             # target redshift for CLASS module, output at ztarget will be back-scaled to zstart"""
 
 
+while 1:
+    ng = input("Non gaussianités ? (o/n)")
+    if ng in ("o","n") : break
+
+if ng =="o":
+    fnl = input ("fnl = ")
+    kmin = input("kmin = ")
+    sigma = input("sigma = ")
+
+    COSMOLOGY += "fnl = "+fnl+"\n"
+    COSMOLOGY += "sigma = "+sigma+"\n"
+    COSMOLOGY += "kmin = "+kmin+"\n"
+
+
+
+COSMOLOGY+="""
 ######################################################################################### """
 
 RANDOM = """
@@ -201,7 +199,7 @@ MONOFONIC = SETUP + COSMOLOGY + RANDOM + EXECUTION + OUTPUT
 
 monofonic = open("../monofonic_exp/config.conf","w")
 monofonic.write(MONOFONIC)
-
+monofonic.close()
 
 output_ramses = ""
 while 1 :
