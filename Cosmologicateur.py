@@ -193,7 +193,6 @@ def main(argv):
     cosmology.setCosmology('planck18')
     
     Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
-    Copy_Mono_Config(Output_Path)
     
     for i in range(1, 10) : 
         print(f'---------------------------------{i}----------------------------------------')
@@ -211,6 +210,7 @@ def main(argv):
         if VEL : Velocity(ds, i, Output_Path)
         if SPE : Power_Spectrum(rds, i, Output_Path)
         if HAL : Halo(rds, i, Output_Path)
+    Copy_Mono_Config(Output_Path)
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
