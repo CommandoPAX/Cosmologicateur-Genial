@@ -22,7 +22,7 @@ from Errorateur import LogError
 Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 Ramses_Path = "../ramses"
 
-"""
+
 def Get_Config_Info() : 
     gridres = 0
     sizebox = 0
@@ -40,11 +40,9 @@ def Get_Config_Info() :
         LogError("Get_Config_Info", e)
         print(e)
     return gridres, sizebox
-"""
 
 def Predicted_Particle_Mass(DATA, index : int, path : str) :
     try :
-        #output_ = path + str(index)  +"_" + "PPM" +".png"
         output_ = f"{path}/{index}_PPM.png"
         #plot
         PPM = yt.ParticlePlot(DATA, 'particle_position_x', 'particle_position_y','particle_mass')
@@ -59,7 +57,6 @@ def Predicted_Particle_Mass(DATA, index : int, path : str) :
 
 def Potential(DATA, index : int, path : str) : 
     try : 
-        #output_ = path + str(index)  +"_" + "POT" + ".png"
         output_ = f"{path}/{index}_POT.png"
         POT = yt.SlicePlot(DATA, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
         POT.annotate_cell_edges()
@@ -70,7 +67,6 @@ def Potential(DATA, index : int, path : str) :
 
 def Velocity(DATA, index : int, path : str) : 
     try : 
-        #output_ = path + str(index)  +"_" + "VEL" + ".png"
         output_ = f"{path}/{index}_VEL.png"
         VEL = yt.ParticlePlot(DATA, 'particle_velocity_x', 'particle_velocity_y','particle_mass')
         VEL.set_unit('particle_velocity_x', 'km/s')
@@ -84,7 +80,6 @@ def Velocity(DATA, index : int, path : str) :
 def Power_Spectrum(DATA, index : int, path : str) :
     try :  
         # Define important parameters
-        #output_ = path + str(index)  +"_" + "POW" + ".png"
         output_ = f"{path}/{index}_POW.png"
         grid = 64    #grid size
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
@@ -128,7 +123,6 @@ def Power_Spectrum(DATA, index : int, path : str) :
 
 def Halo(DATA, index, path : str) : 
     try :
-        #output_ = path + str(index)  +"_" + "HAL" + ".png"
         output_ = f"{path}/{index}_HAL.png"
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
@@ -164,12 +158,15 @@ def Halo(DATA, index, path : str) :
         LogError("Halo", e)
         print(e)
 
-def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
+def Get_Simu_Info(DATA, index, path : str, grid, size) : #Not sure if there will be a different one for each dataset
     try : 
         #output_ = path + str(index)  +"_" + "PAR" + ".json"
         output_ = f"{path}/{index}_PAR.json"
         with open(output_, "w") as outf : 
-            json.dump(DATA.parameters, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
+            Simu_Info = DATA.parameters
+            Simu_Info["Grid_Res"] = grid 
+            Simu_Info["Box_Size"] = size
+            json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False)
     except Exception as e : 
         LogError("Get_Simu_Info", e)
         print(e) 
@@ -203,20 +200,21 @@ def main(argv):
         elif opt in ("-m"): 
             HAL = True
         elif opt in ("-a"): 
-            POT, VEL, SPE, HAL = True 
+            POT = True
+            VEL = True 
+            SPE = True 
+            HAL = True 
     
     cosmology.setCosmology('planck18')
     
-    #Output_Path = Result_Path + str(datetime.datetime.now())[:-7] + "/"
+    GridRes, SizeBox = Get_Config_Info()
+    
     Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
-    #os.system(f"mkdir {Output_Path}")
     
     for i in range(1, 10) : 
         print(f'---------------------------------{i}----------------------------------------')
         try : #Will load files until they don't exist anymore
-            #input_ = "../output_0000" + str(i) + "/info_0000"+ str(i) + ".txt" 
             input_ = f"../output_0000{i}/info_0000{i}.txt"
-            #ramses_input_ = Ramses_Path + "output_0000" +str(i) + "/info_0000" + str(i) + ".txt"
             ramses_input_ = f"{Ramses_Path}/output_0000{i}/info_0000{i}.txt"
             ds=yt.load(input_)
             rds = yt.load(ramses_input_)
@@ -224,7 +222,7 @@ def main(argv):
             print("File not found, breaking Thomas Delzant's legs")
             break 
         Predicted_Particle_Mass(ds, i, Output_Path)
-        Get_Simu_Info(rds, i, Output_Path)
+        Get_Simu_Info(rds, i, Output_Path, GridRes, SizeBox)
         if POT : Potential(ds, i, Output_Path)
         if VEL : Velocity(ds, i, Output_Path)
         if SPE : Power_Spectrum(rds, i, Output_Path)
