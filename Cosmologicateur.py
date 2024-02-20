@@ -221,7 +221,7 @@ def main(argv):
             ds=yt.load(input_)
             rds = yt.load(ramses_input_)
         except : 
-            print("File not found, break")
+            print("File not found, breaking Thomas Delzant's legs")
             break 
         Predicted_Particle_Mass(ds, i, Output_Path)
         Get_Simu_Info(rds, i, Output_Path)
