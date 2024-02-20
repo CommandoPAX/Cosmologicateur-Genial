@@ -3,12 +3,20 @@
 
 import os
 
-monofonic= open("../monofonic/monofonic.conf","r")
 ramses = open("../ramses/namelist/ramses.nml","r")
+
 
 ngrid = input("Nombre de cellules : 2^")
 print("n^"+ngrid +" = "+str(2**int(ngrid)))
 taille = input("Taille de la boite : ")
+while 1 :
+    type_mono = input("Utiliser quelle version de monofonic ? (cdm/wdm)")
+    if type_mono in ("cdm","wdm") : break
+
+if type_mono == "cdm" :
+    monofonic= open("../monofonic/monofonic.conf","r")
+else :
+    monofonic = open("../monofonic_exp/PNG/NG.conf","r")
 
 output_monofonic = ""
 while 1 :
