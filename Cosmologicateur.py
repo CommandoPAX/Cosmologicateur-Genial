@@ -189,7 +189,7 @@ def main(argv):
         # v for velocity 
         # s for power spectrum 
         # m for halo mass (no need for help function)
-        opts, args = getopt.getopt(argv,"pvsm")
+        opts, args = getopt.getopt(argv,"pvsma")
     except getopt.GetoptError:
         print ('test.py -p -v -s -m')
         sys.exit(2)
