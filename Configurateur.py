@@ -171,7 +171,7 @@ OUTPUT = """
 
 ##> RAMSES / GRAFIC2 compatible format
  format	        = grafic2
- filename        = WDM_ramses
+ filename        = ics_ramses
  grafic_use_SPT  = no # if no then uses PPT, otherwise linear SPT
 
 ##> Gadget-2/3 'fortran unformatted binary'-style format
@@ -181,7 +181,7 @@ OUTPUT = """
 
 ##> Gadget-2/3 HDF5 format
 # format          = gadget_hdf5
-# filename        = E_WDM.hdf5
+# filename        = ics_gadget.hdf5
 
 ##> Arepo HDF5 format (virtually identical to gadget_hdf5)
 # format          = AREPO
