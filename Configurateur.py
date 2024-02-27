@@ -249,5 +249,7 @@ os.system("cd ../monofonic_exp; build/monofonIC config.conf")
 os.system("cp ../monofonic_exp/ics_ramses/ic_poscx ../monofonic_exp/ics_ramses/ic_deltab")
 os.system("cd ../ramses/bin; make clean")
 os.system("cd ../ramses/bin; make NDIM=3")
+os.system("cp ../ramses/bin/ramses3d ..")
+os.system("cp ../ramses/namelist/ramses.nml ..")
 
 #os.system("../ramses/bin/ramses3d ../ramses/namelist/ramses.nml")  le fichier bash le fait déjà
