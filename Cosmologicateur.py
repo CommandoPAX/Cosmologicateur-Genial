@@ -95,6 +95,8 @@ def Power_Spectrum(DATA, index : int, path : str) :
         k       = Pk.k3D
         Pk0     = Pk.Pk[:,0]
 
+        plt.clf()
+
         plt.loglog(k,Pk0,label="RAMSES") #plot measure from N-body
 
         toL=np.transpose(np.loadtxt("CLASS.dat"))
