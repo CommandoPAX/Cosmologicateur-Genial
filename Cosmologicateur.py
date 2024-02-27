@@ -27,7 +27,9 @@ os.system("mkdir "+str(Result_Path))
 
 def Output ():
     # Pour pas écraser à chaque fois
-    pass
+    global output_name
+
+    #A faire la prochaine fois
 
 def Copy_Mono_Config(path : str) : 
 
