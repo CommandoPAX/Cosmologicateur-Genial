@@ -69,7 +69,7 @@ def Power_Spectrum(DATA, index : int, path : str) :
     try :  
         # Define important parameters
         output_ = f"{path}/{index}_POW.png"
-        grid = 64    #grid size
+        grid = 256    #grid size
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
         Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
