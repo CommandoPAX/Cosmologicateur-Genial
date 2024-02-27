@@ -21,6 +21,7 @@ from Errorateur import LogError
 
 Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 Ramses_Path = "../ramses"
+Data_Path = "../../Results/LCDM_256"
 
 def Copy_Mono_Config(path : str) : 
     try : 
@@ -216,6 +217,19 @@ def main(argv):
         os.system(f'cp -r ../output_0000{i} "{Output_Path}/ouput_0000{i}"')
         os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
     if POT and VEL and HAL and SPE : Copy_Mono_Config(Output_Path) 
+
+def test():
+    global Data_Path
+
+    cosmology.setCosmology('planck18')
+
+    for i in range(2):
+        input_ = f"{Data_Path}/info_0000{i+1}.txt"
+        ramses_input_ = f"{Data_Path}/rinfo_0000{i+1}.txt"
+        ds=yt.load(input_)
+        rds = yt.load(ramses_input_)
+
+
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
