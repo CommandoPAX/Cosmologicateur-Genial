@@ -95,7 +95,7 @@ def Power_Spectrum(DATA, index : int, path : str) :
         k       = Pk.k3D
         Pk0     = Pk.Pk[:,0]
 
-        plt.loglog(k,Pk0*23**2,label="RAMSES") #plot measure from N-body
+        plt.loglog(k,Pk0*23,label="RAMSES") #plot measure from N-body
 
         toL=np.transpose(np.loadtxt("CLASS.dat"))
         plt.loglog(toL[0],toL[1],linestyle="dotted",label='CLASS') #plot lienar CLASS
