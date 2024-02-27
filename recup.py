@@ -5,9 +5,9 @@ def Recup(argv):
     opts, args = getopt.getopt(argv,"ga")
     
     for opt, arg in opts:
-        if opt in ("-a"):
+        if opt in ("-g"):
             os.system("scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png ~/RESULT/")
-        if opt in ("-o"):
+        if opt in ("-a"):
             os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/* ~/RESULT/")
 
 if __name__=="__main__":
