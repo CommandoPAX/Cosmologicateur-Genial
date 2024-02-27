@@ -2,16 +2,14 @@
 ##### Automatise la configuration de Ramses et monofonic
 
 
+import os
+
+ramses = open("../ramses/namelist/ramses.nml","r")
+
 SETUP = """
 [setup]
 
 """
-
-
-
-import os
-
-ramses = open("../ramses/namelist/ramses.nml","r")
 
 ngrid = input("Nombre de cellules : 2^")
 print("n^"+ngrid +" = "+str(2**int(ngrid)))
@@ -88,7 +86,6 @@ Omega_L         = 0.6889
 """
 
 
-
 COSMOLOGY += """
 H0              = 67.66
 n_s             = 0.9665
@@ -106,7 +103,6 @@ w_a             = 0.0   # not supported yet!
 transfer        = CLASS          
 ztarget         = 2.5             # target redshift for CLASS module, output at ztarget will be back-scaled to zstart
 """
-
 
 while 1:
     ng = input("Non gaussianités ? (o/n)")
