@@ -8,7 +8,7 @@ def Recup(argv):
         if opt in ("-g"):
             os.system("scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png ~/RESULT/")
         if opt in ("-a"):
-            os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/* ~/RESULT/")
+            os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*\" ~/RESULT/")
 
 if __name__=="__main__":
     Recup(sys.argv[1:])
