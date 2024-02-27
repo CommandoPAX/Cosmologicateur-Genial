@@ -6,10 +6,9 @@ def Recup(argv):
     
     for opt, arg in opts:
         if opt in ("-g","-a"):
-            POT = True
-        elif opt in ("-o"):
-            VEL = True
-        elif opt in ("-a"):
+            os.system()
+        if opt in ("-o","-a"):
+            os.system()
 
 
     os.system()
