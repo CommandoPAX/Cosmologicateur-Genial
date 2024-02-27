@@ -200,12 +200,12 @@ def main(argv):
     for i in range(1, 10)  : 
         plt.clf()
         print(f'---------------------------------{i}----------------------------------------')
-        try : #Will load files until they don't exist anymore
+        if 1:#try : #Will load files until they don't exist anymore
             input_ = f"../output_0000{i}/info_0000{i}.txt"
             ramses_input_ = f"{Ramses_Path}/output_0000{i}/info_0000{i}.txt"
             ds=yt.load(input_)
             rds = yt.load(ramses_input_)
-        except : 
+        else:#except : 
             print("File not found, breaking Thomas Delzant's legs")
             break 
         Predicted_Particle_Mass(ds, i, Output_Path)
