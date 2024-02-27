@@ -215,7 +215,7 @@ def main(argv):
         if HAL : Halo(rds, i, Output_Path)
         os.system(f'cp -r ../output_0000{i} "{Output_Path}/ouput_0000{i}"')
         os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
-    Copy_Mono_Config(Output_Path)
+    if POT and VEL and HAL and SPE : Copy_Mono_Config(Output_Path) 
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
