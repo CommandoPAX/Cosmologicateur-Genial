@@ -18,3 +18,4 @@ from Cosmologicateur import*
 Result_Path = "../../Results/LCDM_256" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 Ramses_Path = "../../Resultas/LCDM_256"
 
+main("-p -v -s -m")
