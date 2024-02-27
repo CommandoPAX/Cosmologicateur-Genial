@@ -197,6 +197,7 @@ def main(argv):
     Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
     
     for i in range(1, 10) : 
+        plt.clf()
         print(f'---------------------------------{i}----------------------------------------')
         try : #Will load files until they don't exist anymore
             input_ = f"../output_0000{i}/info_0000{i}.txt"
