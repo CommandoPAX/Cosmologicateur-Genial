@@ -202,7 +202,7 @@ def main(argv):
         print(f'---------------------------------{i}----------------------------------------')
         if 1:#try : #Will load files until they don't exist anymore
             input_ = f"../output_0000{i}/info_0000{i}.txt"
-            ramses_input_ = f"{Ramses_Path}/output_0000{i}/info_0000{i}.txt"
+            ramses_input_ = input_
             ds=yt.load(input_)
             rds = yt.load(ramses_input_)
         else:#except : 
