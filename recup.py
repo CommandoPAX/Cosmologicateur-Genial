@@ -2,13 +2,15 @@ import os
 import sys,getopt
 
 def Recup(argv):
-    opts, args = getopt.getopt(argv,"ga")
+    opts, args = getopt.getopt(argv,"gac")
     
     for opt, arg in opts:
         if opt in ("-g"):
             os.system("scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png ~/RESULT/")
         if opt in ("-a"):
             os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*\" ~/RESULT/")
+        if opt in ("-c"):
+            os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py\" ~/Cosmologicateur-genial/")
 
 if __name__=="__main__":
     Recup(sys.argv[1:])
