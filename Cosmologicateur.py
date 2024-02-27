@@ -23,6 +23,8 @@ Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmo
 Ramses_Path = "../ramses"
 Data_Path = "../../Results/LCDM_256"
 
+os.system("mkdir "+str(Result_Path))
+
 def Copy_Mono_Config(path : str) : 
     try : 
         os.system(f'cp ../monofonic_exp/config.conf "{path}/config.conf"')
