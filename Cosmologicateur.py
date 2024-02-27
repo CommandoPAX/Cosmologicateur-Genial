@@ -91,7 +91,7 @@ def Power_Spectrum(DATA, index : int, path : str) :
         # now compute overdensity and density constrast
         delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
         
-        Pk = PKL.Pk(delta, BoxSize, axis, MAS, threads, verbose)
+        Pk = PKL.Pk(delta, BoxSize, axis, 'None', threads, verbose)
         k       = Pk.k3D
         Pk0     = Pk.Pk[:,0]
 
