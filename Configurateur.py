@@ -249,17 +249,9 @@ def generer_monofonic (argv) :
 
     ramses.close()
 
-    autre = input("Changer d'autres paramètres ? (o/n)")
-
-
     ramses = open("./ramses/namelist/ramses.nml","w")
     ramses.write(output_ramses)
     ramses.close()
-
-    if autre == "o" :
-        os.system("nano ./monofonic_exp/config.conf")
-        os.system("nano ./ramses/namelist/ramses.nml")
-
 
 def compiler ():
 
