@@ -19,7 +19,7 @@ def Recup(argv):
             time.sleep(2)
 
             p.stdin.write("gaeK6Oafai1eN6e" + '\n')
-            p.flush()
+            p.stdin.flush()
             #os.system("scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png ~/RESULT/")
         if opt in ("-a"):
             #os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*\" ~/RESULT/")
@@ -30,7 +30,7 @@ def Recup(argv):
 
             
             p.stdin.write("gaeK6Oafai1eN6e" + '\n')
-            p.flush()
+            p.stdin.flush()
         
         if opt in ("-c"):
             p = Popen(['scp', '-r', '\"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py\"','~/Cosmologicateur-genial/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
@@ -38,7 +38,7 @@ def Recup(argv):
             time.sleep(2)
             
             p.stdin.write("gaeK6Oafai1eN6e" + '\n')
-            p.flush()
+            p.stdin.flush()
             #os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py\" ~/Cosmologicateur-genial/")
         
 
