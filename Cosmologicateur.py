@@ -23,7 +23,7 @@ Result_Path = "./Cosmologicateur-Genial/RESULT" #Path where all results will be 
 
 def Copy_Mono_Config(path : str) : 
 
-    os.system(f'cp ../monofonic_exp/config.conf "{path}/config.conf"')
+    os.system(f'cp ./monofonic_exp/config.conf "{path}/config.conf"')
 
 def Predicted_Particle_Mass(DATA, index : int, path : str) :
 
@@ -194,7 +194,7 @@ def main(argv):
         if VEL : Velocity(ds, i, Output_Path)
         if SPE : Power_Spectrum(ds, i, Output_Path)
         if HAL : Halo(ds, i, Output_Path)
-        os.system(f'cp -r ../output_0000{i} "{Output_Path}/output_0000{i}"')
+        os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
         #os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
     Copy_Mono_Config(Output_Path) 
 
