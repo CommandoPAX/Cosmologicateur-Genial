@@ -225,6 +225,8 @@ grafic_use_SPT  = no # if no then uses PPT, otherwise linear SPT
 
     MONOFONIC = SETUP + COSMOLOGY + RANDOM + EXECUTION + OUTPUT
 
+    MONOFONIC = MONOFONIC.replace("\n\t","\n")
+
 
     monofonic = open("../monofonic_exp/config.conf","w")
     monofonic.write(MONOFONIC)
