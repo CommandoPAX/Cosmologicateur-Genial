@@ -109,37 +109,40 @@ def Power_Spectrum(DATA, index : int, path : str) :
 
 def Halo(DATA, index, path : str) : 
 
-    output_ = f"{path}/{index}_HAL.png"
-    pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
-    BoxSize = pBoxSize[0].value #Mpc/h
-    hc = HaloCatalog(data_ds=DATA, finder_method="hop") #Run halo Finder
-    hc.create()
-    ds = yt.load(f"./halo_catalogs/info_0000{index}/info_0000{index}.0.h5") #Get the file saved by hc.create
-    ad = ds.all_data()
-    # The halo mass
-    haloM=ad["halos", "particle_mass"]        
-    log_M_min=14.3 #minimal mass to plot HMF
-    log_M_max=15 #maximal mass to plot HMF
-    delta_log_M=0.1
-    boxsize=BoxSize/0.67 #factor h
+    try :
+        output_ = f"{path}/{index}_HAL.png"
+        pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
+        BoxSize = pBoxSize[0].value #Mpc/h
+        hc = HaloCatalog(data_ds=DATA, finder_method="hop") #Run halo Finder
+        hc.create()
+        ds = yt.load(f"./halo_catalogs/info_0000{index}/info_0000{index}.0.h5") #Get the file saved by hc.create
+        ad = ds.all_data()
+        # The halo mass
+        haloM=ad["halos", "particle_mass"]        
+        log_M_min=14.3 #minimal mass to plot HMF
+        log_M_max=15 #maximal mass to plot HMF
+        delta_log_M=0.1
+        boxsize=BoxSize/0.67 #factor h
 
-    bin_centers, num_halos, err = halo_MF(haloM, log_M_min=log_M_min, log_M_max=log_M_max, delta_log_M=delta_log_M, boxsize = boxsize) #calculate halo mass function
+        bin_centers, num_halos, err = halo_MF(haloM, log_M_min=log_M_min, log_M_max=log_M_max, delta_log_M=delta_log_M, boxsize = boxsize) #calculate halo mass function
 
-    fig,ax = plt.subplots()
-    ax.errorbar(bin_centers[num_halos!=0], num_halos[num_halos!=0], yerr=err[num_halos!=0], fmt='x', capthick=2, elinewidth=2,label='Measured') #plt HMF
+        fig,ax = plt.subplots()
+        ax.errorbar(bin_centers[num_halos!=0], num_halos[num_halos!=0], yerr=err[num_halos!=0], fmt='x', capthick=2, elinewidth=2,label='Measured') #plt HMF
 
 
-    HMF_T=mass_function.massFunction(bin_centers, 0.0, mdef = 'fof', model = 'sheth99',q_out = 'dndlnM')      #get theoretical line for HMF,
-    #check https://bdiemer.bitbucket.io/colossus/lss_mass_function.html for a list of model
-    plt.loglog(bin_centers, HMF_T,label="Theo")
+        HMF_T=mass_function.massFunction(bin_centers, 0.0, mdef = 'fof', model = 'sheth99',q_out = 'dndlnM')      #get theoretical line for HMF,
+        #check https://bdiemer.bitbucket.io/colossus/lss_mass_function.html for a list of model
+        plt.loglog(bin_centers, HMF_T,label="Theo")
 
-    ax.set_xscale('log')
-    ax.set_yscale('log')
+        ax.set_xscale('log')
+        ax.set_yscale('log')
 
-    plt.legend()
-    plt.xlabel(r'Mass ($M_{\odot}$)]', fontsize = 14)
-    plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
-    plt.savefig(output_)
+        plt.legend()
+        plt.xlabel(r'Mass ($M_{\odot}$)]', fontsize = 14)
+        plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
+        plt.savefig(output_)
+    except:
+        pass
 
 
 def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
