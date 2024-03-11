@@ -88,7 +88,7 @@ def generer_monofonic (argv) :
     """
 
 
-    if wdmass !=0 :
+    if int(wdmass) !=0 :
 
         COSMOLOGY += """
     Omega_c         = 0.0
