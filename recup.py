@@ -1,6 +1,7 @@
 import os
 import sys,getopt
 from subprocess import Popen, PIPE
+import time
 
 """p = Popen(['sudo', '-S', 'ls'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
 prompt = p.communicate("password" + '\n')
@@ -14,6 +15,8 @@ def Recup(argv):
     for opt, arg in opts:
         if opt in ("-g"):
             p = Popen(['scp', '-r', '\"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png\"','~/RESULT/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
+            
+            time.sleep(2)
 
             p.stdin.write("gaeK6Oafai1eN6e" + '\n')
             p.flush()
@@ -22,11 +25,18 @@ def Recup(argv):
             #os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*\" ~/RESULT/")
         
             p = Popen(['scp', '-r', '\"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*\"','~/RESULT/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
+            
+            time.sleep(2)
+
+            
             p.stdin.write("gaeK6Oafai1eN6e" + '\n')
             p.flush()
         
         if opt in ("-c"):
             p = Popen(['scp', '-r', '\"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py\"','~/Cosmologicateur-genial/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
+            
+            time.sleep(2)
+            
             p.stdin.write("gaeK6Oafai1eN6e" + '\n')
             p.flush()
             #os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py\" ~/Cosmologicateur-genial/")
