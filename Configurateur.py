@@ -88,7 +88,7 @@ ParameterSet    = none # Planck2018EE+BAO+SN  # specify a pre-defined parameter 
     """
 
 
-    if int(wdmass) !=0 :
+    if float(wdmass) !=0 :
 
         COSMOLOGY += """
 Omega_c         = 0.0
@@ -135,7 +135,7 @@ ztarget         = 2.5             # target redshift for CLASS module, output at 
     """
 
 
-    if int(fnl) !=0 and int(sigma) !=0 and int(kmin) !=0:
+    if float(fnl) !=0 and float(sigma) !=0 and float(kmin) !=0:
 
         COSMOLOGY += "fnl = "+str(fnl)+"\n"
         COSMOLOGY += "sigma = "+str(sigma)+"\n"
