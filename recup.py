@@ -3,8 +3,6 @@ import getpass
 import subprocess
 import pexpect
 
-
-
 def Recup(argv):
     opts, args = getopt.getopt(argv,"gac")
     
