@@ -49,11 +49,11 @@ def generer_monofonic (argv) :
     SETUP = """
 [setup]
 
-    """
+"""
 
     SETUP += "GridRes         = "+str(2**int(ngrid))+"""      # number of grid cells per linear dimension for calculations 
                             #   = particles for sc initial load
-    """
+"""
 
     SETUP += "BoxLength       = "+str(taille)+"      # length of the box in Mpc/h"
 
@@ -77,7 +77,7 @@ ParticleLoad    = sc       # particle load, can be 'sc' (1x), 'bcc' (2x) or 'fcc
 # GlassTiles      = 1
 
 #########################################################################################
-    """
+"""
 
 
     COSMOLOGY = """
@@ -101,7 +101,7 @@ Omega_b         = 0.0494
 Omega_L         = 0.6842
 
 WDMmass="""+str(wdmass)+"""
-    """    
+"""    
 
 
     else: 
@@ -113,7 +113,7 @@ m_ncdm          = 0
 Omega_b         = 0.04897 
 Omega_L         = 0.6889 
 
-    """
+"""
 
 
     COSMOLOGY += """
@@ -132,7 +132,7 @@ w_0             = -1.0  # not supported yet!
 w_a             = 0.0   # not supported yet!
 transfer        = CLASS          
 ztarget         = 2.5             # target redshift for CLASS module, output at ztarget will be back-scaled to zstart
-    """
+"""
 
 
     if float(fnl) !=0 and float(sigma) !=0 and float(kmin) !=0:
@@ -145,7 +145,7 @@ ztarget         = 2.5             # target redshift for CLASS module, output at 
 
     COSMOLOGY+="""
 ######################################################################################### 
-    """
+"""
 
     RANDOM = """
 [random]
@@ -173,7 +173,7 @@ seed           = 12345
 
 # Add a possible constraint field here:
 # ConstraintFieldFile = initial_conditions.hdf5
- # ConstraintFieldName = ic_white_noise
+# ConstraintFieldName = ic_white_noise
 
 
 #########################################################################################"""
@@ -181,7 +181,7 @@ seed           = 12345
 [execution]
 # Specify the number of threads / task
 NumThreads      = 8
-    """
+"""
     OUTPUT = """
 
 #########################################################################################
@@ -221,7 +221,7 @@ grafic_use_SPT  = no # if no then uses PPT, otherwise linear SPT
 # format          = generic
 # filename        = debug.hdf5
 # generic_out_eulerian = yes  # if yes then uses PPT for output
-    """
+"""
 
     MONOFONIC = SETUP + COSMOLOGY + RANDOM + EXECUTION + OUTPUT
 
