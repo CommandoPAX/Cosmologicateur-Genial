@@ -19,15 +19,7 @@ from Errorateur import LogError
 # Utilisation (not currently functionnal):
 # python Cosmologicateur.py -i entree -o sortie
 
-Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
-
-os.system("mkdir "+str(Result_Path))
-
-def Output ():
-    # Pour pas écraser à chaque fois
-    global output_name
-
-    #A faire la prochaine fois
+Result_Path = "./Cosmologicateur-Genial/RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 
 def Copy_Mono_Config(path : str) : 
 
