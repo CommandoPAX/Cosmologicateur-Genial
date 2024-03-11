@@ -207,7 +207,7 @@ def main(argv):
         if VEL : Velocity(ds, i, Output_Path)
         if SPE : Power_Spectrum(rds, i, Output_Path)
         if HAL : Halo(rds, i, Output_Path)
-        os.system(f'cp -r ../output_0000{i} "{Output_Path}/ouput_0000{i}"')
+        os.system(f'cp -r ../output_0000{i} "{Output_Path}/output_0000{i}"')
         os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
     if POT and VEL and HAL and SPE : Copy_Mono_Config(Output_Path) 
 
