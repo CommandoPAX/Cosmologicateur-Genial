@@ -262,7 +262,7 @@ def compiler ():
     os.system("cd ../monofonic_exp/build ; cmake .." )
     os.system("cd ../monofonic_exp/build ; make")
     os.system("cd ../monofonic_exp; build/monofonIC config.conf")
-    os.system("cp ../monofonic_exp/ics_ramses/ic_poscx ./monofonic_exp/ics_ramses/ic_deltab")
+    os.system("cp ../monofonic_exp/ics_ramses/ic_poscx ../monofonic_exp/ics_ramses/ic_deltab")
     os.system("cd ../ramses/bin; make clean")
     os.system("cd ../ramses/bin; make NDIM=3")
     os.system("cp ../ramses/bin/ramses3d ..")
