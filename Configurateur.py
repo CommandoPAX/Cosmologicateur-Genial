@@ -51,11 +51,13 @@ def generer_monofonic (argv) :
 
 """
 
-    SETUP += "GridRes         = "+str(2**int(ngrid))+"""      # number of grid cells per linear dimension for calculations 
+    SETUP += """
+GridRes         = """+str(2**int(ngrid))+"""      # number of grid cells per linear dimension for calculations 
                             #   = particles for sc initial load
 """
 
-    SETUP += "BoxLength       = "+str(taille)+"      # length of the box in Mpc/h"
+    SETUP += """
+BoxLength       = """+str(taille)+"""      # length of the box in Mpc/h"""
 
 
     SETUP += """
