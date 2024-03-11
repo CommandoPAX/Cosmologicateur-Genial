@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE
 prompt = p.communicate("password" + '\n')
 output = prompt[0]"""
 
-print(output)
+#print(output)
 
 def Recup(argv):
     opts, args = getopt.getopt(argv,"gac")
