@@ -1,47 +1,32 @@
 import os
-import sys,getopt
-from subprocess import Popen, PIPE
-import time
-
-"""p = Popen(['sudo', '-S', 'ls'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
-prompt = p.communicate("password" + '\n')
-output = prompt[0]"""
-
-#print(output)
+import getpass
+import subprocess
+import pexpect
+import sys
 
 def Recup(argv):
     opts, args = getopt.getopt(argv,"gac")
     
     for opt, arg in opts:
         if opt in ("-g"):
-            p = Popen(['scp', '-r', '\"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png\"','~/RESULT/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
-            
-            time.sleep(2)
-
-            p.stdin.write("gaeK6Oafai1eN6e\n")
-            p.stdin.flush()
-            #os.system("scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png ~/RESULT/")
+            commande = "scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png ~/RESULT/"
         if opt in ("-a"):
-            #os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*\" ~/RESULT/")
-        
-            p = Popen(['scp', '-r', '\"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*\"','~/RESULT/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
-            
-            time.sleep(2)
-
-            
-            p.stdin.write("gaeK6Oafai1eN6e\n")
-            p.stdin.flush()
+            commande = "scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/* ~/RESULT/"
         
         if opt in ("-c"):
-            p = Popen(['scp', '-r', '\"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py\"','~/Cosmologicateur-genial/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
-            
-            time.sleep(2)
-            
-            p.stdin.write("gaeK6Oafai1eN6e\n")
-            p.stdin.flush()
-            #os.system("scp -r \"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py\" ~/Cosmologicateur-genial/")
+            commande = "scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py ~/Cosmologicateur-genial/"
         
+        var_password = str("gaeK6Oafai1eN6e")
 
+        var_child = pexpect.spawn(commande)
+        i = var_child.expect(["password:", pexpect.EOF])
+
+        if i==0: # send password            
+            var_child.sendline(var_password)
+            var_child.expect(pexpect.EOF)
+        elif i==1: 
+            print("Got the key or connection timeout")
+            pass
 
 if __name__=="__main__":
     Recup(sys.argv[1:])
