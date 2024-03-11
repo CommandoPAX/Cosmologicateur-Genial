@@ -20,8 +20,6 @@ from Errorateur import LogError
 # python Cosmologicateur.py -i entree -o sortie
 
 Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
-Ramses_Path = "../ramses"
-Data_Path = "../../Results/LCDM_256"
 
 os.system("mkdir "+str(Result_Path))
 
@@ -154,7 +152,6 @@ def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a differ
 
 def main(argv):
     global Result_Path
-    global Ramses_Path
     
     POT = False 
     VEL = False 
@@ -195,34 +192,19 @@ def main(argv):
         print(f'---------------------------------{i}----------------------------------------')
         try : #Will load files until they don't exist anymore
             input_ = f"../output_0000{i}/info_0000{i}.txt"
-            ramses_input_ = input_          # <----------------- a verifier
             ds=yt.load(input_)
-            rds = yt.load(ramses_input_)
         except : 
             print("File not found, breaking Thomas Delzant's legs")
             break 
         Predicted_Particle_Mass(ds, i, Output_Path)
-        Get_Simu_Info(rds, i, Output_Path)
+        Get_Simu_Info(ds, i, Output_Path)
         if POT : Potential(ds, i, Output_Path)
         if VEL : Velocity(ds, i, Output_Path)
-        if SPE : Power_Spectrum(rds, i, Output_Path)
-        if HAL : Halo(rds, i, Output_Path)
+        if SPE : Power_Spectrum(ds, i, Output_Path)
+        if HAL : Halo(ds, i, Output_Path)
         os.system(f'cp -r ../output_0000{i} "{Output_Path}/output_0000{i}"')
-        os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
-    if POT and VEL and HAL and SPE : Copy_Mono_Config(Output_Path) 
-
-def test():
-    global Data_Path
-
-    cosmology.setCosmology('planck18')
-
-    for i in range(2):
-        input_ = f"{Data_Path}/info_0000{i+1}.txt"
-        ramses_input_ = f"{Data_Path}/rinfo_0000{i+1}.txt"
-        ds=yt.load(input_)
-        rds = yt.load(ramses_input_)
-
-
+        #os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
+    Copy_Mono_Config(Output_Path) 
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
