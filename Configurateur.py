@@ -10,7 +10,7 @@ def generer_monofonic (argv) :
 
     opts, args = getopt.getopt(argv,"n:l:m:f:k:s:",["ngrid =","Lbox =","wdmass =","fnl =","kmin =","sigma ="])
 
-    ramses = open("./ramses/namelist/ramses.nml","r")
+    ramses = open("../ramses/namelist/ramses.nml","r")
 
 
     """
@@ -227,7 +227,7 @@ def generer_monofonic (argv) :
     MONOFONIC = SETUP + COSMOLOGY + RANDOM + EXECUTION + OUTPUT
 
 
-    monofonic = open("./monofonic_exp/config.conf","w")
+    monofonic = open("../monofonic_exp/config.conf","w")
     monofonic.write(MONOFONIC)
     monofonic.close()
 
@@ -249,7 +249,7 @@ def generer_monofonic (argv) :
 
     ramses.close()
 
-    ramses = open("./ramses/namelist/ramses.nml","w")
+    ramses = open("../ramses/namelist/ramses.nml","w")
     ramses.write(output_ramses)
     ramses.close()
 
