@@ -13,7 +13,7 @@ def Recup(argv):
     
     for opt, arg in opts:
         if opt in ("-g"):
-            p = Popen(['scp', '-r', 'tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png','~/RESULT/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
+            p = Popen(['scp', '-r', '\"tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/RESULT/*/*.png\"','~/RESULT/'], stdin=PIPE, stderr=PIPE, stdout=PIPE, text=True)
 
             prompt = p.communicate("gaeK6Oafai1eN6e" + '\n')
             output = prompt[0]
