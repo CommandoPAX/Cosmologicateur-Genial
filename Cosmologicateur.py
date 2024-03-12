@@ -140,7 +140,7 @@ def Halo(DATA, index, path : str, SimuName : str) :
         delta_log_M=0.1
         boxsize=BoxSize/0.67 #factor h
 
-        os.system(f"cp ./halo_catalogs/info_0000{index}/info_0000{index}.0.h5 {output_[:-4]}.h0.5")
+        os.system(f"cp ./halo_catalogs/info_0000{index}/info_0000{index}.0.h5 {path}")
 
         bin_centers, num_halos, err = halo_MF(haloM, log_M_min=log_M_min, log_M_max=log_M_max, delta_log_M=delta_log_M, boxsize = boxsize) #calculate halo mass function
 
