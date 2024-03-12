@@ -3,7 +3,6 @@
 import matplotlib.pyplot as plt
 import yt
 import numpy as np
-from scipy import interpolate
 import density_field_library as DFL
 import Pk_library as PKL
 import MAS_library as MASL
@@ -27,14 +26,21 @@ class Simulation ():
         self.name = name
 
         self.data = yt.load(self.path)
+        self.ad = self.data.all_data()
+
+        self.df = self.ad.to_dataframe([("gravity","Potential"),"particle_position_x","particle_position_y","particle_position_z","particle_position","particle_mass"])
+
+        self.args = {}        
+
+        for i in self.df.columns :
+            if not i in self.args : self.args[i] = self.df[i].to_numpy()
 
         if self.output_path =="":
             self.output_Path = f"{self.path}/{str(datetime.datetime.now())[:-7]} - {self.name}
     
-    def Copy_Mono_Config(self) : 
-
-        os.system(f'cp ./monofonic_exp/config.conf {self.output_path}/config.conf')
-
+    def __getitem__ (self, x):
+        return self.args[x]
+        
     def Predicted_Particle_Mass(self, save = True) :
 
         self.PPM = yt.ParticlePlot(self.data, 'particle_position_x', 'particle_position_y','particle_mass')
@@ -51,7 +57,6 @@ class Simulation ():
     def Potential(self, save = True) :
         
         self.POT = yt.SlicePlot(self.data, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
-        self.POT.annotate_cell_edges()
 
         if save :
             output_ = self.output_path+"/POT_"+self.name+".png"
@@ -223,9 +228,6 @@ def main(argv):
     if VEL : lcdm.Velocity(False)
     if SPE : lcdm.Power_Spectrum(False)
     if HAL : lcdm.Halo(False)
-
-    #os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
-    #lcdm.Copy_Mono_Config(Output_Path) 
 
 if __name__ == "__main__" :
     main(sys.argv[1:])

@@ -19,9 +19,3 @@ print(ds.all_data())
 plot = yt.ParticlePlot(ds, 'particle_position_x', 'particle_position_y','particle_mass')
 plot.save("test.pdf")
 os.system("evince test.pdf")
-
-fichier = open("../fields","r")
-while 1:
-    l = fichier.readline()
-    if "’, ‘" in l : print(l)
-    if l == "" : break
