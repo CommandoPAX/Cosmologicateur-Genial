@@ -149,6 +149,7 @@ def main(argv):
     VEL = False 
     SPE = False 
     HAL = False 
+    name = ""
     
     try:
         # Predicted particle mass will be enabled by default for the pretty pictures
@@ -156,7 +157,7 @@ def main(argv):
         # v for velocity 
         # s for power spectrum 
         # m for halo mass (no need for help function)
-        opts, args = getopt.getopt(argv,"pvsma")
+        opts, args = getopt.getopt(argv,"pvsman:")
     except getopt.GetoptError:
         print ('test.py -p -v -s -m')
         sys.exit(2)
@@ -174,10 +175,14 @@ def main(argv):
             VEL = True 
             SPE = True 
             HAL = True 
+        elif opt in ("-n") :
+            name = str(arg)
     
     cosmology.setCosmology('planck18')
-    
-    Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
+    if name =="" : 
+        Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
+    else : 
+        Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]} - {name}"
     
     for i in range(1, 10)  : 
         plt.clf()
