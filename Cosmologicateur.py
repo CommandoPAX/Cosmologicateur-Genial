@@ -169,9 +169,9 @@ def Halo(DATA, index, path : str, SimuName : str) :
 def Get_Simu_Info(DATA, index, path : str, SimuName : str) : #Not sure if there will be a different one for each dataset
 
     if SimuName == "" : 
-        output_ = f"{path}/{index}_PAR.png"
+        output_ = f"{path}/{index}_PAR.json"
     else : 
-        output_ = f"{path}/{index}_PAR_{SimuName}.png"
+        output_ = f"{path}/{index}_PAR_{SimuName}.json"
     with open(output_, "w") as outf : 
         Simu_Info = DATA.parameters
         json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
