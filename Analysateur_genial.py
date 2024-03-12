@@ -18,15 +18,15 @@ class Simulation ():
         self.path = path
 
         self.index = index
-        self.info = "info_"+"0"*(4-len(str(self.index//10)))+str(self.index)
-        self.output = "output_"+"0"*(4-len(str(self.index//10)))+str(self.index)
+        self.info = "info_"+"0"*(5-len(str(self.index//10)))+str(self.index)
+        self.output = "output_"+"0"*(5-len(str(self.index//10)))+str(self.index)
 
         self.name = name
 
         self.data = yt.load(self.path+"/"+self.output+"/"+self.info+".txt")
         self.ad = self.data.all_data()
 
-        self.df = self.ad.to_dataframe([("gravity","Potential"),"particle_position_x","particle_position_y","particle_position_z","particle_position","particle_mass"])
+        self.df = self.ad.to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
 
         self.args = {}        
 
@@ -45,14 +45,15 @@ class Simulation ():
 
     def Power_Spectrum(self) :
 
+        path = ""
         for root,dirs,files in os.walk(self.path): 
                 for file in files:
-
-                    if "POW.txt" in file :
+                    print(file)
+                    if "POW" in file and ".txt" in file :
                         path_pow = file
                         break
 
-        fichier = open(path_pow,"r")
+        fichier = open(self.path+"/"+path_pow,"r")
         k = []
         Pk0 = []
 
@@ -152,7 +153,7 @@ if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
 
-    Path_lcdm = "2024-03-11 - LCDM"
+    Path_lcdm = "./RESULT/2024-03-12 15:55:46 - WMDPGN32"
 
     lcdm_1 = Simulation(Path_lcdm,name="lcdm",index = 1)
     lcdm_2 = Simulation(Path_lcdm,name="lcdm",index = 2)
