@@ -15,5 +15,5 @@ import json, datetime
 from Errorateur import LogError
 
 ds = yt.load("./output_00001/info_00001.txt")
-print(ds["particle_position_x"])
+print(ds.all_data())
 yt.ParticlePlot(ds, 'particle_position_x', 'particle_position_y','particle_mass')
