@@ -33,7 +33,7 @@ class Simulation ():
     
     def Copy_Mono_Config(self) : 
 
-        os.system(f'cp ./monofonic_exp/config.conf "{self.output_path}/config.conf"')
+        os.system(f'cp ./monofonic_exp/config.conf {self.output_path}/config.conf')
 
     def Predicted_Particle_Mass(self, save = True) :
 
@@ -41,9 +41,8 @@ class Simulation ():
         self.PPM.set_unit('particle_mass', 'Msun')
         self.PPM.annotate_scale()
         
-        if save :
-
-            output_ = self.output_path+"/PPM_"+self.name+".png"
+        if save:
+            output_ = f"{self.output_path}/PPM_{self.name}.png"
             self.PPM.save(output_)
 
         return self.PPM
