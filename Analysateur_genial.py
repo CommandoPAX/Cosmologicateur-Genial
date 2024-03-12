@@ -16,12 +16,17 @@ import os, sys, getopt
 import json, datetime 
 
 class Simulation ():
-    def __init__ (self, path, data, output_path = "", name = "lcdm"):
+    def __init__ (self, path, output_path = "", name = "lcdm",index = 2):
         self.path = path
         self.output_path = output_path
 
+        self.index = index
+        self.info = "info_"+"0"*(4-len(str(self.index//10)))+str(self.index)
+        self.output = "output_"+"0"*(4-len(str(self.index//10)))+str(self.index)
+
         self.name = name
-        self.data = data
+
+        self.data = yt.load(self.path)
 
         if self.output_path =="":
             self.output_Path = f"{self.path}/{str(datetime.datetime.now())[:-7]} - {self.name}
@@ -68,15 +73,12 @@ class Simulation ():
 
         return self.VEL
 
-    def Power_Spectrum(self, save = True) :
+    def Power_Spectrum(self, save = False, Class = False) :
 
         # Define important parameters
-        if SimuName == "" : 
-            output_ = f"{path}/{index}_POW.png"
-        else : 
-            output_ = f"{path}/{index}_POW_{SimuName}.png"
+
         grid = 256    #grid size
-        pBoxSize = DATA.domain_width.in_units('Mpccm/h') #Mpc/h
+        pBoxSize = self.data.domain_width.in_units('Mpccm/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
         Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
         threads = 1      #number of openmp threads
@@ -84,7 +86,7 @@ class Simulation ():
         axis = 0
         MAS = 'CIC'
         
-        ad=DATA.all_data()
+        ad=self.data.all_data()
         pos = ad['particle_position'].astype(np.float32)*BoxSize
 
         # define 3D density fields
@@ -95,7 +97,8 @@ class Simulation ():
 
         # at this point, delta contains the effective number of particles in each voxel
         # now compute overdensity and density constrast
-        delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
+        delta /= np.mean(delta, dtype=np.float64)
+        delta -= 1.0
         
         Pk = PKL.Pk(delta, BoxSize, axis, 'None', threads, verbose)
         k       = Pk.k3D
@@ -105,28 +108,31 @@ class Simulation ():
 
         plt.loglog(k,Pk0,label="RAMSES") #plot measure from N-body
 
-        toL=np.transpose(np.loadtxt("CLASS.dat"))
-        plt.loglog(toL[0],toL[1],linestyle="dotted",label='CLASS') #plot lienar CLASS
-        toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
-        plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
+        if Class :
+            toL=np.transpose(np.loadtxt("CLASS.dat"))
+            plt.loglog(toL[0],toL[1],linestyle="dotted",label='CLASS') #plot lienar CLASS
+            toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
+            plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
+            
         plt.legend()
         plt.xlabel("k [h/Mpc]")
         plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
-        plt.savefig(output_)
+
+        if save :
+            output_ = self.output_path+"/POW_"+self.name+".png"
+            plt.savefig(output_)
 
 
-    def Halo(self, DATA, index, path : str, SimuName : str) : 
+    def Halo(self, save = True) : 
 
         try :
-            if SimuName == "" : 
-                output_ = f"{path}/{index}_HAL.png"
-            else : 
-                output_ = f"{path}/{index}_HAL_{SimuName}.png"
-            pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
+            pBoxSize = self.data.domain_width.in_units('Mpc/h') #Mpc/h
             BoxSize = pBoxSize[0].value #Mpc/h
-            hc = HaloCatalog(data_ds=DATA, finder_method="hop") #Run halo Finder
+            os.system ("mkdir "+self.path+"/halo_catalogs")
+            hc = HaloCatalog(data_ds=self.data, finder_method="hop",output_dir = self.path+"./halo_catalogs") #Run halo Finder
             hc.create()
-            ds = yt.load(f"./halo_catalogs/info_0000{index}/info_0000{index}.0.h5") #Get the file saved by hc.create
+
+            ds = yt.load(self.path+"/halo_catalogs/"+self.info+"/"+self.info+".0.h5") #Get the file saved by hc.create
             ad = ds.all_data()
             # The halo mass
             haloM=ad["halos", "particle_mass"]        
@@ -151,19 +157,21 @@ class Simulation ():
             plt.legend()
             plt.xlabel(r'Mass ($M_{\odot}$)]', fontsize = 14)
             plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
-            plt.savefig(output_)
+
+            if save :
+
+                output_ = self.output_path+"/HAL_"+self.name+".png"
+                plt.savefig(output_)
         except:
             pass
 
 
-    def Get_Simu_Info(self, DATA, index, path : str, SimuName : str) : #Not sure if there will be a different one for each dataset
+    def Get_Simu_Info(self, save = False) : #Not sure if there will be a different one for each dataset
 
-        if SimuName == "" : 
-            output_ = f"{path}/{index}_PAR.png"
-        else : 
-            output_ = f"{path}/{index}_PAR_{SimuName}.png"
+        output_ = self.output_path+"/PAR_"+self.name+".png"
+
         with open(output_, "w") as outf : 
-            Simu_Info = DATA.parameters
+            Simu_Info = self.data.parameters
             json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
 def main(argv):
@@ -174,17 +182,14 @@ def main(argv):
     SPE = False 
     HAL = False 
     name = ""
-    
-    try:
-        # Predicted particle mass will be enabled by default for the pretty pictures
-        # p for potential 
-        # v for velocity 
-        # s for power spectrum 
-        # m for halo mass (no need for help function)
-        opts, args = getopt.getopt(argv,"pvsman:")
-    except getopt.GetoptError:
-        print ('test.py -p -v -s -m')
-        sys.exit(2)
+
+    # Predicted particle mass will be enabled by default for the pretty pictures
+    # p for potential 
+    # v for velocity 
+    # s for power spectrum 
+    # m for halo mass (no need for help function)
+    opts, args = getopt.getopt(argv,"pvsman:")
+
     for opt, arg in opts:
         if opt in ("-p"):
             POT = True
@@ -204,33 +209,24 @@ def main(argv):
     
     cosmology.setCosmology('planck18')
 
-    Result_Path = "./Cosmologicateur-Genial/RESULT"
-
-    lcdm = Simulation(Result_Path,name="lcdm",output_path=)
+    Result_Path = "./Cosmologicateur-Genial/RESULT/output_00001/info_00001.txt"
 
     if name =="" : 
         Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
     else : 
         Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]} - {name}"
     
-    for i in range(1, 10)  : 
-        plt.clf()
-        print(f'---------------------------------{i}----------------------------------------')
-        try : #Will load files until they don't exist anymore
-            input_ = f"./output_0000{i}/info_0000{i}.txt"
-            ds=yt.load(input_)
-        except : 
-            print("File not found, breaking Thomas Delzant's legs")
-            break 
-        Predicted_Particle_Mass(ds, i, Output_Path, name)
-        Get_Simu_Info(ds, i, Output_Path, name)
-        if POT : Potential(ds, i, Output_Path, name)
-        if VEL : Velocity(ds, i, Output_Path, name)
-        if SPE : Power_Spectrum(ds, i, Output_Path, name)
-        if HAL : Halo(ds, i, Output_Path, name)
-        os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
-        #os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
-    Copy_Mono_Config(Output_Path) 
+    lcdm = Simulation(Result_Path,name="lcdm",output_path=Output_Path)
+
+    lcdm.Predicted_Particle_Mass()
+    lcdm.Get_Simu_Info(False)
+    if POT : lcdm.Potential(False)
+    if VEL : lcdm.Velocity(False)
+    if SPE : lcdm.Power_Spectrum(False)
+    if HAL : lcdm.Halo(False)
+
+    #os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
+    #lcdm.Copy_Mono_Config(Output_Path) 
 
 if __name__ == "__main__" :
     main(sys.argv[1:])
