@@ -99,7 +99,7 @@ def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
         output_spectrum = open(output_[:-4]+".txt","w")
 
         for i in range(len(k)):
-            output_spectrum.write(str(k[i])+" "+str(Pk0[i]))
+            output_spectrum.write(str(k[i])+" "+str(Pk0[i])+"\n")
 
         output_spectrum.close()
     except :
