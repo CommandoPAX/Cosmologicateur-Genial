@@ -47,7 +47,7 @@ def Potential(DATA, index : int, path : str, SimuName : str) :
     else : 
         output_ = f"{path}/{index}_POT_{SimuName}.png"
     POT = yt.SlicePlot(DATA, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
-    POT.annotate_cell_edges()
+    #POT.annotate_cell_edges()
     POT.save(output_)
 
 def Velocity(DATA, index : int, path : str, SimuName : str) :
