@@ -100,6 +100,9 @@ def PowerSpectrum (Simu, Class = False) :
         plt.xlabel("k [h/Mpc]")
         plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
 
+def Diviser_Pow (Simu1, Simu2) :
+    plt.loglog(Simu1["k"],Simu2["Pk0"]/Simu1["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
+
             
 def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
      
