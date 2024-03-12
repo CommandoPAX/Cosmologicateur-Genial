@@ -37,7 +37,7 @@ def generer_monofonic (argv) :
             ngrid = value
         if name in ["-l", "--Lbox"]:
             taille = value
-        if name in ["-w", "--wdmass"]:
+        if name in ["-m", "--wdmass"]:
             wdmass = value
         if name in ["-f", "--fnl"]:
             fnl = value

@@ -41,5 +41,6 @@ def generer_monofonic (argv) :
             sigma = value
 
     print (ngrid, taille, wdmass, fnl, kmin, sigma)
+    print(float(wdmass) != 0)
 
 generer_monofonic(sys.argv[1:])
