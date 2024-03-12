@@ -231,7 +231,6 @@ def main(argv):
         if SPE : Power_Spectrum(ds, i, Output_Path, name)
         if HAL : Halo(ds, i, Output_Path, name)
         os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
-        #os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
     Copy_Mono_Config(Output_Path) 
 
 if __name__ == "__main__" :
