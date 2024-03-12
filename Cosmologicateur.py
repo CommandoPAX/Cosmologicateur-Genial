@@ -25,9 +25,12 @@ def Copy_Mono_Config(path : str) :
 
     os.system(f'cp ./monofonic_exp/config.conf "{path}/config.conf"')
 
-def Predicted_Particle_Mass(DATA, index : int, path : str) :
+def Predicted_Particle_Mass(DATA, index : int, path : str, SimuName : str) :
 
-    output_ = f"{path}/{index}_PPM.png"
+    if SimuName == "" : 
+        output_ = f"{path}/{index}_PPM.png"
+    else : 
+        output_ = f"{path}/{index}_PPM_{SimuName}.png"
     #plot
     PPM = yt.ParticlePlot(DATA, 'particle_position_x', 'particle_position_y','particle_mass')
     PPM.set_unit('particle_mass', 'Msun')
@@ -37,26 +40,35 @@ def Predicted_Particle_Mass(DATA, index : int, path : str) :
     PPM.save(output_)
 
 
-def Potential(DATA, index : int, path : str) :
+def Potential(DATA, index : int, path : str, SimuName : str) :
     
-    output_ = f"{path}/{index}_POT.png"
+    if SimuName == "" : 
+        output_ = f"{path}/{index}_POT.png"
+    else : 
+        output_ = f"{path}/{index}_POT_{SimuName}.png"
     POT = yt.SlicePlot(DATA, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
     POT.annotate_cell_edges()
     POT.save(output_)
 
-def Velocity(DATA, index : int, path : str) :
+def Velocity(DATA, index : int, path : str, SimuName : str) :
     
-    output_ = f"{path}/{index}_VEL.png"
+    if SimuName == "" : 
+        output_ = f"{path}/{index}_VEL.png"
+    else : 
+        output_ = f"{path}/{index}_VEL_{SimuName}.png"
     VEL = yt.ParticlePlot(DATA, 'particle_velocity_x', 'particle_velocity_y','particle_mass')
     VEL.set_unit('particle_velocity_x', 'km/s')
     VEL.set_unit('particle_velocity_y', 'km/s')
     VEL.set_unit('particle_mass', 'Msun')
     VEL.save(output_)
 
-def Power_Spectrum(DATA, index : int, path : str) :
+def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
 
     # Define important parameters
-    output_ = f"{path}/{index}_POW.png"
+    if SimuName == "" : 
+        output_ = f"{path}/{index}_POW.png"
+    else : 
+        output_ = f"{path}/{index}_POW_{SimuName}.png"
     grid = 256    #grid size
     pBoxSize = DATA.domain_width.in_units('Mpccm/h') #Mpc/h
     BoxSize = pBoxSize[0].value #Mpc/h
@@ -97,10 +109,13 @@ def Power_Spectrum(DATA, index : int, path : str) :
     plt.savefig(output_)
 
 
-def Halo(DATA, index, path : str) : 
+def Halo(DATA, index, path : str, SimuName : str) : 
 
     try :
-        output_ = f"{path}/{index}_HAL.png"
+        if SimuName == "" : 
+            output_ = f"{path}/{index}_HAL.png"
+        else : 
+            output_ = f"{path}/{index}_HAL_{SimuName}.png"
         pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
         BoxSize = pBoxSize[0].value #Mpc/h
         hc = HaloCatalog(data_ds=DATA, finder_method="hop") #Run halo Finder
@@ -135,9 +150,12 @@ def Halo(DATA, index, path : str) :
         pass
 
 
-def Get_Simu_Info(DATA, index, path : str) : #Not sure if there will be a different one for each dataset
+def Get_Simu_Info(DATA, index, path : str, SimuName : str) : #Not sure if there will be a different one for each dataset
 
-    output_ = f"{path}/{index}_PAR.json"
+    if SimuName == "" : 
+        output_ = f"{path}/{index}_PAR.png"
+    else : 
+        output_ = f"{path}/{index}_PAR_{SimuName}.png"
     with open(output_, "w") as outf : 
         Simu_Info = DATA.parameters
         json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
@@ -193,12 +211,12 @@ def main(argv):
         except : 
             print("File not found, breaking Thomas Delzant's legs")
             break 
-        Predicted_Particle_Mass(ds, i, Output_Path)
-        Get_Simu_Info(ds, i, Output_Path)
-        if POT : Potential(ds, i, Output_Path)
-        if VEL : Velocity(ds, i, Output_Path)
-        if SPE : Power_Spectrum(ds, i, Output_Path)
-        if HAL : Halo(ds, i, Output_Path)
+        Predicted_Particle_Mass(ds, i, Output_Path, name)
+        Get_Simu_Info(ds, i, Output_Path, name)
+        if POT : Potential(ds, i, Output_Path, name)
+        if VEL : Velocity(ds, i, Output_Path, name)
+        if SPE : Power_Spectrum(ds, i, Output_Path, name)
+        if HAL : Halo(ds, i, Output_Path, name)
         os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
         #os.system(f'cp -r {Ramses_Path}/output_0000{i} "{Output_Path}/ramses_output_0000{i}"')
     Copy_Mono_Config(Output_Path) 
