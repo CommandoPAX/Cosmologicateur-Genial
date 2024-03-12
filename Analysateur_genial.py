@@ -48,12 +48,11 @@ class Simulation ():
         path = ""
         for root,dirs,files in os.walk(self.path): 
                 for file in files:
-                    print(file)
-                    if "POW" in file and ".txt" in file :
-                        path_pow = file
+                    if "POW" in file and ".txt" in file and str(self.index)+"_" in file :
+                        self.path_pow = file
                         break
-
-        fichier = open(self.path+"/"+path_pow,"r")
+        print(self.path_pow)
+        fichier = open(self.path+"/"+self.path_pow,"r")
         k = []
         Pk0 = []
 
@@ -61,8 +60,8 @@ class Simulation ():
             l = fichier.readline()
             if l == "" : break
             l = l.split(" ")
-            k.append(l[0])
-            Pk0.append(l[1])
+            k.append(float(l[0]))
+            Pk0.append(float(l[1].replace("\n","")))
 
         self.k = np.array(k)
         self.Pk0 = np.array(Pk0)
@@ -103,7 +102,7 @@ def PowerSpectrum (Simu, Class = False) :
 
 def Diviser_Pow (Simu1, Simu2) :
     plt.loglog(Simu1["k"],Simu2["Pk0"]/Simu1["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
-
+    plt.legend()
             
 def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
      
@@ -154,10 +153,10 @@ if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
 
-    Path_lcdm = "./RESULT/2024-03-12 15:55:46 - WMDPGN32"
+    Path_lcdm = "../2024-03-12 15:55:46 - WMDPGN32/RESULT/2024-03-12 15:55:46 - WMDPGN32"
 
-    lcdm_1 = Simulation(Path_lcdm,name="lcdm",index = 1)
-    lcdm_2 = Simulation(Path_lcdm,name="lcdm",index = 2)
+    lcdm_1 = Simulation(Path_lcdm,name="lcdm 1",index = 2)
+    lcdm_2 = Simulation(Path_lcdm,name="lcdm 2",index = 3)
 
     PowerSpectrum(lcdm_1)
     PowerSpectrum(lcdm_2)
@@ -166,4 +165,4 @@ if __name__ == "__main__" :
     plt.clf()
 
     Diviser_Pow(lcdm_1,lcdm_2)
-    plt.savefig("Division.png")
+    plt.savefig(Path_lcdm+"/Division.png")
