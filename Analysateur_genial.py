@@ -132,7 +132,22 @@ def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
     plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
 
 def Particle_mass (Simu):
-     pass
+    
+    PPM = yt.ParticlePlot(Simu.data, 'particle_position_x', 'particle_position_y','particle_mass')
+    PPM.set_unit('particle_mass', 'Msun')
+    PPM.annotate_scale()
+
+def Velocity (Simu) :
+    
+    VEL = yt.ParticlePlot(Simu.data, 'particle_velocity_x', 'particle_velocity_y','particle_mass')
+    VEL.set_unit('particle_velocity_x', 'km/s')
+    VEL.set_unit('particle_velocity_y', 'km/s')
+    VEL.set_unit('particle_mass', 'Msun')
+
+def Potential (Simu):
+    
+    POT = yt.SlicePlot(Simu.data, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
+
 
 if __name__ == "__main__" :
 
