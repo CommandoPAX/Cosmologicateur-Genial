@@ -161,7 +161,7 @@ if __name__ == "__main__" :
     PowerSpectrum(lcdm_1)
     PowerSpectrum(lcdm_2)
 
-    plt.savefig("test 1.png")
+    plt.savefig(Path_lcdm+"/test1.png")
     plt.clf()
 
     Diviser_Pow(lcdm_1,lcdm_2)
