@@ -7,7 +7,6 @@ import density_field_library as DFL
 import Pk_library as PKL
 import MAS_library as MASL
 import mass_function_library as MFL
-from yt.extensions.astro_analysis.halo_analysis import HaloCatalog
 from HaloStats import halo_MF
 from colossus.cosmology import cosmology
 from colossus.lss import mass_function
@@ -150,6 +149,8 @@ def Potential (Simu):
 
 
 if __name__ == "__main__" :
+
+    cosmology.setCosmology('planck18')
 
     Path_lcdm = "2024-03-11 - LCDM"
 
