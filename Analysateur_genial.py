@@ -122,7 +122,6 @@ def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
 
 
     HMF_T=mass_function.massFunction(bin_centers, 0.0, mdef = 'fof', model = 'sheth99',q_out = 'dndlnM')      #get theoretical line for HMF,
-    #check https://bdiemer.bitbucket.io/colossus/lss_mass_function.html for a list of model
     plt.loglog(bin_centers, HMF_T,label="Theo_"+str(Simu.name))
 
     ax.set_xscale('log')
@@ -131,6 +130,9 @@ def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
     plt.legend()
     plt.xlabel(r'Mass ($M_{\odot}$)]', fontsize = 14)
     plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
+
+def Particle_mass (Simu):
+     pass
 
 if __name__ == "__main__" :
 
