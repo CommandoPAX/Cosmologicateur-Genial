@@ -151,7 +151,16 @@ def Potential (Simu):
 
 if __name__ == "__main__" :
 
-    Path_lcdm_1 = "2024-03-11 - LCDM"
+    Path_lcdm = "2024-03-11 - LCDM"
 
-    lcdm_1 = Simulation(Path_lcdm_1,name="lcdm",index = 1)
-    lcdm_2 = Simulation(Path_lcdm_1,name="lcdm",index = 2)
+    lcdm_1 = Simulation(Path_lcdm,name="lcdm",index = 1)
+    lcdm_2 = Simulation(Path_lcdm,name="lcdm",index = 2)
+
+    PowerSpectrum(lcdm_1)
+    PowerSpectrum(lcdm_2)
+
+    plt.savefig("test 1.png")
+    plt.clf()
+
+    Diviser_Pow(lcdm_1,lcdm_2)
+    plt.savefig("Division.png")
