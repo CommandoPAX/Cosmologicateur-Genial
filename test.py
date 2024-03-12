@@ -14,3 +14,5 @@ import os, sys, getopt
 import json, datetime 
 from Errorateur import LogError
 
+ds = yt.load("./output_00001/info_00001.txt")
+print(ds)
