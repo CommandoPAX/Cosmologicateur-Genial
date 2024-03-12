@@ -23,7 +23,7 @@ class Simulation ():
 
         self.name = name
 
-        self.data = yt.load(self.path+"/"self.output+"/"+self.info+".txt")
+        self.data = yt.load(self.path+"/"+self.output+"/"+self.info+".txt")
         self.ad = self.data.all_data()
 
         self.df = self.ad.to_dataframe([("gravity","Potential"),"particle_position_x","particle_position_y","particle_position_z","particle_position","particle_mass"])
