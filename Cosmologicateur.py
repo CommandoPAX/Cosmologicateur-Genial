@@ -95,6 +95,17 @@ def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
     k       = Pk.k3D
     Pk0     = Pk.Pk[:,0]
 
+    try :
+        output_spectrum = open(output_[:-4]+".txt","w")
+
+        for i in range(len(k)):
+            output_spectrum.write(str(k[i])+" "+str(Pk0[i]))
+
+        output_spectrum.close()
+    except :
+        pass
+
+
     plt.clf()
 
     plt.loglog(k,Pk0,label="RAMSES") #plot measure from N-body
@@ -128,6 +139,11 @@ def Halo(DATA, index, path : str, SimuName : str) :
         log_M_max=15 #maximal mass to plot HMF
         delta_log_M=0.1
         boxsize=BoxSize/0.67 #factor h
+
+        try :
+            os.system(f"cp ./halo_catalogs/info_0000{index}/info_0000{index}.0.h5 {output_[-4:]}.h0.5")
+        except:
+            pass
 
         bin_centers, num_halos, err = halo_MF(haloM, log_M_min=log_M_min, log_M_max=log_M_max, delta_log_M=delta_log_M, boxsize = boxsize) #calculate halo mass function
 
