@@ -90,6 +90,7 @@ class Simulation ():
 def PowerSpectrum (Simu, Class = False) :
 
     plt.loglog(Simu["k"],Simu["Pk0"],label=Simu.name) #plot measure from N-body
+    plt.legend()
 
     if Class :
         toL=np.transpose(np.loadtxt("CLASS.dat"))
