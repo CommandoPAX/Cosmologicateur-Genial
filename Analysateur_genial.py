@@ -203,18 +203,25 @@ def Plot_sigma_8 ():
 
     plt.savefig("./RESULT/S_8.png")
 
+def Plot_Pow (Simu1, Ref) :
+    plt.loglog(Ref["k"],Simu1,label="Ratio") #plot measure from N-body
+    axes = plt.gca()
+    axes.set_xlim(2e-2,0.9)
+    axes.set_ylim(0.7,1.05)
+    plt.xlabel("k [h/Mpc]")
+    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
+    plt.legend()
                     
 
 if __name__ == "__main__" :
-
-    #sigma_8 ()
     
     cosmology.setCosmology('planck18')
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 2)
-    noms = "" #["LCDM","PGN1000","WDM3PGN1000","WDM3","PGN500","WDM2PGN500"]
+    noms = ["PGN1000","WDM3PGN1000","WDM3"]
+    Pow = []
     try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
@@ -230,10 +237,17 @@ if __name__ == "__main__" :
 
                     plt.savefig("./RESULT/lcdm + "+nom+".png")
                     plt.clf()"""
+                    if nom == "WDM3PGN1000" :
+                        Pow[0] = simu2["Pk0"]/lcdm["Pk0"]
+                    if nom == "PGN1000" :
+                        Pow[1] = simu2["Pk0"]/lcdm["Pk0"]
+                    if nom == "WDM3" :
+                        Pow[2] = simu2["Pk0"]/lcdm["Pk0"]
 
-                    Diviser_Pow(simu2, lcdm)
-                    plt.savefig("./RESULT/lcdm + "+nom+"-d.png")
+                    #plt.savefig("./RESULT/lcdm + "+nom+"-d.png")
                     #plt.clf()
     except : 
         pass   
+    Plot_Pow(Pow[0], lcdm)
+    Plot_Pow(Pow[1] + Pow[2], lcdm)
     Plot_sigma_8()                
