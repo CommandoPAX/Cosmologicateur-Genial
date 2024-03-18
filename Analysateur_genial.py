@@ -222,7 +222,7 @@ if __name__ == "__main__" :
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 2)
     noms = ["PGN1000","WDM3PGN1000","WDM3"]
-    Pow = []
+    Pow = [0,0,0]
     try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
