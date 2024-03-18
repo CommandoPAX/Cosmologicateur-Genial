@@ -205,7 +205,7 @@ if __name__ == "__main__" :
     #sigma_8 ()
     
     cosmology.setCosmology('planck18')
-    """
+    
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
@@ -219,15 +219,15 @@ if __name__ == "__main__" :
                 if not "LCDM" in nom :
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3)
                     
-                    PowerSpectrum(lcdm)
+                    """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
 
                     plt.savefig("./RESULT/lcdm + "+nom+".png")
-                    plt.clf()
+                    plt.clf()"""
 
                     Diviser_Pow(simu2, lcdm)
                     plt.savefig("./RESULT/lcdm + "+nom+"-d.png")
-                    plt.clf()
+                    #plt.clf()
     except : 
-        pass    """
-    Plot_sigma_8()                
+        pass   
+    #Plot_sigma_8()                
