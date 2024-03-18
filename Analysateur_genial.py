@@ -148,7 +148,6 @@ def Potential (Simu):
     
     POT = yt.SlicePlot(Simu.data, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
 
-
 if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
