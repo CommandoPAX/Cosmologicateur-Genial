@@ -153,16 +153,20 @@ if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
 
-    Path_lcdm = "../2024-03-12 15:55:46 - WMDPGN32/RESULT/2024-03-12 15:55:46 - WMDPGN32"
+    Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm_1 = Simulation(Path_lcdm,name="lcdm 1",index = 2)
-    lcdm_2 = Simulation(Path_lcdm,name="lcdm 2",index = 3)
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
 
-    PowerSpectrum(lcdm_1)
-    PowerSpectrum(lcdm_2)
+    for root, dirs, files in os.walk("./RESULT/"):
 
-    plt.savefig(Path_lcdm+"/test1.png")
-    plt.clf()
+        nom = dirs.split(" ")[-1]
+        simu2 = Simulation(dirs,name=nom,index = 3)
 
-    Diviser_Pow(lcdm_1,lcdm_2)
-    plt.savefig(Path_lcdm+"/Division.png")
+        PowerSpectrum(lcdm)
+        PowerSpectrum(simu2)
+
+        plt.savefig("lcdm + "+nom+".png")
+        plt.clf()
+
+        Diviser_Pow(lcdm, simu2)
+        plt.savefig("lcdm + "+nom+"-d.png")
