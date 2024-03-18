@@ -159,6 +159,8 @@ if __name__ == "__main__" :
 
     for root, dirs, files in os.walk("./RESULT/"):
 
+        print(root, dirs, files)
+
         nom = dirs.split(" ")[-1]
         simu2 = Simulation(dirs,name=nom,index = 3)
 
