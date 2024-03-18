@@ -178,7 +178,7 @@ def Potential (Simu):
     
     POT = yt.SlicePlot(Simu.data, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
 
-def Ouvrir_sigma_8 ():
+def Plot_sigma_8 ():
     plt.figure()
     i = 0
     for root, dirs, files in os.walk("./RESULT/"):
@@ -212,7 +212,7 @@ if __name__ == "__main__" :
             if not "LCDM" in nom :
                 simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3)
                 
-                PowerSpectrum(lcdm)
+                """PowerSpectrum(lcdm)
                 PowerSpectrum(simu2)
 
                 plt.savefig("lcdm + "+nom+".png")
@@ -220,4 +220,6 @@ if __name__ == "__main__" :
 
                 Diviser_Pow(lcdm, simu2)
                 plt.savefig("lcdm + "+nom+"-d.png")
-                plt.clf()
+                plt.clf()"""
+    
+    Plot_sigma_8()                
