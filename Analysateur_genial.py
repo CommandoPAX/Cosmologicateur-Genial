@@ -104,6 +104,8 @@ class Simulation ():
         Omega_m = Parameters["omega_m"]
         S_8 = sigma_8 * np.sqrt(Omega_m / 0.3)
         self.CST["S_8"] = S_8
+        self.args["S_8"] = S_8
+        self.args["sigma_8"] = sigma_8
                     
         
 def PowerSpectrum (Simu, Class = False) :
