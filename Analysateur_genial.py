@@ -250,7 +250,13 @@ if __name__ == "__main__" :
     except : 
         pass 
     plt.clf()  
+    print(Pow[0])
+    print('#######################################################################')
+    print(Pow[1])
+    print('#######################################################################')
+    print(Pow[3])
     Plot_Pow(Pow[0], lcdm)
     Plot_Pow(Pow[1] + Pow[2], lcdm)
+    Plot_Pow(Pow[0] - (Pow[1] + Pow[2]), lcdm)
     plt.savefig("./RESULT/RATIOOOOOO")
     Plot_sigma_8()                
