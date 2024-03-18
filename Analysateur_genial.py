@@ -122,9 +122,10 @@ def PowerSpectrum (Simu, Class = False) :
         plt.loglog(toL[0],toL[1],linestyle="dotted",label='CLASS') #plot lienar CLASS
         toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
         plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
-        plt.xlabel("k [h/Mpc]")
-        plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
-        plt.legend()
+    
+    plt.xlabel("k [h/Mpc]")
+    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
+    plt.legend()
 
 
 def Diviser_Pow (Simu1, Simu2) :
@@ -219,7 +220,7 @@ if __name__ == "__main__" :
                     plt.savefig("./RESULT/lcdm + "+nom+".png")
                     plt.clf()
 
-                    Diviser_Pow(lcdm, simu2)
+                    Diviser_Pow(simu2, lcdm)
                     plt.savefig("./RESULT/lcdm + "+nom+"-d.png")
                     plt.clf()
     except : 
