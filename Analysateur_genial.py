@@ -3,19 +3,17 @@
 import matplotlib.pyplot as plt
 import yt
 import numpy as np
-import density_field_library as DFL
-import Pk_library as PKL
-import MAS_library as MASL
 import mass_function_library as MFL
 from HaloStats import halo_MF
 from colossus.cosmology import cosmology
 from colossus.lss import mass_function
-import os, sys, getopt
-import json, datetime 
+import os
+import json
 
 class Simulation ():
     def __init__ (self, path, name = "lcdm", index = 2):
         self.path = path
+        self.json_path = ""
 
         self.index = index
         self.info = "info_"+"0"*(5-len(str(self.index//10)))+str(self.index)
@@ -39,6 +37,8 @@ class Simulation ():
              self.Halo()
         except :
              pass
+         
+        self.CST = {}
 
     def __getitem__ (self, x):
         return self.args[x]
@@ -85,6 +85,16 @@ class Simulation ():
 
         self.halo = haloM.to_numpy()
         self.args["halos"] = self.halo
+        
+    def Create_Json(self) : 
+        self.json_path = f"{self.path}constants.json"
+        with open(self.json_path, "w") as outf : 
+            json.dump(self.CST, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
+            
+    def Calc_Sigma_8(self) :
+        # compute the value of sigma_8
+        sigma_8 = MFL.sigma(self.args["k"], self.args["Pk0"], 8.0)
+        self.CST["sigma_8"] = sigma_8
         
 def PowerSpectrum (Simu, Class = False) :
 
@@ -164,6 +174,9 @@ if __name__ == "__main__" :
 
             if not "LCDM" in nom :
                 simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3)
+                
+                simu2.Calc_Sigma_8()
+                simu2.Create_Json()
 
                 PowerSpectrum(lcdm)
                 PowerSpectrum(simu2)
