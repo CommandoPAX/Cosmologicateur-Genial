@@ -121,7 +121,7 @@ def PowerSpectrum (Simu, Class = False) :
         plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
 
 def Diviser_Pow (Simu1, Simu2) :
-    plt.loglog(Simu1["k"],Simu2["Pk0"]/Simu1["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
+    plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
     plt.legend()
             
 def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
@@ -184,6 +184,8 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
+    lcdm.Calc_Sigma_8()
+    lcdm.Create_Json()
 
     for root, dirs, files in os.walk("./RESULT/"):
 
