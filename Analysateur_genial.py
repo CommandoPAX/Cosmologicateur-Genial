@@ -162,13 +162,15 @@ if __name__ == "__main__" :
         for dir in dirs :
 
             nom = dir.split(" ")[-1]
-            simu2 = Simulation("./RESULT/"+dirs,name=nom,index = 3)
 
-            PowerSpectrum(lcdm)
-            PowerSpectrum(simu2)
+            if not "LCDM" in nom :
+                simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3)
 
-            plt.savefig("lcdm + "+nom+".png")
-            plt.clf()
+                PowerSpectrum(lcdm)
+                PowerSpectrum(simu2)
 
-            Diviser_Pow(lcdm, simu2)
-            plt.savefig("lcdm + "+nom+"-d.png")
+                plt.savefig("lcdm + "+nom+".png")
+                plt.clf()
+
+                Diviser_Pow(lcdm, simu2)
+                plt.savefig("lcdm + "+nom+"-d.png")
