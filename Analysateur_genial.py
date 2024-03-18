@@ -124,12 +124,16 @@ def PowerSpectrum (Simu, Class = False) :
         plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
     
     plt.xlabel("k [h/Mpc]")
+    axes = plt.gca()
+    axes.set_xlim(1e-2,0.9)
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
 
 
 def Diviser_Pow (Simu1, Simu2) :
     plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
+    axes = plt.gca()
+    axes.set_xlim(1e-2,0.9)
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
