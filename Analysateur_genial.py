@@ -190,6 +190,8 @@ def Plot_sigma_8 ():
                     S8 = para["S_8"]
                     plt.scatter([S8],[i], label = para["name"])
                     i = i+1
+    axes = plt.gca()
+    axes.set_xlim(0.2,1)
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
 
