@@ -184,7 +184,7 @@ def Plot_sigma_8 ():
     i = 0
     for root, dirs, files in os.walk("./RESULT/"):
         for file in files :
-            if re.search(r"constants\.json", file) :
+            if re.search(r".*constants\.json", file) :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     plt.plot((i, para["S_8"]), label = para["name"])
@@ -200,7 +200,7 @@ if __name__ == "__main__" :
     #sigma_8 ()
     
     cosmology.setCosmology('planck18')
-
+    """
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
@@ -224,5 +224,5 @@ if __name__ == "__main__" :
                     plt.savefig("./RESULT/lcdm + "+nom+"-d.png")
                     plt.clf()
     except : 
-        pass    
+        pass    """
     Plot_sigma_8()                
