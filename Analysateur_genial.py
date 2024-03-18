@@ -215,11 +215,11 @@ if __name__ == "__main__" :
                 """PowerSpectrum(lcdm)
                 PowerSpectrum(simu2)
 
-                plt.savefig("lcdm + "+nom+".png")
+                plt.savefig("RESULT/lcdm + "+nom+".png")
                 plt.clf()
 
                 Diviser_Pow(lcdm, simu2)
-                plt.savefig("lcdm + "+nom+"-d.png")
+                plt.savefig("RESULT/lcdm + "+nom+"-d.png")
                 plt.clf()"""
     
     Plot_sigma_8()                
