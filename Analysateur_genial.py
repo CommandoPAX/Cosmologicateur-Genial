@@ -184,7 +184,7 @@ def Plot_sigma_8 ():
     i = 0
     for root, dirs, files in os.walk("./RESULT/"):
         for file in files :
-            if re.search(r".*constants\.json", file) :
+            if "_constants.json" in file :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     plt.plot((i, para["S_8"]), label = para["name"])
