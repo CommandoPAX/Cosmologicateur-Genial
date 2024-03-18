@@ -5,7 +5,7 @@ import pexpect
 import sys
 
 def Recup(argv):
-    opts, args = getopt.getopt(argv,"gac")
+    opts, args = getopt.getopt(argv,"gacl")
     
     for opt, arg in opts:
         if opt in ("-g"):
@@ -15,7 +15,11 @@ def Recup(argv):
         
         if opt in ("-c"):
             commande = "scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py ~/Cosmologicateur-genial/"
-        
+        if opt in ("-l"):
+            commande = "scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/lcdm * ~/Cosmologicateur-genial/"
+            
+
+
         var_password = str("gaeK6Oafai1eN6e")
 
         var_child = pexpect.spawn(commande)
