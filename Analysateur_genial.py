@@ -9,6 +9,7 @@ from colossus.cosmology import cosmology
 from colossus.lss import mass_function
 import os
 import json
+import re 
 
 class Simulation ():
     def __init__ (self, path, name = "lcdm", index = 2):
@@ -87,7 +88,7 @@ class Simulation ():
         self.args["halos"] = self.halo
         
     def Create_Json(self) : 
-        self.json_path = f"{self.path}constants.json"
+        self.json_path = f"{self.path}/constants.json"
         with open(self.json_path, "w") as outf : 
             json.dump(self.CST, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
             
@@ -95,6 +96,15 @@ class Simulation ():
         # compute the value of sigma_8
         sigma_8 = MFL.sigma(self.args["k"], self.args["Pk0"], 8.0)
         self.CST["sigma_8"] = sigma_8
+        for root, dir, files in os.walk(self.path) : 
+            for filename in files : 
+                if re.search(r"3_PAR_.*\.json", filename) : 
+                    with open(f"{self.path}/{filename}", 'r') as f : 
+                        Parameters = json.load(f) 
+        Omega_m = Parameters["omega_m"]
+        S_8 = sigma_8 * np.sqrt(Omega_m / 0.3)
+        self.CST["S_8"] = S_8
+                    
         
 def PowerSpectrum (Simu, Class = False) :
 
