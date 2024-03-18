@@ -158,8 +158,17 @@ def Potential (Simu):
     
     POT = yt.SlicePlot(Simu.data, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
 
+def sigma_8 ():
+    for root, dirs, files in os.walk("./RESULT/"):
+        for file in files :
+            if ".json" in file :
+                with open("./RESULT/"+file, "r") as f :
+                    print(file +"\n sigma_8 = "+json.load(f)["sigma_8"])
+
 if __name__ == "__main__" :
 
+    sigma_8 ()
+    """
     cosmology.setCosmology('planck18')
 
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
@@ -186,4 +195,4 @@ if __name__ == "__main__" :
 
                 Diviser_Pow(lcdm, simu2)
                 plt.savefig("lcdm + "+nom+"-d.png")
-                plt.clf()
+                plt.clf()"""
