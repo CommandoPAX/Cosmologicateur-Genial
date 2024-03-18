@@ -207,8 +207,7 @@ def Plot_sigma_8 ():
 def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
     plt.loglog(Ref["k"],Simu1,label=labelname) #plot measure from N-body
     axes = plt.gca()
-    axes.set_xlim(2e-2,0.9)
-    axes.set_ylim(0.7,1.05)
+
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
