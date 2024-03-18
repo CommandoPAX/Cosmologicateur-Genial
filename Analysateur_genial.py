@@ -37,13 +37,13 @@ class Simulation ():
         try :
              self.Halo()
         except :
-             pass"""
+             pass
          
         self.CST = {}
         self.CST["name"] = self.name
 
         self.Calc_Sigma_8()
-        self.Create_Json()
+        self.Create_Json()"""
 
     def __getitem__ (self, x):
         return self.args[x]
