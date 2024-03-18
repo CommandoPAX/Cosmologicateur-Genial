@@ -214,7 +214,7 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
-    noms = ["LCDM","PGN1000","WDM3PGN1000","WDM3"]
+    noms = ["LCDM","PGN1000","WDM3PGN1000","WDM3","PGN500","WDM2PGN500"]
     try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
