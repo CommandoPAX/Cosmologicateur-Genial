@@ -163,7 +163,7 @@ def sigma_8 ():
         for file in files :
             if ".json" in file :
                 with open("./RESULT/"+file, "r") as f :
-                    print(file +"\n sigma_8 = "+json.load(f)["sigma_8"])
+                    print(file +"\n sigma_8 = "+str(json.load(f)["sigma_8"]))
 
 if __name__ == "__main__" :
 
