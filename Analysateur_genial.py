@@ -207,8 +207,7 @@ def Plot_sigma_8 ():
 def Plot_Pow (Simu1, Ref) :
     plt.loglog(Ref["k"],Simu1,label="Ratio") #plot measure from N-body
     axes = plt.gca()
-    axes.set_xlim(2e-2,0.9)
-    axes.set_ylim(0.7,1.05)
+
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
@@ -222,7 +221,7 @@ if __name__ == "__main__" :
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 2)
     noms = ["PGN1000","WDM3PGN1000","WDM3"]
-    Pow = [0,0,0]
+    Pow = []
     try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
