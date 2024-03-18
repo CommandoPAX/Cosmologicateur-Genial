@@ -187,11 +187,12 @@ def Plot_sigma_8 ():
             if "_constants.json" in file :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
-                    plt.plot((i, para["S_8"]), label = para["name"])
+                    plt.plot((np.ones(10)*i, np.ones(10)*para["S_8"]), label = para["name"])
                     i = i+1
-    plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}', fontsize = 14)
-    plt.savefig("./RESULT/S_8.png")
+    plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
+
+    plt.savefig("./RESULT/S_8.png")
 
                     
 
