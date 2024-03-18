@@ -33,7 +33,7 @@ class Simulation ():
             if not i in self.args : self.args[i] = self.df[i].to_numpy()
 
 
-        """self.Power_Spectrum()
+        self.Power_Spectrum()
         try :
              self.Halo()
         except :
@@ -43,7 +43,7 @@ class Simulation ():
         self.CST["name"] = self.name
 
         self.Calc_Sigma_8()
-        self.Create_Json()"""
+        self.Create_Json()
 
     def __getitem__ (self, x):
         return self.args[x]
@@ -205,7 +205,7 @@ if __name__ == "__main__" :
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
     try : 
-        for root, dirs, files in os.walk("./RESULT/"):
+        """for root, dirs, files in os.walk("./RESULT/"):
 
             for dir in dirs :
 
@@ -214,7 +214,7 @@ if __name__ == "__main__" :
                 if not "LCDM" in nom :
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3)
                     
-                    """PowerSpectrum(lcdm)
+                    PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
 
                     plt.savefig("RESULT/lcdm + "+nom+".png")
@@ -223,6 +223,7 @@ if __name__ == "__main__" :
                     Diviser_Pow(lcdm, simu2)
                     plt.savefig("RESULT/lcdm + "+nom+"-d.png")
                     plt.clf()"""
+        pass 
     except : 
         pass    
     Plot_sigma_8()                
