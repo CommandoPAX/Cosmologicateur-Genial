@@ -159,16 +159,16 @@ if __name__ == "__main__" :
 
     for root, dirs, files in os.walk("./RESULT/"):
 
-        print(root, dirs, files)
+        for dir in dirs :
 
-        nom = dirs.split(" ")[-1]
-        simu2 = Simulation(dirs,name=nom,index = 3)
+            nom = dir.split(" ")[-1]
+            simu2 = Simulation("./RESULT/"+dirs,name=nom,index = 3)
 
-        PowerSpectrum(lcdm)
-        PowerSpectrum(simu2)
+            PowerSpectrum(lcdm)
+            PowerSpectrum(simu2)
 
-        plt.savefig("lcdm + "+nom+".png")
-        plt.clf()
+            plt.savefig("lcdm + "+nom+".png")
+            plt.clf()
 
-        Diviser_Pow(lcdm, simu2)
-        plt.savefig("lcdm + "+nom+"-d.png")
+            Diviser_Pow(lcdm, simu2)
+            plt.savefig("lcdm + "+nom+"-d.png")
