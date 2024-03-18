@@ -188,7 +188,7 @@ def Plot_sigma_8 ():
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     S8 = para["S_8"]
-                    plt.plot([S8,S8+1],[i,i], label = para["name"])
+                    plt.plot([S8,S8+0.01],[i,i], label = para["name"])
                     i = i+1
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
