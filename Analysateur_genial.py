@@ -33,7 +33,7 @@ class Simulation ():
             if not i in self.args : self.args[i] = self.df[i].to_numpy()
 
 
-        self.Power_Spectrum()
+        #self.Power_Spectrum()
         try :
              self.Halo()
         except :
@@ -186,11 +186,12 @@ def Plot_sigma_8 ():
             if re.search(r"constants\.json", file) :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
-                    plt.plot((i, para["S_8"]), label = para["name"])
+                    print(para)
+                    #plt.plot((i, para["S_8"]), label = para["name"])
                     i = i+1
-    plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}', fontsize = 14)
-    plt.savefig("./RESULT/S_8.png")
-    plt.legend()
+    #plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}', fontsize = 14)
+    #plt.savefig("./RESULT/S_8.png")
+    #plt.legend()
 
                     
 
