@@ -254,6 +254,7 @@ if __name__ == "__main__" :
     print(Pow[1])
     print('#######################################################################')
     print(Pow[2])
+    print(Pow[0]+Pow[1]-Pow[2])
     Plot_Pow(Pow[0], lcdm, labelname = "WDM3PGN1000/lcdm")
     Plot_Pow(Pow[1] + Pow[2], lcdm, labelname = "(WDM3+PGN1000)/lcdm")
     Plot_Pow(Pow[0] - (Pow[1] + Pow[2]), lcdm)
