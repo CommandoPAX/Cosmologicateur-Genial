@@ -92,7 +92,7 @@ class Simulation ():
         self.args["halos"] = self.halo
         
     def Create_Json(self) : 
-        self.json_path = f"{self.path}/constants.json"
+        self.json_path = f"./RESULT/{self.name}_constants.json"
         with open(self.json_path, "w") as outf : 
             json.dump(self.CST, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
             
@@ -205,7 +205,7 @@ if __name__ == "__main__" :
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
     try : 
-        """for root, dirs, files in os.walk("./RESULT/"):
+        for root, dirs, files in os.walk("./RESULT/"):
 
             for dir in dirs :
 
@@ -222,8 +222,7 @@ if __name__ == "__main__" :
 
                     Diviser_Pow(lcdm, simu2)
                     plt.savefig("RESULT/lcdm + "+nom+"-d.png")
-                    plt.clf()"""
-        pass 
+                    plt.clf()
     except : 
         pass    
     Plot_sigma_8()                
