@@ -41,6 +41,9 @@ class Simulation ():
          
         self.CST = {}
 
+        self.Calc_Sigma_8()
+        self.Create_Json()
+
     def __getitem__ (self, x):
         return self.args[x]
 
@@ -186,9 +189,6 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
-    lcdm.Calc_Sigma_8()
-    lcdm.Create_Json()
-
     for root, dirs, files in os.walk("./RESULT/"):
 
         for dir in dirs :
@@ -198,9 +198,6 @@ if __name__ == "__main__" :
             if not "LCDM" in nom :
                 simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3)
                 
-                simu2.Calc_Sigma_8()
-                simu2.Create_Json()
-
                 PowerSpectrum(lcdm)
                 PowerSpectrum(simu2)
 
