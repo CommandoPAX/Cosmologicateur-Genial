@@ -186,12 +186,11 @@ def Plot_sigma_8 ():
             if re.search(r"constants\.json", file) :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
-                    print(para)
-                    #plt.plot((i, para["S_8"]), label = para["name"])
+                    plt.plot((i, para["S_8"]), label = para["name"])
                     i = i+1
-    #plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}', fontsize = 14)
-    #plt.savefig("./RESULT/S_8.png")
-    #plt.legend()
+    plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}', fontsize = 14)
+    plt.savefig("./RESULT/S_8.png")
+    plt.legend()
 
                     
 
@@ -217,11 +216,11 @@ if __name__ == "__main__" :
                     PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
 
-                    plt.savefig("RESULT/lcdm + "+nom+".png")
+                    plt.savefig("./RESULT/lcdm + "+nom+".png")
                     plt.clf()
 
                     Diviser_Pow(lcdm, simu2)
-                    plt.savefig("RESULT/lcdm + "+nom+"-d.png")
+                    plt.savefig("./RESULT/lcdm + "+nom+"-d.png")
                     plt.clf()
     except : 
         pass    
