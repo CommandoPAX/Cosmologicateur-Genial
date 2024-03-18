@@ -171,11 +171,17 @@ def Potential (Simu):
     POT = yt.SlicePlot(Simu.data, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
 
 def Ouvrir_sigma_8 ():
+    plt.figure()
+    i = 0
     for root, dirs, files in os.walk("./RESULT/"):
         for file in files :
             if re.search(r"constants\.json", file) :
                 with open("./RESULT/"+file, "r") as f :
-                    print(file +"\n sigma_8 = "+str(json.load(f)["sigma_8"]))
+                    para = json.load(f)
+                    plt.plot((i, para["S_8"]), label = para["name"])
+                    plt.legend()
+                    
+                    
 
 if __name__ == "__main__" :
 
