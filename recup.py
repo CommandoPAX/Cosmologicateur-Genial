@@ -2,7 +2,7 @@ import os
 import getpass
 import subprocess
 import pexpect
-import sys
+import sys,getopt
 
 def Recup(argv):
     opts, args = getopt.getopt(argv,"gacl")
@@ -16,7 +16,7 @@ def Recup(argv):
         if opt in ("-c"):
             commande = "scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/*.py ~/Cosmologicateur-genial/"
         if opt in ("-l"):
-            commande = "scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/lcdm * ~/Cosmologicateur-genial/"
+            commande = "scp -r tbruant@obas-hpc.astro.unistra.fr:~/Cosmologicateur-Genial/lcdm* ~/Cosmologicateur-genial/"
             
 
 

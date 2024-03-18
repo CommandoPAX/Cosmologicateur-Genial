@@ -174,3 +174,4 @@ if __name__ == "__main__" :
 
                 Diviser_Pow(lcdm, simu2)
                 plt.savefig("lcdm + "+nom+"-d.png")
+                plt.clf()
