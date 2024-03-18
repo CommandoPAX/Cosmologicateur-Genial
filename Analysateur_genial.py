@@ -125,7 +125,7 @@ def PowerSpectrum (Simu, Class = False) :
     
     plt.xlabel("k [h/Mpc]")
     axes = plt.gca()
-    axes.set_xlim(1e-2,0.9)
+    axes.set_xlim(2e-2,0.9)
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
 
@@ -133,8 +133,8 @@ def PowerSpectrum (Simu, Class = False) :
 def Diviser_Pow (Simu1, Simu2) :
     plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
     axes = plt.gca()
-    axes.set_xlim(1.1e-2,0.9)
-    axes.set_ylim(0.7,1.1)
+    axes.set_xlim(2e-2,0.9)
+    axes.set_ylim(0.7,1.05)
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
