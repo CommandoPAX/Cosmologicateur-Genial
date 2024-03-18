@@ -27,7 +27,7 @@ ptypes   = [1]                   #CDM + neutrinos
 MAS      = 'CIC'                   #Cloud-in-Cell
 do_RSD   = False                   #dont do redshif-space distortions
 axis     = 0                       #axis along which place RSD; not used here
-verbose  = True   #whether print information on the progress
+verbose  = False   #whether print information on the progress
 
 #Dp = 0.025223
 N=512
