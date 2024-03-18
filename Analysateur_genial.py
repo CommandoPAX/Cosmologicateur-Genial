@@ -40,6 +40,7 @@ class Simulation ():
              pass
          
         self.CST = {}
+        self.CST["name"] = self.name
 
         self.Calc_Sigma_8()
         self.Create_Json()
@@ -121,13 +122,17 @@ def PowerSpectrum (Simu, Class = False) :
         plt.loglog(toL[0],toL[1],linestyle="dotted",label='CLASS') #plot lienar CLASS
         toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
         plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
-        plt.legend()
         plt.xlabel("k [h/Mpc]")
         plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
+        plt.legend()
+
 
 def Diviser_Pow (Simu1, Simu2) :
     plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
+    plt.xlabel("k [h/Mpc]")
+    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
+
             
 def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
      
@@ -182,8 +187,11 @@ def Ouvrir_sigma_8 ():
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     plt.plot((i, para["S_8"]), label = para["name"])
-                    plt.legend()
-                    
+                    i = i+1
+    plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}', fontsize = 14)
+    plt.savefig("./RESULT/S_8.png")
+    plt.legend()
+
                     
 
 if __name__ == "__main__" :
