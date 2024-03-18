@@ -204,8 +204,8 @@ def Plot_sigma_8 ():
 
     plt.savefig("./RESULT/S_8.png")
 
-def Plot_Pow (Simu1, Ref) :
-    plt.loglog(Ref["k"],Simu1,label="Ratio") #plot measure from N-body
+def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
+    plt.loglog(Ref["k"],Simu1,label=labelname) #plot measure from N-body
     axes = plt.gca()
     axes.set_xlim(2e-2,0.9)
     axes.set_ylim(0.7,1.05)
@@ -255,8 +255,8 @@ if __name__ == "__main__" :
     print(Pow[1])
     print('#######################################################################')
     print(Pow[2])
-    Plot_Pow(Pow[0], lcdm)
-    Plot_Pow(Pow[1] + Pow[2], lcdm)
+    Plot_Pow(Pow[0], lcdm, name = "WDM3PGN1000/lcdm")
+    Plot_Pow(Pow[1] + Pow[2], lcdm, name = "(WDM3+PGN1000)/lcdm")
     Plot_Pow(Pow[0] - (Pow[1] + Pow[2]), lcdm)
     plt.savefig("./RESULT/RATIOOOOOO")
     Plot_sigma_8()                
