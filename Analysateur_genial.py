@@ -33,11 +33,11 @@ class Simulation ():
             if not i in self.args : self.args[i] = self.df[i].to_numpy()
 
 
-        #self.Power_Spectrum()
+        """self.Power_Spectrum()
         try :
              self.Halo()
         except :
-             pass
+             pass"""
          
         self.CST = {}
         self.CST["name"] = self.name
