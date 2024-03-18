@@ -203,23 +203,25 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3)
-    for root, dirs, files in os.walk("./RESULT/"):
+    try : 
+        for root, dirs, files in os.walk("./RESULT/"):
 
-        for dir in dirs :
+            for dir in dirs :
 
-            nom = dir.split(" ")[-1]
+                nom = dir.split(" ")[-1]
 
-            if not "LCDM" in nom :
-                simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3)
-                
-                """PowerSpectrum(lcdm)
-                PowerSpectrum(simu2)
+                if not "LCDM" in nom :
+                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3)
+                    
+                    """PowerSpectrum(lcdm)
+                    PowerSpectrum(simu2)
 
-                plt.savefig("RESULT/lcdm + "+nom+".png")
-                plt.clf()
+                    plt.savefig("RESULT/lcdm + "+nom+".png")
+                    plt.clf()
 
-                Diviser_Pow(lcdm, simu2)
-                plt.savefig("RESULT/lcdm + "+nom+"-d.png")
-                plt.clf()"""
-    
+                    Diviser_Pow(lcdm, simu2)
+                    plt.savefig("RESULT/lcdm + "+nom+"-d.png")
+                    plt.clf()"""
+    except : 
+        pass    
     Plot_sigma_8()                
