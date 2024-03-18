@@ -56,7 +56,7 @@ class Simulation ():
                     if "POW" in file and ".txt" in file and str(self.index)+"_" in file :
                         self.path_pow = file
                         break
-        print(self.path_pow)
+
         fichier = open(self.path+"/"+self.path_pow,"r")
         k = []
         Pk0 = []
