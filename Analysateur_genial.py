@@ -255,8 +255,9 @@ def Plot_sigma_8 ():
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     S8 = para["S_8"]
-                    plt.scatter([S8],[i], label = para["name"])
-                    i = i+1
+                    if "PGN" in para["name"] and not "WDM" in para["name"] :
+                        plt.scatter([S8],[i], label = para["name"])
+                        i = i+1
     axes = plt.gca()
     axes.set_xlim(0.4,1.2)
     axes.get_yaxis().set_visible(False)
@@ -285,6 +286,9 @@ def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
 
 if __name__ == "__main__" :
     
+    Plot_sigma_8()
+
+
     cosmology.setCosmology('planck18')
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
@@ -323,7 +327,6 @@ if __name__ == "__main__" :
     except : 
         pass 
 
-Plot_sigma_8()
 
 """plt.clf()  
     print(Pow[0])
