@@ -109,8 +109,6 @@ class Simulation ():
             json.dump(self.CST, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
     def Power_Spectrum(self) :
-
-        path = ""
         for root,dirs,files in os.walk(self.path): 
                 for file in files:
                     if "POW" in file and ".txt" in file and str(self.index)+"_" in file :
