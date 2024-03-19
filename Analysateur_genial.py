@@ -12,7 +12,7 @@ import json
 import re 
 
 class Simulation ():
-    def __init__ (self, path, name = "lcdm", index = 2):
+    def __init__ (self, path, name = "lcdm", index = 2,tout = True):
         self.path = path
         self.json_path = ""
 
@@ -22,15 +22,18 @@ class Simulation ():
 
         self.name = name
 
-        self.data = yt.load(self.path+"/"+self.output+"/"+self.info+".txt")
-        self.ad = self.data.all_data()
-
-        self.df = self.ad.to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
-
         self.args = {}        
 
-        for i in self.df.columns :
-            if not i in self.args : self.args[i] = self.df[i].to_numpy()
+
+        if tout :       # Pas besoin de tout charger si on veut juste le spectre de puissance
+
+            self.data = yt.load(self.path+"/"+self.output+"/"+self.info+".txt")
+            self.ad = self.data.all_data()
+
+            self.df = self.ad.to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
+
+            for i in self.df.columns :
+                if not i in self.args : self.args[i] = self.df[i].to_numpy()
 
 
         self.Power_Spectrum()
