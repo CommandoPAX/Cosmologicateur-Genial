@@ -47,10 +47,10 @@ class Simulation ():
         
         for root, dir, files in os.walk(self.path) : 
             for filename in files : 
-                rf"{self.index}_PAR_.*\.json"
-                if re.search(r"3_PAR_.*\.json", filename) : 
+                json_name= rf"{self.index}_PAR_.*\.json"
+                if re.search(json_name, filename) : 
                     with open(f"{self.path}/{filename}", 'r') as f : 
-                        self.Parameters = json.load(f) # J'ai pas de fichier de paramètres pour vérifier lesquels sont dedans
+                        self.Parameters = json.load(f) 
         
         self.BoxSize  = 500
         print(self.Parameters["namelist"])
