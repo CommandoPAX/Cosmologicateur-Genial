@@ -225,6 +225,7 @@ if __name__ == "__main__" :
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 2,tout = False)
     noms = ["PGN1000","WDM3PGN1000","WDM3"]
     Pow = [0,0,0]
+    Diviser_Pow(lcdm,lcdm)
     try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
@@ -232,7 +233,7 @@ if __name__ == "__main__" :
 
                 nom = dir.split(" ")[-1]
 
-                if "WDM" in nom : #nom in noms or noms == "":
+                if "WDM" in nom and not "PGN" in nom: #nom in noms or noms == "":
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 2,tout = False)
                     
                     """PowerSpectrum(lcdm)
