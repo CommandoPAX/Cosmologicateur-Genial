@@ -236,19 +236,19 @@ if __name__ == "__main__" :
                     PowerSpectrum(simu2)
 
                     plt.savefig("./RESULT/lcdm + "+nom+".png")
-                    plt.clf()"""
+                    plt.clf()
                     if nom == "WDM3PGN1000" :
                         Pow[0] = simu2["Pk0"]/lcdm["Pk0"]
                     if nom == "PGN1000" :
                         Pow[1] = simu2["Pk0"]/lcdm["Pk0"]
                     if nom == "WDM3" :
-                        Pow[2] = simu2["Pk0"]/lcdm["Pk0"]
+                        Pow[2] = simu2["Pk0"]/lcdm["Pk0"]"""
 
-                    #plt.savefig("./RESULT/lcdm + "+nom+"-d.png")
+                    plt.savefig("./RESULT/lcdm + "+nom+"-d.png")
                     #plt.clf()
     except : 
         pass 
-    plt.clf()  
+    """plt.clf()  
     print(Pow[0])
     print('#######################################################################')
     print(Pow[1])
@@ -259,4 +259,4 @@ if __name__ == "__main__" :
     Plot_Pow(Pow[1] + Pow[2], lcdm, labelname = "(WDM3+PGN1000)/lcdm")
     Plot_Pow(-Pow[0] + (Pow[1] + Pow[2]), lcdm, labelname= "Différence entre les ")
     plt.savefig("./RESULT/RATIOOOOOO")
-    Plot_sigma_8()                
+    Plot_sigma_8()   """             
