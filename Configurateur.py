@@ -101,8 +101,7 @@ m_ncdm          = """+str(wdmass)+"""
 Omega_b         = 0.0494
 
 Omega_L         = 0.6842
-
-WDMmass=1"""
+"""
 
 
     else: 
