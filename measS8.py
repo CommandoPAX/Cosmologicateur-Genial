@@ -60,7 +60,7 @@ params=Params()
 k_min= 2*np.pi/BoxSize
 k=np.linspace(-(N//2)*k_min,N//2*k_min,N+1,dtype=np.float64)
 k_grid=np.array(np.meshgrid(k,k,k,sparse=True,indexing='ij'),dtype=object) 
-kmod=np.sqrt(k_grid[0][params.N//2:]**2+k_grid[1]**2+k_grid[2]**2)
+#kmod=np.sqrt(k_grid[0][params.N//2:]**2+k_grid[1]**2+k_grid[2]**2)
 
 
 def ifft(field):
