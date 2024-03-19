@@ -102,8 +102,13 @@ with warnings.catch_warnings():
     
 
 
+<<<<<<< HEAD
     index = 3
     DATA = yt.load("../2024-03-12 15:55:46 - WMDPGN32/output_00003/info_00003.txt")
+=======
+    index = 2
+    DATA = yt.load("./RESULT/2024-03-12 15:55:46 - WMDPGN32/output_00003/info_00003.txt")
+>>>>>>> aae99dc0d20c674542335154c92f0fa0151fe580
     DATA.all_data().to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
 
     grid = 32    #grid size
