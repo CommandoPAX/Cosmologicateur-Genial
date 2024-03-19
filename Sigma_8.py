@@ -57,11 +57,12 @@ class Simulation ():
                         self.Parameters = json.load(f) # J'ai pas de fichier de paramètres pour vérifier lesquels sont dedans
         
         self.BoxSize  = 500
-        self.grid     = 2**self.Parameters["level_min"]                   #grid size
+        print(self.Parameters["namelist"])
+        self.grid     = 2**self.Parameters["namelist"]["amr_params"]["levelmin"]                   #grid size
         self.MAS      = 'CIC'                   #Cloud-in-Cell
         self.verbose  = False   #whether print information on the progress   
         self.omega_m = self.Parameters["omega_m"]
-        self.N=2**self.Parameters["level_min"]                   #grid size                           
+        self.N=2**self.Parameters["namelist"]["amr_params"]["levelmin"]                 #grid size                           
         self.kmin=2*np.pi/self.BoxSize
         
         """ Unused values
@@ -84,8 +85,6 @@ class Simulation ():
         self.do_RSD   = False                   #dont do redshif-space distortions
         self.ptypes   = [1]                   #CDM + neutrinos
         """
-        
-        
                 
         ###################################################################################
 
@@ -160,7 +159,7 @@ class Simulation ():
         return np.fft.irfftn(np.fft.ifftshift(field.transpose()[:-1,:-1],axes=(0,1)),(self.N,self.N,self.N) )
     
     def fft(self, f_field): # fast fourier transform
-        field=np.zeros((self.N//2+1,self.N+1,self.N+1),dtype=np.complex)
+        field=np.zeros((self.N//2+1,self.N+1,self.N+1),dtype=complex)
         field[:,:-1,:-1]=np.fft.fftshift(np.fft.rfftn(f_field),axes=(0,1)).transpose()
         field[:,-1],field[:,:,-1]=field[:,0],field[:,:,0]
         return field
@@ -186,10 +185,10 @@ class Simulation ():
         delta = self.ifft(fdelta)
         return np.sqrt(np.mean(delta**2))
         
-    def Calc_Sigma_8(self, filename) :
+    def Calc_Sigma_8(self) :
         # This function only works if yt has loaded all data
         
-        k=np.linspace(-(self.N//2)*self.kmin,self.N//2*self.k_min,self.N+1,dtype=np.float64)
+        k=np.linspace(-(self.N//2)*self.kmin,self.N//2*self.kmin,self.N+1,dtype=np.float64)
         k_grid=np.array(np.meshgrid(k,k,k,sparse=True,indexing='ij'),dtype=object) 
         
         delta = np.zeros((self.N,self.N,self.N), dtype=np.float32)
@@ -203,3 +202,19 @@ class Simulation ():
         S_8 = self.CST["sigma_8"] * np.sqrt(self.omega_m / 0.3)
         self.CST["S_8"] = S_8
         
+if __name__ == "__main__" :
+    
+    cosmology.setCosmology('planck18')
+    noms = ""#["WDM500","WDM4000"]
+    if 1:#try : 
+        for root, dirs, files in os.walk("./RESULT/"):
+
+            for dir in dirs :
+
+                nom = dir.split(" ")[-1]
+
+                if True: #if nom in noms or noms == "":
+                    plt.clf()
+                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
+    else:
+        pass 
