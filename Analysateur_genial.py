@@ -133,8 +133,9 @@ def PowerSpectrum (Simu, Class = False) :
     plt.legend()
 
 
-def Diviser_Pow (Simu1, Simu2) :
-    plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
+def Diviser_Pow (Simu1, Simu2,ls="") :
+    if not ls :plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
+    else : plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name,ls=ls)
     axes = plt.gca()
     #axes.set_xlim(2e-2,0.9)
     #axes.set_ylim(0.9,1.05)
@@ -235,7 +236,7 @@ if __name__ == "__main__" :
                 nom = dir.split(" ")[-1]
 
                 if nom in noms or noms == "":
-                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = False)
+                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = False,ls="--")
                     
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
