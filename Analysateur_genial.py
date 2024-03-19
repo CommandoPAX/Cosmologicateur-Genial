@@ -239,7 +239,7 @@ if __name__ == "__main__" :
                     plt.clf()
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
                     Particle_mass(simu2)
-                    plt.savefig("PPM_"+str(nom)+"_3")
+                    plt.savefig("./RESULT/PPM_"+str(nom)+"_3.png")
                     
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
