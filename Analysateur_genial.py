@@ -224,22 +224,19 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = False)
-    noms = ""#["WDM500","WDM4000"]
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 2,tout = False)
+    noms = ["WDM500","WDM4000"]
     Pow = [0,0,0]
     Diviser_Pow(lcdm,lcdm)
-    if 1:#try : 
+    try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
             for dir in dirs :
 
                 nom = dir.split(" ")[-1]
 
-                if True: #if nom in noms or noms == "":
-                    plt.clf()
-                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
-                    Particle_mass(simu2)
-                    plt.savefig("./RESULT/PPM_"+str(nom)+"_3.png")
+                if nom in noms or noms == "":
+                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 2,tout = False)
                     
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
@@ -253,13 +250,13 @@ if __name__ == "__main__" :
                     if nom == "WDM3" :
                         Pow[2] = simu2["Pk0"]/lcdm["Pk0"]"""
                     
-                    """if nom == "WDM500" : Diviser_Pow(simu2,lcdm,ls="--")
-                    else : Diviser_Pow(simu2,lcdm)"""
+                    if nom == "WDM500" : Diviser_Pow(simu2,lcdm,ls="")
+                    else : Diviser_Pow(simu2,lcdm,ls="--")
 
-        #plt.title ("z = 1")
-        #plt.savefig("./RESULT/WDM-nul-1.png")
+        plt.title ("z = 1")
+        plt.savefig("./RESULT/WDM-nul-1.png")
                     #plt.clf()
-    else:#except : 
+    except : 
         pass 
     """plt.clf()  
     print(Pow[0])
