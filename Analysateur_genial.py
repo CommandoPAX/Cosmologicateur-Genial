@@ -246,6 +246,8 @@ if __name__ == "__main__" :
                         Pow[1] = simu2["Pk0"]/lcdm["Pk0"]
                     if nom == "WDM3" :
                         Pow[2] = simu2["Pk0"]/lcdm["Pk0"]"""
+                    
+                    Diviser_Pow(simu2,lcdm)
 
         plt.title ("z = 1")
         plt.savefig("./RESULT/WDM-1.png")
