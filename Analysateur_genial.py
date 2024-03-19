@@ -10,6 +10,7 @@ from colossus.lss import mass_function
 import os
 import json
 import re 
+import MAS_library as MASL
 
 class Simulation ():
     def __init__ (self, path, name = "lcdm", index = 2,tout = True):
