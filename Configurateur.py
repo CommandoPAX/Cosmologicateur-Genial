@@ -96,14 +96,13 @@ ParameterSet    = none # Planck2018EE+BAO+SN  # specify a pre-defined parameter 
 Omega_c         = 0.0
 N_ncdm          = 1     
 Omega_ncdm      = 0.26377    
-m_ncdm          = 1000      
+m_ncdm          = """+str(wdmass)+"""   
 
 Omega_b         = 0.0494
 
 Omega_L         = 0.6842
 
-WDMmass="""+str(wdmass)+"""
-"""    
+WDMmass=1"""
 
 
     else: 
