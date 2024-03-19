@@ -250,7 +250,7 @@ if __name__ == "__main__" :
                     if nom == "WDM3" :
                         Pow[2] = simu2["Pk0"]/lcdm["Pk0"]"""
                     
-                    if nom == "WDM500" : Diviser_Pow(simu2,lcdm,ls="--")
+                    if nom == "WDM500" : Diviser_Pow(simu2,lcdm,ls="")
                     else : Diviser_Pow(simu2,lcdm,ls="--")
 
         plt.title ("z = 1")
