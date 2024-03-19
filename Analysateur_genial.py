@@ -229,7 +229,7 @@ if __name__ == "__main__" :
 
                 nom = dir.split(" ")[-1]
 
-                if nom in noms or noms == "":
+                if "WDM" in nom : #nom in noms or noms == "":
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 2)
                     
                     """PowerSpectrum(lcdm)
