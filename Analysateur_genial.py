@@ -224,7 +224,7 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = False)
-    noms = ["PGN1000","WDM3PGN1000","WDM3"]
+    noms = ["WDM500","WDM4000"]
     Pow = [0,0,0]
     Diviser_Pow(lcdm,lcdm)
     try : 
@@ -234,7 +234,7 @@ if __name__ == "__main__" :
 
                 nom = dir.split(" ")[-1]
 
-                if "PGN" in nom and not "WDM" in nom: #nom in noms or noms == "":
+                if nom in noms or noms == "":
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = False)
                     
                     """PowerSpectrum(lcdm)
