@@ -236,7 +236,7 @@ if __name__ == "__main__" :
                 nom = dir.split(" ")[-1]
 
                 if nom in noms or noms == "":
-                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = False,ls="--")
+                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = False)
                     
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
@@ -250,7 +250,8 @@ if __name__ == "__main__" :
                     if nom == "WDM3" :
                         Pow[2] = simu2["Pk0"]/lcdm["Pk0"]"""
                     
-                    Diviser_Pow(simu2,lcdm)
+                    if nom == "WDM500" : Diviser_Pow(simu2,lcdm,ls="--")
+                    else : Diviser_Pow(simu2,lcdm)
 
         plt.title ("z = 0")
         plt.savefig("./RESULT/WDM-nul-0.png")
