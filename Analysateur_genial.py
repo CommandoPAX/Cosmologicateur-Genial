@@ -170,6 +170,62 @@ class Simulation ():
 
         print(S_8,self.CST["sigma_8"])
 
+def PowerSpectrum (Simu, Class = False) :
+
+    plt.loglog(Simu["k"],Simu["Pk0"],label=Simu.name) #plot measure from N-body
+    plt.legend()
+
+    if Class :
+        toL=np.transpose(np.loadtxt("CLASS.dat"))
+        plt.loglog(toL[0],toL[1],linestyle="dotted",label='CLASS') #plot lienar CLASS
+        toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
+        plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
+    
+    plt.xlabel("k [h/Mpc]")
+    axes = plt.gca()
+    axes.set_xlim(2e-2,0.9)
+    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
+    plt.legend()
+
+
+def Diviser_Pow (Simu1, Simu2,ls="") :
+    if not ls :plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
+    else : plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name,ls=ls)
+    axes = plt.gca()
+    #axes.set_xlim(2e-2,0.9)
+    #axes.set_ylim(0.9,1.05)
+    plt.xlabel("k [h/Mpc]")
+    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
+    plt.legend()
+
+            
+def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
+     
+
+    pBoxSize = Simu.data.domain_width.in_units('Mpc/h') #Mpc/h
+    BoxSize = pBoxSize[0].value #Mpc/h
+
+    log_M_min=14.3 #minimal mass to plot HMF
+    log_M_max=15 #maximal mass to plot HMF
+    delta_log_M=0.1
+    boxsize=BoxSize/0.67 #factor h
+
+    bin_centers, num_halos, err = halo_MF(Simu["halos"], log_M_min=log_M_min, log_M_max=log_M_max, delta_log_M=delta_log_M, boxsize = boxsize) #calculate halo mass function
+
+    fig,ax = plt.subplots()
+    ax.errorbar(bin_centers[num_halos!=0], num_halos[num_halos!=0], yerr=err[num_halos!=0], fmt='x', capthick=2, elinewidth=2,label='Measured_'+str(Simu.name)) #plt HMF
+
+
+    HMF_T=mass_function.massFunction(bin_centers, 0.0, mdef = 'fof', model = 'sheth99',q_out = 'dndlnM')      #get theoretical line for HMF,
+    plt.loglog(bin_centers, HMF_T,label="Theo_"+str(Simu.name))
+
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+
+    plt.legend()
+    plt.xlabel(r'Mass ($M_{\odot}$)]', fontsize = 14)
+    plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
+
 def Particle_mass (Simu):
     
     PPM = yt.ParticlePlot(Simu.data, 'particle_position_x', 'particle_position_y','particle_mass')
@@ -207,6 +263,15 @@ def Plot_sigma_8 ():
     plt.legend()
 
     plt.savefig("./RESULT/S_8.png")
+
+def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
+    plt.loglog(Ref["k"],Simu1,label=labelname) #plot measure from N-body
+    axes = plt.gca()
+
+    plt.xlabel("k [h/Mpc]")
+    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
+    plt.legend()
+                    
 
 def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
     plt.loglog(Ref["k"],Simu1,label=labelname) #plot measure from N-body
