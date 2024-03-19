@@ -255,11 +255,11 @@ def Plot_sigma_8 ():
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     S8 = para["S_8"]
-                    if "PGN" in para["name"] and not "WDM" in para["name"] :
+                    if ("PGN" in para["name"] and not "WDM" in para["name"]) or "CDM" in para["name"] :
                         plt.scatter([S8],[i], label = para["name"])
                         i = i+1
     axes = plt.gca()
-    axes.set_xlim(0.4,1.2)
+    axes.set_xlim(0.6,1)
     axes.get_yaxis().set_visible(False)
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
