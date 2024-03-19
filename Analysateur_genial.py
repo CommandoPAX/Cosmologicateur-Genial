@@ -286,15 +286,13 @@ def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
 
 if __name__ == "__main__" :
     
-    Plot_sigma_8()
-
 
     cosmology.setCosmology('planck18')
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
-    #noms = ["WDM500","WDM4000"]
+    noms = ["LCDM"]
     Pow = [0,0,0]
     #Diviser_Pow(lcdm,lcdm)
     try : 
@@ -304,7 +302,7 @@ if __name__ == "__main__" :
 
                 nom = dir.split(" ")[-1]
 
-                if "PGN" in nom and not "WDM" in nom : #in noms or noms == "":
+                if  nom in noms or noms == "":
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
                     
                     """PowerSpectrum(lcdm)
@@ -326,6 +324,7 @@ if __name__ == "__main__" :
                     #plt.clf()"""
     except : 
         pass 
+    Plot_sigma_8()
 
 
 """plt.clf()  
