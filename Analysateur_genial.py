@@ -235,7 +235,7 @@ if __name__ == "__main__" :
 
                 nom = dir.split(" ")[-1]
 
-                if nom in noms or noms == "":
+                if True: #if nom in noms or noms == "":
                     plt.clf()
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
                     Particle_mass(simu2)
