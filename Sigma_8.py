@@ -57,7 +57,7 @@ class Simulation ():
                         self.Parameters = json.load(f) # J'ai pas de fichier de paramètres pour vérifier lesquels sont dedans
         
         self.BoxSize  = 500
-        self.grid     = 512                   #grid size
+        self.grid     = 2**self.Parameters["level_min"]                   #grid size
         self.ptypes   = [1]                   #CDM + neutrinos
         self.MAS      = 'CIC'                   #Cloud-in-Cell
         self.do_RSD   = False                   #dont do redshif-space distortions
