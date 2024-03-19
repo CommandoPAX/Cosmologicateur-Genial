@@ -58,31 +58,32 @@ class Simulation ():
         
         self.BoxSize  = 500
         self.grid     = 2**self.Parameters["level_min"]                   #grid size
-        self.ptypes   = [1]                   #CDM + neutrinos
         self.MAS      = 'CIC'                   #Cloud-in-Cell
-        self.do_RSD   = False                   #dont do redshif-space distortions
-        self.axis     = 0                       #axis along which place RSD; not used here
-        self.verbose  = False   #whether print information on the progress
-                
-        #self.h=0.67742 Don't know if that's H0 in PAR file but I will assume it is, divided by 100
-        self.h = self.Parameters["H0"]/100
-        self.omega_b=self.Parameters["omega_b"]
+        self.verbose  = False   #whether print information on the progress   
         self.omega_m = self.Parameters["omega_m"]
-        self.omega_cdm=0.261008
-        self.omega_ncdm= 0 #0.00140718
-        self.N_ncdm=0
-        self.m_ncdm=0.0
+        self.N=2**self.Parameters["level_min"]                   #grid size                           
+        self.kmin=2*np.pi/self.BoxSize
         
-        self.omega_r= 0 #9.16714e-05
-        self.omega_k=self.Parameters["omega_k"]
-        self.z=50
-
+        """ Unused values
         self.A_s = 2.1064e-9
         self.n_s = 0.96822
         self.k_pivot = 0.05 # 1/Mpc
+        self.omega_r= 0 #9.16714e-05
+        self.omega_k=self.Parameters["omega_k"]
+        self.z=50
+        self.N_ncdm=0
+        self.m_ncdm=0.0
+        self.omega_ncdm= 0 #0.00140718
+        self.omega_cdm=0.261008
+        self.omega_b=self.Parameters["omega_b"]
         
-        self.N=512                  # grid size                                
-        self.kmin=2*np.pi/self.BoxSize
+        #self.h=0.67742 Don't know if that's H0 in PAR file but I will assume it is, divided by 100
+        self.h = self.Parameters["H0"]/100
+        
+        self.axis     = 0                       #axis along which place RSD; not used here
+        self.do_RSD   = False                   #dont do redshif-space distortions
+        self.ptypes   = [1]                   #CDM + neutrinos
+        """
         
         
                 
