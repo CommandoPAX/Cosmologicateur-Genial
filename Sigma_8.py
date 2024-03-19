@@ -195,20 +195,13 @@ class Simulation ():
         
         S_8 = self.CST["sigma_8"] * np.sqrt(self.omega_m / 0.3)
         self.CST["S_8"] = S_8
+
+        print(S_8,self.CST["sigma_8"])
         
 if __name__ == "__main__" :
     
     cosmology.setCosmology('planck18')
     noms = ""#["WDM500","WDM4000"]
-    if 1:#try : 
-        for root, dirs, files in os.walk("./RESULT/"):
 
-            for dir in dirs :
-
-                nom = dir.split(" ")[-1]
-
-                if True: #if nom in noms or noms == "":
-                    plt.clf()
-                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
-    else:
-        pass 
+    simu2 = Simulation("../2024-03-12 15:55:46 - WMDPGN32/",name="test",index = 3,tout = True)
+    
