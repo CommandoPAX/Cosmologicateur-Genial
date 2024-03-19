@@ -22,7 +22,7 @@ matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 BoxSize  = 500
-grid     = 512                   #grid size
+grid     = 32                   #grid size
 ptypes   = [1]                   #CDM + neutrinos
 MAS      = 'CIC'                   #Cloud-in-Cell
 do_RSD   = False                   #dont do redshif-space distortions
@@ -30,7 +30,7 @@ axis     = 0                       #axis along which place RSD; not used here
 verbose  = False   #whether print information on the progress
 
 #Dp = 0.025223
-N=512
+N=32
 
 
 class Params():
@@ -52,7 +52,7 @@ class Params():
         self.n_s = 0.96822
         self.k_pivot = 0.05 # 1/Mpc
         
-        self.N=512                  # grid size                                
+        self.N=32                  # grid size                                
         self.kmin=2*np.pi/BoxSize
 
 params=Params()
@@ -68,7 +68,7 @@ def ifft(field):
     return np.fft.irfftn(np.fft.ifftshift(field.transpose()[:-1,:-1],axes=(0,1)),(params.N,params.N,params.N) )
 
 def fft(f_field): # fast fourier transform
-    field=np.zeros((params.N//2+1,params.N+1,params.N+1),dtype=np.complex)
+    field=np.zeros((params.N//2+1,params.N+1,params.N+1),dtype=complex)
     field[:,:-1,:-1]=np.fft.fftshift(np.fft.rfftn(f_field),axes=(0,1)).transpose()
     field[:,-1],field[:,:,-1]=field[:,0],field[:,:,0]
     return field
@@ -102,17 +102,32 @@ with warnings.catch_warnings():
     
 
 
-     
-    filename='/data77/stahl/Scale/Nb/TESTS/RS_fixing_F500_kp15_sp1.hdf5'
-#    filename =  '/data77/stahl/Scale/OUTPUT_DIR/LHC/F100_kp15_sp1.hdf5'
-    f = h5py.File(filename, "r")
-    f = np.array(f['PartType1']['Coordinates'])
-    f = f%500
-    delta = np.zeros((N,N,N), dtype=np.float32)
-        
-    MASL.MA(np.float32(f), delta, BoxSize, MAS, verbose=verbose)
+    index = 2
+    DATA = yt.load("../test/output_00002/info_00002.txt")
+    DATA.all_data().to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
+
+    grid = 32    #grid size
+    pBoxSize = DATA.domain_width.in_units('Mpccm/h') #Mpc/h
+    BoxSize = pBoxSize[0].value #Mpc/h
+    Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
+    threads = 1      #number of openmp threads
+    verbose = False   #whether to print some information
+    axis = 0
+    MAS = 'CIC'
+
+    ad=DATA.all_data()
+    pos = ad['particle_position'].astype(np.float32)*BoxSize
+
+    # define 3D density fields
+    delta = np.zeros((grid,grid,grid), dtype=np.float32)
+
+    # construct 3D density field
+    MASL.MA(pos.astype(np.float32), delta, BoxSize, MAS, verbose=verbose)
+
+    # at this point, delta contains the effective number of particles in each voxel
+    # now compute overdensity and density constrast
     delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
-        
+            
         
     res=sigma8(delta,k_grid)
 #np.savetxt("S8.dat",res)
