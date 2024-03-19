@@ -251,7 +251,7 @@ if __name__ == "__main__" :
                     Diviser_Pow(simu2,lcdm)
 
         plt.title ("z = 1")
-        plt.savefig("./RESULT/WDM-1.png")
+        plt.savefig("./RESULT/PGN-1.png")
                     #plt.clf()
     except : 
         pass 
