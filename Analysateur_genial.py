@@ -228,7 +228,7 @@ if __name__ == "__main__" :
     noms = ""#["WDM500","WDM4000"]
     Pow = [0,0,0]
     Diviser_Pow(lcdm,lcdm)
-    try : 
+    if 1:#try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
             for dir in dirs :
@@ -259,7 +259,7 @@ if __name__ == "__main__" :
         #plt.title ("z = 1")
         #plt.savefig("./RESULT/WDM-nul-1.png")
                     #plt.clf()
-    except : 
+    else:#except : 
         pass 
     """plt.clf()  
     print(Pow[0])
