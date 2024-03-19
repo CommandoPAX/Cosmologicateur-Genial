@@ -24,17 +24,37 @@ class Simulation ():
 
         self.args = {}        
 
+        # Obliger de devoir charger l'intégralité des données pour calculer sigma_8 malheureusement
+        
+        self.data = yt.load(self.path+"/"+self.output+"/"+self.info+".txt")
+        self.ad = self.data.all_data()
 
-        if tout :       # Pas besoin de tout charger si on veut juste le spectre de puissance
+        self.df = self.ad.to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
 
-            self.data = yt.load(self.path+"/"+self.output+"/"+self.info+".txt")
-            self.ad = self.data.all_data()
-
-            self.df = self.ad.to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
-
-            for i in self.df.columns :
-                if not i in self.args : self.args[i] = self.df[i].to_numpy()
-
+        for i in self.df.columns :
+            if not i in self.args : self.args[i] = self.df[i].to_numpy()
+                
+        #################################################################################
+        # Constante qui sont utilisé pour Sigma_8, a terme devront nécessiter une récup depuis la base de données
+        
+        for root, dir, files in os.walk(self.path) : 
+            for filename in files : 
+                json_name= rf"{self.index}_PAR_.*\.json"
+                if re.search(json_name, filename) : 
+                    with open(f"{self.path}/{filename}", 'r') as f : 
+                        self.Parameters = json.load(f) 
+        
+        self.BoxSize  = 500
+        print(self.Parameters["namelist"])
+        self.grid     = 2**self.Parameters["namelist"]["amr_params"]["levelmin"]                   #grid size
+        self.MAS      = 'CIC'                   #Cloud-in-Cell
+        self.verbose  = False   #whether print information on the progress   
+        self.omega_m = self.Parameters["omega_m"]
+        self.N=2**self.Parameters["namelist"]["amr_params"]["levelmin"]                 #grid size                           
+        self.kmin=2*np.pi/self.BoxSize
+        
+                
+        ###################################################################################
 
         self.Power_Spectrum()
         try :
@@ -51,9 +71,12 @@ class Simulation ():
     def __getitem__ (self, x):
         return self.args[x]
 
-    def Power_Spectrum(self) :
+    def Create_Json(self) : 
+        self.json_path = f"./RESULT/{self.name}_constants.json"
+        with open(self.json_path, "w") as outf : 
+            json.dump(self.CST, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
-        path = ""
+    def Power_Spectrum(self) :
         for root,dirs,files in os.walk(self.path): 
                 for file in files:
                     if "POW" in file and ".txt" in file and str(self.index)+"_" in file :
@@ -93,83 +116,59 @@ class Simulation ():
 
         self.halo = haloM.to_numpy()
         self.args["halos"] = self.halo
-        
-    def Create_Json(self) : 
-        self.json_path = f"./RESULT/{self.name}_constants.json"
-        with open(self.json_path, "w") as outf : 
-            json.dump(self.CST, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
-            
-    def Calc_Sigma_8(self) :
-        # compute the value of sigma_8
-        sigma_8 = MFL.sigma(self.args["k"], self.args["Pk0"], 8.0)
-        self.CST["sigma_8"] = sigma_8
-        for root, dir, files in os.walk(self.path) : 
-            for filename in files : 
-                if re.search(r"3_PAR_.*\.json", filename) : 
-                    with open(f"{self.path}/{filename}", 'r') as f : 
-                        Parameters = json.load(f) 
-        Omega_m = Parameters["omega_m"]
-        S_8 = sigma_8 * np.sqrt(Omega_m / 0.3)
-        self.CST["S_8"] = S_8
-        self.args["S_8"] = S_8
-        self.args["sigma_8"] = sigma_8
-                    
-        
-def PowerSpectrum (Simu, Class = False) :
-
-    plt.loglog(Simu["k"],Simu["Pk0"],label=Simu.name) #plot measure from N-body
-    plt.legend()
-
-    if Class :
-        toL=np.transpose(np.loadtxt("CLASS.dat"))
-        plt.loglog(toL[0],toL[1],linestyle="dotted",label='CLASS') #plot lienar CLASS
-        toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
-        plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
     
-    plt.xlabel("k [h/Mpc]")
-    axes = plt.gca()
-    axes.set_xlim(2e-2,0.9)
-    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
-    plt.legend()
+    #############################################################################
+    # Functions needed to calculate sigma_8
+    
+    def ifft(self, field):
+        field[0,self.N//2,self.N//2]=0
+        return np.fft.irfftn(np.fft.ifftshift(field.transpose()[:-1,:-1],axes=(0,1)),(self.N,self.N,self.N) )
+    
+    def fft(self, f_field): # fast fourier transform
+        field=np.zeros((self.N//2+1,self.N+1,self.N+1),dtype=complex)
+        field[:,:-1,:-1]=np.fft.fftshift(np.fft.rfftn(f_field),axes=(0,1)).transpose()
+        field[:,-1],field[:,:,-1]=field[:,0],field[:,:,0]
+        return field
+    
+    def W(self, grid):
+        l = self.BoxSize/self.N
+        k1,k2,k3=grid[0][self.N//2:]*l/2/np.pi,grid[1]*l/2/np.pi,grid[2]*l/2/np.pi
+        return (np.sinc(k1)*np.sinc(k2)*np.sinc(k3))**2
+    
+    def WW(self, grid):
+        R=8
+        Rkmod=np.sqrt(grid[0][self.N//2:]**2+grid[1]**2+grid[2]**2)*R
+        return 3 * (np.sin(Rkmod) - Rkmod*np.cos(Rkmod))/Rkmod**3
 
+    def sigma8(self, field,k_grid):
+        fdelta = self.fft(field)
 
-def Diviser_Pow (Simu1, Simu2,ls="") :
-    if not ls :plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name) #plot measure from N-body
-    else : plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name,ls=ls)
-    axes = plt.gca()
-    #axes.set_xlim(2e-2,0.9)
-    #axes.set_ylim(0.9,1.05)
-    plt.xlabel("k [h/Mpc]")
-    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
-    plt.legend()
+        Wcic = self.W(k_grid)
+        Wth = self.WW(k_grid)
 
-            
-def Halo (Simu, log_M_min = 14.3, log_M_max=15,delta_log_M=0.1) :
-     
+        fdelta = fdelta * Wth / Wcic
 
-    pBoxSize = Simu.data.domain_width.in_units('Mpc/h') #Mpc/h
-    BoxSize = pBoxSize[0].value #Mpc/h
+        delta = self.ifft(fdelta)
+        return np.sqrt(np.mean(delta**2))
+        
+    def Calc_Sigma_8(self) :
+        # This function only works if yt has loaded all data
+        
+        k=np.linspace(-(self.N//2)*self.kmin,self.N//2*self.kmin,self.N+1,dtype=np.float64)
+        k_grid=np.array(np.meshgrid(k,k,k,sparse=True,indexing='ij'),dtype=object) 
+        
+        delta = np.zeros((self.N,self.N,self.N), dtype=np.float32)
+        
+        pos = self.ad['particle_position'].astype(np.float32)*self.BoxSize
+        MASL.MA(pos.astype(np.float32), delta, self.BoxSize, self.MAS, verbose=self.verbose)
+        delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
+        
+        self.CST["sigma_8"] = self.sigma8(delta,k_grid)
+        
+        S_8 = self.CST["sigma_8"] * np.sqrt(self.omega_m / 0.3)
+        self.CST["S_8"] = S_8
 
-    log_M_min=14.3 #minimal mass to plot HMF
-    log_M_max=15 #maximal mass to plot HMF
-    delta_log_M=0.1
-    boxsize=BoxSize/0.67 #factor h
-
-    bin_centers, num_halos, err = halo_MF(Simu["halos"], log_M_min=log_M_min, log_M_max=log_M_max, delta_log_M=delta_log_M, boxsize = boxsize) #calculate halo mass function
-
-    fig,ax = plt.subplots()
-    ax.errorbar(bin_centers[num_halos!=0], num_halos[num_halos!=0], yerr=err[num_halos!=0], fmt='x', capthick=2, elinewidth=2,label='Measured_'+str(Simu.name)) #plt HMF
-
-
-    HMF_T=mass_function.massFunction(bin_centers, 0.0, mdef = 'fof', model = 'sheth99',q_out = 'dndlnM')      #get theoretical line for HMF,
-    plt.loglog(bin_centers, HMF_T,label="Theo_"+str(Simu.name))
-
-    ax.set_xscale('log')
-    ax.set_yscale('log')
-
-    plt.legend()
-    plt.xlabel(r'Mass ($M_{\odot}$)]', fontsize = 14)
-    plt.ylabel(r'$\frac{dN}{d\log M}$ ($Mpc^{-3}$)', fontsize = 14)
+        print(S_8,self.CST["sigma_8"])
 
 def Particle_mass (Simu):
     
@@ -225,7 +224,7 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 2,tout = False)
-    noms = ["WDM500","WDM4000"]
+    #noms = ["WDM500","WDM4000"]
     Pow = [0,0,0]
     Diviser_Pow(lcdm,lcdm)
     try : 
@@ -235,8 +234,8 @@ if __name__ == "__main__" :
 
                 nom = dir.split(" ")[-1]
 
-                if nom in noms or noms == "":
-                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 2,tout = False)
+                if "PGN" in nom and not "WDM" in nom : #in noms or noms == "":
+                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = False)
                     
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
@@ -250,15 +249,17 @@ if __name__ == "__main__" :
                     if nom == "WDM3" :
                         Pow[2] = simu2["Pk0"]/lcdm["Pk0"]"""
                     
-                    if nom == "WDM500" : Diviser_Pow(simu2,lcdm,ls="")
-                    else : Diviser_Pow(simu2,lcdm,ls="--")
+                    # Diviser_Pow(simu2,lcdm,ls="--")
 
-        plt.title ("z = 1")
+        """plt.title ("z = 1")
         plt.savefig("./RESULT/WDM-nul-1.png")
-                    #plt.clf()
+                    #plt.clf()"""
     except : 
         pass 
-    """plt.clf()  
+
+Plot_sigma_8()
+
+"""plt.clf()  
     print(Pow[0])
     print('#######################################################################')
     print(Pow[1])
