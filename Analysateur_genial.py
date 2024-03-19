@@ -264,7 +264,7 @@ def Plot_sigma_8 ():
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
 
-    plt.savefig("./RESULT/S_8.png")
+    plt.savefig("./RESULT/S_8_z=1.png")
 
 def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
     plt.loglog(Ref["k"],Simu1,label=labelname) #plot measure from N-body
@@ -291,8 +291,8 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
-    noms = ["LCDM"]
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 2,tout = True)
+    noms = ["LCDM","PGN"]
     Pow = [0,0,0]
     #Diviser_Pow(lcdm,lcdm)
     try : 
@@ -302,8 +302,8 @@ if __name__ == "__main__" :
 
                 nom = dir.split(" ")[-1]
 
-                if  nom in noms or noms == "":
-                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
+                if  nom in noms or noms == "" and not "WDM" in nom:
+                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 2,tout = True)
                     
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
