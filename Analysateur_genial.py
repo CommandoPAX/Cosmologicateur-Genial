@@ -311,7 +311,7 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 2,tout = True)
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
     Particle_mass(lcdm).save("./RESULT/test.png")
     noms = ["LCDM","PGN"]
     Pow = [0,0,0]
