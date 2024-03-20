@@ -262,6 +262,17 @@ def Particle_mass (Simu):
 
     return PPM
 
+def Particle_mass_petit(Simu):
+
+    PPM = yt.ParticlePlot(Simu.data, 'particle_position_x', 'particle_position_y','particle_mass')
+    PPM.set_unit('particle_mass', 'Msun')
+    PPM.set_zlim(('particle_mass'),zmin=(5e12,"Msun"),zmax=(2e14,"Msun"))
+    PPM.annotate_scale()
+    PPM.annotate_title(Simu.name)
+    PPM.set_xlim(-10,10)
+    PPM.set_ylim(-10,10)
+
+    return PPM
 def Velocity (Simu) :
     
     VEL = yt.ParticlePlot(Simu.data, 'particle_velocity_x', 'particle_velocity_y','particle_mass')
@@ -339,6 +350,8 @@ if __name__ == "__main__" :
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
     Particle_mass(lcdm).save("./RESULT/test.png")
+    Particle_mass_petit(lcdm).save("./RESULT/test-petit.png")
+
     noms = ["LCDM","PGN"]
     Pow = [0,0,0]
     #Diviser_Pow(lcdm,lcdm)
@@ -352,6 +365,8 @@ if __name__ == "__main__" :
                 if  "PGN" in nom and not "WDM" in nom:
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
                     Particle_mass(simu2).save("./RESULT/PPM-"+simu2.name+"-test.png")
+                    Particle_mass_petit(simu2).save("./RESULT/PPM-"+simu2.name+"-test-petit.png")
+
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
 
