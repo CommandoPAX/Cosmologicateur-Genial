@@ -24,6 +24,9 @@ class Simulation ():
         self.name = name
 
         self.args = {}        
+        
+        self.CST = {}
+        self.CST["name"] = self.name
 
         # Obliger de devoir charger l'intégralité des données pour calculer sigma_8 malheureusement
 
@@ -73,9 +76,6 @@ class Simulation ():
              self.Halo()
         except :
              pass
-         
-        self.CST = {}
-        self.CST["name"] = self.name
 
 
 
