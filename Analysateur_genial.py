@@ -282,7 +282,25 @@ def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
-                    
+
+def trouver_simus (name, exclu = ""):
+
+    result = []
+
+    try : 
+        for root, dirs, files in os.walk("./RESULT/"):
+
+            for dir in dirs :
+
+                nom = dir.split(" ")[-1]
+
+                if  nom in name and (not exclu in name or exclu == ""):
+                    result.append("./RESULT/"+dir)
+
+    except : 
+        pass           
+
+    return result       
 
 if __name__ == "__main__" :
     
