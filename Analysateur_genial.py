@@ -29,10 +29,25 @@ class Simulation ():
         self.CST["name"] = self.name
 
         # Obliger de devoir charger l'intégralité des données pour calculer sigma_8 malheureusement
+                 
+        #                 /\
+        #                /  \
+        #               /    \
+        #              /      \
+        #             /        \
+        #            /          \
+        #           /____________\
+        #           |            |
+        #           |____________|
+        #           |            |
+        #           |____________|
+        #           |            |
+        #           |____________|
+        #           |            |
+        #           |____________|
+        #           |            |
+        #           |____________|
 
-        #               /\
-        #               ||
-        #               ||
 
         # Oui mais on veut pas calculer sigma8 à chaque fois si on veut juste le spectre c'est trop long
         
