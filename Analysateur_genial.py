@@ -231,7 +231,7 @@ def Particle_mass (Simu):
     
     PPM = yt.ParticlePlot(Simu.data, 'particle_position_x', 'particle_position_y','particle_mass')
     PPM.set_unit('particle_mass', 'Msun')
-    PPM.set_zlim(('particle_mass'),zmin=(1e12,"Msun"),zmax=(5e14,"Msun"))
+    PPM.set_zlim(('particle_mass'),zmin=(1e13,"Msun"),zmax=(5e14,"Msun"))
     PPM.annotate_scale()
     plt.title(Simu.name)
 
@@ -326,7 +326,7 @@ if __name__ == "__main__" :
 
                 if  "PGN" in nom and not "WDM" in nom:
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
-                    Particle_mass(simu2).save("./RESULT/PPM-"+simu2.name+".png")
+                    Particle_mass(simu2).save("./RESULT/PPM-"+simu2.name+"-test.png")
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
 
