@@ -324,8 +324,8 @@ if __name__ == "__main__" :
                 nom = dir.split(" ")[-1]
 
                 if  nom in noms or noms == "" and not "WDM" in nom:
-                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 2,tout = True)
-                    
+                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
+                    Particle_mass(simu2).save("./RESULT/PPM-"+simu2.name+".png")
                     """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
 
