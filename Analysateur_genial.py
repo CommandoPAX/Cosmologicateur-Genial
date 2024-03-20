@@ -231,7 +231,7 @@ def Particle_mass (Simu):
     
     PPM = yt.ParticlePlot(Simu.data, 'particle_position_x', 'particle_position_y','particle_mass')
     PPM.set_unit('particle_mass', 'Msun')
-    PPM.set_zlim(('particle_mass', 'Msun'),zmin=(1e12,"Msun"),zmax=(1e15,"Msin"))
+    PPM.set_zlim(('particle_mass', 'Msun'),zmin=(1e12,"Msun"),zmax=(5e14,"Msin"))
     PPM.annotate_scale()
 
 def Velocity (Simu) :
