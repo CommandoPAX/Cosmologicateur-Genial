@@ -241,7 +241,7 @@ def Particle_mass (Simu):
     
     PPM = yt.ParticlePlot(Simu.data, 'particle_position_x', 'particle_position_y','particle_mass')
     PPM.set_unit('particle_mass', 'Msun')
-    PPM.set_zlim(('particle_mass'),zmin=(1e13,"Msun"),zmax=(5e14,"Msun"))
+    PPM.set_zlim(('particle_mass'),zmin=(5e12,"Msun"),zmax=(2e14,"Msun"))
     PPM.annotate_scale()
     PPM.annotate_title(Simu.name)
 
