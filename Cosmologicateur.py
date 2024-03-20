@@ -34,7 +34,11 @@ def Predicted_Particle_Mass(DATA, index : int, path : str, SimuName : str) :
     #plot
     PPM = yt.ParticlePlot(DATA, 'particle_position_x', 'particle_position_y','particle_mass')
     PPM.set_unit('particle_mass', 'Msun')
-    PPM.set_zlim(('particle_mass'),zmin=(1e12,"Msun"),zmax=(5e14,"Msun"))
+    try :
+        PPM.set_zlim(('particle_mass'),zmin=(5e12,"Msun"),zmax=(2e14,"Msun"))
+        PPM.annotate_title(SimuName)
+    except :
+        pass
     #PPM.zoom(4)
     #PPM.annotate_timestamp(corner='upper_left', time=True, redshift=False, draw_inset_box=True,time_format='t = {time:.1f}', time_unit='code_time')
     PPM.annotate_scale()
