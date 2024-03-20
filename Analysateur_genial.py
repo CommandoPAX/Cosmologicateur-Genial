@@ -231,7 +231,7 @@ def Particle_mass (Simu):
     
     PPM = yt.ParticlePlot(Simu.data, 'particle_position_x', 'particle_position_y','particle_mass')
     PPM.set_unit('particle_mass', 'Msun')
-    PPM.set_zlim(1e12,1e15)
+    PPM.set_zlim(('particle_mass', 'Msun'),zmin=(1e12,"Msun"),zmax=(1e15,"Msin"))
     PPM.annotate_scale()
 
 def Velocity (Simu) :
@@ -310,6 +310,8 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
     lcdm = Simulation(Path_lcdm,name="lcdm",index = 2,tout = True)
+    Particle_mass(lcdm)
+    plt.savefig("test.png")
     noms = ["LCDM","PGN"]
     Pow = [0,0,0]
     #Diviser_Pow(lcdm,lcdm)
