@@ -269,7 +269,7 @@ def Particle_mass_petit(Simu):
     PPM.set_zlim(('particle_mass'),zmin=(5e12,"Msun"),zmax=(2e14,"Msun"))
     PPM.annotate_scale()
     PPM.annotate_title(Simu.name)
-    PPM.zoom(50)
+    PPM.zoom(5)
 
     return PPM
 def Velocity (Simu) :
