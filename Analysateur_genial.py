@@ -26,36 +26,47 @@ class Simulation ():
         self.args = {}        
 
         # Obliger de devoir charger l'intégralité des données pour calculer sigma_8 malheureusement
-        
-        self.data = yt.load(self.path+"/"+self.output+"/"+self.info+".txt")
-        self.ad = self.data.all_data()
 
-        self.df = self.ad.to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
+        #               /\
+        #               ||
+        #               ||
 
-        for i in self.df.columns :
-            if not i in self.args : self.args[i] = self.df[i].to_numpy()
-                
-        #################################################################################
-        # Constante qui sont utilisé pour Sigma_8, a terme devront nécessiter une récup depuis la base de données
+        # Oui mais on veut pas calculer sigma8 à chaque fois si on veut juste le spectre c'est trop long
         
-        for root, dir, files in os.walk(self.path) : 
-            for filename in files : 
-                json_name= rf"{self.index}_PAR_.*\.json"
-                if re.search(json_name, filename) : 
-                    with open(f"{self.path}/{filename}", 'r') as f : 
-                        self.Parameters = json.load(f) 
-        
-        self.BoxSize  = 500
-        print(self.Parameters["namelist"])
-        self.grid     = 2**self.Parameters["namelist"]["amr_params"]["levelmin"]                   #grid size
-        self.MAS      = 'CIC'                   #Cloud-in-Cell
-        self.verbose  = False   #whether print information on the progress   
-        self.omega_m = self.Parameters["omega_m"]
-        self.N=2**self.Parameters["namelist"]["amr_params"]["levelmin"]                 #grid size                           
-        self.kmin=2*np.pi/self.BoxSize
-        
-                
-        ###################################################################################
+        if tout :
+
+            self.data = yt.load(self.path+"/"+self.output+"/"+self.info+".txt")
+            self.ad = self.data.all_data()
+
+            self.df = self.ad.to_dataframe(["particle_position_x","particle_position_y","particle_position_z","particle_mass"])
+
+            for i in self.df.columns :
+                if not i in self.args : self.args[i] = self.df[i].to_numpy()
+                    
+            #################################################################################
+            # Constante qui sont utilisé pour Sigma_8, a terme devront nécessiter une récup depuis la base de données
+            
+            for root, dir, files in os.walk(self.path) : 
+                for filename in files : 
+                    json_name= rf"{self.index}_PAR_.*\.json"
+                    if re.search(json_name, filename) : 
+                        with open(f"{self.path}/{filename}", 'r') as f : 
+                            self.Parameters = json.load(f) 
+            
+            self.BoxSize  = 500
+            print(self.Parameters["namelist"])
+            self.grid     = 2**self.Parameters["namelist"]["amr_params"]["levelmin"]                   #grid size
+            self.MAS      = 'CIC'                   #Cloud-in-Cell
+            self.verbose  = False   #whether print information on the progress   
+            self.omega_m = self.Parameters["omega_m"]
+            self.N=2**self.Parameters["namelist"]["amr_params"]["levelmin"]                 #grid size                           
+            self.kmin=2*np.pi/self.BoxSize
+            
+                    
+            ###################################################################################
+
+            self.Calc_Sigma_8()
+            self.Create_Json()
 
         self.Power_Spectrum()
         try :
@@ -66,8 +77,7 @@ class Simulation ():
         self.CST = {}
         self.CST["name"] = self.name
 
-        self.Calc_Sigma_8()
-        self.Create_Json()
+
 
     def __getitem__ (self, x):
         return self.args[x]
