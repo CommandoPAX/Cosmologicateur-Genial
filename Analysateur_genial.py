@@ -302,8 +302,6 @@ def Plot_sigma_8 ():
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
 
-    plt.savefig("./RESULT/S_8_z=1.png")
-
 def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
     plt.loglog(Ref["k"],Simu1,label=labelname) #plot measure from N-body
     axes = plt.gca()
@@ -365,6 +363,8 @@ if __name__ == "__main__" :
     plt.savefig("./RESULT/Division-WDM.png")
 
     Plot_sigma_8()
+    plt.savefig("./RESULT/S_8_WDM_z=1.png")
+
 
     for s in simus :
         print (s)
