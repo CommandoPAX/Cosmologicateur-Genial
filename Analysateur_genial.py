@@ -347,14 +347,21 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
-    Particle_mass(lcdm).save("./RESULT/test.png")
-    Particle_mass_petit(lcdm).save("./RESULT/test-petit.png")
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = False)
 
     noms = ["LCDM","PGN"]
     Pow = [0,0,0]
-    #Diviser_Pow(lcdm,lcdm)
-    try : 
+    Diviser_Pow(lcdm,lcdm)
+
+    simus = trouver_simus("WDM",eclu = "PGN")
+    for s in simus :
+        simu = Simulation(s,name=s.split(" ")[-1], tout=False)
+
+        Diviser_Pow(lcdm, simu)
+
+    plt.savefig("./RESULTS/Division-WDM.png")
+
+    """try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
             for dir in dirs :
@@ -364,9 +371,9 @@ if __name__ == "__main__" :
                 if  "PGN" in nom and not "WDM" in nom:
                     simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
                     Particle_mass(simu2).save("./RESULT/PPM-"+simu2.name+"-test.png")
-                    Particle_mass_petit(simu2).save("./RESULT/PPM-"+simu2.name+"-test-petit.png")
+                    Particle_mass_petit(simu2).save("./RESULT/PPM-"+simu2.name+"-test-petit.png")"""
 
-                    """PowerSpectrum(lcdm)
+    """PowerSpectrum(lcdm)
                     PowerSpectrum(simu2)
 
                     plt.savefig("./RESULT/lcdm + "+nom+".png")
@@ -380,12 +387,11 @@ if __name__ == "__main__" :
                     
                     # Diviser_Pow(simu2,lcdm,ls="--")
 
-        """plt.title ("z = 1")
+    """plt.title ("z = 1")
         plt.savefig("./RESULT/WDM-nul-1.png")
                     #plt.clf()"""
-    except : 
-        pass 
-    Plot_sigma_8()
+
+    #Plot_sigma_8()
 
 
 """plt.clf()  
