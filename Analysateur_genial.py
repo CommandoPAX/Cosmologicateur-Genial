@@ -323,13 +323,13 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
 
 
 
-def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid",color="") :
+def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid",color="", axes = plt) :
     if color == "" :plt.loglog(Ref["k"],Simu1,label=labelname, ls = linetype) #plot measure from N-body
     else :plt.loglog(Ref["k"],Simu1,label=labelname, ls = linetype,color=color) #plot measure from N-body
 
-    plt.xlabel("k [h/Mpc]")
-    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
-    plt.legend()
+    axes.xlabel("k [h/Mpc]")
+    axes.ylabel(r"P(k) [$(Mpc/h)^3$]")
+    axes.legend()
 
 def trouver_simus (name, exclu = ""):
 
@@ -391,15 +391,17 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     plt.clf()
 
+    fig, ax = plt.subplots(ncols=2)
+
     axes = plt.gca()
     axes.set_xlim(0.1,2)
-    axes.autoscale(axis="y")
+    axes[1].autoscale()
 
     plt.title("z = 1")
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
     Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow(pow_pw2 / (pow_p2 * pow_w2), lcdm, labelname= "Ratio")
+    Plot_Pow(pow_pw2 / (pow_p2 * pow_w2), lcdm, labelname= "Ratio", axes = axes[1])
     Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
     Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
@@ -409,13 +411,13 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     axes = plt.gca()
     axes.set_xlim(0.1,2)
-    axes.autoscale(axis="y")
+    axes[1].autoscale()
 
     plt.title("z = 0")
 
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
     Plot_Pow((pow_p3 * pow_w3), lcdm, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow(pow_pw3 / (pow_p3 * pow_w3), lcdm, labelname= "Ratio")
+    Plot_Pow(pow_pw3 / (pow_p3 * pow_w3), lcdm, labelname= "Ratio", axes = axes[1])
     Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
     Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
