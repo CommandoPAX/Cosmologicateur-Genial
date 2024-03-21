@@ -353,11 +353,18 @@ if __name__ == "__main__" :
     Pow = [0,0,0]
     #Diviser_Pow(lcdm,lcdm)
 
-    simus = trouver_simus("WDM",exclu = "PGN")
+    simus = trouver_simus("WDM500PGN1000")
     print(simus)
     for s in simus :
         print (s)
         simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        Diviser_Pow(simu,lcdm)
+        plt.savefig("./RESULT/wdm500pgn1000-0.png")
+        plt.clf()
+        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+        Diviser_Pow(simu,lcdm2)
+        plt.savefig("./RESULT/wdm500pgn1000-1.png")
+
 
 
     Plot_sigma_8(index = 3, name="WDM", exclu="PGN")
