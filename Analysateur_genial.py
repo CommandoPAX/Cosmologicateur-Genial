@@ -387,7 +387,6 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
 
     plt.clf()
-    plt.title("z = 1")
 
 
     fig, axes = plt.subplots(nrows=2,figsize=(8,8))
@@ -415,11 +414,11 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes[0].legend()
     axes[1].legend()
 
+    plt.title("z = 1")
 
     plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=1 .png")
 
     plt.clf()
-    plt.title("z = 0")
 
 
     fig, axes = plt.subplots(nrows=2,figsize=(8,8))
