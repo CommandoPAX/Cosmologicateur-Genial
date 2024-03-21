@@ -309,18 +309,11 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
 
-def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
-    plt.loglog(Ref["k"],Simu1,label=labelname) #plot measure from N-body
-    axes = plt.gca()
 
-    plt.xlabel("k [h/Mpc]")
-    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
-    plt.legend()
-                    
 
-def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid") :
-    plt.loglog(Ref["k"],Simu1,label=labelname, ls = linetype) #plot measure from N-body
-    axes = plt.gca()
+def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid",color="") :
+    if color == "" :plt.loglog(Ref["k"],Simu1,label=labelname, ls = linetype) #plot measure from N-body
+    else :plt.loglog(Ref["k"],Simu1,label=labelname, ls = linetype,color=color) #plot measure from N-body
 
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
