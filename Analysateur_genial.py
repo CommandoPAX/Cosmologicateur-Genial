@@ -338,6 +338,58 @@ def trouver_simus (name, exclu = ""):
 
     return result       
 
+def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
+
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = False)
+    lcdm2 = Simulation(Path_lcdm,name="lcdm",index = 2,tout = False)
+
+    simus = trouver_simus("WDM"+str(wdm)+"PGN"+str(fnl))
+    print(simus)
+    for s in simus :
+        pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+
+    simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
+    print(simus)
+    for s in simus :
+        w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+
+    simus = trouver_simus("PGN"+str(fnl), exclu="WDM")
+    print(simus)
+    for s in simus :
+        p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+
+    pow_p2 = p2["Pk0"]/lcdm2["Pk0"]
+    pow_w2 = w2["Pk0"]/lcdm2["Pk0"]
+    pow_pw2 = pw2["Pk0"]/lcdm2["Pk0"]
+
+    pow_p3 = p3["Pk0"]/lcdm["Pk0"]
+    pow_w3 = w3["Pk0"]/lcdm["Pk0"]
+    pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
+
+    plt.clf()
+
+    plt.title("z = 1")
+
+    Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
+    Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "1/2 * ((m = 500 fnl = 0) + (m = 0 fnl = 1000))/lcdm")
+    Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
+
+    plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=1 .png")
+
+    plt.clf()
+
+    plt.title("z = 0")
+
+    Plot_Pow(pow_pw3, lcdm, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
+    Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 1000))/lcdm")
+    Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
+
+    plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=0 .png")
+
+
 if __name__ == "__main__" :
     
 
