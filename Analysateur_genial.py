@@ -293,7 +293,7 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     S8 = para["S_8"]
-                    if (name in para["name"] and not exclu in para["name"]) or "CDM" in para["name"] :
+                    if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
                         plt.scatter([S8],[i], label = para["name"])
                         i = i+1
     axes = plt.gca()
@@ -357,11 +357,7 @@ if __name__ == "__main__" :
     print(simus)
     for s in simus :
         print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=3)
-
-    for s in simus :
-        print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
+        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
 
     Plot_sigma_8(index = 3, name="WDM", exclu="PGN")
