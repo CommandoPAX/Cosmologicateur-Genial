@@ -343,7 +343,7 @@ def trouver_simus (name, exclu = ""):
                 nom = dir.split(" ")[-1]
                 #print(nom, name, nom in name, nom in name and (not exclu in name or exclu == ""))
 
-                if  name in nom and (not exclu in nom or exclu == ""):
+                if  name in nom and (not exclu in nom or exclu == "") and not "WDM1000" in nom:
                     result.append("./RESULT/"+dir)
 
     except : 
