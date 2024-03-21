@@ -19,6 +19,18 @@ import MAS_library as MASL
 
 plt.tight_layout()
 
+#aout = 0.09, 0.2, 0.333, 0.5, 1
+
+def z(a):
+    return 1/a - 1
+
+index_redhift = {
+    2 : 10,
+    3 : 4,
+    4 : 2,
+    5 : 1,
+    6 : 0
+}
 
 class Simulation ():
     def __init__ (self, path, name = "lcdm", index = 2,tout = True):
@@ -339,66 +351,110 @@ def trouver_simus (name, exclu = ""):
 
     return result       
 
-def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
+def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM", pleins_de_redshift = False ):
 
     lcdm = Simulation(path_lcdm,name="lcdm",index = 3,tout = False)
     lcdm2 = Simulation(path_lcdm,name="lcdm",index = 2,tout = False)
 
     simus = trouver_simus("WDM"+str(wdm)+"PGN"+str(fnl))
     print(simus)
-    for s in simus :
-        pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-        pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
 
-    simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
-    print(simus)
-    for s in simus :
-        w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-        w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+    if pleins_de_redshift : 
+        global index_redhift
 
-    simus = trouver_simus("PGN"+str(fnl), exclu="WDM")
-    print(simus)
-    for s in simus :
-        p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-        p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+        for i in range(2,7):
+            z = index_redhift[i]
+            #lcdm = Simulation(path_lcdm,name="lcdm",index = i,tout = False)
 
-    pow_p2 = p2["Pk0"]/lcdm2["Pk0"]
-    pow_w2 = w2["Pk0"]/lcdm2["Pk0"]
-    pow_pw2 = pw2["Pk0"]/lcdm2["Pk0"]
 
-    pow_p3 = p3["Pk0"]/lcdm["Pk0"]
-    pow_w3 = w3["Pk0"]/lcdm["Pk0"]
-    pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
+            for s in simus :
+                pw = Simulation(s,name=s.split(" ")[-1], tout=False,index=i)
 
-    plt.clf()
+            simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
+            print(simus)
+            for s in simus :
+                w = Simulation(s,name=s.split(" ")[-1], tout=False,index=i)
 
-    axes = plt.gca()
-    axes.set_xlim(0.1,2)
+            simus = trouver_simus("PGN"+str(fnl), exclu="WDM")
+            print(simus)
+            for s in simus :
+                p = Simulation(s,name=s.split(" ")[-1], tout=False,index=i)
 
-    plt.title("z = 1")
+            pow_p = p["Pk0"]/lcdm["Pk0"]
+            pow_w = w["Pk0"]/lcdm["Pk0"]
+            pow_pw = pw["Pk0"]/lcdm["Pk0"]
 
-    Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
-    Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
-    Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
+            plt.clf()
 
-    plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=1 .png")
+            axes = plt.gca()
+            axes.set_xlim(0.1,2)
 
-    plt.clf()
+            plt.title("z = "+str(z))
 
-    axes = plt.gca()
-    axes.set_xlim(0.1,2)
+            Plot_Pow(pow_pw, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
+            Plot_Pow((pow_p+ pow_w)/2, lcdm2, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
+            Plot_Pow(-pow_pw + (pow_p + pow_w)/2, lcdm, labelname= "Différence")
+            Plot_Pow(pow_p, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
+            Plot_Pow(pow_w, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
-    plt.title("z = 0")
+            plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z="+str(z)+" .png")
 
-    Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
-    Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
-    Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
-    Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
+            
+    else :
 
-    plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")
+        for s in simus :
+            pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+            pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+
+        simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
+        print(simus)
+        for s in simus :
+            w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+            w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+
+        simus = trouver_simus("PGN"+str(fnl), exclu="WDM")
+        print(simus)
+        for s in simus :
+            p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+            p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+
+        pow_p2 = p2["Pk0"]/lcdm2["Pk0"]
+        pow_w2 = w2["Pk0"]/lcdm2["Pk0"]
+        pow_pw2 = pw2["Pk0"]/lcdm2["Pk0"]
+
+        pow_p3 = p3["Pk0"]/lcdm["Pk0"]
+        pow_w3 = w3["Pk0"]/lcdm["Pk0"]
+        pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
+
+        plt.clf()
+
+        axes = plt.gca()
+        axes.set_xlim(0.1,2)
+
+        plt.title("z = 1")
+
+        Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
+        Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
+        Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
+        Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
+        Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
+
+        plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=1 .png")
+
+        plt.clf()
+
+        axes = plt.gca()
+        axes.set_xlim(0.1,2)
+
+        plt.title("z = 0")
+
+        Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
+        Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
+        Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
+        Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
+        Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
+
+        plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")
 
 
 if __name__ == "__main__" :
