@@ -371,6 +371,9 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
 
     plt.clf()
 
+    axes = plt.gca()
+    axes.set_xlim(0.1,2)
+
     plt.title("z = 1")
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
@@ -382,6 +385,9 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
     plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=1 .png")
 
     plt.clf()
+
+    axes = plt.gca()
+    axes.set_xlim(0.1,2)
 
     plt.title("z = 0")
 
