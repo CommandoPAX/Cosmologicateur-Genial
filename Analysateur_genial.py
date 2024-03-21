@@ -327,9 +327,6 @@ def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid",col
     if color == "" :axes.loglog(Ref["k"],Simu1,label=labelname, ls = linetype) #plot measure from N-body
     else :axes.loglog(Ref["k"],Simu1,label=labelname, ls = linetype,color=color) #plot measure from N-body
 
-    axes.set_xlabel("k [h/Mpc]")
-    axes.set_ylabel(r"P(k) [$(Mpc/h)^3$]")
-    axes.legend()
 
 def trouver_simus (name, exclu = ""):
 
@@ -398,6 +395,12 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     axes[1].set_xlim(0.1,2)
 
+    axes[1].set_xlabel("k [h/Mpc]")
+    axes[0].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
+    axes[1].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
+
+    plt.legend()
+
     plt.title("z = 1")
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm",axes=axes[0])
@@ -416,6 +419,12 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes[0].set_xlim(0.1,2)
     axes[0].set_ylim(pow_pw3[160],1.05)
     axes[1].set_xlim(0.1,2)
+
+    axes[1].set_xlabel("k [h/Mpc]")
+    axes[0].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
+    axes[1].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
+
+    plt.legend()
 
     plt.title("z = 0")
 
