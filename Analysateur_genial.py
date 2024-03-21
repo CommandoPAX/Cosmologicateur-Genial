@@ -98,7 +98,7 @@ class Simulation ():
         return self.args[x]
 
     def Create_Json(self) : 
-        self.json_path = f"./RESULT/{self.name}_constants.json"
+        self.json_path = f"./RESULT/{self.index}_{self.name}_constants.json"
         with open(self.json_path, "w") as outf : 
             json.dump(self.CST, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
@@ -346,11 +346,12 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
+    lcdm3 = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
+    lcdm2 = Simulation(Path_lcdm,name="lcdm",index = 2,tout = True)
 
     noms = ["LCDM","PGN"]
     Pow = [0,0,0]
-    Diviser_Pow(lcdm,lcdm)
+    #Diviser_Pow(lcdm,lcdm)
 
     simus = trouver_simus("WDM",exclu = "PGN")
     print(simus)
@@ -358,9 +359,10 @@ if __name__ == "__main__" :
         print (s)
         simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=3)
 
-        Diviser_Pow(simu, lcdm)
+    for s in simus :
+        print (s)
+        simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
 
-    plt.savefig("./RESULT/Division-WDM.png")
 
     Plot_sigma_8(index = 3, name="WDM", exclu="PGN")
     plt.savefig("./RESULT/S_8_WDM_z=0.png")
