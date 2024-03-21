@@ -361,8 +361,12 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     for s in simus :
         if "WDM"+str(wdm)+"P" in s.split(" ")[-1] : 
-            pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-            pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+            if fnl == 1000 and (wdm == 500 or wdm == 1000):
+                pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+                pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+            else :
+                pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=5)
+                pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=6)
 
     simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
     print(simus)
@@ -393,8 +397,8 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     plt.title("z = 1")
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
+    Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm")
+    Plot_Pow(-pow_pw2 + (pow_p2 * pow_w2), lcdm, labelname= "Différence")
     Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
     Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
@@ -408,8 +412,8 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     plt.title("z = 0")
 
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
-    Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
+    Plot_Pow((pow_p3 * pow_w3), lcdm, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm")
+    Plot_Pow(-pow_pw3 + (pow_p3 * pow_w3), lcdm, labelname= "Différence")
     Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
     Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
