@@ -413,7 +413,6 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes = axes.flatten()
     axes[0].set_xlim(0.1,2)
     axes[1].set_xlim(0.1,2)
-    axes.set_xlim(0.1,2)
     axes[1].autoscale()
 
     plt.title("z = 0")
