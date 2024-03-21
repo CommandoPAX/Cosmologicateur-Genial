@@ -72,7 +72,6 @@ class Simulation ():
                             self.Parameters = json.load(f) 
             
             self.BoxSize  = 500
-            print(self.Parameters["namelist"])
             self.grid     = 2**self.Parameters["namelist"]["amr_params"]["levelmin"]                   #grid size
             self.MAS      = 'CIC'                   #Cloud-in-Cell
             self.verbose  = False   #whether print information on the progress   
