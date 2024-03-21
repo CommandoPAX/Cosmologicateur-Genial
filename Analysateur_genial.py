@@ -387,6 +387,8 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
 
     plt.clf()
+    plt.title("z = 1")
+
 
     fig, axes = plt.subplots(nrows=2,figsize=(8,8))
     axes = axes.flatten()
@@ -399,19 +401,19 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes[0].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
     axes[1].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
 
-    plt.legend()
-
-    plt.title("z = 1")
-
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm",axes=axes[0])
     Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
     Plot_Pow(pow_pw2 / (pow_p2 * pow_w2), lcdm, labelname= "Ratio", axes = axes[1])
     Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted',axes=axes[0])
     Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black",axes=axes[0])
 
+    plt.legend()
+
+
     plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=1 .png")
 
     plt.clf()
+    plt.title("z = 0")
 
 
     fig, axes = plt.subplots(nrows=2,figsize=(8,8))
@@ -424,7 +426,6 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes[0].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
     axes[1].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
 
-    plt.legend()
 
     plt.title("z = 0")
 
@@ -433,6 +434,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     Plot_Pow(pow_pw3 / (pow_p3 * pow_w3), lcdm, labelname= "Ratio", axes = axes[1])
     Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted',axes=axes[0])
     Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black",axes=axes[0])
+    plt.legend()
 
     plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")
 
