@@ -353,7 +353,7 @@ if __name__ == "__main__" :
     Pow = [0,0,0]
     Diviser_Pow(lcdm,lcdm)
 
-    simus = trouver_simus("WDM",eclu = "PGN")
+    simus = trouver_simus("WDM",exclu = "PGN")
     for s in simus :
         simu = Simulation(s,name=s.split(" ")[-1], tout=False)
 
