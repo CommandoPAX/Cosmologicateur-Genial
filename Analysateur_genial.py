@@ -404,8 +404,8 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM", ple
     else :
 
         for s in simus :
-            pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-            pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+            pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=5)
+            #pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=6)
 
         simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
         print(simus)
@@ -423,9 +423,9 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM", ple
         pow_w2 = w2["Pk0"]/lcdm2["Pk0"]
         pow_pw2 = pw2["Pk0"]/lcdm2["Pk0"]
 
-        pow_p3 = p3["Pk0"]/lcdm["Pk0"]
+        """pow_p3 = p3["Pk0"]/lcdm["Pk0"]
         pow_w3 = w3["Pk0"]/lcdm["Pk0"]
-        pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
+        pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]"""
 
         plt.clf()
 
@@ -449,13 +449,13 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM", ple
 
         plt.title("z = 0")
 
-        Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
+        """Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
         Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
         Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
         Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
         Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
-        plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")
+        plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")"""
 
 
 if __name__ == "__main__" :
@@ -465,7 +465,7 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    superposer(fnl=1000,wdm=1000, pleins_de_redshift=False)
+    superposer(fnl=1000,wdm=100, pleins_de_redshift=False,exclu="WDM1000")
 
     """for s in simus :
         print (s)
