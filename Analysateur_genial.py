@@ -293,7 +293,7 @@ def Plot_sigma_8 ():
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     S8 = para["S_8"]
-                    if ("PGN" in para["name"] and not "WDM" in para["name"]) or "CDM" in para["name"] :
+                    if ("WDM" in para["name"] and not "PGN" in para["name"]) or "CDM" in para["name"] :
                         plt.scatter([S8],[i], label = para["name"])
                         i = i+1
     axes = plt.gca()
