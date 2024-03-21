@@ -297,7 +297,7 @@ def Plot_sigma_8 ():
                         plt.scatter([S8],[i], label = para["name"])
                         i = i+1
     axes = plt.gca()
-    axes.set_xlim(0.6,1)
+    axes.set_xlim(0.2,1)
     axes.get_yaxis().set_visible(False)
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
@@ -353,14 +353,14 @@ if __name__ == "__main__" :
     Diviser_Pow(lcdm,lcdm)
 
     simus = trouver_simus("WDM",exclu = "PGN")
-    print(simus)
+    """print(simus)
     for s in simus :
         print (s)
         simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
 
         Diviser_Pow(simu, lcdm)
 
-    plt.savefig("./RESULT/Division-WDM.png")
+    plt.savefig("./RESULT/Division-WDM.png")"""
 
     Plot_sigma_8()
     plt.savefig("./RESULT/S_8_WDM_z=1.png")
