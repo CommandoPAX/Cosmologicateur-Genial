@@ -13,9 +13,9 @@ import re
 import MAS_library as MASL
 
 matplotlib.rcParams.update({'font.size': 20})
-matplotlib.rcParams['text.usetex'] = True
+#matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
-matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
+#matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 plt.tight_layout()
 
