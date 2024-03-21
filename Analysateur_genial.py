@@ -394,6 +394,8 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     fig, axes = plt.subplots(ncols=2,figsize=(6,4))
     axes = axes.flatten()
     axes[0].set_xlim(0.1,2)
+    axes[0].set_ylim(pow_pw2[160],1.05)
+
     axes[1].set_xlim(0.1,2)
 
     plt.title("z = 1")
@@ -408,9 +410,11 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     plt.clf()
 
+
     fig, axes = plt.subplots(ncols=2,figsize=(6,4))
     axes = axes.flatten()
     axes[0].set_xlim(0.1,2)
+    axes[0].set_ylim(pow_pw3[160],1.05)
     axes[1].set_xlim(0.1,2)
 
     plt.title("z = 0")
