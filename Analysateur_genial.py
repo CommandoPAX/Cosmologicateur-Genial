@@ -209,7 +209,7 @@ def PowerSpectrum (Simu, Class = False) :
     
     plt.xlabel("k [h/Mpc]")
     axes = plt.gca()
-    axes.set_xlim(2e-2,0.9)
+    #axes.set_xlim(2e-2,0.9)
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
 
