@@ -331,6 +331,7 @@ def trouver_simus (name, exclu = ""):
             for dir in dirs :
 
                 nom = dir.split(" ")[-1]
+                print(nom, name, nom in name, nom in name and (not exclu in name or exclu == ""))
 
                 if  nom in name and (not exclu in name or exclu == ""):
                     result.append("./RESULT/"+dir)
