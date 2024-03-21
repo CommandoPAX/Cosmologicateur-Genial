@@ -404,7 +404,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     div = pow_pw2 / (pow_p2 * pow_w2)
 
-    axes[1].set_ylim(div[9],div[160])
+    axes[1].set_ylim(np.min(div[8:160]),np.max(div[8:160]))
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm",axes=axes[0])
     Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
@@ -438,7 +438,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     div = pow_pw3 / (pow_p3 * pow_w3)
 
-    axes[1].set_ylim(div[9],div[160])
+    axes[1].set_ylim(np.min(div[8:160]),np.max(div[8:160]))
 
 
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm",axes=axes[0])
