@@ -310,8 +310,8 @@ def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
     plt.legend()
                     
 
-def Plot_Pow (Simu1, Ref, labelname : str = "Ratio") :
-    plt.loglog(Ref["k"],Simu1,label=labelname) #plot measure from N-body
+def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid") :
+    plt.loglog(Ref["k"],Simu1,label=labelname, ls = linetype) #plot measure from N-body
     axes = plt.gca()
 
     plt.xlabel("k [h/Mpc]")
@@ -384,6 +384,8 @@ if __name__ == "__main__" :
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
     Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 1000))/lcdm")
+    Plot_Pow(pow_p2, lcdm2, labelname='(fnl = 1000)/lcdm', linetype='dotted')
+    Plot_Pow(pow_w2, lcdm2, labelname='(m = 500)/lcdm', linetype='dotted')
     Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
 
     plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=1 .png")
@@ -394,6 +396,8 @@ if __name__ == "__main__" :
 
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
     Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 1000))/lcdm")
+    Plot_Pow(pow_p3, lcdm2, labelname='(fnl = 1000)/lcdm', linetype='dotted')
+    Plot_Pow(pow_w3, lcdm2, labelname='(m = 500)/lcdm', linetype='dotted')
     Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
 
     plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=0 .png")
