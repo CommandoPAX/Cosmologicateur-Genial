@@ -401,7 +401,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     plt.legend()
 
-    plt.title("z = 1")
+    axes[0].title("z = 1")
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm",axes=axes[0])
     Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
@@ -426,7 +426,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     plt.legend()
 
-    plt.title("z = 0")
+    axes[0].title("z = 0")
 
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm",axes=axes[0])
     Plot_Pow((pow_p3 * pow_w3), lcdm, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
