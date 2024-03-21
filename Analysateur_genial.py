@@ -340,8 +340,8 @@ def trouver_simus (name, exclu = ""):
 
 def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = False)
-    lcdm2 = Simulation(Path_lcdm,name="lcdm",index = 2,tout = False)
+    lcdm = Simulation(path_lcdm,name="lcdm",index = 3,tout = False)
+    lcdm2 = Simulation(path_lcdm,name="lcdm",index = 2,tout = False)
 
     simus = trouver_simus("WDM"+str(wdm)+"PGN"+str(fnl))
     print(simus)
@@ -374,8 +374,10 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
     plt.title("z = 1")
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
-    Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "1/2 * ((m = 500 fnl = 0) + (m = 0 fnl = 1000))/lcdm")
+    Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
     Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
+    Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
+    Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted')
 
     plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=1 .png")
 
@@ -383,9 +385,11 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
 
     plt.title("z = 0")
 
-    Plot_Pow(pow_pw3, lcdm, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
-    Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 1000))/lcdm")
+    Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
+    Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
     Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
+    Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
+    Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted')
 
     plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=0 .png")
 
@@ -397,62 +401,7 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = False)
-    lcdm2 = Simulation(Path_lcdm,name="lcdm",index = 2,tout = False)
-
-    noms = ["LCDM","PGN"]
-    Pow = [0,0,0]
-    #Diviser_Pow(lcdm,lcdm)
-
-    simus = trouver_simus("WDM500PGN1000")
-    print(simus)
-    for s in simus :
-        pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-        pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-
-    simus = trouver_simus("WDM500", exclu="PGN")
-    print(simus)
-    for s in simus :
-        w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-        w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-
-    simus = trouver_simus("PGN1000", exclu="WDM")
-    print(simus)
-    for s in simus :
-        p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-        p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-
-    pow_p2 = p2["Pk0"]/lcdm2["Pk0"]
-    pow_w2 = w2["Pk0"]/lcdm2["Pk0"]
-    pow_pw2 = pw2["Pk0"]/lcdm2["Pk0"]
-
-    pow_p3 = p3["Pk0"]/lcdm["Pk0"]
-    pow_w3 = w3["Pk0"]/lcdm["Pk0"]
-    pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
-
-    plt.clf()
-
-    plt.title("z = 1")
-
-    Plot_Pow(pow_pw2, lcdm2, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
-    Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 1000))/lcdm")
-    Plot_Pow(pow_p2, lcdm2, labelname='(fnl = 1000)/lcdm', linetype='dotted')
-    Plot_Pow(pow_w2, lcdm2, labelname='(m = 500)/lcdm', linetype='dotted')
-    Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
-
-    plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=1 .png")
-
-    plt.clf()
-
-    plt.title("z = 0")
-
-    Plot_Pow(pow_pw3, lcdm, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
-    Plot_Pow((pow_p3+ pow_w3)/2, lcdm, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 1000))/lcdm")
-    Plot_Pow(pow_p3, lcdm2, labelname='(fnl = 1000)/lcdm', linetype='dotted')
-    Plot_Pow(pow_w3, lcdm2, labelname='(m = 500)/lcdm', linetype='dotted')
-    Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
-
-    plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=0 .png")
+    superposer(fnl=1000,wdm=500)
 
     """for s in simus :
         print (s)
