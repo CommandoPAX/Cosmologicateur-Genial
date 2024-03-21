@@ -283,17 +283,17 @@ def Potential (Simu):
     
     POT = yt.SlicePlot(Simu.data, "z",('gravity', 'Potential'),center=[0.5, 0.5, 0.3])
 
-def Plot_sigma_8 ():
+def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
     plt.clf()
     plt.figure()
     i = 0
     for root, dirs, files in os.walk("./RESULT/"):
         for file in files :
-            if "_constants.json" in file :
+            if "_constants.json" in file and str(index)+"_" in file :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     S8 = para["S_8"]
-                    if ("WDM" in para["name"] and not "PGN" in para["name"]) or "CDM" in para["name"] :
+                    if (name in para["name"] and not exclu in para["name"]) or "CDM" in para["name"] :
                         plt.scatter([S8],[i], label = para["name"])
                         i = i+1
     axes = plt.gca()
@@ -346,25 +346,27 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 2,tout = True)
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
 
     noms = ["LCDM","PGN"]
     Pow = [0,0,0]
     Diviser_Pow(lcdm,lcdm)
 
     simus = trouver_simus("WDM",exclu = "PGN")
-    """print(simus)
+    print(simus)
     for s in simus :
         print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
+        simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=3)
 
         Diviser_Pow(simu, lcdm)
 
-    plt.savefig("./RESULT/Division-WDM.png")"""
+    plt.savefig("./RESULT/Division-WDM.png")
 
-    Plot_sigma_8()
+    Plot_sigma_8(index = 3, name="WDM", exclu="PGN")
+    plt.savefig("./RESULT/S_8_WDM_z=0.png")
+
+    Plot_sigma_8(index = 2, name="WDM", exclu="PGN")
     plt.savefig("./RESULT/S_8_WDM_z=1.png")
-
 
     for s in simus :
         print (s)
