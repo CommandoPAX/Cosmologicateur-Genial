@@ -346,7 +346,7 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm3 = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = True)
     lcdm2 = Simulation(Path_lcdm,name="lcdm",index = 2,tout = True)
 
     noms = ["LCDM","PGN"]
@@ -366,7 +366,7 @@ if __name__ == "__main__" :
     Plot_sigma_8(index = 2, name="WDM", exclu="PGN")
     plt.savefig("./RESULT/S_8_WDM_z=1.png")
 
-    for s in simus :
+    """for s in simus :
         print (s)
         simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
 
@@ -375,7 +375,7 @@ if __name__ == "__main__" :
         PowerSpectrum(simu)
         PowerSpectrum(lcdm)
 
-        plt.savefig("./RESULT/"+simu.name+".png")
+        plt.savefig("./RESULT/"+simu.name+".png")"""
 
     """try : 
         for root, dirs, files in os.walk("./RESULT/"):
