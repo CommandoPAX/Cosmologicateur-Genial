@@ -373,7 +373,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
 
     plt.title("z = 1")
 
-    Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
+    Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
     Plot_Pow((pow_p2+ pow_w2)/2, lcdm2, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
     Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
     Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
