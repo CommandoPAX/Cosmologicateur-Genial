@@ -359,7 +359,7 @@ if __name__ == "__main__" :
 
         Diviser_Pow(lcdm, simu)
 
-    plt.savefig("./RESULTS/Division-WDM.png")
+    plt.savefig("./RESULT/Division-WDM.png")
 
     """try : 
         for root, dirs, files in os.walk("./RESULT/"):
