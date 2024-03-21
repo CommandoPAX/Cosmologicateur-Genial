@@ -427,6 +427,7 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
+    superposer(fnl=1000,wdm=100)
     superposer(fnl=1000,wdm=1000)
     superposer(fnl=1000,wdm=500)
 
