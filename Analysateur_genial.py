@@ -356,22 +356,48 @@ if __name__ == "__main__" :
     simus = trouver_simus("WDM500PGN1000")
     print(simus)
     for s in simus :
-        print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=3)
-        Diviser_Pow(simu,lcdm)
-        plt.savefig("./RESULT/wdm500pgn1000-0.png")
-        plt.clf()
-        simu = Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
-        Diviser_Pow(simu,lcdm2)
-        plt.savefig("./RESULT/wdm500pgn1000-1.png")
+        pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
 
+    simus = trouver_simus("WDM500", exclu="PGN")
+    print(simus)
+    for s in simus :
+        w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
 
+    simus = trouver_simus("PGN1000", exclu="WDM")
+    print(simus)
+    for s in simus :
+        p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
 
-    Plot_sigma_8(index = 3, name="WDM", exclu="PGN")
-    plt.savefig("./RESULT/S_8_WDM_z=0.png")
+    pow_p2 = p2["Pk0"]/lcdm2["Pk0"]
+    pow_w2 = w2["Pk0"]/lcdm2["Pk0"]
+    pow_pw2 = pw2["Pk0"]/lcdm2["Pk0"]
 
-    Plot_sigma_8(index = 2, name="WDM", exclu="PGN")
-    plt.savefig("./RESULT/S_8_WDM_z=1.png")
+    pow_p3 = p3["Pk0"]/lcdm["Pk0"]
+    pow_w3 = w3["Pk0"]/lcdm["Pk0"]
+    pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
+
+    plt.clf()
+
+    plt.title("z = 1")
+
+    Plot_Pow(pow_pw2, lcdm2, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
+    Plot_Pow(pow_p2+ pow_w2, lcdm2, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 500))/lcdm")
+    Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2), lcdm, labelname= "Différence")
+
+    plt.savefig("Superposition wdm500fnl1000 - z=1 .png")
+
+    plt.clf()
+
+    plt.title("z = 0")
+
+    Plot_Pow(pow_pw3, lcdm, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
+    Plot_Pow(pow_p3+ pow_w3, lcdm, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 500))/lcdm")
+    Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3), lcdm, labelname= "Différence")
+
+    plt.savefig("Superposition wdm500fnl1000 - z=0 .png")
 
     """for s in simus :
         print (s)
