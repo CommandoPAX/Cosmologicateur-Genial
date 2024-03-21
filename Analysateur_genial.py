@@ -396,15 +396,19 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes[0].set_ylim(pow_pw2[160],1.05)
 
     axes[1].set_xlim(0.1,2)
-    axes[1].set_ylim(pow_pw2 / (pow_p2 * pow_w2)[9],pow_pw2 / (pow_p2 * pow_w2)[160])
 
     axes[1].set_xlabel("k [h/Mpc]")
     axes[0].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
     axes[1].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
 
+
+    div = pow_pw2 / (pow_p2 * pow_w2)
+
+    axes[1].set_ylim(div[9],div[160])
+
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm",axes=axes[0])
     Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
-    Plot_Pow(pow_pw2 / (pow_p2 * pow_w2), lcdm, labelname= "Ratio", axes = axes[1])
+    Plot_Pow(div, lcdm, labelname= "Ratio", axes = axes[1])
     Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted',axes=axes[0])
     Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black",axes=axes[0])
 
@@ -427,15 +431,19 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes[1].set_xlabel("k [h/Mpc]")
     axes[0].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
     axes[1].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
-    axes[1].set_ylim(pow_pw3 / (pow_p3 * pow_w3)[9],pow_pw3 / (pow_p3 * pow_w3)[160])
 
 
 
     plt.title("z = 0")
 
+    div = pow_pw3 / (pow_p3 * pow_w3)
+
+    axes[1].set_ylim(div[9],div[160])
+
+
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm",axes=axes[0])
     Plot_Pow((pow_p3 * pow_w3), lcdm, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
-    Plot_Pow(pow_pw3 / (pow_p3 * pow_w3), lcdm, labelname= "Ratio", axes = axes[1])
+    Plot_Pow(div, lcdm, labelname= "Ratio", axes = axes[1])
     Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted',axes=axes[0])
     Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black",axes=axes[0])
     axes[0].legend()
