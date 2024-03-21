@@ -386,7 +386,7 @@ if __name__ == "__main__" :
     Plot_Pow(pow_p2+ pow_w2, lcdm2, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 500))/lcdm")
     Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2), lcdm, labelname= "Différence")
 
-    plt.savefig("Superposition wdm500fnl1000 - z=1 .png")
+    plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=1 .png")
 
     plt.clf()
 
@@ -396,7 +396,7 @@ if __name__ == "__main__" :
     Plot_Pow(pow_p3+ pow_w3, lcdm, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 500))/lcdm")
     Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3), lcdm, labelname= "Différence")
 
-    plt.savefig("Superposition wdm500fnl1000 - z=0 .png")
+    plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=0 .png")
 
     """for s in simus :
         print (s)
