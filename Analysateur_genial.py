@@ -324,8 +324,8 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
 
 
 def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid",color="", axes = plt) :
-    if color == "" :plt.loglog(Ref["k"],Simu1,label=labelname, ls = linetype) #plot measure from N-body
-    else :plt.loglog(Ref["k"],Simu1,label=labelname, ls = linetype,color=color) #plot measure from N-body
+    if color == "" :axes.loglog(Ref["k"],Simu1,label=labelname, ls = linetype) #plot measure from N-body
+    else :axes.loglog(Ref["k"],Simu1,label=labelname, ls = linetype,color=color) #plot measure from N-body
 
     axes.xlabel("k [h/Mpc]")
     axes.ylabel(r"P(k) [$(Mpc/h)^3$]")
