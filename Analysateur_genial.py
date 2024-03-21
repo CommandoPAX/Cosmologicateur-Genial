@@ -360,7 +360,7 @@ if __name__ == "__main__" :
         print (s)
         simu = Simulation(s,name=s.split(" ")[-1], tout=False)
 
-        Diviser_Pow(lcdm, simu)
+        Diviser_Pow(simu, lcdm)
 
     plt.savefig("./RESULT/Division-WDM.png")
 
