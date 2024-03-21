@@ -384,7 +384,7 @@ if __name__ == "__main__" :
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
     Plot_Pow(pow_p2+ pow_w2, lcdm2, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 500))/lcdm")
-    Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2), lcdm, labelname= "Différence")
+    Plot_Pow(-pow_pw2 + (pow_p2 + pow_w2)/2, lcdm, labelname= "Différence")
 
     plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=1 .png")
 
@@ -394,7 +394,7 @@ if __name__ == "__main__" :
 
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = 500 ev, fnl = 1000)/lcdm")
     Plot_Pow(pow_p3+ pow_w3, lcdm, labelname = "((m = 500 fnl = 0) + (m = 0 fnl = 500))/lcdm")
-    Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3), lcdm, labelname= "Différence")
+    Plot_Pow(-pow_pw3 + (pow_p3 + pow_w3)/2, lcdm, labelname= "Différence")
 
     plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=0 .png")
 
