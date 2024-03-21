@@ -208,7 +208,7 @@ def PowerSpectrum (Simu, Class = False) :
         plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
     
     plt.xlabel("k [h/Mpc]")
-    axes = plt.gca()
+    #axes = plt.gca()
     #axes.set_xlim(2e-2,0.9)
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
