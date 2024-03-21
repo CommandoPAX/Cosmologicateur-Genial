@@ -351,12 +351,12 @@ def trouver_simus (name, exclu = ""):
 
     return result       
 
-def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM", pleins_de_redshift = False ):
+def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM", pleins_de_redshift = False,exclu = "aaaaaaaaaaaaaaaaaa" ):
 
     lcdm = Simulation(path_lcdm,name="lcdm",index = 3,tout = False)
     lcdm2 = Simulation(path_lcdm,name="lcdm",index = 2,tout = False)
 
-    simus = trouver_simus("WDM"+str(wdm)+"PGN"+str(fnl),exclu="WDM1000")
+    simus = trouver_simus("WDM"+str(wdm)+"PGN"+str(fnl),exclu=exclu)
     print(simus)
 
     if pleins_de_redshift : 
@@ -392,7 +392,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM", ple
             plt.title("z = "+str(z))
 
             Plot_Pow(pow_pw, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
-            Plot_Pow((pow_p+ pow_w)/2, lcdm2, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
+            Plot_Pow((pow_p+ pow_w)/2, lcdm, labelname = "1/2 * ((m = "+str(wdm)+" fnl = 0) + (m = 0 fnl = "+str(fnl)+")/lcdm")
             Plot_Pow(-pow_pw + (pow_p + pow_w)/2, lcdm, labelname= "Différence")
             Plot_Pow(pow_p, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
             Plot_Pow(pow_w, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
@@ -464,7 +464,7 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    superposer(fnl=1000,wdm=100, pleins_de_redshift=True)
+    superposer(fnl=1000,wdm=100, pleins_de_redshift=True,exclu="WDM1000")
 
     """for s in simus :
         print (s)
