@@ -361,21 +361,21 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     for s in simus :
         if "WDM"+str(wdm)+"P" in s.split(" ")[-1] : 
-            pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-            pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+            pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+            pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
     simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
     print(simus)
     for s in simus :
         if "WDM"+str(wdm) == s.split(" ")[-1] :
-            w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-            w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+            w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+            w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
     simus = trouver_simus("PGN"+str(fnl), exclu="WDM")
     print(simus)
     for s in simus :
-        p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
-        p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+        p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+        p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
     pow_p2 = p2["Pk0"]/lcdm2["Pk0"]
     pow_w2 = w2["Pk0"]/lcdm2["Pk0"]
