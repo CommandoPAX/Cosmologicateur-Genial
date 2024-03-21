@@ -383,7 +383,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
     Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
     Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
-    plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=1 .png")
+    plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=1 .png")
 
     plt.clf()
 
@@ -398,7 +398,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" ):
     Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
     Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
-    plt.savefig("./RESULT/Superposition wdm500fnl1000 - z=0 .png")
+    plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")
 
 
 if __name__ == "__main__" :
@@ -408,7 +408,7 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    superposer(fnl=1000,wdm=500)
+    superposer(fnl=1000,wdm=1000)
 
     """for s in simus :
         print (s)
