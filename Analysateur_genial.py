@@ -208,8 +208,8 @@ def PowerSpectrum (Simu, Class = False) :
         plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
     
     plt.xlabel("k [h/Mpc]")
-    #axes = plt.gca()
-    #axes.set_xlim(2e-2,0.9)
+    axes = plt.gca()
+    axes.set_xlim(2e-2,0.9)
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
 
@@ -358,7 +358,7 @@ if __name__ == "__main__" :
     print(simus)
     for s in simus :
         print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=False)
+        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
         Diviser_Pow(simu, lcdm)
 
@@ -366,7 +366,7 @@ if __name__ == "__main__" :
 
     for s in simus :
         print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=False)
+        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
         plt.clf()
 
