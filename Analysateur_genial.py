@@ -398,7 +398,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm")
     Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow(-pow_pw2 + (pow_p2 * pow_w2), lcdm, labelname= "Différence")
+    Plot_Pow(pow_pw2 / (pow_p2 * pow_w2), lcdm, labelname= "Ratio")
     Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
     Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
@@ -413,7 +413,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm")
     Plot_Pow((pow_p3 * pow_w3), lcdm, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm")
-    Plot_Pow(-pow_pw3 + (pow_p3 * pow_w3), lcdm, labelname= "Différence")
+    Plot_Pow(pow_pw3 / (pow_p3 * pow_w3), lcdm, labelname= "Ratio")
     Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted')
     Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black")
 
