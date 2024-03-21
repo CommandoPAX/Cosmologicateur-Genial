@@ -348,7 +348,7 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    lcdm = Simulation(Path_lcdm,name="lcdm",index = 3,tout = False)
+    lcdm = Simulation(Path_lcdm,name="lcdm",index = 2,tout = False)
 
     noms = ["LCDM","PGN"]
     Pow = [0,0,0]
@@ -358,7 +358,7 @@ if __name__ == "__main__" :
     print(simus)
     for s in simus :
         print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
 
         Diviser_Pow(simu, lcdm)
 
@@ -366,7 +366,7 @@ if __name__ == "__main__" :
 
     for s in simus :
         print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
 
         plt.clf()
 
