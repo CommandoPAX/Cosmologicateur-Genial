@@ -364,6 +364,17 @@ if __name__ == "__main__" :
 
     plt.savefig("./RESULT/Division-WDM.png")
 
+    for s in simus :
+        print (s)
+        simu = Simulation(s,name=s.split(" ")[-1], tout=False)
+
+        plt.clf()
+
+        PowerSpectrum(simu)
+        PowerSpectrum(lcdm)
+
+        plt.savefig("./RESULT/"+simu.name+".png")
+
     """try : 
         for root, dirs, files in os.walk("./RESULT/"):
 
