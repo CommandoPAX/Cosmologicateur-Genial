@@ -466,11 +466,11 @@ if __name__ == "__main__" :
 
 
     simus = trouver_simus("0P", eq= False)
-    for s in simus :
+    """for s in simus :
         name = s.split(" ")[-1]
         if "PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000" :
             Simulation(s,name=s.split(" ")[-1], tout=True,index=5)
-            Simulation(s,name=s.split(" ")[-1], tout=True,index=6)
+            Simulation(s,name=s.split(" ")[-1], tout=True,index=6)"""
 
     Plot_sigma_8(index=3,exclu="",name="")
     plt.savefig("S8_tout_z=0.png")
