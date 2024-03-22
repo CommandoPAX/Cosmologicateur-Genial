@@ -304,7 +304,7 @@ def Potential (Simu):
 
 def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
     plt.clf()
-    plt.figure(figsize=8)
+    plt.figure(figsize=(8,8))
     i = 0
     for root, dirs, files in os.walk("./RESULT/"):
         for file in files :
