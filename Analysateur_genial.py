@@ -318,8 +318,8 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
                     if True : #if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
                         plt.scatter([S8],[i], label = para["name"])
                         i = i+1
-            if "PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000" :
-                index -=3   #Bricolageindex -= 3
+            if "PGN" in file and "WDM" in file and not "WDM500PGN1000" in file and not "WDM1000PGN1000" in file:
+                index -=3   #Bricolage
 
     axes = plt.gca()
     axes.set_xlim(0.2,1)
