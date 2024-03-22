@@ -468,13 +468,13 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
 
-    simus = trouver_simus("", eq= False)
+    """simus = trouver_simus("", eq= False)
     for s in simus :
         name = s.split(" ")[-1]
-        if name=="lcdm" or name == "LCDM" :
+        if ame == "LCDM" :
             print(name)
             #Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
-            Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
+            Simulation(s,name=s.split(" ")[-1], tout=True,index=2)"""
 
     Plot_sigma_8(index=3,exclu="",name="")
     plt.savefig("./RESULT/S8_tout_z=0.png")
