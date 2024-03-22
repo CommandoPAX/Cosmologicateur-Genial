@@ -181,7 +181,7 @@ class Simulation ():
         return (np.sinc(k1)*np.sinc(k2)*np.sinc(k3))**2
     
     def WW(self, grid):
-        R=8
+        R=16
         Rkmod=np.sqrt(grid[0][self.N//2:]**2+grid[1]**2+grid[2]**2)*R
         return 3 * (np.sin(Rkmod) - Rkmod*np.cos(Rkmod))/Rkmod**3
 
@@ -478,8 +478,8 @@ if __name__ == "__main__" :
             Simulation(s,name=s.split(" ")[-1], tout=True,index=5)
             Simulation(s,name=s.split(" ")[-1], tout=True,index=6)"""
 
-    Plot_sigma_8(index=3,exclu="",name="")
-    plt.savefig("./RESULT/S8_tout_z=0.png")
+    #Plot_sigma_8(index=3,exclu="",name="")
+    #plt.savefig("./RESULT/S8_tout_z=0.png")
     Plot_sigma_8(index=2,exclu="",name="")
     plt.savefig("./RESULT/S8_tout_z=1.png")
 
