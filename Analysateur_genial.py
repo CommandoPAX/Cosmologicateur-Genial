@@ -473,9 +473,9 @@ if __name__ == "__main__" :
             Simulation(s,name=s.split(" ")[-1], tout=True,index=6)"""
 
     Plot_sigma_8(index=3,exclu="",name="")
-    plt.savefig("S8_tout_z=0.png")
+    plt.savefig("./RESULT/S8_tout_z=0.png")
     Plot_sigma_8(index=3,exclu="",name="")
-    plt.savefig("S8_tout_z=1.png")
+    plt.savefig("./RESULT/S8_tout_z=1.png")
 
     """superposer(fnl=1000,wdm=4000)
     superposer(fnl=1000,wdm=10000)
