@@ -323,10 +323,7 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
                 index -=3   #Bricolage
 
     axes = plt.gca()
-    if index == 3:
-        axes.set_xlim(0.6,1)
-    else :
-        axes.set_xlim(0.2,1)
+    axes.set_xlim(0.6,1)
     axes.get_yaxis().set_visible(False)
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
@@ -471,15 +468,15 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
 
-    simus = trouver_simus("", eq= False)
+    """simus = trouver_simus("", eq= False)
     for s in simus :
         name = s.split(" ")[-1]
         if name=="WDM500PGN1000" or name=="WDM1000PGN1000" or ("WDM" in name and not "PGN" in name) or ("PGN" in name and not "WDM" in name) :
             Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
-            #Simulation(s,name=s.split(" ")[-1], tout=True,index=6)
+            #Simulation(s,name=s.split(" ")[-1], tout=True,index=6)"""
 
-    #Plot_sigma_8(index=3,exclu="",name="")
-    #plt.savefig("./RESULT/S8_tout_z=0.png")
+    Plot_sigma_8(index=3,exclu="",name="")
+    plt.savefig("./RESULT/S8_tout_z=0.png")
     Plot_sigma_8(index=2,exclu="",name="")
     plt.savefig("./RESULT/S8_tout_z=1.png")
 
