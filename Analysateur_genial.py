@@ -328,7 +328,7 @@ def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid",col
     else :axes.loglog(Ref["k"][8:160],Simu1,label=labelname, ls = linetype,color=color) #plot measure from N-body
 
 
-def trouver_simus (name, exclu = ""):
+def trouver_simus (name, exclu = "", eq = True):
 
     result = []
 
@@ -340,7 +340,10 @@ def trouver_simus (name, exclu = ""):
                 nom = dir.split(" ")[-1]
                 #print(nom, name, nom in name, nom in name and (not exclu in name or exclu == ""))
 
-                if  name == nom and (not exclu in nom or exclu == ""):
+                if  name == nom and (not exclu in nom or exclu == "") and eq:
+                    result.append("./RESULT/"+dir)
+
+                if  name in nom and (not exclu in nom or exclu == "") and not eq:
                     result.append("./RESULT/"+dir)
 
     except : 
@@ -457,11 +460,19 @@ if __name__ == "__main__" :
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
-    superposer(fnl=1000,wdm=4000)
+
+    simus = trouver_simus("0P", eq= False)
+    for s in simus :
+        Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
+        Simulation(s,name=s.split(" ")[-1], tout=True,index=3)
+
+    Plot_sigma_8(index=3,exclu="",name="")
+
+    """superposer(fnl=1000,wdm=4000)
     superposer(fnl=1000,wdm=10000)
     superposer(fnl=-1000,wdm=500)
     superposer(fnl=-1000,wdm=1000)
-    superposer(fnl=-1000,wdm=100)
+    superposer(fnl=-1000,wdm=100)"""
 
     """for s in simus :
         print (s)
