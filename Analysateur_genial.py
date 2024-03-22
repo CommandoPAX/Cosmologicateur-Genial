@@ -180,8 +180,8 @@ class Simulation ():
         k1,k2,k3=grid[0][self.N//2:]*l/2/np.pi,grid[1]*l/2/np.pi,grid[2]*l/2/np.pi
         return (np.sinc(k1)*np.sinc(k2)*np.sinc(k3))**2
     
-    def WW(self, grid):
-        R=4
+    def WW(self, grid, R = 8):
+
         Rkmod=np.sqrt(grid[0][self.N//2:]**2+grid[1]**2+grid[2]**2)*R
         return 3 * (np.sin(Rkmod) - Rkmod*np.cos(Rkmod))/Rkmod**3
 
@@ -468,12 +468,12 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
 
-    """simus = trouver_simus("", eq= False)
+    simus = trouver_simus("", eq= False)
     for s in simus :
         name = s.split(" ")[-1]
         if name=="WDM500PGN1000" or name=="WDM1000PGN1000" or ("WDM" in name and not "PGN" in name) or ("PGN" in name and not "WDM" in name) :
-            Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
-            #Simulation(s,name=s.split(" ")[-1], tout=True,index=6)"""
+            #Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
+            Simulation(s,name=s.split(" ")[-1], tout=True,index=6)
 
     Plot_sigma_8(index=3,exclu="",name="")
     plt.savefig("./RESULT/S8_tout_z=0.png")
