@@ -310,6 +310,7 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
         for file in files :
             if "PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000" :
                 index +=3   #Bricolage
+                print(index)
             if "_constants.json" in file and str(index)+"_" in file :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
