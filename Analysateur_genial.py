@@ -324,8 +324,8 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
 
 
 def Plot_Pow (Simu1, Ref, labelname : str = "Ratio", linetype : str ="solid",color="", axes = plt) :
-    if color == "" :axes.loglog(Ref["k"],Simu1,label=labelname, ls = linetype) #plot measure from N-body
-    else :axes.loglog(Ref["k"],Simu1,label=labelname, ls = linetype,color=color) #plot measure from N-body
+    if color == "" :axes.loglog(Ref["k"][8:160],Simu1,label=labelname, ls = linetype) #plot measure from N-body
+    else :axes.loglog(Ref["k"][8:160],Simu1,label=labelname, ls = linetype,color=color) #plot measure from N-body
 
 
 def trouver_simus (name, exclu = ""):
