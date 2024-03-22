@@ -310,14 +310,15 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
         for file in files :
             if "PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000" :
                 index +=3   #Bricolage
-                if "_constants.json" in file and str(index)+"_" in file :
-                    with open("./RESULT/"+file, "r") as f :
-                        para = json.load(f)
-                        S8 = para["S_8"]
-                        if True : #if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
-                            plt.scatter([S8],[i], label = para["name"])
-                            i = i+1
-                index -= 3
+            if "_constants.json" in file and str(index)+"_" in file :
+                with open("./RESULT/"+file, "r") as f :
+                    para = json.load(f)
+                    S8 = para["S_8"]
+                    if True : #if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
+                        plt.scatter([S8],[i], label = para["name"])
+                        i = i+1
+            if "PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000" :
+                index -=3   #Bricolageindex -= 3
 
     axes = plt.gca()
     axes.set_xlim(0.2,1)
