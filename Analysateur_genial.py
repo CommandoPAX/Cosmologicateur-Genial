@@ -471,11 +471,11 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
 
 
-    simus = trouver_simus("0P", eq= False)
+    simus = trouver_simus("", eq= False)
     for s in simus :
         name = s.split(" ")[-1]
-        if "PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000" :
-            Simulation(s,name=s.split(" ")[-1], tout=True,index=5)
+        if not ("PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000") :
+            Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
             #Simulation(s,name=s.split(" ")[-1], tout=True,index=6)
 
     #Plot_sigma_8(index=3,exclu="",name="")
