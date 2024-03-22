@@ -378,13 +378,13 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
         p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
         p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
-    pow_p2 = p2["Pk0"]/lcdm2["Pk0"]
-    pow_w2 = w2["Pk0"]/lcdm2["Pk0"]
-    pow_pw2 = pw2["Pk0"]/lcdm2["Pk0"]
+    pow_p2 = (p2["Pk0"]/lcdm2["Pk0"])[8:160]
+    pow_w2 = (w2["Pk0"]/lcdm2["Pk0"])[8:160]
+    pow_pw2 = (pw2["Pk0"]/lcdm2["Pk0"])[8:160]
 
-    pow_p3 = p3["Pk0"]/lcdm["Pk0"]
-    pow_w3 = w3["Pk0"]/lcdm["Pk0"]
-    pow_pw3 = pw3["Pk0"]/lcdm["Pk0"]
+    pow_p3 = (p3["Pk0"]/lcdm["Pk0"])[8:160]
+    pow_w3 = (w3["Pk0"]/lcdm["Pk0"])[8:160]
+    pow_pw3 = (pw3["Pk0"]/lcdm["Pk0"])[8:160]
 
     plt.clf()
 
@@ -392,7 +392,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     fig, axes = plt.subplots(nrows=2,figsize=(8,8))
     axes = axes.flatten()
     axes[0].set_xlim(0.1,2)
-    axes[0].set_ylim(pow_pw2[160],1.05)
+    #axes[0].set_ylim(pow_pw2[160],1.05)
 
     axes[1].set_xlim(0.1,2)
 
@@ -403,7 +403,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     div = pow_pw2 / (pow_p2 * pow_w2)
 
-    axes[1].set_ylim(np.min(div[8:160]),np.max(div[8:160]))
+    #axes[1].set_ylim(np.min(div[8:160]),np.max(div[8:160]))
 
     Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm",axes=axes[0])
     Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
@@ -424,7 +424,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     fig, axes = plt.subplots(nrows=2,figsize=(8,8))
     axes = axes.flatten()
     axes[0].set_xlim(0.1,2)
-    axes[0].set_ylim(pow_pw3[160],1.05)
+    #axes[0].set_ylim(pow_pw3[160],1.05)
     axes[1].set_xlim(0.1,2)
 
     axes[1].set_xlabel("k [h/Mpc]")
@@ -437,7 +437,7 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
     div = pow_pw3 / (pow_p3 * pow_w3)
 
-    axes[1].set_ylim(np.min(div[8:160]),np.max(div[8:160]))
+    #axes[1].set_ylim(np.min(div[8:160]),np.max(div[8:160]))
 
 
     Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm",axes=axes[0])
