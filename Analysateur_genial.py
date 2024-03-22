@@ -474,7 +474,7 @@ if __name__ == "__main__" :
     simus = trouver_simus("", eq= False)
     for s in simus :
         name = s.split(" ")[-1]
-        if not ("PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000") :
+        if name=="WDM500PGN1000" or name=="WDM1000PGN1000" or ("WDM" in name and not "PGN" in name) or ("PGN" in name and not "WDM" in name) :
             Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
             #Simulation(s,name=s.split(" ")[-1], tout=True,index=6)
 
