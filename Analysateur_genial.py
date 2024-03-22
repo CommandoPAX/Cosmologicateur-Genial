@@ -472,6 +472,7 @@ if __name__ == "__main__" :
     for s in simus :
         name = s.split(" ")[-1]
         if name=="lcdm" or name == "LCDM" :
+            print(name)
             #Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
             Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
 
