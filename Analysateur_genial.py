@@ -312,7 +312,7 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
                     S8 = para["S_8"]
-                    if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
+                    if True : #if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
                         plt.scatter([S8],[i], label = para["name"])
                         i = i+1
     axes = plt.gca()
@@ -463,10 +463,15 @@ if __name__ == "__main__" :
 
     simus = trouver_simus("0P", eq= False)
     for s in simus :
-        Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
-        Simulation(s,name=s.split(" ")[-1], tout=True,index=3)
+        name = s.split(" ")[-1]
+        if "PGN" in name and "WDM" in name and name!="WDM500PGN1000" and name!="WDM1000PGN1000" :
+            Simulation(s,name=s.split(" ")[-1], tout=True,index=5)
+            Simulation(s,name=s.split(" ")[-1], tout=True,index=6)
 
     Plot_sigma_8(index=3,exclu="",name="")
+    plt.savefig("S8_tout_z=0.png")
+    Plot_sigma_8(index=3,exclu="",name="")
+    plt.savefig("S8_tout_z=1.png")
 
     """superposer(fnl=1000,wdm=4000)
     superposer(fnl=1000,wdm=10000)
