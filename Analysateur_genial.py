@@ -310,7 +310,6 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
         for file in files :
             if "PGN" in file and "WDM" in file and not "WDM500PGN1000" in file and not "WDM1000PGN1000" in file:
                 index +=3   #Bricolage
-                print(index)
             if "_constants.json" in file and str(index)+"_" in file :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
@@ -481,7 +480,7 @@ if __name__ == "__main__" :
 
     Plot_sigma_8(index=3,exclu="",name="")
     plt.savefig("./RESULT/S8_tout_z=0.png")
-    Plot_sigma_8(index=3,exclu="",name="")
+    Plot_sigma_8(index=2,exclu="",name="")
     plt.savefig("./RESULT/S8_tout_z=1.png")
 
     """superposer(fnl=1000,wdm=4000)
