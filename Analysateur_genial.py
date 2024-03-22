@@ -322,7 +322,10 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
                 index -=3   #Bricolage
 
     axes = plt.gca()
-    axes.set_xlim(0.2,1)
+    if index == 3:
+        axes.set_xlim(0.6,1)
+    else :
+        axes.set_xlim(0.2,1)
     axes.get_yaxis().set_visible(False)
     plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
     plt.legend()
