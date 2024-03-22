@@ -180,7 +180,7 @@ class Simulation ():
         k1,k2,k3=grid[0][self.N//2:]*l/2/np.pi,grid[1]*l/2/np.pi,grid[2]*l/2/np.pi
         return (np.sinc(k1)*np.sinc(k2)*np.sinc(k3))**2
     
-    def WW(self, grid, R = 8):
+    def WW(self, grid, R = 4):
 
         Rkmod=np.sqrt(grid[0][self.N//2:]**2+grid[1]**2+grid[2]**2)*R
         return 3 * (np.sin(Rkmod) - Rkmod*np.cos(Rkmod))/Rkmod**3
