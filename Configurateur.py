@@ -19,7 +19,7 @@ import getopt
 
 def generer_monofonic (argv) :
 
-    opts, args = getopt.getopt(argv,"n:l:m:f:k:s:r",["ngrid =","Lbox =","wdmass =","fnl =","kmin =","sigma =","raction"])
+    opts, args = getopt.getopt(argv,"n:l:m:f:k:s:r:",["ngrid =","Lbox =","wdmass =","fnl =","kmin =","sigma =","raction"])
 
     ramses = open("../ramses/namelist/ramses.nml","r")
 
