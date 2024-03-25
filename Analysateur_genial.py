@@ -5,7 +5,10 @@
 #   | |____  | (_| | | | | (_| | | |_| \__ \ (_| | ||  __/ |_| | |    | |__| | |____| |\  |_| |_ / ____ \| |____ 
 #   |______|  \__,_|_| |_|\__,_|_|\__, |___/\__,_|\__\___|\__,_|_|     \_____|______|_| \_|_____/_/    \_\______|
 #                                  __/ |                                                                         
-#                                 |___/                                                                          
+#                                 |___/      
+
+
+
 import matplotlib.pyplot as plt
 import yt
 import numpy as np
@@ -471,6 +474,8 @@ if __name__ == "__main__" :
     cosmology.setCosmology('planck18')
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
+    superposer(fnl=1000,wdm=300)
+    superposer(fnl=-1000,wdm=300)
 
 
     """simus = trouver_simus("", eq= False)
