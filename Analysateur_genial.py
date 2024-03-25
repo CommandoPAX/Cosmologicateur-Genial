@@ -378,8 +378,8 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     for s in simus :
         if "WDM"+str(wdm)+"P" in s.split(" ")[-1] : 
             if fnl == 1000 and (wdm == 500 or wdm == 1000):
-                pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-                pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+                pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=5)
+                pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=6)
             else :
                 pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=5)
                 pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=6)
