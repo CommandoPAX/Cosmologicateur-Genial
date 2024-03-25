@@ -8,7 +8,7 @@ import getopt
 
 def generer_monofonic (argv) :
 
-    opts, args = getopt.getopt(argv,"n:l:m:f:k:s:",["ngrid =","Lbox =","wdmass =","fnl =","kmin =","sigma ="])
+    opts, args = getopt.getopt(argv,"n:l:m:f:k:s:r",["ngrid =","Lbox =","wdmass =","fnl =","kmin =","sigma =","raction"])
 
     ramses = open("../ramses/namelist/ramses.nml","r")
 
@@ -16,10 +16,11 @@ def generer_monofonic (argv) :
     """
     n -> ngrid
     l -> taille de la boite (Mpc / h)
-    m -> masse de la matière noire chaude (= 0 => LCDM)
+    m -> masse de la matière noire tiède (= 0 => LCDM)
     f -> fnl
     k -> kmin
     s -> sigma
+    r -> (f)raction de matière noire tiède
     (f, k, s = 0 => pas de non gaussianités)
     """
 
@@ -30,6 +31,7 @@ def generer_monofonic (argv) :
     fnl = 0
     kmin = 0
     sigma = 0  
+    ratio = 0
 
 
     for name, value in opts:
@@ -45,7 +47,8 @@ def generer_monofonic (argv) :
             kmin = value
         if name in ["-s", "--sigma"]:
             sigma = value
-
+        if name in ["-r", "--raction"]:
+            ratio = value
     SETUP = """
 [setup]
 
@@ -92,10 +95,24 @@ ParameterSet    = none # Planck2018EE+BAO+SN  # specify a pre-defined parameter 
 
     if float(wdmass) !=0 :
 
-        COSMOLOGY += """
+        if float(ratio) == 0:
+
+            COSMOLOGY += """
 Omega_c         = 0.0
 N_ncdm          = 1     
 Omega_ncdm      = 0.26377    
+m_ncdm          = """+str(wdmass)+"""   
+
+Omega_b         = 0.0494
+
+Omega_L         = 0.6842
+"""
+
+        else :
+            COSMOLOGY += """
+Omega_c         = """+str(0.26377*(1-float(ratio)))+"""
+N_ncdm          = 1     
+Omega_ncdm      = """+str(float(ratio)*0.26377)+"""    
 m_ncdm          = """+str(wdmass)+"""   
 
 Omega_b         = 0.0494
