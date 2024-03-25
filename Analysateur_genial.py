@@ -459,7 +459,6 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes[1].legend()
     plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")
 
-
 if __name__ == "__main__" :
     
 
@@ -481,8 +480,10 @@ if __name__ == "__main__" :
     #Plot_sigma_8(index=2,exclu="",name="")
     #plt.savefig("./RESULT/S8_tout_z=1.png")
 
-    superposer(fnl=-1000,wdm=4000)
 
+    for i in range(1,6):
+        superposer(fnl = 1000,wdm=100*i)
+        superposer(fnl = -1000,wdm=100*i)
 
     """for s in simus :
         print (s)
