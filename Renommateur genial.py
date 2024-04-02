@@ -10,6 +10,7 @@ for root, dirs, files in os.walk("./RESULT/"):
                 os.system("mv ./RESULT/"+ dir+"/output_00004 ./RESULT/"+ dir+"/output_00002" )
                 os.system("mv ./RESULT/"+ dir+"/output_00005 ./RESULT/"+ dir+"/output_00003" )
             elif "output_00006" in dirs2 and not "output_00004" in dirs2:
+                print("mv ./RESULT/"+ dir+"/output_00005 ./RESULT/"+ dir+"/output_00002")
                 os.system("mv ./RESULT/"+ dir+"/output_00005 ./RESULT/"+ dir+"/output_00002" )
                 os.system("mv ./RESULT/"+ dir+"/output_00006 ./RESULT/"+ dir+"/output_00003" )
 
@@ -21,4 +22,4 @@ for root, dirs, files in os.walk("./RESULT/"):
         for root2,dirs2,files in os.walk("./RESULT/"+dir):
 
             for dir2 in dirs2 :
-                print (dir+" -> "+dir2)
+                pass#print (dir+" -> "+dir2)
