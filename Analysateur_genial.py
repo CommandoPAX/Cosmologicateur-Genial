@@ -57,7 +57,7 @@ class Simulation ():
         self.CST = {}
         self.CST["name"] = self.name
 
-        self.index = self.Convertir_index()
+        #self.index = self.Convertir_index()
 
         # Obliger de devoir charger l'intégralité des données pour calculer sigma_8 malheureusement
                  
