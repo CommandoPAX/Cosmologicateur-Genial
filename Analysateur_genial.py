@@ -57,6 +57,8 @@ class Simulation ():
         self.CST = {}
         self.CST["name"] = self.name
 
+        self.index = self.Convertir_index()
+
         # Obliger de devoir charger l'intégralité des données pour calculer sigma_8 malheureusement
                  
         #                 /\
@@ -224,16 +226,22 @@ class Simulation ():
 
         print(S_8,self.CST["sigma_8"])
         
-    def Index_Converter(self) : 
+    def Convertir_index(self) : 
+
+        # Convertit self.index en la vraie valeure
+        # i = 2 -> avant dernier
+        # i = 3 -> dernier
+
         para_file  = self.path + "/1_PAR_" + self.name +".json"
         with open(para_file, "r") as f :
             para = json.load(f)
             
         n_output = len(para["namelist"]["output_params"]["aout"])
-        z = []
-        for i in range(0, n_output) :
-            z.append((1/para["namelist"]["output_params"]["aout"])-1)
-        return z # output_00001 is index 0 of z list
+
+        if self.index == 2 :
+            self.index == para["namelist"]["output_params"]["aout"][n_output-1]
+        elif self.index == 3 :
+            self.index == para["namelist"]["output_params"]["aout"][n_output]
 
 def PowerSpectrum (Simu, Class = False) :
 
@@ -479,8 +487,6 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
-    Test = Simulation(Path_lcdm,tout=False,name="LCDM")
-    print(Test.Index_Converter())
 
 
     """simus = trouver_simus("", eq= False)
