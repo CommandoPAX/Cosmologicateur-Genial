@@ -317,8 +317,6 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
     i = 0
     for root, dirs, files in os.walk("./RESULT/"):
         for file in files :
-            if "PGN" in file and "WDM" in file and not "WDM500PGN1000" in file and not "WDM1000PGN1000" in file:
-                index +=3   #Bricolage
             if "_constants.json" in file and str(index)+"_" in file :
                 with open("./RESULT/"+file, "r") as f :
                     para = json.load(f)
@@ -328,8 +326,6 @@ def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
                         i = i+1
                         if "cdm" in para["name"]:
                             plt.axvline(x = S8,ls="--",label="lcdm")
-            if "PGN" in file and "WDM" in file and not "WDM500PGN1000" in file and not "WDM1000PGN1000" in file:
-                index -=3   #Bricolage
 
     axes = plt.gca()
     axes.set_xlim(0.6,1)
@@ -378,18 +374,18 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     for s in simus :
         if "WDM"+str(wdm)+"P" in s.split(" ")[-1] : 
             if fnl == 1000 and (wdm == 500 or wdm == 1000):
-                pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=5)
-                pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=6)
+                pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+                pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
             else :
-                pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=5)
-                pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=6)
+                pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+                pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
     simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
     print(simus)
     for s in simus :
         if "WDM"+str(wdm) == s.split(" ")[-1] :
-            w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=4)
-            w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=5)
+            w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
+            w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
 
     simus = trouver_simus("PGN"+str(fnl), exclu="WDM")
     print(simus)
