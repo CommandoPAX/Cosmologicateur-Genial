@@ -201,10 +201,16 @@ def main():
 
     k = 0
 
+
+
     for root, dirs, files in os.walk("./RESULT"):
 
         k+=1
-        n = len(dirs)
+        n = 0
+
+        for dir in dirs :
+            if "03-21" in dir or "03-22" in dir or  "03-23" in dir or "03-25" in dir or  "03-26" in dir or "03-27" in dir :
+                n+=1
 
         for dir in dirs :   
             if "03-21" in dir or "03-22" in dir or  "03-23" in dir or "03-25" in dir or  "03-26" in dir or "03-27" in dir:
