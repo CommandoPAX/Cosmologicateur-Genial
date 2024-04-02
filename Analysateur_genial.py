@@ -229,7 +229,7 @@ class Simulation ():
         with open(para_file, "r") as f :
             para = json.load(f)
             
-        n_output = len(para["namelist"]["output_paramas"["aout"]])
+        n_output = len(para["namelist"]["output_paramas"]["aout"])
         z = []
         for i in range(0, n_output) :
             z.append((1/para["namelist"]["output_paramas"]["aout"])-1)
