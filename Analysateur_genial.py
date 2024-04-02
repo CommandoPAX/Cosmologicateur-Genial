@@ -490,6 +490,16 @@ if __name__ == "__main__" :
     lcdm = Simulation(Path_lcdm, name="LCDM",index = 3,tout=False)
     lcdm2 = Simulation(Path_lcdm, name="LCDM",index = 2,tout=False)
 
+    plt.title("z = 0")
+
+    for root, dirs, files in os.walk("./RESULT"):
+        for dir in dirs :
+            if "WDM10" in dir and not "PGN" in dir and not "WDM100" in dir and "r" in dir :
+                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 3, tout=False)
+                Diviser_Pow(s,lcdm)
+
+    plt.savefig("./RESULT/z = 0 - ractions - wdm10.png")
+
     plt.title("z = 1")
 
     for root, dirs, files in os.walk("./RESULT"):
@@ -498,7 +508,7 @@ if __name__ == "__main__" :
                 s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 2, tout=False)
                 Diviser_Pow(s,lcdm2)
 
-    plt.savefig("./RESULT/z = 1 - ractions.png")
+    plt.savefig("./RESULT/z = 1 - ractions - wdm 10.png")
                 
 
 """plt.clf()  
