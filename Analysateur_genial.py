@@ -495,7 +495,7 @@ if __name__ == "__main__" :
     for root, dirs, files in os.walk("./RESULT"):
         for dir in dirs :
             if "WDM" in dir and "r002" in dir :
-                s = Simulation("./RESULT/"+dir, name=dir[:-1],index = 3, tout=False)
+                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[:-1],index = 3, tout=False)
                 Diviser_Pow(s,lcdm)
 
     plt.savefig("./RESULT/z = 0 - ractions.png")
