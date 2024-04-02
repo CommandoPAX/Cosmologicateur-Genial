@@ -487,76 +487,19 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
+    lcdm = Simulation(Path_lcdm, name="LCDM",index = 3)
+    lcdm2 = Simulation(Path_lcdm, name="LCDM",index = 2)
 
+    plt.title("z = 0")
 
-    """simus = trouver_simus("", eq= False)
-    for s in simus :
-        name = s.split(" ")[-1]
-        if ame == "LCDM" :
-            print(name)
-            #Simulation(s,name=s.split(" ")[-1], tout=True,index=2)
-            Simulation(s,name=s.split(" ")[-1], tout=True,index=2)"""
+    for root, dirs, files in os.walk("./RESULT"):
+        for dir in dirs :
+            if "WDM" in dir and "r002" in dir :
+                s = Simulation("./RESULT/"+dir, name=dir[:-1],index = 3, tout=False)
+                Diviser_Pow(s,lcdm)
 
-    #Plot_sigma_8(index=3,exclu="",name="")
-    #plt.savefig("./RESULT/S8_tout_z=0.png")
-    #Plot_sigma_8(index=2,exclu="",name="")
-    #plt.savefig("./RESULT/S8_tout_z=1.png")
-
-
-    for i in range(1,6):
-        try :
-            superposer(fnl = 1000,wdm=100*i)
-        except:
-            pass
-        try :
-
-            superposer(fnl = -1000,wdm=100*i)
-        except: 
-            pass
-
-    """for s in simus :
-        print (s)
-        simu = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-
-        plt.clf()
-
-        PowerSpectrum(simu)
-        PowerSpectrum(lcdm)
-
-        plt.savefig("./RESULT/"+simu.name+".png")"""
-
-    """try : 
-        for root, dirs, files in os.walk("./RESULT/"):
-
-            for dir in dirs :
-
-                nom = dir.split(" ")[-1]
-
-                if  "PGN" in nom and not "WDM" in nom:
-                    simu2 = Simulation("./RESULT/"+dir,name=nom,index = 3,tout = True)
-                    Particle_mass(simu2).save("./RESULT/PPM-"+simu2.name+"-test.png")
-                    Particle_mass_petit(simu2).save("./RESULT/PPM-"+simu2.name+"-test-petit.png")"""
-
-    """PowerSpectrum(lcdm)
-                    PowerSpectrum(simu2)
-
-                    plt.savefig("./RESULT/lcdm + "+nom+".png")
-                    plt.clf()
-                    if nom == "WDM3PGN1000" :
-                        Pow[0] = simu2["Pk0"]/lcdm["Pk0"]
-                    if nom == "PGN1000" :
-                        Pow[1] = simu2["Pk0"]/lcdm["Pk0"]
-                    if nom == "WDM3" :
-                        Pow[2] = simu2["Pk0"]/lcdm["Pk0"]"""
-                    
-                    # Diviser_Pow(simu2,lcdm,ls="--")
-
-    """plt.title ("z = 1")
-        plt.savefig("./RESULT/WDM-nul-1.png")
-                    #plt.clf()"""
-
-    #Plot_sigma_8()
-
+    plt.savefig("z = 0 - ractions.png")
+                
 
 """plt.clf()  
     print(Pow[0])
