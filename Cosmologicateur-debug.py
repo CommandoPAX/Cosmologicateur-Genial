@@ -205,9 +205,22 @@ def main():
         for dir in dirs :   
             if "03-21" in dir or "03-22" in dir or  "03-23" in dir or "03-25" in dir or  "03-26" in dir or "03-27" in dir:
                 name = dir.split(" ")[-1]    
-                Output_Path = "./RESULT/"+dir     
+                Output_Path = "./RESULT/"+dir    
 
-                for i in range(1, 10)  : 
+                print ("""
+                       
+                       
+                       ###############################################
+##################################
+                       
+                       """+dir+"""
+##########################################"
+#########################################
+
+
+""") 
+
+                for i in range(2, 10)  : 
                     plt.clf()
                     print(f'---------------------------------{i}----------------------------------------')
                     try : #Will load files until they don't exist anymore
