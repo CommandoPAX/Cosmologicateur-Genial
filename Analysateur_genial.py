@@ -479,7 +479,7 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
-    Test = Simulation(Path_lcdm,tout=False)
+    Test = Simulation(Path_lcdm,tout=False,name="LCDM")
     print(Test.Index_Converter())
 
 
