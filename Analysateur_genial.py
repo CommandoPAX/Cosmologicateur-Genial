@@ -229,10 +229,10 @@ class Simulation ():
         with open(para_file, "r") as f :
             para = json.load(f)
             
-        n_output = len(para["namelist"]["output_paramas"]["aout"])
+        n_output = len(para["namelist"]["output_params"]["aout"])
         z = []
         for i in range(0, n_output) :
-            z.append((1/para["namelist"]["output_paramas"]["aout"])-1)
+            z.append((1/para["namelist"]["output_params"]["aout"])-1)
         return z # output_00001 is index 0 of z list
 
 def PowerSpectrum (Simu, Class = False) :
