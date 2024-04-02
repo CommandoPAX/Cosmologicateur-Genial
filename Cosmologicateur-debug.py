@@ -212,8 +212,10 @@ def main():
                 n+=1
 
         for dir in dirs :  
-            k += 1 
             if "03-21" in dir or "03-22" in dir or  "03-23" in dir or "03-25" in dir or  "03-26" in dir or "03-27" in dir:
+                
+                k += 1 
+
                 name = dir.split(" ")[-1]    
                 Output_Path = "./RESULT/"+dir    
 
