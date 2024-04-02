@@ -211,12 +211,16 @@ def main():
                     plt.clf()
                     print(f'---------------------------------{i}----------------------------------------')
                     try : #Will load files until they don't exist anymore
-                        input_ = f"./RESULT/{dir}/output_0000{i}/info_0000{i}.txt"
-                        ds=yt.load(input_)
+                        for j in range(10):
+                            try :
+                                input_ = f"./RESULT/{dir}/output_0000{i}/info_0000{j}.txt"
+                                ds=yt.load(input_)
+                            except :
+                                pass
                     except : 
                         print("File not found, breaking Thomas Delzant's legs")
                         break 
-                    Predicted_Particle_Mass(ds, i, Output_Path, name)
+                    #Predicted_Particle_Mass(ds, i, Output_Path, name)
                     Get_Simu_Info(ds, i, Output_Path, name)
                     if POT : Potential(ds, i, Output_Path, name)
                     if VEL : Velocity(ds, i, Output_Path, name)
