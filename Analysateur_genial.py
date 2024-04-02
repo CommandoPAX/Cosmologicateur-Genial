@@ -384,8 +384,8 @@ def trouver_simus (name, exclu = "", eq = True):
 
 def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
-    lcdm = Simulation(path_lcdm,name="lcdm",index = 3,tout = False)
-    lcdm2 = Simulation(path_lcdm,name="lcdm",index = 2,tout = False)
+    lcdm = Simulation(path_lcdm,name="LCDM",index = 3,tout = False)
+    lcdm2 = Simulation(path_lcdm,name="LCDM",index = 2,tout = False)
 
     simus = trouver_simus("WDM"+str(wdm)+"PGN"+str(fnl))
     print(simus)
