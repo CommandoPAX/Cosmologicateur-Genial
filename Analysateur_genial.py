@@ -42,7 +42,7 @@ index_redhift = {
 }
 
 class Simulation ():
-    def __init__ (self, path, name = "lcdm", index = 2,tout = True):
+    def __init__ (self, path, name = "LCDM", index = 2,tout = True):
         self.path = path
         self.json_path = ""
 
