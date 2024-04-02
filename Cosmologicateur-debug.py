@@ -231,6 +231,7 @@ def main():
                             try :
                                 input_ = f"./RESULT/{dir}/output_0000{i}/info_0000{j}.txt"
                                 ds=yt.load(input_)
+                                break
                             except :
                                 if i >= 5 : break
                     except : 
