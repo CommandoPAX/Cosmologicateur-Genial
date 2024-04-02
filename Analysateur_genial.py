@@ -239,9 +239,9 @@ class Simulation ():
         n_output = len(para["namelist"]["output_params"]["aout"])
 
         if self.index == 2 :
-            self.index == para["namelist"]["output_params"]["aout"][n_output-1]
+            self.index = para["namelist"]["output_params"]["aout"][n_output-2]
         elif self.index == 3 :
-            self.index == para["namelist"]["output_params"]["aout"][n_output]
+            self.index = para["namelist"]["output_params"]["aout"][n_output-1]
 
 def PowerSpectrum (Simu, Class = False) :
 
