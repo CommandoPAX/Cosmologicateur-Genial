@@ -225,7 +225,7 @@ class Simulation ():
         print(S_8,self.CST["sigma_8"])
         
     def Index_Converter(self) : 
-        para_file  = self.path + "1_PAR_" + self.name 
+        para_file  = self.path + "/1_PAR_" + self.name +".json"
         with open(para_file, "r") as f :
             para = json.load(f)
             
