@@ -190,10 +190,10 @@ def main():
     global Result_Path
     
 
-    POT = True
-    VEL = True 
+    POT = False
+    VEL = False
     SPE = True 
-    HAL = True 
+    HAL = False
 
     name = str()
     
@@ -203,26 +203,27 @@ def main():
     for root, dirs, files in os.walk("./RESULT"):
 
         for dir in dirs :   
-            name = dir.split(" ")[-1]    
-            Output_Path = "./RESULT/"+dir     
+            if "03-21" in dir or "03-22" in dir or  "03-23" in dir or "03-25" in dir or  "03-26" in dir or "03-27" in dir:
+                name = dir.split(" ")[-1]    
+                Output_Path = "./RESULT/"+dir     
 
-            for i in range(1, 10)  : 
-                plt.clf()
-                print(f'---------------------------------{i}----------------------------------------')
-                try : #Will load files until they don't exist anymore
-                    input_ = f"./RESULT/{dir}/output_0000{i}/info_0000{i}.txt"
-                    ds=yt.load(input_)
-                except : 
-                    print("File not found, breaking Thomas Delzant's legs")
-                    break 
-                Predicted_Particle_Mass(ds, i, Output_Path, name)
-                Get_Simu_Info(ds, i, Output_Path, name)
-                if POT : Potential(ds, i, Output_Path, name)
-                if VEL : Velocity(ds, i, Output_Path, name)
-                if SPE : Power_Spectrum(ds, i, Output_Path, name)
-                if HAL : Halo(ds, i, Output_Path, name)
+                for i in range(1, 10)  : 
+                    plt.clf()
+                    print(f'---------------------------------{i}----------------------------------------')
+                    try : #Will load files until they don't exist anymore
+                        input_ = f"./RESULT/{dir}/output_0000{i}/info_0000{i}.txt"
+                        ds=yt.load(input_)
+                    except : 
+                        print("File not found, breaking Thomas Delzant's legs")
+                        break 
+                    Predicted_Particle_Mass(ds, i, Output_Path, name)
+                    Get_Simu_Info(ds, i, Output_Path, name)
+                    if POT : Potential(ds, i, Output_Path, name)
+                    if VEL : Velocity(ds, i, Output_Path, name)
+                    if SPE : Power_Spectrum(ds, i, Output_Path, name)
+                    if HAL : Halo(ds, i, Output_Path, name)
 
-            Copy_Mono_Config(Output_Path) 
+                Copy_Mono_Config(Output_Path) 
 
 if __name__ == "__main__" :
     main()
