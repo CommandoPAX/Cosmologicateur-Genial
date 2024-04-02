@@ -16,39 +16,47 @@ for root, dirs, files in os.walk("./RESULT/"):
             if max == 6 :
                 for file in files2 :
                     if "2_" in file or "3_" in file or "4_" in file :
-                        os.system("rm ./RESULT/"+dir+"/"+file)
+                        os.system("rm \"./RESULT/"+dir+"/"+file+"\"")
 
                 for file in files2 :
+                    path = "RESULT/"+dir+"/"
+
                     if "6_" in file :
                         nouveau = "3_"+file[2:]
-                        os.system("mv "+file+ " "+nouveau)
+                        os.system("mv \""+path+file+ "\" \""+path+nouveau+"\"")
                     if "5_" in file :
                         nouveau = "2_"+file[2:]
                         os.system("mv "+file+ " "+nouveau)
 
-            elif max == 5 :
-                for file in files2:
-                    if "2_" in file or "3_" in file  :
-                        os.system("rm ./RESULT/"+dir+"/"+file)
+            if max == 5 :
                 for file in files2 :
+                    if "2_" in file or "3_" in file:
+                        os.system("rm \"./RESULT/"+dir+"/"+file+"\"")
+
+                for file in files2 :
+                    path = "RESULT/"+dir+"/"
+
                     if "5_" in file :
                         nouveau = "3_"+file[2:]
-                        os.system("mv "+file+ " "+nouveau)
+                        os.system("mv \""+path+file+ "\" \""+path+nouveau+"\"")
                     if "4_" in file :
                         nouveau = "2_"+file[2:]
                         os.system("mv "+file+ " "+nouveau)
-            elif max == 4 :
-                for file in files2:
-                    if "2_" in file :
-                        os.system("rm ./RESULT/"+dir+"/"+file)
+
+            if max == 4 :
                 for file in files2 :
+                    if "2_" in file :
+                        os.system("rm \"./RESULT/"+dir+"/"+file+"\"")
+
+                for file in files2 :
+                    path = "RESULT/"+dir+"/"
+
                     if "4_" in file :
                         nouveau = "3_"+file[2:]
-                        os.system("mv "+file+ " "+nouveau)
+                        os.system("mv \""+path+file+ "\" \""+path+nouveau+"\"")
                     if "3_" in file :
                         nouveau = "2_"+file[2:]
                         os.system("mv "+file+ " "+nouveau)
-
 
 for root, dirs, files in os.walk("./RESULT/"):
 
