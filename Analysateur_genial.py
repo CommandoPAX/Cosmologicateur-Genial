@@ -487,8 +487,8 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
-    lcdm = Simulation(Path_lcdm, name="LCDM",index = 3)
-    lcdm2 = Simulation(Path_lcdm, name="LCDM",index = 2)
+    lcdm = Simulation(Path_lcdm, name="LCDM",index = 3,tout=False)
+    lcdm2 = Simulation(Path_lcdm, name="LCDM",index = 2,tout=False)
 
     plt.title("z = 0")
 
@@ -498,7 +498,7 @@ if __name__ == "__main__" :
                 s = Simulation("./RESULT/"+dir, name=dir[:-1],index = 3, tout=False)
                 Diviser_Pow(s,lcdm)
 
-    plt.savefig("z = 0 - ractions.png")
+    plt.savefig("./RESULT/z = 0 - ractions.png")
                 
 
 """plt.clf()  
