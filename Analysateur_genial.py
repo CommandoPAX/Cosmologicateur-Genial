@@ -480,7 +480,7 @@ if __name__ == "__main__" :
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
     Test = Simulation(Path_lcdm,tout=False)
-    print(Simulation.Index_Converter())
+    print(Test.Index_Converter())
 
 
     """simus = trouver_simus("", eq= False)
