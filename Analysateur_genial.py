@@ -490,15 +490,15 @@ if __name__ == "__main__" :
     lcdm = Simulation(Path_lcdm, name="LCDM",index = 3,tout=False)
     lcdm2 = Simulation(Path_lcdm, name="LCDM",index = 2,tout=False)
 
-    plt.title("z = 0")
+    plt.title("z = 1")
 
     for root, dirs, files in os.walk("./RESULT"):
         for dir in dirs :
             if "WDM" in dir and "r002" in dir :
-                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 3, tout=False)
-                Diviser_Pow(s,lcdm)
+                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 2, tout=False)
+                Diviser_Pow(s,lcdm2)
 
-    plt.savefig("./RESULT/z = 0 - ractions.png")
+    plt.savefig("./RESULT/z = 1 - ractions.png")
                 
 
 """plt.clf()  
