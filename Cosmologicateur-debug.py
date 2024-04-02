@@ -223,7 +223,7 @@ def main():
 
 """) 
 
-                for i in range(2, 10)  : 
+                for i in range(2, 4)  : 
                     plt.clf()
                     print(f'---------------------------------{i}----------------------------------------')
                     try : #Will load files until they don't exist anymore
