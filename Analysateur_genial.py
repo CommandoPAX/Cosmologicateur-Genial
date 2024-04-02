@@ -474,8 +474,8 @@ if __name__ == "__main__" :
     cosmology.setCosmology('planck18')
     
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
-    superposer(fnl=1000,wdm=300)
-    superposer(fnl=-1000,wdm=300)
+    #superposer(fnl=1000,wdm=300)
+    #superposer(fnl=-1000,wdm=300)
 
 
     """simus = trouver_simus("", eq= False)
