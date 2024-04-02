@@ -504,8 +504,15 @@ if __name__ == "__main__" :
 
 
     for i in range(1,6):
-        superposer(fnl = 1000,wdm=100*i)
-        superposer(fnl = -1000,wdm=100*i)
+        try :
+            superposer(fnl = 1000,wdm=100*i)
+        except:
+            pass
+        try :
+
+            superposer(fnl = -1000,wdm=100*i)
+        except: 
+            pass
 
     """for s in simus :
         print (s)
