@@ -223,6 +223,17 @@ class Simulation ():
         self.CST["S_8"] = S_8
 
         print(S_8,self.CST["sigma_8"])
+        
+    def Index_Converter(self) : 
+        para_file  = self.path + "1_PAR_" + self.name 
+        with open(para_file, "r") as f :
+            para = json.load(f)
+            
+        n_output = len(para["namelist"]["output_paramas"["aout"]])
+        z = []
+        for i in range(0, n_output) :
+            z.append((1/para["namelist"]["output_paramas"]["aout"])-1)
+        return z # output_00001 is index 0 of z list
 
 def PowerSpectrum (Simu, Class = False) :
 
