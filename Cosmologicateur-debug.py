@@ -232,7 +232,7 @@ def main():
                                 input_ = f"./RESULT/{dir}/output_0000{i}/info_0000{j}.txt"
                                 ds=yt.load(input_)
                             except :
-                                pass
+                                if i >= 5 : break
                     except : 
                         print("File not found, breaking Thomas Delzant's legs")
                         break 
