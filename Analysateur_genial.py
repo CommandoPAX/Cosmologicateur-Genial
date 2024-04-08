@@ -18,13 +18,8 @@ from colossus.lss import mass_function
 import os
 import json
 import matplotlib
-import re 
+import re
 import MAS_library as MASL
-
-matplotlib.rcParams.update({'font.size': 20})
-matplotlib.rcParams['text.usetex'] = True
-matplotlib.rcParams["figure.facecolor"]='w'
-matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 plt.tight_layout()
 
