@@ -266,7 +266,7 @@ def Diviser_Pow (Simu1, Simu2,ls="") :
     else : plt.loglog(Simu1["k"],Simu1["Pk0"]/Simu2["Pk0"],label="Ratio "+Simu1.name+" / "+Simu2.name,ls=ls)
     axes = plt.gca()
     axes.set_xlim(2e-2,0.9)
-    axes.set_ylim(0.6,1.05)
+    axes.set_ylim(0.6,1.2)
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.legend()
