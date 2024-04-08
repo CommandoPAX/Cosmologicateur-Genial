@@ -507,6 +507,7 @@ def ractions (wdm = 100000000000000, fnl = True) :
                 Diviser_Pow(s,lcdm2)
 
     plt.savefig("./RESULT/z = 1 - ractions - wdm"+str(wdm)+".png")
+    plt.clf()
 
 
 if __name__ == "__main__" :
