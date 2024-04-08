@@ -482,6 +482,8 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
 
 def ractions (wdm = 100000000000000, fnl = True) :
 
+    print("\n\nWDM "+str(wdm)+"\n\n")
+
     plt.title("z = 0")
 
     for root, dirs, files in os.walk("./RESULT"):
