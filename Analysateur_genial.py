@@ -490,6 +490,11 @@ if __name__ == "__main__" :
     lcdm = Simulation(Path_lcdm, name="LCDM",index = 3,tout=False)
     lcdm2 = Simulation(Path_lcdm, name="LCDM",index = 2,tout=False)
 
+
+    for i in range(1,6):
+        superposer(fnl=1000,wdm=i*100,path_lcdm=Path_lcdm)
+        superposer(fnl=-1000,wdm=i*100,path_lcdm=Path_lcdm)
+    """
     plt.title("z = 0")
 
     for root, dirs, files in os.walk("./RESULT"):
@@ -511,7 +516,7 @@ if __name__ == "__main__" :
                 Diviser_Pow(s,lcdm2)
 
     plt.savefig("./RESULT/z = 1 - ractions - wdm 10.png")
-                
+    """
 
 """plt.clf()  
     print(Pow[0])
