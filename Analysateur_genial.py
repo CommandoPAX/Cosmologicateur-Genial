@@ -488,7 +488,7 @@ def ractions (wdm = 100000000000000, fnl = True) :
 
     for root, dirs, files in os.walk("./RESULT"):
         for dir in dirs :
-            if "WDM"+str(wdm) in dir and ("PGN" in dir) == fnl and not "WDM"+str(wdm)+"0" in dir and "r" in dir :
+            if "WDM"+str(wdm) in dir and not "WDM"+str(wdm)+"0" in dir and "r" in dir :
                 print(dir)
                 s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 3, tout=False)
                 Diviser_Pow(s,lcdm)
@@ -501,7 +501,7 @@ def ractions (wdm = 100000000000000, fnl = True) :
 
     for root, dirs, files in os.walk("./RESULT"):
         for dir in dirs :
-            if "WDM"+str(wdm) in dir and ("PGN" in dir) == fnl and not "WDM"+str(wdm)+"0" in dir and "r" in dir :
+            if "WDM"+str(wdm) in dir  and not "WDM"+str(wdm)+"0" in dir and "r" in dir :
                 print(dir)
                 s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 2, tout=False)
                 Diviser_Pow(s,lcdm2)
