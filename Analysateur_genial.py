@@ -479,6 +479,32 @@ def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
     axes[1].legend()
     plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")
 
+
+def ractions (wdm = 100000000000000, fnl = True) :
+
+    plt.title("z = 0")
+
+    for root, dirs, files in os.walk("./RESULT"):
+        for dir in dirs :
+            if "WDM"+str(wdm) in dir and ("PGN" in dir) == fnl and not "WDM"+str(wdm)+"0" in dir and "r" in dir :
+                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 3, tout=False)
+                Diviser_Pow(s,lcdm)
+
+    plt.savefig("./RESULT/z = 0 - ractions - wdm"+str(wdm)+".png")
+
+    plt.clf()
+
+    plt.title("z = 1")
+
+    for root, dirs, files in os.walk("./RESULT"):
+        for dir in dirs :
+            if "WDM" in dir and "r002" in dir :
+                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 2, tout=False)
+                Diviser_Pow(s,lcdm2)
+
+    plt.savefig("./RESULT/z = 1 - ractions - wdm"+str(wdm)+".png")
+
+
 if __name__ == "__main__" :
     
 
@@ -491,32 +517,14 @@ if __name__ == "__main__" :
     lcdm2 = Simulation(Path_lcdm, name="LCDM",index = 2,tout=False)
 
 
-    for i in range(1,6):
+    """for i in range(1,6):
         superposer(fnl=1000,wdm=i*100,path_lcdm=Path_lcdm)
-        superposer(fnl=-1000,wdm=i*100,path_lcdm=Path_lcdm)
-    """
-    plt.title("z = 0")
+        superposer(fnl=-1000,wdm=i*100,path_lcdm=Path_lcdm)"""
+    
 
-    for root, dirs, files in os.walk("./RESULT"):
-        for dir in dirs :
-            if "WDM10" in dir and not "PGN" in dir and not "WDM100" in dir and "r" in dir :
-                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 3, tout=False)
-                Diviser_Pow(s,lcdm)
-
-    plt.savefig("./RESULT/z = 0 - ractions - wdm10.png")
-
-    plt.clf()
-
-    plt.title("z = 1")
-
-    for root, dirs, files in os.walk("./RESULT"):
-        for dir in dirs :
-            if "WDM" in dir and "r002" in dir :
-                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 2, tout=False)
-                Diviser_Pow(s,lcdm2)
-
-    plt.savefig("./RESULT/z = 1 - ractions - wdm 10.png")
-    """
+    ractions(10, True)    
+    ractions(100, True)    
+    ractions(200, True)    
 
 """plt.clf()  
     print(Pow[0])

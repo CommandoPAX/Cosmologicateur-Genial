@@ -1,0 +1,15 @@
+Fichier qui contient le nombre de fichiers de sorties par simulation, pour corriger les indices
+
+nom index_max
+LCDM 3
+PGN100 3
+PGN500 3
+PGN1000 3
+PGN-500 3
+PGN-1000 3
+PGN-200 3
+WDM500 3
+WDM1000 3
+WDM100 3
+WDM500PGN1000 3
+WDM1000PGN1000 3
