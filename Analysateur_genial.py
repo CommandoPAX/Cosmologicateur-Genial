@@ -510,6 +510,12 @@ if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
     
+
+    for root, dirs, files in os.walk("RESULT"):
+        for file in files :
+            Simulation(path="./RESULT/"+file, name=file.split(" ")[-1],tout=True,index=2)
+            Simulation(path="./RESULT/"+file, name=file.split(" ")[-1],tout=True,index=3)
+
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
