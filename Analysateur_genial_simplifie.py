@@ -28,6 +28,8 @@ import MAS_library as MASL
 
 plt.tight_layout()
 
+matplotlib.rc('font', family="serif",size=14)
+
 #aout = 0.09, 0.2, 0.333, 0.5, 1
 
 def z(a):
@@ -163,48 +165,37 @@ def superposer (fnl, wdm):
     p = Simulation(name="PGN"+str(fnl))
     pw = Simulation(name="WDM"+str(wdm)+"PGN"+str(fnl))
 
-    plt.loglog(lcdm.k2, w.P2/lcdm.P2, ls="dotted",color="red",label="WDM alone, m = "+str(wdm)+" ev")
-    plt.loglog(lcdm.k2, p.P2/lcdm.P2, ls="dotted",color="black",label="NG alone, fnl = "+str(fnl))
-    plt.loglog(lcdm.k2, p.P2*w.P2/(lcdm.P2**2), color="orange",label=r"Multiplication $P_w \times P_w$ "+str(wdm))
-    plt.loglog(lcdm.k2, pw.P2/lcdm.P2, color="blue",label="WDM and NG, m = "+str(wdm)+" ev, fnl = "+str(fnl))
+    plt.title("z = 1")
+
+    plt.loglog(lcdm.k2, w.P2/lcdm.P2, ls="dotted",color="red",label=r"P$_{WDM}$, m = "+str(wdm)+" ev")
+    plt.loglog(lcdm.k2, p.P2/lcdm.P2, ls="dotted",color="black",label=r"P$_{NG}$, fnl = "+str(fnl))
+    plt.loglog(lcdm.k2, p.P2*w.P2/(lcdm.P2**2), color="orange",label=r"P$_{NG} \times P_{WDM}$ ")
+    plt.loglog(lcdm.k2, pw.P2/lcdm.P2, color="blue",label=r"P$_{NG+WDM}$")
 
     axes = plt.gca()
 
     axes.set_xlabel("k [h/Mpc]")
-    axes.set_ylabel(r"P(k) [$(Mpc/h)^3$]")
+    axes.set_ylabel(r"P(k) / P$_{\Lambda {\rm CDM}}$ (k)")
 
     plt.legend()
 
     plt.show()
 
-def ractions (wdm = 100000000000000, fnl = True) :
-
-    print("\n\nWDM "+str(wdm)+"\n\n")
-
     plt.title("z = 0")
 
-    for root, dirs, files in os.walk("./RESULT"):
-        for dir in dirs :
-            if "WDM"+str(wdm) in dir and not "WDM"+str(wdm)+"0" in dir and "r" in dir :
-                print(dir)
-                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 3, tout=False)
-                Diviser_Pow(s,lcdm)
+    plt.loglog(lcdm.k3, w.P3/lcdm.P3, ls="dotted",color="red",label=r"P$_{WDM}$, m = "+str(wdm)+" ev")
+    plt.loglog(lcdm.k3, p.P3/lcdm.P3, ls="dotted",color="black",label=r"P$_{NG}$, fnl = "+str(fnl))
+    plt.loglog(lcdm.k3, p.P3*w.P3/(lcdm.P3**2), color="orange",label=r"P$_{NG} \times P_{WDM}$ ")
+    plt.loglog(lcdm.k3, pw.P3/lcdm.P3, color="blue",label=r"P$_{NG+WDM}$")
 
-    plt.savefig("./RESULT/z = 0 - ractions - wdm"+str(wdm)+".png")
+    axes = plt.gca()
 
-    plt.clf()
+    axes.set_xlabel("k [h/Mpc]")
+    axes.set_ylabel(r"$P(k) / P_{lcdm} (k)$")
 
-    plt.title("z = 1")
+    plt.legend()
 
-    for root, dirs, files in os.walk("./RESULT"):
-        for dir in dirs :
-            if "WDM"+str(wdm) in dir  and not "WDM"+str(wdm)+"0" in dir and "r" in dir :
-                print(dir)
-                s = Simulation("./RESULT/"+dir, name=dir.split(" ")[-1],index = 2, tout=False)
-                Diviser_Pow(s,lcdm2)
-
-    plt.savefig("./RESULT/z = 1 - ractions - wdm"+str(wdm)+".png")
-    plt.clf()
+    plt.show()
 
 
 if __name__ == "__main__" :
@@ -217,31 +208,10 @@ if __name__ == "__main__" :
     lcdm = Simulation(name="LCDM")
 
     superposer(fnl=-1000,wdm=100)
+    superposer(fnl=1000,wdm=100)
+    superposer(fnl=-1000,wdm=200)
 
-    noms = []
-    for root, dirs, files in os.walk("./POW"):
-        for file in files :
-            nom = file.replace("1_","")
-            nom = nom.replace("2_","")
-            nom = nom.replace("3_","")
-            nom = nom.replace("4_","")
-            nom = nom.replace("5_","")
-            nom = nom.replace("6_","")
-
-            nom = nom.replace("POW_","")
-            nom = nom.replace(".txt","")
-
-            if (not nom in noms) and ((not "r" in nom) and ("1000P" in nom) or "LCDM" in nom) : 
-                noms.append(nom)
-
-    for nom in noms :
-        simu = Simulation(name=nom)
-        plt.loglog(simu.k2, simu.P2/lcdm.P2,label=nom)
-
-
-    plt.legend()
-    plt.show()
-
+   
 """plt.clf()  
     print(Pow[0])
     print('#######################################################################')
