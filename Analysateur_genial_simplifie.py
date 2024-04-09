@@ -168,7 +168,7 @@ def superposer (fnl, wdm):
     p = Simulation(name="PGN"+str(fnl))
     pw = Simulation(name="WDM"+str(wdm)+"PGN"+str(fnl))
 
-    plt.title("z = 1")
+    #plt.title("z = 1")
 
     # {\rm WDM} m=100 {\rm ev}, {\rm NG}, {\rm NG} \times {\rm WDM} 
 
@@ -185,13 +185,13 @@ def superposer (fnl, wdm):
     plt.axvline(x = 2*np.pi/(500/0.67)*256, color = 'k')
 
     axes.set_xlabel("k [h/Mpc]")
-    axes.set_ylabel(r"P(k) / P$_{\Lambda {\rm CDM}}$ (k)")
+    axes.set_ylabel(r"P / P$_{\Lambda {\rm CDM}}$")
 
     plt.legend()
 
     plt.show()
 
-    plt.title("z = 0")
+    """plt.title("z = 0")
 
     plt.loglog(lcdm.k3, w.P3/lcdm.P3, ls="dotted",color="red",label=r"${\rm WDM}$, m=100 ${\rm ev}$")
     plt.loglog(lcdm.k3, p.P3/lcdm.P3, ls="dotted",color="black",label=r"${\rm NG}$, fnl = "+str(fnl))
@@ -210,7 +210,7 @@ def superposer (fnl, wdm):
 
     plt.legend()
 
-    plt.show()
+    plt.show()"""
 
 
 if __name__ == "__main__" :
@@ -219,16 +219,16 @@ if __name__ == "__main__" :
     cosmology.setCosmology('planck18')
     
     lcdm = Simulation(name="LCDM")
-    WDM100 = Simulation(name="WDM100")
+    """WDM100 = Simulation(name="WDM100")
     WDM500 = Simulation(name="WDM500")
     WDM1000 = Simulation(name="WDM1000")
     WDM200 = Simulation(name="WDM200")
-    WDM300 = Simulation(name="WDM300")
+    WDM400 = Simulation(name="WDM400")
     
     plt.loglog(lcdm.k2, lcdm.P2/lcdm.P2, label=r"$\Lambda{\rm CDM}$")
     plt.loglog(WDM100.k2, WDM100.P2/lcdm.P2, label =r"$m = 100$")
     plt.loglog(WDM200.k2, WDM200.P2/lcdm.P2, label =r"$m = 200$")
-    plt.loglog(WDM300.k2, WDM300.P2/lcdm.P2, label =r"$m = 300$")
+    plt.loglog(WDM400.k2, WDM400.P2/lcdm.P2, label =r"$m = 300$")
     plt.loglog(WDM500.k2, WDM500.P2/lcdm.P2, label =r"$m = 500$")
     plt.loglog(WDM1000.k2, WDM1000.P2/lcdm.P2, label =r"$m = 1000$")
     
@@ -246,11 +246,11 @@ if __name__ == "__main__" :
 
     plt.legend()
     
-    plt.show()
+    plt.show()"""
 
-    #superposer(fnl=-1000,wdm=100)
-    #superposer(fnl=1000,wdm=100)
-    #superposer(fnl=-1000,wdm=200)
+    superposer(fnl=-1000,wdm=100)
+    superposer(fnl=1000,wdm=100)
+    superposer(fnl=-1000,wdm=200)
 
    
 """plt.clf()  
