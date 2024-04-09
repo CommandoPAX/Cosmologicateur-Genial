@@ -172,7 +172,7 @@ def superposer (fnl, wdm):
 
     # {\rm WDM} m=100 {\rm ev}, {\rm NG}, {\rm NG} \times {\rm WDM} 
 
-    plt.loglog(lcdm.k2, w.P2/lcdm.P2, ls="dotted",color="red",label=r"${\rm WDM}$, m=100 {\rm ev}")
+    plt.loglog(lcdm.k2, w.P2/lcdm.P2, ls="dotted",color="red",label=r"${\rm WDM}$, m=100 ${\rm ev}$")
     plt.loglog(lcdm.k2, p.P2/lcdm.P2, ls="dotted",color="black",label=r"${\rm NG}$, fnl = "+str(fnl))
     plt.loglog(lcdm.k2, p.P2*w.P2/(lcdm.P2**2), color="orange",label=r"${\rm NG} \times {\rm WDM}$ ")
     plt.loglog(lcdm.k2, pw.P2/lcdm.P2, color="blue",label=r"${\rm NG + WDM}$")
@@ -193,8 +193,8 @@ def superposer (fnl, wdm):
 
     plt.title("z = 0")
 
-    plt.loglog(lcdm.k3, w.P3/lcdm.P3, ls="dotted",color="red",label=r"{\rm WDM}$, m=100 {\rm ev}")
-    plt.loglog(lcdm.k3, p.P3/lcdm.P3, ls="dotted",color="black",label=r"{\rm NG}$, fnl = "+str(fnl))
+    plt.loglog(lcdm.k3, w.P3/lcdm.P3, ls="dotted",color="red",label=r"${\rm WDM}$, m=100 ${\rm ev}$")
+    plt.loglog(lcdm.k3, p.P3/lcdm.P3, ls="dotted",color="black",label=r"${\rm NG}$, fnl = "+str(fnl))
     plt.loglog(lcdm.k3, p.P3*w.P3/(lcdm.P3**2), color="orange",label=r"${\rm NG} \times {\rm WDM}$")
     plt.loglog(lcdm.k3, pw.P3/lcdm.P3, color="blue",label=r"${\rm NG + WDM}$")
 
