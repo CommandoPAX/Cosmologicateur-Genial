@@ -60,6 +60,9 @@ class Simulation ():
         self.P2 = []
         self.P3 = []
 
+        self.k=np.array([self.k2,self.k3])
+        self.P=np.array([self.P2,self.P3])
+
         for i in range(1,6):
             try :
                 fichier = open("./POW/"+str(i)+"_POW_"+name+".txt","r")
@@ -77,6 +80,7 @@ class Simulation ():
     def Power_Spectrum(self) :
         
         for i in range(2) :
+            print(self.POW[len(self.POW)-2+i])
             fichier = open(self.POW[len(self.POW)-2+i])
 
 
@@ -89,15 +93,14 @@ class Simulation ():
                     self.k2.append(float(l[0]))
                     self.P2.append(float(l[1].replace("\n","")))
                 else :
-                    self.k2.append(float(l[0]))
-                    self.P2.append(float(l[1].replace("\n","")))
+                    self.k3.append(float(l[0]))
+                    self.P3.append(float(l[1].replace("\n","")))
 
             fichier.close()
 
-        self.k2 = np.array(self.k2)
-        self.k3 = np.array(self.k3)
-        self.P2 = np.array(self.P2)
-        self.P3 = np.array(self.P3)
+        for i in range(2) :
+            self.k[i] = np.array(self.k[i])
+            self.P[i] = np.array(self.P[i])
 
 
 def PowerSpectrum (Simu, Class = False) :
@@ -295,7 +298,9 @@ if __name__ == "__main__" :
     #superposer(fnl=-1000,wdm=300)
     lcdm = Simulation(Path_lcdm, name="LCDM",tout=False)
 
-    plt.loglog(lcdm.k2,lcdm.P2)
+    print(lcdm.POW)
+
+    plt.loglog(lcdm.k3,lcdm.P3)
     plt.show()
 
 """plt.clf()  
