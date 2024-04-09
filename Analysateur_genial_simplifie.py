@@ -93,9 +93,8 @@ class Simulation ():
 
             fichier.close()
 
-        for i in range(2) :
-            self.k[i] = np.array(self.k[i])
-            self.P[i] = np.array(self.P[i])
+        self.P2 = np.array(self.P2)
+        self.P3 = np.array(self.P3)
 
 
 def PowerSpectrum (Simu, Class = False) :
@@ -292,7 +291,6 @@ if __name__ == "__main__" :
     #superposer(fnl=-1000,wdm=300)
     lcdm = Simulation(name="LCDM")
 
-
     noms = []
     for root, dirs, files in os.walk("./POW"):
         for file in files :
@@ -306,13 +304,15 @@ if __name__ == "__main__" :
             nom = nom.replace("POW_","")
             nom = nom.replace(".txt","")
 
-            if not nom in noms : 
+            if (not nom in noms) and ((not "r" in nom) and ("1000P" in nom) or "LCDM" in nom) : 
                 noms.append(nom)
 
     for nom in noms :
-        simu = Simulation()
+        simu = Simulation(name=nom)
+        plt.loglog(simu.k2, simu.P2/lcdm.P2,label=nom)
 
-    plt.loglog(lcdm.k3,lcdm.P3)
+
+    plt.legend()
     plt.show()
 
 """plt.clf()  
