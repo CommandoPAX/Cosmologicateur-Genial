@@ -28,7 +28,7 @@ import MAS_library as MASL
 
 plt.tight_layout()
 
-matplotlib.rc('font', family="serif",size=14)
+matplotlib.rc('font', family="serif",size=18)
 
 #aout = 0.09, 0.2, 0.333, 0.5, 1
 
