@@ -42,8 +42,7 @@ index_redhift = {
 }
 
 class Simulation ():
-    def __init__ (self, path, name = "LCDM",tout = True):
-        self.path = path
+    def __init__ (self, name = "LCDM"):
         self.json_path = ""
 
         self.name = name
@@ -71,8 +70,6 @@ class Simulation ():
             except:
                 break
 
-        print(len(self.POW))
-
 
         self.Power_Spectrum()
 
@@ -80,9 +77,7 @@ class Simulation ():
     def Power_Spectrum(self) :
         
         for i in range(2) :
-            print(self.POW[len(self.POW)-2+i])
             fichier = open(self.POW[len(self.POW)-2+i])
-
 
             while 1:
                 l = fichier.readline()
@@ -293,10 +288,9 @@ if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
     
-    Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
-    lcdm = Simulation(Path_lcdm, name="LCDM",tout=False)
+    lcdm = Simulation(name="LCDM")
 
 
     noms = []
@@ -315,9 +309,8 @@ if __name__ == "__main__" :
             if not nom in noms : 
                 noms.append(nom)
 
-    print(noms,len(noms))
-
-    print(lcdm.POW)
+    for nom in noms :
+        simu = Simulation()
 
     plt.loglog(lcdm.k3,lcdm.P3)
     plt.show()
