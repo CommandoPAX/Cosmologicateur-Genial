@@ -62,11 +62,13 @@ class Simulation ():
 
         for i in range(1,6):
             try :
-                fichier = open(str(i)+"_POW_"+name+".png","r")
-                self.POW.append(str(i)+"_POW_"+name+".png")
+                fichier = open("./POW/"+str(i)+"_POW_"+name+".txt","r")
+                self.POW.append("./POW/"+str(i)+"_POW_"+name+".txt")
                 fichier.close()
             except:
                 break
+
+        print(len(self.POW))
 
 
         self.Power_Spectrum()
@@ -97,22 +99,6 @@ class Simulation ():
         self.P2 = np.array(self.P2)
         self.P3 = np.array(self.P3)
 
-    def Convertir_index(self) : 
-
-        # Convertit self.index en la vraie valeure
-        # i = 2 -> avant dernier
-        # i = 3 -> dernier
-
-        para_file  = self.path + "/1_PAR_" + self.name +".json"
-        with open(para_file, "r") as f :
-            para = json.load(f)
-            
-        n_output = len(para["namelist"]["output_params"]["aout"])
-
-        if self.index == 2 :
-            self.index = para["namelist"]["output_params"]["aout"][n_output-2]
-        elif self.index == 3 :
-            self.index = para["namelist"]["output_params"]["aout"][n_output-1]
 
 def PowerSpectrum (Simu, Class = False) :
 
@@ -307,18 +293,10 @@ if __name__ == "__main__" :
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
-    lcdm = Simulation(Path_lcdm, name="LCDM",index = 3,tout=False)
-    lcdm2 = Simulation(Path_lcdm, name="LCDM",index = 2,tout=False)
+    lcdm = Simulation(Path_lcdm, name="LCDM",tout=False)
 
-
-    """for i in range(1,6):
-        superposer(fnl=1000,wdm=i*100,path_lcdm=Path_lcdm)
-        superposer(fnl=-1000,wdm=i*100,path_lcdm=Path_lcdm)"""
-    
-
-    ractions(10, True)    
-    ractions(100, True)    
-    ractions(200, True)    
+    plt.loglog(lcdm.k2,lcdm.P2)
+    plt.show()
 
 """plt.clf()  
     print(Pow[0])
