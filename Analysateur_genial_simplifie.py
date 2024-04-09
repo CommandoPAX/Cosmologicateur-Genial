@@ -224,7 +224,7 @@ if __name__ == "__main__" :
     PGN500 = Simulation(name="PGN500")
     PGNM500 = Simulation(name="PGN-500")
     
-    plt.loglog(lcdm.k3, lcdm.P3/lcdm.P3, label=r"$\Lambda"{\rm CDM}$)
+    plt.loglog(lcdm.k3, lcdm.P3/lcdm.P3, label=r"$\Lambda{\rm CDM}$")
     plt.loglog(PGN1000.k3, PGN1000.P3/lcdm.P3, label =r"$f_{\rm nl} = 1000$")
     plt.loglog(PGNM1000.k3, PGNM1000.P3/lcdm.P3, label =r"$f_{\rm nl} = -1000$")
     plt.loglog(PGN500.k3, PGN500.P3/lcdm.P3, label =r"$f_{\rm nl} = 500$")
