@@ -298,6 +298,25 @@ if __name__ == "__main__" :
     #superposer(fnl=-1000,wdm=300)
     lcdm = Simulation(Path_lcdm, name="LCDM",tout=False)
 
+
+    noms = []
+    for root, dirs, files in os.walk("./POW"):
+        for file in files :
+            nom = file.replace("1_","")
+            nom = nom.replace("2_","")
+            nom = nom.replace("3_","")
+            nom = nom.replace("4_","")
+            nom = nom.replace("5_","")
+            nom = nom.replace("6_","")
+
+            nom = nom.replace("POW_","")
+            nom = nom.replace(".txt","")
+
+            if not nom in noms : 
+                noms.append(nom)
+
+    print(noms,len(noms))
+
     print(lcdm.POW)
 
     plt.loglog(lcdm.k3,lcdm.P3)
