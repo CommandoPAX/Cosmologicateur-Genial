@@ -35,6 +35,9 @@ matplotlib.rc('font', family="serif",size=14)
 def z(a):
     return 1/a - 1
 
+def ltok(x):
+    return 2*np.pi/x
+
 index_redhift = {
     "2" : 10,
     "3" : 4,
@@ -167,12 +170,19 @@ def superposer (fnl, wdm):
 
     plt.title("z = 1")
 
-    plt.loglog(lcdm.k2, w.P2/lcdm.P2, ls="dotted",color="red",label=r"P$_{WDM}$, m = "+str(wdm)+" ev")
-    plt.loglog(lcdm.k2, p.P2/lcdm.P2, ls="dotted",color="black",label=r"P$_{NG}$, fnl = "+str(fnl))
-    plt.loglog(lcdm.k2, p.P2*w.P2/(lcdm.P2**2), color="orange",label=r"P$_{NG} \times P_{WDM}$ ")
-    plt.loglog(lcdm.k2, pw.P2/lcdm.P2, color="blue",label=r"P$_{NG+WDM}$")
+    # {\rm WDM} m=100 {\rm ev}, {\rm NG}, {\rm NG} \times {\rm WDM} 
+
+    plt.loglog(lcdm.k2, w.P2/lcdm.P2, ls="dotted",color="red",label=r"${\rm WDM}$, m=100 {\rm ev}")
+    plt.loglog(lcdm.k2, p.P2/lcdm.P2, ls="dotted",color="black",label=r"${\rm NG}$, fnl = "+str(fnl))
+    plt.loglog(lcdm.k2, p.P2*w.P2/(lcdm.P2**2), color="orange",label=r"${\rm NG} \times {\rm WDM}$ ")
+    plt.loglog(lcdm.k2, pw.P2/lcdm.P2, color="blue",label=r"${\rm NG + WDM}$")
 
     axes = plt.gca()
+
+    secax = axes.secondary_xaxis('top', functions=(ltok, ltok))
+    secax.set_xlabel(r'$L{\rm [Mpc}/h]$') 
+
+    plt.axvline(x = 2*np.pi/(500/0.67)*256, color = 'k')
 
     axes.set_xlabel("k [h/Mpc]")
     axes.set_ylabel(r"P(k) / P$_{\Lambda {\rm CDM}}$ (k)")
@@ -183,12 +193,17 @@ def superposer (fnl, wdm):
 
     plt.title("z = 0")
 
-    plt.loglog(lcdm.k3, w.P3/lcdm.P3, ls="dotted",color="red",label=r"P$_{WDM}$, m = "+str(wdm)+" ev")
-    plt.loglog(lcdm.k3, p.P3/lcdm.P3, ls="dotted",color="black",label=r"P$_{NG}$, fnl = "+str(fnl))
-    plt.loglog(lcdm.k3, p.P3*w.P3/(lcdm.P3**2), color="orange",label=r"P$_{NG} \times P_{WDM}$ ")
-    plt.loglog(lcdm.k3, pw.P3/lcdm.P3, color="blue",label=r"P$_{NG+WDM}$")
+    plt.loglog(lcdm.k3, w.P3/lcdm.P3, ls="dotted",color="red",label=r"{\rm WDM}$, m=100 {\rm ev}")
+    plt.loglog(lcdm.k3, p.P3/lcdm.P3, ls="dotted",color="black",label=r"{\rm NG}$, fnl = "+str(fnl))
+    plt.loglog(lcdm.k3, p.P3*w.P3/(lcdm.P3**2), color="orange",label=r"${\rm NG} \times {\rm WDM}$")
+    plt.loglog(lcdm.k3, pw.P3/lcdm.P3, color="blue",label=r"${\rm NG + WDM}$")
 
     axes = plt.gca()
+
+    plt.axvline(x = 2*np.pi/(500/0.67)*512, color = 'k')
+
+    secax = axes.secondary_xaxis('top', functions=(ltok, ltok))
+    secax.set_xlabel(r'$L{\rm [Mpc}/h]$') 
 
     axes.set_xlabel("k [h/Mpc]")
     axes.set_ylabel(r"$P(k) / P_{lcdm} (k)$")
