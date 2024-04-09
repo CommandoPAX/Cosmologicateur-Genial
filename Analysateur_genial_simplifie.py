@@ -222,16 +222,15 @@ if __name__ == "__main__" :
     WDM100 = Simulation(name="WDM100")
     WDM500 = Simulation(name="WDM500")
     WDM1000 = Simulation(name="WDM1000")
-    WDM4000 = Simulation(name="WDM4000")
-    WDM10000 = Simulation(name="WDM10000")
+    WDM200 = Simulation(name="WDM200")
+    WDM300 = Simulation(name="WDM300")
     
-    plt.loglog(lcdm.k3, lcdm.P3/lcdm.P3, label=r"$\Lambda{\rm CDM}$")
-    plt.loglog(WDM100.k3, WDM100.P3/lcdm.P3, label =r"$m = 100$")
-    plt.loglog(WDM500.k3, WDM500.P3/lcdm.P3, label =r"$m = 500$")
-    plt.loglog(WDM1000.k3, WDM1000.P3/lcdm.P3, label =r"$m = 1000$")
-    plt.loglog(WDM4000.k3, WDM4000.P3/lcdm.P3, label =r"$m = 4000$")
-    plt.loglog(WDM10000.k3, WDM10000.P3/lcdm.P3, label =r"$m = 10000$")
-
+    plt.loglog(lcdm.k2, lcdm.P2/lcdm.P2, label=r"$\Lambda{\rm CDM}$")
+    plt.loglog(WDM100.k2, WDM100.P2/lcdm.P2, label =r"$m = 100$")
+    plt.loglog(WDM200.k2, WDM200.P2/lcdm.P2, label =r"$m = 200$")
+    plt.loglog(WDM300.k2, WDM300.P2/lcdm.P2, label =r"$m = 300$")
+    plt.loglog(WDM500.k2, WDM500.P2/lcdm.P2, label =r"$m = 500$")
+    plt.loglog(WDM1000.k2, WDM1000.P2/lcdm.P2, label =r"$m = 1000$")
     
     axes = plt.gca()
 
@@ -243,7 +242,7 @@ if __name__ == "__main__" :
     axes.set_xlabel("$k$ [$h$/Mpc]")
     axes.set_ylabel(r"P / P$_{\Lambda {\rm CDM}}$")
 
-    #plt.title("z = 0")
+    #plt.text(5e-1,1e-1,"z = 1")
 
     plt.legend()
     
