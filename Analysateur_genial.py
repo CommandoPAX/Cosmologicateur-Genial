@@ -513,8 +513,8 @@ if __name__ == "__main__" :
 
     for root, dirs, files in os.walk("RESULT"):
         for dir in dirs :
-            if not "r" in dir :
-                Simulation(path="./RESULT/"+dir, name=dir.split(" ")[-1],tout=True,index=2)
+            if not "r" in dir and not "PGN" in dir:
+                Simulation(path="./RESULT/"+dir, name=dir.split(" ")[-1],tout=True,index=3)
             #Simulation(path="./RESULT/"+dir, name=dir.split(" ")[-1],tout=True,index=3)
 
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
