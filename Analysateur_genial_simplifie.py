@@ -28,7 +28,7 @@ import MAS_library as MASL
 
 plt.tight_layout()
 
-matplotlib.rc('font', family="serif",size=14)
+matplotlib.rc('font', family="serif",size=18)
 
 #aout = 0.09, 0.2, 0.333, 0.5, 1
 
@@ -218,13 +218,37 @@ if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
     
-    #superposer(fnl=1000,wdm=300)
-    #superposer(fnl=-1000,wdm=300)
     lcdm = Simulation(name="LCDM")
+    PGN1000 = Simulation(name="PGN1000")
+    PGNM1000 = Simulation(name="PGN-1000")
+    PGN500 = Simulation(name="PGN500")
+    PGNM500 = Simulation(name="PGN-500")
+    
+    plt.loglog(lcdm.k3, lcdm.P3/lcdm.P3, label=r"$\Lambda{\rm CDM}$")
+    plt.loglog(PGN1000.k3, PGN1000.P3/lcdm.P3, label =r"$f_{\rm nl} = 1000$")
+    plt.loglog(PGNM1000.k3, PGNM1000.P3/lcdm.P3, label =r"$f_{\rm nl} = -1000$")
+    plt.loglog(PGN500.k3, PGN500.P3/lcdm.P3, label =r"$f_{\rm nl} = 500$")
+    plt.loglog(PGNM500.k3, PGNM500.P3/lcdm.P3, label =r"$f_{\rm nl} = -500$")
+    
+    axes = plt.gca()
 
-    superposer(fnl=-1000,wdm=100)
-    superposer(fnl=1000,wdm=100)
-    superposer(fnl=-1000,wdm=200)
+    secax = axes.secondary_xaxis('top', functions=(ltok, ltok))
+    secax.set_xlabel(r'$L{\rm [Mpc}/h]$') 
+
+    #plt.axvline(x = 2*np.pi/(500/0.67)*256, color = 'k')
+
+    axes.set_xlabel("$k$ [$h$/Mpc]")
+    axes.set_ylabel(r"P / P$_{\Lambda {\rm CDM}}$")
+
+    plt.title("z = 0")
+
+    plt.legend()
+    
+    plt.show()
+
+    #superposer(fnl=-1000,wdm=100)
+    #superposer(fnl=1000,wdm=100)
+    #superposer(fnl=-1000,wdm=200)
 
    
 """plt.clf()  
