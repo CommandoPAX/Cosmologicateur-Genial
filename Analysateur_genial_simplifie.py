@@ -42,52 +42,60 @@ index_redhift = {
 }
 
 class Simulation ():
-    def __init__ (self, path, name = "LCDM", index = 2,tout = True):
+    def __init__ (self, path, name = "LCDM",tout = True):
         self.path = path
         self.json_path = ""
 
-        self.index = index
-        self.info = "info_"+"0"*(5-len(str(self.index//10)))+str(self.index)
-        self.output = "output_"+"0"*(5-len(str(self.index//10)))+str(self.index)
-
         self.name = name
 
-        self.args = {}        
         
         self.CST = {}
         self.CST["name"] = self.name
+
+        self.POW = []
+
+        self.k2 = []
+        self.k3 = []
+
+        self.P2 = []
+        self.P3 = []
+
+        for i in range(1,6):
+            try :
+                fichier = open(str(i)+"_POW_"+name+".png","r")
+                self.POW.append(str(i)+"_POW_"+name+".png")
+                fichier.close()
+            except:
+                break
 
 
         self.Power_Spectrum()
 
 
-    def __getitem__ (self, x):
-        return self.args[x]
-
-
     def Power_Spectrum(self) :
-        for root,dirs,files in os.walk(self.path): 
-                for file in files:
-                    if "POW" in file and ".txt" in file and str(self.index)+"_" in file :
-                        self.path_pow = file
-                        break
+        
+        for i in range(2) :
+            fichier = open(self.POW[len(self.POW)-2+i])
 
-        fichier = open(self.path+"/"+self.path_pow,"r")
-        k = []
-        Pk0 = []
 
-        while 1:
-            l = fichier.readline()
-            if l == "" : break
-            l = l.split(" ")
-            k.append(float(l[0]))
-            Pk0.append(float(l[1].replace("\n","")))
+            while 1:
+                l = fichier.readline()
+                if l == "" : break
+                l = l.split(" ")
 
-        self.k = np.array(k)
-        self.Pk0 = np.array(Pk0)
+                if i == 0:
+                    self.k2.append(float(l[0]))
+                    self.P2.append(float(l[1].replace("\n","")))
+                else :
+                    self.k2.append(float(l[0]))
+                    self.P2.append(float(l[1].replace("\n","")))
 
-        self.args["k"] = self.k
-        self.args["Pk0"] = self.Pk0
+            fichier.close()
+
+        self.k2 = np.array(self.k2)
+        self.k3 = np.array(self.k3)
+        self.P2 = np.array(self.P2)
+        self.P3 = np.array(self.P3)
 
     def Convertir_index(self) : 
 
