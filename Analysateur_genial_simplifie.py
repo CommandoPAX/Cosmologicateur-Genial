@@ -47,6 +47,7 @@ class Simulation ():
 
         self.name = name
 
+        print(name)
         
         self.CST = {}
         self.CST["name"] = self.name
@@ -154,103 +155,27 @@ def trouver_simus (name, exclu = "", eq = True):
 
     return result       
 
-def superposer (fnl, wdm, path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM"):
+def superposer (fnl, wdm):
 
-    lcdm = Simulation(path_lcdm,name="LCDM",index = 3,tout = False)
-    lcdm2 = Simulation(path_lcdm,name="LCDM",index = 2,tout = False)
+    global lcdm
 
-    simus = trouver_simus("WDM"+str(wdm)+"PGN"+str(fnl))
-    print(simus)
+    w = Simulation(name="WDM"+str(wdm))
+    p = Simulation(name="PGN"+str(fnl))
+    pw = Simulation(name="WDM"+str(wdm)+"PGN"+str(fnl))
 
-    for s in simus :
-        if "WDM"+str(wdm)+"P" in s.split(" ")[-1] : 
-            pw2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-            pw3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+    plt.loglog(lcdm.k2, w.P2/lcdm.P2, ls="dotted",color="red",label="WDM alone, m = "+str(wdm)+" ev")
+    plt.loglog(lcdm.k2, p.P2/lcdm.P2, ls="dotted",color="black",label="NG alone, fnl = "+str(fnl))
+    plt.loglog(lcdm.k2, p.P2*w.P2/(lcdm.P2**2), color="orange",label=r"Multiplication $P_w \times P_w$ "+str(wdm))
+    plt.loglog(lcdm.k2, pw.P2/lcdm.P2, color="blue",label="WDM and NG, m = "+str(wdm)+" ev, fnl = "+str(fnl))
 
-    simus = trouver_simus("WDM"+str(wdm), exclu="PGN")
-    print(simus)
-    for s in simus :
-        if "WDM"+str(wdm) == s.split(" ")[-1] :
-            w2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-            w3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+    axes = plt.gca()
 
-    simus = trouver_simus("PGN"+str(fnl), exclu="WDM")
-    print(simus)
-    for s in simus :
-        p2 = Simulation(s,name=s.split(" ")[-1], tout=False,index=2)
-        p3 = Simulation(s,name=s.split(" ")[-1], tout=False,index=3)
+    axes.set_xlabel("k [h/Mpc]")
+    axes.set_ylabel(r"P(k) [$(Mpc/h)^3$]")
 
-    pow_p2 = (p2["Pk0"]/lcdm2["Pk0"])[8:160]
-    pow_w2 = (w2["Pk0"]/lcdm2["Pk0"])[8:160]
-    pow_pw2 = (pw2["Pk0"]/lcdm2["Pk0"])[8:160]
+    plt.legend()
 
-    pow_p3 = (p3["Pk0"]/lcdm["Pk0"])[8:160]
-    pow_w3 = (w3["Pk0"]/lcdm["Pk0"])[8:160]
-    pow_pw3 = (pw3["Pk0"]/lcdm["Pk0"])[8:160]
-
-    plt.clf()
-
-
-    fig, axes = plt.subplots(nrows=2,figsize=(8,8))
-    axes = axes.flatten()
-    axes[0].set_xlim(0.1,2)
-    #axes[0].set_ylim(pow_pw2[160],1.05)
-
-    axes[1].set_xlim(0.1,2)
-
-    axes[1].set_xlabel("k [h/Mpc]")
-    axes[0].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
-    axes[1].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
-
-
-    div = pow_pw2 / (pow_p2 * pow_w2)
-
-    #axes[1].set_ylim(np.min(div[8:160]),np.max(div[8:160]))
-
-    Plot_Pow(pow_pw2, lcdm2, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+")/lcdm",axes=axes[0])
-    Plot_Pow(pow_p2 * pow_w2, lcdm2, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
-    Plot_Pow(div, lcdm, labelname= "Ratio", axes = axes[1],color="black")
-    Plot_Pow(pow_p2, lcdm2, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted',axes=axes[0],color="red")
-    Plot_Pow(pow_w2, lcdm2, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black",axes=axes[0])
-
-    axes[0].legend()
-    axes[1].legend()
-
-    plt.title("z = 1")
-
-    plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=1 .png")
-
-    plt.clf()
-
-
-    fig, axes = plt.subplots(nrows=2,figsize=(8,8))
-    axes = axes.flatten()
-    axes[0].set_xlim(0.1,2)
-    #axes[0].set_ylim(pow_pw3[160],1.05)
-    axes[1].set_xlim(0.1,2)
-
-    axes[1].set_xlabel("k [h/Mpc]")
-    axes[0].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
-    axes[1].set_ylabel(r"P(k) [$(Mpc/h)^3$]")
-
-
-
-    plt.title("z = 0")
-
-    div = pow_pw3 / (pow_p3 * pow_w3)
-
-    #axes[1].set_ylim(np.min(div[8:160]),np.max(div[8:160]))
-
-
-    Plot_Pow(pow_pw3, lcdm, labelname = "(m = "+str(wdm)+" ev, fnl = "+str(fnl)+"/lcdm",axes=axes[0])
-    Plot_Pow((pow_p3 * pow_w3), lcdm, labelname = "((m = "+str(wdm)+" fnl = 0) * (m = 0 fnl = "+str(fnl)+")/lcdm",axes=axes[0])
-    Plot_Pow(div, lcdm, labelname= "Ratio", axes = axes[1],color="black")
-    Plot_Pow(pow_p3, lcdm, labelname="(fnl = "+str(fnl)+")/lcdm", linetype='dotted',axes=axes[0],color="red")
-    Plot_Pow(pow_w3, lcdm, labelname="(m = "+str(wdm)+")/lcdm", linetype='dotted',color="black",axes=axes[0])
-    axes[0].legend()
-    axes[1].legend()
-    plt.savefig("./RESULT/Superposition wdm"+str(wdm)+"fnl"+str(fnl)+" - z=0 .png")
-
+    plt.show()
 
 def ractions (wdm = 100000000000000, fnl = True) :
 
@@ -290,6 +215,8 @@ if __name__ == "__main__" :
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
     lcdm = Simulation(name="LCDM")
+
+    superposer(fnl=-1000,wdm=100)
 
     noms = []
     for root, dirs, files in os.walk("./POW"):
