@@ -102,6 +102,28 @@ class Simulation ():
         self.P2 = np.array(self.P2)
         self.P3 = np.array(self.P3)
 
+def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
+    plt.clf()
+    i = 0
+    for root, dirs, files in os.walk("./json/"):
+        for file in files :
+            if True :
+                with open("./json/"+file, "r") as f :
+                    para = json.load(f)
+                    S8 = para["S_8"]
+                    if True : #if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
+                        plt.scatter([S8],[i], label = para["name"])
+                        i = i+1
+                        if "cdm" in para["name"]:
+                            plt.axvline(x = S8,ls="--",label="lcdm")
+
+    axes = plt.gca()
+    axes.set_xlim(0.6,1)
+    axes.get_yaxis().set_visible(False)
+    plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
+    plt.legend()
+    plt.show()
+
 
 def PowerSpectrum (Simu, Class = False) :
 
@@ -224,6 +246,8 @@ if __name__ == "__main__" :
     WDM1000 = Simulation(name="WDM1000")
     WDM200 = Simulation(name="WDM200")
     WDM300 = Simulation(name="WDM300")
+
+    Plot_sigma_8()
     
     plt.loglog(lcdm.k2, lcdm.P2/lcdm.P2, label=r"$\Lambda{\rm CDM}$")
     plt.loglog(WDM100.k2, WDM100.P2/lcdm.P2, label =r"$m = 100$")
@@ -232,21 +256,6 @@ if __name__ == "__main__" :
     plt.loglog(WDM500.k2, WDM500.P2/lcdm.P2, label =r"$m = 500$")
     plt.loglog(WDM1000.k2, WDM1000.P2/lcdm.P2, label =r"$m = 1000$")
     
-    axes = plt.gca()
-
-    secax = axes.secondary_xaxis('top', functions=(ltok, ltok))
-    secax.set_xlabel(r'$L{\rm [Mpc}/h]$') 
-
-    #plt.axvline(x = 2*np.pi/(500/0.67)*256, color = 'k')
-
-    axes.set_xlabel("$k$ [$h$/Mpc]")
-    axes.set_ylabel(r"P / P$_{\Lambda {\rm CDM}}$")
-
-    #plt.text(5e-1,1e-1,"z = 1")
-
-    plt.legend()
-    
-    plt.show()
 
     #superposer(fnl=-1000,wdm=100)
     #superposer(fnl=1000,wdm=100)

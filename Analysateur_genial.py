@@ -510,16 +510,6 @@ if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
     
-
-    for root, dirs, files in os.walk("RESULT"):
-        for dir in dirs :
-            if not "r" in dir and not "PGN" in dir:
-                try:
-                    Simulation(path="./RESULT/"+dir, name=dir.split(" ")[-1],tout=True,index=2)
-                except:
-                    pass
-            #Simulation(path="./RESULT/"+dir, name=dir.split(" ")[-1],tout=True,index=3)
-
     Path_lcdm = "./RESULT/2024-03-12 20:07:08 - LCDM" 
     #superposer(fnl=1000,wdm=300)
     #superposer(fnl=-1000,wdm=300)
