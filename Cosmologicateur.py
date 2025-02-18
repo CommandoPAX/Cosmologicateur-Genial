@@ -218,7 +218,7 @@ def main(file_path, name):
     
 if __name__ == "__main__" :
     
-    pre = "../../data77/stahl/Scale/Nb/WDM/"
+    pre = "../../../data77/stahl/Scale/Nb/WDM/"
     snapshots = ["benchM","NG_F500_noScale","NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
 
     snap = snapshots[0]
