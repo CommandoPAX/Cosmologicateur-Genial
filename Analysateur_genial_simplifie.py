@@ -105,23 +105,43 @@ class Simulation ():
 def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
     plt.clf()
     i = 0
-    for root, dirs, files in os.walk("./json/"):
-        for file in files :
-            if True :
-                with open("./json/"+file, "r") as f :
-                    para = json.load(f)
-                    S8 = para["S_8"]
-                    if True : #if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
-                        plt.scatter([S8],[i], label = para["name"])
-                        i = i+1
-                        if "cdm" in para["name"]:
-                            plt.axvline(x = S8,ls="--",label="lcdm")
+    liste_fichiers = ["lcdm",'WDM100',"WDM200","WDM300","WDM400","WDM500","PGN500","PGN1000","PGN-500","PGN-1000"]
+    colors = ["#000000","#00FF00","#00DD00","#00BB00","#009900","#007700","#CC0000","#FF0000","#0000CC","#0000FF"]
+    for root, dirs, files in os.walk("../json/"):
+        for j in range(len(liste_fichiers)):
+            for file in files :
+                if file == "2_"+liste_fichiers[j]+"_constants.json" :
+                    try : 
+                        with open("../json/"+file, "r") as f :
+                            para = json.load(f)
+                            S8 = para["S_8"]
+                            if True : #if (name in para["name"] and not exclu in para["name"]) or "cdm" in para["name"] :
+
+                                if "PGN" in para ["name"] :
+                                    legende = para["name"].replace("PGN",r"$f_{\rm nl}^0 = $")
+                                    print(legende)
+                                elif "WDM" in para ["name"] :
+                                    legende = para["name"].replace("WDM",r"WDM, $m = $")
+                                    legende+=r" ev"
+                                elif "lcdm" in para["name"]:
+                                    legende = r"$\Lambda$CDM"
+                                else :
+                                    print(para["name"])
+                                    legende = para["name"]
+                                plt.scatter([S8],[i], label = legende,s=150,color=colors[j])
+                                i = i+1
+                                if "cdm" in para["name"]:
+                                    plt.axvline(x = S8,ls="--",color="black")
+                    except:
+                        pass
 
     axes = plt.gca()
     axes.set_xlim(0.6,1)
     axes.get_yaxis().set_visible(False)
-    plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 14)
-    plt.legend()
+    plt.xlabel(r'$S_8 \equiv \sigma_8 \sqrt{\Omega_m / 0.3}$', fontsize = 32)
+    handles, labels = axes.get_legend_handles_labels()
+    axes.legend(handles[::-1], labels[::-1], loc='upper left')
+    #plt.legend()
     plt.show()
 
 
@@ -241,17 +261,16 @@ if __name__ == "__main__" :
     cosmology.setCosmology('planck18')
     
     lcdm = Simulation(name="LCDM")
+
+    Plot_sigma_8()
+
     """WDM100 = Simulation(name="WDM100")
     WDM500 = Simulation(name="WDM500")
     WDM1000 = Simulation(name="WDM1000")
     WDM200 = Simulation(name="WDM200")
-<<<<<<< HEAD
     WDM300 = Simulation(name="WDM300")
 
     Plot_sigma_8()
-=======
-    WDM400 = Simulation(name="WDM400")
->>>>>>> 669db7c514a2cd360b3e6820281ff000932a84ab
     
     plt.loglog(lcdm.k2, lcdm.P2/lcdm.P2, label=r"$\Lambda{\rm CDM}$")
     plt.loglog(WDM100.k2, WDM100.P2/lcdm.P2, label =r"$m = 100$")
@@ -260,31 +279,13 @@ if __name__ == "__main__" :
     plt.loglog(WDM500.k2, WDM500.P2/lcdm.P2, label =r"$m = 500$")
     plt.loglog(WDM1000.k2, WDM1000.P2/lcdm.P2, label =r"$m = 1000$")
     
-<<<<<<< HEAD
-=======
-    axes = plt.gca()
-
-    secax = axes.secondary_xaxis('top', functions=(ltok, ltok))
-    secax.set_xlabel(r'$L{\rm [Mpc}/h]$') 
-
-    #plt.axvline(x = 2*np.pi/(500/0.67)*256, color = 'k')
-
-    axes.set_xlabel("$k$ [$h$/Mpc]")
-    axes.set_ylabel(r"P / P$_{\Lambda {\rm CDM}}$")
-
-    #plt.text(5e-1,1e-1,"z = 1")
-
-    plt.legend()
-    
-    plt.show()"""
->>>>>>> 669db7c514a2cd360b3e6820281ff000932a84ab
 
     superposer(fnl=-1000,wdm=100)
     superposer(fnl=1000,wdm=100)
     superposer(fnl=-1000,wdm=200)
 
    
-"""plt.clf()  
+plt.clf()  
     print(Pow[0])
     print('#######################################################################')
     print(Pow[1])
