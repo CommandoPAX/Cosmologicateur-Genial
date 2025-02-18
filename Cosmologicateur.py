@@ -81,7 +81,8 @@ def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
         output_ = f"{path}/{index}_POW.png"
     else : 
         output_ = f"{path}/{index}_POW_{SimuName}.png"
-    grid = 256    #grid size
+
+    grid = 512    #grid size
     pBoxSize = DATA.domain_width.in_units('Mpccm/h') #Mpc/h
     BoxSize = pBoxSize[0].value #Mpc/h
     Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
@@ -186,65 +187,47 @@ def Get_Simu_Info(DATA, index, path : str, SimuName : str) : #Not sure if there 
         Simu_Info = DATA.parameters
         json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
-def main(argv):
+def main(file_path, name):
     global Result_Path
     
-    POT = False 
-    VEL = False 
-    SPE = False 
-    HAL = False 
-    name = ""
-    
-    try:
-        # Predicted particle mass will be enabled by default for the pretty pictures
-        # p for potential 
-        # v for velocity 
-        # s for power spectrum 
-        # m for halo mass (no need for help function)
-        opts, args = getopt.getopt(argv,"pvsman:")
-    except getopt.GetoptError:
-        print ('test.py -p -v -s -m')
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt in ("-p"):
-            POT = True
-        elif opt in ("-v"):
-            VEL = True
-        elif opt in ("-s"):
-            SPE = True 
-        elif opt in ("-m"): 
-            HAL = True
-        elif opt in ("-a"): 
-            POT = True
-            VEL = True 
-            SPE = True 
-            HAL = True 
-        elif opt in ("-n") :
-            name = str(arg)
-    
+    POT = True
+    VEL = True 
+    SPE = True 
+    HAL = True 
+
+
     cosmology.setCosmology('planck18')
-    if name =="" : 
-        Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]}"
-    else : 
-        Output_Path = f"{Result_Path}/{str(datetime.datetime.now())[:-7]} - {name}"
     
-    for i in range(1, 10)  : 
+    Output_Path = f"{Result_Path}/{name}"
+    
+    for i in range(0,5)  : 
         plt.clf()
         print(f'---------------------------------{i}----------------------------------------')
-        try : #Will load files until they don't exist anymore
-            input_ = f"./output_0000{i}/info_0000{i}.txt"
-            ds=yt.load(input_)
-        except : 
-            print("File not found, breaking Thomas Delzant's legs")
-            break 
+        
+        input_ = f"{file_path}/snapshot_00{i}.hdf5"
+        ds=yt.lyt.load_hdf5_file(input_)
+        
         Predicted_Particle_Mass(ds, i, Output_Path, name)
         Get_Simu_Info(ds, i, Output_Path, name)
         if POT : Potential(ds, i, Output_Path, name)
         if VEL : Velocity(ds, i, Output_Path, name)
         if SPE : Power_Spectrum(ds, i, Output_Path, name)
         if HAL : Halo(ds, i, Output_Path, name)
-        os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
-    Copy_Mono_Config(Output_Path) 
-
+        #os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
+    
+    
 if __name__ == "__main__" :
-    main(sys.argv[1:])
+    
+    pre = "../../data77/stahl/Scale/Nb/WDM/"
+    snapshots = ["benchM","NG_F500_noScale","NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
+
+    snap = snapshots[0]
+    file_path = pre + snap
+
+    main(file_path, name = snap)
+    """
+    for snap in snapshots :
+        
+        file_path = pre + snap
+
+        main(file_path, name = snap)"""
