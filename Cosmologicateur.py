@@ -205,7 +205,7 @@ def main(file_path, name):
         print(f'---------------------------------{i}----------------------------------------')
         
         input_ = f"{file_path}/snapshot_00{i}.hdf5"
-        ds=yt.lyt.load_hdf5_file(input_)
+        ds=yt.load_hdf5_file(input_)
         
         Predicted_Particle_Mass(ds, i, Output_Path, name)
         Get_Simu_Info(ds, i, Output_Path, name)
