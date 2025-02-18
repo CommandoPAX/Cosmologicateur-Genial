@@ -26,7 +26,7 @@ from Errorateur import LogError
 # Utilisation (not currently functionnal):
 # python Cosmologicateur.py -i entree -o sortie
 
-Result_Path = "./Cosmologicateur-Genial/RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
+Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 
 def Copy_Mono_Config(path : str) : 
 
@@ -198,6 +198,8 @@ def main(file_path, name):
 
     cosmology.setCosmology('planck18')
     
+    os.system(f"mkdir {Result_Path}/{name}")
+
     Output_Path = f"{Result_Path}/{name}"
     
     for i in range(0,5)  : 
@@ -208,7 +210,7 @@ def main(file_path, name):
         ds=yt.load(input_)
         
         Predicted_Particle_Mass(ds, i, Output_Path, name)
-        Get_Simu_Info(ds, i, Output_Path, name)
+        #Get_Simu_Info(ds, i, Output_Path, name)
         if POT : Potential(ds, i, Output_Path, name)
         if VEL : Velocity(ds, i, Output_Path, name)
         if SPE : Power_Spectrum(ds, i, Output_Path, name)
