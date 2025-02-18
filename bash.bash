@@ -4,7 +4,7 @@
 #SBATCH --ntasks=16
 #SBATCH --ntasks-per-node=16
 #SBATCH --time=10:00:00
-#SBATCH --output=/home/fcastillo
+#SBATCH --output=/home/fcastillo/yt.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=END,FAIL 
 
