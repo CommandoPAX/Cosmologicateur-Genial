@@ -194,7 +194,7 @@ def main(file_path, name):
     POT = True
     VEL = True 
     SPE = True 
-    HAL = True 
+    HAL = False
 
 
     cosmology.setCosmology('planck18')
@@ -227,10 +227,10 @@ if __name__ == "__main__" :
     snap = snapshots[0]
     file_path = pre + snap
 
-    main(file_path, name = snap)
-    """
+    #main(file_path, name = snap)
+    
     for snap in snapshots :
         
         file_path = pre + snap
 
-        main(file_path, name = snap)"""
+        main(file_path, name = snap)
