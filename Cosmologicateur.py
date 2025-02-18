@@ -13,7 +13,7 @@ import numpy as np
 from scipy import interpolate
 #import density_field_library as DFL
 #import Pk_library as PKL
-#import MAS_library as MASL
+import MAS_library as MASL
 #import mass_function_library as MFL
 from yt_astro_analysis.halo_analysis import HaloCatalog
 from HaloStats import halo_MF
