@@ -27,6 +27,7 @@ from Errorateur import LogError
 # python Cosmologicateur.py -i entree -o sortie
 
 Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
+yt.enable_parallelism()
 
 def Copy_Mono_Config(path : str) : 
 
