@@ -211,8 +211,8 @@ def main(file_path, name):
         
         Predicted_Particle_Mass(ds, i, Output_Path, name)
         #Get_Simu_Info(ds, i, Output_Path, name)
-        if POT : Potential(ds, i, Output_Path, name)
-        if VEL : Velocity(ds, i, Output_Path, name)
+        #if POT : Potential(ds, i, Output_Path, name)
+        #if VEL : Velocity(ds, i, Output_Path, name)
         if SPE : Power_Spectrum(ds, i, Output_Path, name)
         if HAL : Halo(ds, i, Output_Path, name)
         #os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
