@@ -11,6 +11,6 @@
 module purge
 module load intelpython
 
-mpirun -n <16> python /home/fcastillo/Cosmologicateur-Genial/Cosmologicateur.py
+mpirun -n 16 python /home/fcastillo/Cosmologicateur-Genial/Cosmologicateur.py
 
 exit 0
