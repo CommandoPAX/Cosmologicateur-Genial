@@ -222,15 +222,18 @@ def main(file_path, name):
 if __name__ == "__main__" :
     
     pre = "../../../data77/stahl/Scale/Nb/WDM/KF/"
-    snapshots = ["benchM","NG_F500_noScale","NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
+    snapshots = ["NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
+
+    #pre = "../../../data77/stahl/Scale/Nb/WDM/ViVi/"
+    #snapshots = ["G_ViVi","NG_ViVi","NG_Fminus500_ViVi"]):
 
     snap = snapshots[0]
     file_path = pre + snap
 
-    #main(file_path, name = snap)
+    main(file_path, name = snap)
     
-    for snap in snapshots :
-        
-        file_path = pre + snap
+    #for snap in snapshots :
+    #    
+    #    file_path = pre + snap
 
-        main(file_path, name = snap)
+    #    main(file_path, name = snap)
