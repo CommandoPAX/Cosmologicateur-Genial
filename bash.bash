@@ -10,7 +10,8 @@
 
 module purge
 module load intelpython
+module load inteloneapi/2025.0.1
 
-mpirun -n 16 python /home/fcastillo/Cosmologicateur-Genial/Cosmologicateur.py
+mpirun -np 16 python /home/fcastillo/Cosmologicateur-Genial/Cosmologicateur.py
 
 exit 0
