@@ -227,7 +227,7 @@ if __name__ == "__main__" :
     #pre = "../../../data77/stahl/Scale/Nb/WDM/ViVi/"
     #snapshots = ["G_ViVi","NG_ViVi","NG_Fminus500_ViVi"]):
 
-    snap = snapshots[1]
+    snap = snapshots[0]
     file_path = pre + snap
 
     main(file_path, name = snap)
