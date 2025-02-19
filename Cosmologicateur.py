@@ -27,7 +27,7 @@ from Errorateur import LogError
 # python Cosmologicateur.py -i entree -o sortie
 
 Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
-yt.enable_parallelism()
+#yt.enable_parallelism()
 
 def Copy_Mono_Config(path : str) : 
 
@@ -188,7 +188,7 @@ def Get_Simu_Info(DATA, index, path : str, SimuName : str) : #Not sure if there 
         Simu_Info = DATA.parameters
         json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
-def main(file_path, name):
+def main(argv):
     global Result_Path
     
     POT = True
@@ -196,6 +196,19 @@ def main(file_path, name):
     SPE = True 
     HAL = False
 
+    pre = "../../../data77/stahl/Scale/Nb/WDM/KF/"
+    snapshots = ["NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
+
+    opts, args = getopt.getopt(argv, "nz:")
+
+    for opt, arg in opts :
+        if opt in ("-n") :
+            n = int(arg)
+        if opt in ("-z") :
+            i = int (arg)
+
+    name = snapshots[n]
+    file_path = pre + name
 
     cosmology.setCosmology('planck18')
     
@@ -203,34 +216,33 @@ def main(file_path, name):
 
     Output_Path = f"{Result_Path}/{name}"
     
-    for i in range(0,5)  : 
-        plt.clf()
-        print(f'---------------------------------{i}----------------------------------------')
-        
-        input_ = f"{file_path}/snapshot_00{i}.hdf5"
-        ds=yt.load(input_)
-        
-        Predicted_Particle_Mass(ds, i, Output_Path, name)
-        #Get_Simu_Info(ds, i, Output_Path, name)
-        #if POT : Potential(ds, i, Output_Path, name)
-        #if VEL : Velocity(ds, i, Output_Path, name)
-        if SPE : Power_Spectrum(ds, i, Output_Path, name)
-        if HAL : Halo(ds, i, Output_Path, name)
-        #os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
+
+    print(f'---------------------------------{i}----------------------------------------')
     
+    input_ = f"{file_path}/snapshot_00{i}.hdf5"
+    ds=yt.load(input_)
+    
+    Predicted_Particle_Mass(ds, i, Output_Path, name)
+    #Get_Simu_Info(ds, i, Output_Path, name)
+    #if POT : Potential(ds, i, Output_Path, name)
+    #if VEL : Velocity(ds, i, Output_Path, name)
+    if SPE : Power_Spectrum(ds, i, Output_Path, name)
+    if HAL : Halo(ds, i, Output_Path, name)
+    #os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
+
     
 if __name__ == "__main__" :
     
-    pre = "../../../data77/stahl/Scale/Nb/WDM/KF/"
-    snapshots = ["NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
+    #pre = "../../../data77/stahl/Scale/Nb/WDM/KF/"
+    #snapshots = ["NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
 
     #pre = "../../../data77/stahl/Scale/Nb/WDM/ViVi/"
     #snapshots = ["G_ViVi","NG_ViVi","NG_Fminus500_ViVi"]):
 
-    snap = snapshots[0]
-    file_path = pre + snap
+    #snap = snapshots[0]
+    #file_path = pre + snap
 
-    main(file_path, name = snap)
+    main(sys.argv[1:])
     
     #for snap in snapshots :
     #    
