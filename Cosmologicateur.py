@@ -189,6 +189,66 @@ def Get_Simu_Info(DATA, index, path : str, SimuName : str) : #Not sure if there 
         Simu_Info = DATA.parameters
         json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
+def Power_Spectrum_test(snap, index : int, path : str, SimuName : str):
+
+
+    if SimuName == "" : 
+        output_ = f"{path}/{index}_POW.png"
+    else : 
+        output_ = f"{path}/{index}_POW_{SimuName}.png"
+
+    grid = 512    #grid size
+    BoxSize = 500
+    Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
+    threads = 1      #number of openmp threads
+    verbose = True   #whether to print some information
+    axis = 0
+    MAS = 'CIC'
+    snapshot = 'snapdir_010/snap_010'  #snapshot name
+    grid     = 512                     #grid size
+    ptypes   = [1,2]                   #CDM + neutrinos
+    MAS      = 'CIC'                   #Cloud-in-Cell
+    do_RSD   = False                   #dont do redshif-space distortions
+    axis     = 0                       #axis along which place RSD; not used here
+    verbose  = True   #whether print information on the progress
+
+    # Compute the effective number of particles/mass in each voxel
+    delta = MASL.density_field_gadget(snapshot, ptypes, grid, MAS, do_RSD, axis, verbose)
+
+    # compute density contrast: delta = rho/<rho> - 1
+    delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
+
+
+    Pk = PKL.Pk(delta, BoxSize, axis, MAS, threads, verbose)
+    k       = Pk.k3D
+    Pk0     = Pk.Pk[:,0]
+
+    try :
+        output_spectrum = open(output_[:-4]+".txt","w")
+
+        for i in range(len(k)):
+            output_spectrum.write(str(k[i])+" "+str(Pk0[i])+"\n")
+
+        output_spectrum.close()
+    except :
+        pass
+
+
+    plt.clf()
+
+    plt.loglog(k,Pk0,label="RAMSES") #plot measure from N-body
+
+    toL=np.transpose(np.loadtxt("CLASS.dat"))
+    plt.loglog(toL[0],toL[1],linestyle="dotted",label='CLASS') #plot lienar CLASS
+    toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
+    plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
+    plt.legend()
+    plt.xlabel("k [h/Mpc]")
+    plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
+    plt.savefig(output_)
+
+
+
 def main(argv):
     global Result_Path
     
@@ -224,14 +284,15 @@ def main(argv):
 
     bbox = [[-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim]]
 
+    Power_Spectrum_test("{file_path}/snapshot_00{i}", i, Output_Path, name)
 
-    ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
+    #ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
     
     #Predicted_Particle_Mass(ds, i, Output_Path, name)
     #Get_Simu_Info(ds, i, Output_Path, name)
     #if POT : Potential(ds, i, Output_Path, name)
     #if VEL : Velocity(ds, i, Output_Path, name)
-    if SPE : Power_Spectrum(ds, i, Output_Path, name)
+    #if SPE : Power_Spectrum(ds, i, Output_Path, name)
     if HAL : Halo(ds, i, Output_Path, name)
     #os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
 
