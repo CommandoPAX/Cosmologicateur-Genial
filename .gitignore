@@ -163,3 +163,4 @@ cython_debug/
 RESULT/*
 Simulations/*
 ./Simulations/*
+bash_*_*.bash

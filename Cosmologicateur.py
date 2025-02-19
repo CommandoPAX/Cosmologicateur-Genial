@@ -197,7 +197,7 @@ def main(argv):
     HAL = False
 
     pre = "../../../data77/stahl/Scale/Nb/WDM/KF/"
-    snapshots = ["NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
+    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 
     opts, args = getopt.getopt(argv, "nz:")
 
