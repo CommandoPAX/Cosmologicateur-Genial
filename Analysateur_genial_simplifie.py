@@ -74,7 +74,7 @@ class Simulation ():
         self.k=np.array([self.k0,self.k1,self.k2,self.k3,self.k4])
         self.P=np.array([self.P0,self.P1,self.P2,self.P3,self.P4])
 
-        for i in range(1,6):
+        for i in range(0,5):
             try :
                 fichier = open("./POW/"+str(i)+"_POW_"+name+".txt","r")
                 self.POW.append("./POW/"+str(i)+"_POW_"+name+".txt")
@@ -89,7 +89,8 @@ class Simulation ():
     def Power_Spectrum(self) :
         
         for i in range(5) :
-            fichier = open(self.POW[len(self.POW)-5+i])
+            print(i)
+            fichier = open(self.POW[i],"r")
 
             while 1:
                 l = fichier.readline()
@@ -97,16 +98,29 @@ class Simulation ():
                 l = l.split(" ")
 
                 if i == 0:
+                    self.k0.append(float(l[0]))
+                    self.P0.append(float(l[1].replace("\n","")))
+                if i == 1:
+                    self.k1.append(float(l[0]))
+                    self.P1.append(float(l[1].replace("\n","")))
+
+                if i == 2:
                     self.k2.append(float(l[0]))
                     self.P2.append(float(l[1].replace("\n","")))
-                else :
+                if i == 3:
                     self.k3.append(float(l[0]))
                     self.P3.append(float(l[1].replace("\n","")))
-
+                if i == 4:
+                    self.k4.append(float(l[0]))
+                    self.P4.append(float(l[1].replace("\n","")))
+            
             fichier.close()
-
+ 
+        self.P0 = np.array(self.P0)
+        self.P1 = np.array(self.P1)
         self.P2 = np.array(self.P2)
         self.P3 = np.array(self.P3)
+        self.P4 = np.array(self.P4)
 
 def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
     plt.clf()
@@ -271,18 +285,25 @@ if __name__ == "__main__" :
 
     WDM500 = Simulation(name="G_m500")
     WDM500f500 = Simulation(name="NG_F500_m500")
-    WDM500fm500 = Simulation(name="NG_Fminus500_m500")
+    #WDM500fm500 = Simulation(name="NG_Fminus500_m500")
     f500 = Simulation(name="NG_F500")
     fm500 = Simulation(name="NG_Fminus500")
 
     #Plot_sigma_8()
     
-    plt.loglog(lcdm.k2, lcdm.P2/lcdm.P2, label=r"$\Lambda{\rm CDM}$")
-    plt.loglog(WDM500.k2, WDM500.P2/lcdm.P2, label =r"$m = 100$")
-    plt.loglog(WDM500f500.k2, WDM500f500.P2/lcdm.P2, label =r"$m = 200$")
-    plt.loglog(WDM500fm500.k2, WDM500fm500.P2/lcdm.P2, label =r"$m = 300$")
-    plt.loglog(f500.k2, f500.P2/lcdm.P2, label =r"$m = 500$")
-    plt.loglog(fm500.k2, fm500.P2/lcdm.P2, label =r"$m = 1000$")
+    axes = plt.gca()
+
+    plt.loglog(lcdm.k3, lcdm.P3/lcdm.P3, label=r"$\Lambda{\rm CDM}$")
+    plt.loglog(WDM500.k3, WDM500.P3/lcdm.P3, label =r"$m_{\rm WDM} = 500 eV$", ls="--", color="green")
+    plt.loglog(WDM500f500.k3, WDM500f500.P3/lcdm.P3, label =r"$fnl = 500 & WDM$", color="red",ls="--")
+    #plt.loglog(WDM500fm500.k4, WDM500fm500.P4/lcdm.P4, label =r"$fnl = -500 & WDM$", color="orange",ls="--")
+    plt.loglog(f500.k3, f500.P3/lcdm.P3, label =r"fnl = 500",color="red")
+    plt.loglog(fm500.k3, fm500.P3/lcdm.P3, label =r"$fnl = -500$", color="orange")
+
+    axes.invert_xaxis()
+
+    axes.legend()
+    
 
     plt.show()
     
