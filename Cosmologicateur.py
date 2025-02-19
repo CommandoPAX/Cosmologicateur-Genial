@@ -198,7 +198,7 @@ def Power_Spectrum_test(snap, index : int, path : str, SimuName : str, z):
         output_ = f"{path}/{index}_POW_{SimuName}.png"
 
     grid = 512    #grid size
-    BoxSize = 500/(1+z)
+    BoxSize = 500
     Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
     threads = 1      #number of openmp threads
     verbose = True   #whether to print some information
@@ -279,7 +279,7 @@ def main(argv):
     
     input_ = f"{file_path}/snapshot_00{i}.hdf5"
 
-    units_override =  {"UnitLength_in_cm": 3.08568e24}
+    units_override =  {"UnitLength_in_cm": 3.08568e24/(1+z)}
 
 
     bbox_lim = 500 
