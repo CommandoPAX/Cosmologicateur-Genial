@@ -204,7 +204,7 @@ def Power_Spectrum_test(snap, index : int, path : str, SimuName : str):
     verbose = True   #whether to print some information
     axis = 0
     MAS = 'CIC'
-    snapshot = 'snapdir_010/snap_010'  #snapshot name
+    snapshot = snap  #snapshot name
     grid     = 512                     #grid size
     ptypes   = [1,2]                   #CDM + neutrinos
     MAS      = 'CIC'                   #Cloud-in-Cell
