@@ -217,7 +217,7 @@ def main(argv):
     
     input_ = f"{file_path}/snapshot_00{i}.hdf5"
 
-    units_override =  {"UnitLength_in_cm": 3.08568e21}
+    units_override =  {"UnitLength_in_cm": 3.08568e24}
 
     ds=yt.load(input_,unit_base=units_override)
     
