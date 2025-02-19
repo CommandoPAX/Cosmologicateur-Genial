@@ -284,7 +284,7 @@ def main(argv):
 
     bbox = [[-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim]]
 
-    Power_Spectrum_test("{file_path}/snapshot_00{i}", i, Output_Path, name)
+    Power_Spectrum_test(f"{file_path}/snapshot_00{i}", i, Output_Path, name)
 
     #ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
     
