@@ -277,13 +277,24 @@ if __name__ == "__main__" :
     
 
     n = 0
+    
+    Redshifts = {
+        0 : 32,
+        1 : 3,
+        2 : 1,
+        3 : 0.25,
+        4 : 0
+    }
+
 
     for i in [0,1,2,4]:
 
-        axes = plt.gca()
-
 
         plt.subplot(2,2,n+1)
+
+        axes = plt.gca()
+
+        axes.title.set_text (f"z = {Redshifts[i]}")
 
         plt.loglog(lcdm.k[i], lcdm.P[i]/lcdm.P[i], label=r"$\Lambda{\rm CDM}$")
         plt.loglog(WDM500.k[i], WDM500.P[i]/lcdm.P[i], label =r"$m_{\rm WDM} = 500 eV$", ls="--", color="green")
@@ -293,10 +304,14 @@ if __name__ == "__main__" :
         plt.loglog(fm500.k[i], fm500.P[i]/lcdm.P[i], label =r"$fnl = -500$", color="orange")
         n +=1
 
-        axes.set_xlim(1e-2,3)
+        if i == 0 or i == 2 : axes.set_ylabel(r"P/P$_{\rm CDM}$")
+
+        if i == 0 : plt.legend()
 
 
-    axes.legend()
+    #axes.set_xlim(1e-2,3)
+
+
     
 
     plt.show()
