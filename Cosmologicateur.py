@@ -219,7 +219,13 @@ def main(argv):
 
     units_override =  {"UnitLength_in_cm": 3.08568e24}
 
-    ds=yt.load(input_,unit_base=units_override)
+
+    bbox_lim = 500 
+
+    bbox = [[-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim]]
+
+
+    ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
     
     #Predicted_Particle_Mass(ds, i, Output_Path, name)
     #Get_Simu_Info(ds, i, Output_Path, name)
