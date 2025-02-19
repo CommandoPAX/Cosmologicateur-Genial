@@ -39,11 +39,11 @@ def ltok(x):
     return 2*np.pi/x
 
 index_redhift = {
-    "2" : 10,
-    "3" : 4,
-    "4" : 2,
-    "5" : 1,
-    "6" : 0
+    "0" : 32,
+    "1" : 3,
+    "2" : 1,
+    "3" : 0.25,
+    "4" : 0
 }
 
 class Simulation ():
@@ -59,14 +59,20 @@ class Simulation ():
 
         self.POW = []
 
+        self.k0 = []
+        self.k1 = []
         self.k2 = []
         self.k3 = []
+        self.k4 = []
 
+        self.P0 = []
+        self.P1 = []
         self.P2 = []
-        self.P3 = []
+        self.P3 = []       
+        self.P4 = []
 
-        self.k=np.array([self.k2,self.k3])
-        self.P=np.array([self.P2,self.P3])
+        self.k=np.array([self.k0,self.k1,self.k2,self.k3,self.k4])
+        self.P=np.array([self.P0,self.P1,self.P2,self.P3,self.P4])
 
         for i in range(1,6):
             try :
@@ -82,8 +88,8 @@ class Simulation ():
 
     def Power_Spectrum(self) :
         
-        for i in range(2) :
-            fichier = open(self.POW[len(self.POW)-2+i])
+        for i in range(5) :
+            fichier = open(self.POW[len(self.POW)-5+i])
 
             while 1:
                 l = fichier.readline()
@@ -260,40 +266,29 @@ if __name__ == "__main__" :
 
     cosmology.setCosmology('planck18')
     
-    lcdm = Simulation(name="LCDM")
+    lcdm = Simulation(name="benchM")
 
-    Plot_sigma_8()
 
-    """WDM100 = Simulation(name="WDM100")
-    WDM500 = Simulation(name="WDM500")
-    WDM1000 = Simulation(name="WDM1000")
-    WDM200 = Simulation(name="WDM200")
-    WDM300 = Simulation(name="WDM300")
+    WDM500 = Simulation(name="G_m500")
+    WDM500f500 = Simulation(name="NG_F500_m500")
+    WDM500fm500 = Simulation(name="NG_Fminus500_m500")
+    f500 = Simulation(name="NG_F500")
+    fm500 = Simulation(name="NG_Fminus500")
 
-    Plot_sigma_8()
+    #Plot_sigma_8()
     
     plt.loglog(lcdm.k2, lcdm.P2/lcdm.P2, label=r"$\Lambda{\rm CDM}$")
-    plt.loglog(WDM100.k2, WDM100.P2/lcdm.P2, label =r"$m = 100$")
-    plt.loglog(WDM200.k2, WDM200.P2/lcdm.P2, label =r"$m = 200$")
-    plt.loglog(WDM400.k2, WDM400.P2/lcdm.P2, label =r"$m = 300$")
-    plt.loglog(WDM500.k2, WDM500.P2/lcdm.P2, label =r"$m = 500$")
-    plt.loglog(WDM1000.k2, WDM1000.P2/lcdm.P2, label =r"$m = 1000$")
+    plt.loglog(WDM500.k2, WDM500.P2/lcdm.P2, label =r"$m = 100$")
+    plt.loglog(WDM500f500.k2, WDM500f500.P2/lcdm.P2, label =r"$m = 200$")
+    plt.loglog(WDM500fm500.k2, WDM500fm500.P2/lcdm.P2, label =r"$m = 300$")
+    plt.loglog(f500.k2, f500.P2/lcdm.P2, label =r"$m = 500$")
+    plt.loglog(fm500.k2, fm500.P2/lcdm.P2, label =r"$m = 1000$")
+
+    plt.show()
     
 
-    superposer(fnl=-1000,wdm=100)
-    superposer(fnl=1000,wdm=100)
-    superposer(fnl=-1000,wdm=200)
+    #superposer(fnl=-1000,wdm=100)
+    #superposer(fnl=1000,wdm=100)
+    #superposer(fnl=-1000,wdm=200)
 
-   
-plt.clf()  
-    print(Pow[0])
-    print('#######################################################################')
-    print(Pow[1])
-    print('#######################################################################')
-    print(Pow[2])
-    print(Pow[0]-Pow[1]-Pow[2])
-    Plot_Pow(Pow[0], lcdm, labelname = "WDM3PGN1000/lcdm")
-    Plot_Pow(Pow[1] + Pow[2], lcdm, labelname = "(WDM3+PGN1000)/lcdm")
-    Plot_Pow(-Pow[0] + (Pow[1] + Pow[2]), lcdm, labelname= "Différence entre les ")
-    plt.savefig("./RESULT/RATIOOOOOO")
-    Plot_sigma_8()   """             
+ 
