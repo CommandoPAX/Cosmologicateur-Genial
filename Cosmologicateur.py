@@ -222,7 +222,7 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
 
     # Créer un en-tête FITS (facultatif, mais vous pouvez ajouter des informations supplémentaires)
     header = fits.Header()
-    header['COMMENT'] = 'Champ de densité'
+    header['COMMENT'] = 'Champ de densite'
     header['NAXIS'] = 3  
     header['NAXIS1'] = delta.shape[1]  
     header['NAXIS2'] = delta.shape[0]  
