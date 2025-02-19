@@ -89,7 +89,7 @@ def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
     print(BoxSize)
     Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
     threads = 1      #number of openmp threads
-    verbose = False   #whether to print some information
+    verbose = True   #whether to print some information
     axis = 0
     MAS = 'CIC'
     
