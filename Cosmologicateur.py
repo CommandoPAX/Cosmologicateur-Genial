@@ -189,7 +189,7 @@ def Get_Simu_Info(DATA, index, path : str, SimuName : str) : #Not sure if there 
         Simu_Info = DATA.parameters
         json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
-def Power_Spectrum_test(snap, index : int, path : str, SimuName : str):
+def Power_Spectrum_test(snap, index : int, path : str, SimuName : str, z):
 
 
     if SimuName == "" : 
@@ -198,7 +198,7 @@ def Power_Spectrum_test(snap, index : int, path : str, SimuName : str):
         output_ = f"{path}/{index}_POW_{SimuName}.png"
 
     grid = 512    #grid size
-    BoxSize = 500
+    BoxSize = 500/(1+z)
     Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
     threads = 1      #number of openmp threads
     verbose = True   #whether to print some information
@@ -271,6 +271,8 @@ def main(argv):
     os.system(f"mkdir {Result_Path}/{name}")
 
     Output_Path = f"{Result_Path}/{name}"
+    Redshifts = [32,3,1,0.25,0]
+    z = Redshifts[i]
     
 
     print(f'---------------------------------{i}----------------------------------------')
@@ -284,7 +286,7 @@ def main(argv):
 
     bbox = [[-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim]]
 
-    Power_Spectrum_test(f"{file_path}/snapshot_00{i}", i, Output_Path, name)
+    Power_Spectrum_test(f"{file_path}/snapshot_00{i}", i, Output_Path, name, z)
 
     #ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
     

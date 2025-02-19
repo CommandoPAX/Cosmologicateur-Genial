@@ -71,8 +71,8 @@ class Simulation ():
         self.P3 = []       
         self.P4 = []
 
-        self.k=np.array([self.k0,self.k1,self.k2,self.k3,self.k4])
-        self.P=np.array([self.P0,self.P1,self.P2,self.P3,self.P4])
+        self.k=[self.k0,self.k1,self.k2,self.k3,self.k4]
+        self.P=[self.P0,self.P1,self.P2,self.P3,self.P4]
 
         for i in range(0,5):
             try :
@@ -96,30 +96,15 @@ class Simulation ():
                 if l == "" : break
                 l = l.split(" ")
 
-                if i == 0:
-                    self.k0.append(float(l[0]))
-                    self.P0.append(float(l[1].replace("\n","")))
-                if i == 1:
-                    self.k1.append(float(l[0]))
-                    self.P1.append(float(l[1].replace("\n","")))
-
-                if i == 2:
-                    self.k2.append(float(l[0]))
-                    self.P2.append(float(l[1].replace("\n","")))
-                if i == 3:
-                    self.k3.append(float(l[0]))
-                    self.P3.append(float(l[1].replace("\n","")))
-                if i == 4:
-                    self.k4.append(float(l[0]))
-                    self.P4.append(float(l[1].replace("\n","")))
-            
+                self.k[i].append(float(l[0]))
+                self.P[i].append(float(l[1].replace("\n","")))
+                
             fichier.close()
  
-        self.P0 = np.array(self.P0)
-        self.P1 = np.array(self.P1)
-        self.P2 = np.array(self.P2)
-        self.P3 = np.array(self.P3)
-        self.P4 = np.array(self.P4)
+        for i in range(len(self.P)) :
+            self.P[i] = np.array(self.P[i])
+            self.k[i] = np.array(self.k[i])
+       
 
 def Plot_sigma_8 (index = 3, name="WDM",exclu="PGN"):
     plt.clf()
@@ -290,15 +275,25 @@ if __name__ == "__main__" :
 
     #Plot_sigma_8()
     
-    axes = plt.gca()
+
+    n = 0
+
+    for i in [0,1,2,4]:
+
+        axes = plt.gca()
 
 
-    plt.loglog(lcdm.k4, lcdm.P4, label=r"$\Lambda{\rm CDM}$")
-    plt.loglog(WDM500.k4, WDM500.P4, label =r"$m_{\rm WDM} = 500 eV$", ls="--", color="green")
-    plt.loglog(WDM500f500.k4, WDM500f500.P4, label =r"$fnl = 500 & WDM$", color="red",ls="--")
-    plt.loglog(WDM500fm500.k4, WDM500fm500.P4, label =r"$fnl = -500 & WDM$", color="orange",ls="--")
-    plt.loglog(f500.k4, f500.P4, label =r"fnl = 500",color="red")
-    plt.loglog(fm500.k4, fm500.P4, label =r"$fnl = -500$", color="orange")
+        plt.subplot(2,2,n+1)
+
+        plt.loglog(lcdm.k[i], lcdm.P[i]/lcdm.P[i], label=r"$\Lambda{\rm CDM}$")
+        plt.loglog(WDM500.k[i], WDM500.P[i]/lcdm.P[i], label =r"$m_{\rm WDM} = 500 eV$", ls="--", color="green")
+        plt.loglog(WDM500f500.k[i], WDM500f500.P[i]/lcdm.P[i], label =r"$fnl = 500 & WDM$", color="fuchsia",ls="--")
+        plt.loglog(WDM500fm500.k[i], WDM500fm500.P[i]/lcdm.P[i], label =r"$fnl = -500 & WDM$", color="orange",ls="--")
+        plt.loglog(f500.k[i], f500.P[i]/lcdm.P[i], label =r"fnl = 500",color="fuchsia")
+        plt.loglog(fm500.k[i], fm500.P[i]/lcdm.P[i], label =r"$fnl = -500$", color="orange")
+        n +=1
+
+        axes.set_xlim(1e-2,3)
 
 
     axes.legend()
