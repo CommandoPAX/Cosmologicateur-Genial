@@ -17,7 +17,7 @@ for n in range(6):
 module purge
 module load intelpython
 
-python /home/fcastillo/Cosmologicateur-Genial/Cosmologicateur.py -n {n} -z {i}
+python /home/fcastillo/Cosmologicateur-Genial/Cosmologicateur.py {n} {i}
 
 exit 0""")
 

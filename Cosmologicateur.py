@@ -199,13 +199,8 @@ def main(argv):
     pre = "../../../data77/stahl/Scale/Nb/WDM/KF/"
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 
-    opts, args = getopt.getopt(argv, "nz:")
-
-    for opt, arg in opts :
-        if opt in ("-n") :
-            n = int(arg)
-        if opt in ("-z") :
-            i = int (arg)
+    n = int (sys.argv[1])
+    i = int(sys.argv[2])
 
     name = snapshots[n]
     file_path = pre + name
@@ -242,7 +237,7 @@ if __name__ == "__main__" :
     #snap = snapshots[0]
     #file_path = pre + snap
 
-    main(sys.argv[1:])
+    main(sys.argv)
     
     #for snap in snapshots :
     #    
