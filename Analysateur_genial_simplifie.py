@@ -268,10 +268,10 @@ if __name__ == "__main__" :
 
 
     WDM500 = Simulation(name="G_m500")
-    WDM500f500 = Simulation(name="NG_F500_m500")
-    WDM500fm500 = Simulation(name="NG_Fminus500_m500")
-    f500 = Simulation(name="NG_F500")
-    fm500 = Simulation(name="NG_Fminus500")
+    WDM500fm500 = Simulation(name="NG_F500_m500")
+    WDM500f500 = Simulation(name="NG_Fminus500_m500")
+    fm500 = Simulation(name="NG_F500")
+    f500 = Simulation(name="NG_Fminus500")
 
     #Plot_sigma_8()
     
