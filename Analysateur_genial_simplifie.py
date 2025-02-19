@@ -285,7 +285,7 @@ if __name__ == "__main__" :
 
     WDM500 = Simulation(name="G_m500")
     WDM500f500 = Simulation(name="NG_F500_m500")
-    #WDM500fm500 = Simulation(name="NG_Fminus500_m500")
+    WDM500fm500 = Simulation(name="NG_Fminus500_m500")
     f500 = Simulation(name="NG_F500")
     fm500 = Simulation(name="NG_Fminus500")
 
@@ -296,7 +296,7 @@ if __name__ == "__main__" :
     plt.loglog(lcdm.k3, lcdm.P3/lcdm.P3, label=r"$\Lambda{\rm CDM}$")
     plt.loglog(WDM500.k3, WDM500.P3/lcdm.P3, label =r"$m_{\rm WDM} = 500 eV$", ls="--", color="green")
     plt.loglog(WDM500f500.k3, WDM500f500.P3/lcdm.P3, label =r"$fnl = 500 & WDM$", color="red",ls="--")
-    #plt.loglog(WDM500fm500.k4, WDM500fm500.P4/lcdm.P4, label =r"$fnl = -500 & WDM$", color="orange",ls="--")
+    plt.loglog(WDM500fm500.k4, WDM500fm500.P4/lcdm.P4, label =r"$fnl = -500 & WDM$", color="orange",ls="--")
     plt.loglog(f500.k3, f500.P3/lcdm.P3, label =r"fnl = 500",color="red")
     plt.loglog(fm500.k3, fm500.P3/lcdm.P3, label =r"$fnl = -500$", color="orange")
 

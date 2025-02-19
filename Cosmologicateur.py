@@ -84,8 +84,9 @@ def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
         output_ = f"{path}/{index}_POW_{SimuName}.png"
 
     grid = 512    #grid size
-    pBoxSize = DATA.domain_width.in_units('Mpccm/h') #Mpc/h
+    pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
     BoxSize = pBoxSize[0].value #Mpc/h
+    print(BoxSize)
     Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
     threads = 1      #number of openmp threads
     verbose = False   #whether to print some information
@@ -106,7 +107,7 @@ def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
     delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
         
 
-    Pk = PKL.Pk(delta, BoxSize, axis, 'None', threads, verbose)
+    Pk = PKL.Pk(delta, BoxSize, axis, MAS, threads, verbose)
     k       = Pk.k3D
     Pk0     = Pk.Pk[:,0]
 
