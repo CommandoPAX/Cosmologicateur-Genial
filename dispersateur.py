@@ -15,8 +15,8 @@ input_ = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=disperse_{n}_{i}
 #SBATCH --nodes=1
-#SBATCH --ntasks=32
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks=64
+#SBATCH --ntasks-per-node=64
 #SBATCH --time=10:00:00
 #SBATCH --output=/home/fcastillo/disperse_{n}_{i}.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
@@ -25,7 +25,7 @@ fichier.write(f"""#!/bin/bash
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 32
+/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 64
 
 exit 0""")
 
