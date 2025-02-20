@@ -10,7 +10,7 @@ i = int(sys.argv[2])
 
 fichier = open("mse_"+str(n)+"_"+str(i)+".bash","w")
 
-input_ = pre + snapshots[n]+"/"+snapshots[i]+"_"+str(i)+"_densite.fits"
+input_ = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
 fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=disperse_{n}_{i}
@@ -26,7 +26,7 @@ fichier.write(f"""#!/bin/bash
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 32
+/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 32 -outName {pre + snapshots[n]+"/"+snapshots[n]+"_"+str(i)+"_densite"}
 
 exit 0""")
 
