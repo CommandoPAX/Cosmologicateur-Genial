@@ -3,7 +3,7 @@ import sys
 
 
 pre = "./RESULT/"
-snapshots = ["benchM","NG_F500_noScale","NG_F500","G_m500","NG_F500_m500","NG_Fminus500_noScale","NG_Fminus500","NG_Fminus500_m500"]
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 
 n = int (sys.argv[1])
 i = int(sys.argv[2])
