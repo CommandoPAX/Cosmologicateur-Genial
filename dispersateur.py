@@ -10,13 +10,14 @@ i = int(sys.argv[2])
 
 fichier = open("mse_"+str(n)+"_"+str(i)+".bash","w")
 
-input_ = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
+input_ = pre + snapshots[n]+"/"+snapshots[i]+"_"+str(i)+"_densite.fits"
 
 fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=disperse_{n}_{i}
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
 #SBATCH --ntasks-per-node=32
+#SBATCH --mem-per-cpu=4G
 #SBATCH --time=10:00:00
 #SBATCH --output=/home/fcastillo/disperse_{n}_{i}.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
