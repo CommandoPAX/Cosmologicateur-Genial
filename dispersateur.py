@@ -20,12 +20,12 @@ fichier.write(f"""#!/bin/bash
 #SBATCH --time=10:00:00
 #SBATCH --output=/home/fcastillo/disperse_{n}_{i}.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
-#SBATCH --mail-type=END,FAIL 
+#SBATCH --mail-type=ALL 
 
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -outName {str(i)}_disperse.mse -nthreads 32
+/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 32
 
 exit 0""")
 
