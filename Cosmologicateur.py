@@ -220,7 +220,6 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
 
 
-    # Créer un en-tête FITS (facultatif, mais vous pouvez ajouter des informations supplémentaires)
     header = fits.Header()
     header['COMMENT'] = 'Champ de densite'
     header['NAXIS'] = 3  
@@ -228,10 +227,8 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     header['NAXIS2'] = delta.shape[0]  
     header['NAXIS3'] = delta.shape[2] 
 
-    # Créer un objet HDU (Header Data Unit) à partir du champ de densité et de l'en-tête
     hdu = fits.PrimaryHDU(data=delta, header=header)
 
-    # Créer un fichier FITS avec l'HDU
     hdu.writeto(f"{path}/{index}_densite.fits", overwrite=True)
 
 
