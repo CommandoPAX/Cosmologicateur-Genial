@@ -2,7 +2,7 @@ import os
 import sys
 
 
-pre = "./RESULT/"
+pre = "../../../data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 
 n = int (sys.argv[1])
@@ -26,7 +26,7 @@ fichier.write(f"""#!/bin/bash
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 32
+/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 32 -outName {pre+snapshots[n]+"/"+str(i)+"_densite"}
 
 exit 0""")
 
