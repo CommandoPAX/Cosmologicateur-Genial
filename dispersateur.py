@@ -17,7 +17,7 @@ fichier.write(f"""#!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
 #SBATCH --ntasks-per-node=32
-#SBATCH --mem=500gb
+#SBATCH --mem=1000gb
 #SBATCH --time=10:00:00
 #SBATCH --output=/home/fcastillo/disperse_{n}_{i}.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
