@@ -168,7 +168,6 @@ def plot_filaments_2d(squelette, data):
 
     hdul = fits.open(data)
     delta = hdul[0].data
-    print(np.shape(delta))
 
     plt.imshow(delta[:, :, 0] + delta[:, :, 1] + delta[:, :, 2] + delta[:, :, 3])
 
