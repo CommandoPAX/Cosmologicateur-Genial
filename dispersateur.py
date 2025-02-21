@@ -26,7 +26,7 @@ fichier.write(f"""#!/bin/bash
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 32 -outName {pre + snapshots[n]+"/"+snapshots[n]+"_"+str(i)+"_densite"}
+/softs/disperse/0.9.24/bin/mse {input_} -cut 1 -upSkl -manifolds -nthreads 32
 
 exit 0""")
 
