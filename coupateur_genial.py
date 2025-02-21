@@ -7,7 +7,7 @@ i = int(sys.argv[2])
 
 pre = "../../../data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
+data = pre + snapshots[n]+"/"+str(i)+"_densite_0.fits"
 
 hdul = fits.open(data)
 delta = hdul[0].data
@@ -36,5 +36,5 @@ for j in range(8):
 
     hdu = fits.PrimaryHDU(data=delta, header=header)
 
-    hdu.writeto(pre + snapshots[n]+"/"+str(i)+"_densite_"+str(j)+".fits", overwrite=True)
+    hdu.writeto(pre + snapshots[n]+"/"+str(i)+"_densite_0_"+str(j)+".fits", overwrite=True)
    
