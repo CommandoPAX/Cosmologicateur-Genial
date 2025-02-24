@@ -121,7 +121,7 @@ class Squelette():
             
         for fil in self.liste_filaments :
             fil.value_fields = (fichier.readline()[:-1]).split(" ")
-
+        
         fichier.close()
 
 def plot_filaments(squelette):
@@ -145,7 +145,7 @@ def plot_filaments(squelette):
 
             d = (x0 - x1)**2 + (y0 - y1)**2 + (z0-z1)**2
 
-            if ((z0>=0 and z0 <=4) or (z1>=0 and z1 <=4)) and ((x0>=0 and x0 <=4) or (x1>=0 and x1 <=4)) and ((y0>=0 and y0 <=2.5) or (y1>=0 and y1 <=4)) and d <25:
+            if d<25 : #((z0>=0 and z0 <=4) or (z1>=0 and z1 <=4)) and ((x0>=0 and x0 <=4) or (x1>=0 and x1 <=4)) and ((y0>=0 and y0 <=2.5) or (y1>=0 and y1 <=4)) and d <25:
                 i+=1
 
                 ax.plot([x0,x1],[y0,y1],[z0,z1],color="blue")
@@ -169,32 +169,35 @@ def plot_filaments_2d(squelette, data):
     hdul = fits.open(data)
     delta = hdul[0].data
 
-    plt.imshow(delta[:, :, 0] + delta[:, :, 1] + delta[:, :, 2] + delta[:, :, 3])
+
+    plt.imshow(np.sum(delta[:,:,:], axis=2),vmin=-50,vmax=50)
+    plt.colorbar()
 
     i = 0
     j = 0
     color = ["red", "blue", "green", "orange", "black"]
     for fil in squelette.liste_filaments :
         j+=1
-        for n in range(len(fil.data_samp)-1):
-            p0 = fil.data_samp[n]
-            p1 = fil.data_samp[n+1]
+        if float(fil.value_fields[0])> 10:
+            for n in range(len(fil.data_samp)-1):
+                p0 = fil.data_samp[n]
+                p1 = fil.data_samp[n+1]
 
-            x0 = float(p0[0])
-            y0 = float(p0[1])
-            z0 = float(p0[2])
+                x0 = float(p0[0])
+                y0 = float(p0[1])
+                z0 = float(p0[2])
 
-            x1 = float(p1[0])
-            y1 = float(p1[1])
-            z1 = float(p1[2])
+                x1 = float(p1[0])
+                y1 = float(p1[1])
+                z1 = float(p1[2])
 
-            d = (x0 - x1)**2 + (y0 - y1)**2 + (z0-z1)**2
+                d = (x0 - x1)**2 + (y0 - y1)**2 + (z0-z1)**2
 
-            if ((z0>=0 and z0 <=4) or (z1>=0 and z1 <=4)) and d <2000:
-                i+=1
+                if d <2000:
+                    i+=1
 
-                plt.plot([x0,x1],[y0,y1],color="blue")
-                #plt.scatter([x0,x1],[y0,y1],color="blue")
+                    plt.plot([x0,x1],[y0,y1],color="blue")
+                    #plt.scatter([x0,x1],[y0,y1],color="blue")
 
         #if i >= 5000 : break
 
@@ -204,6 +207,6 @@ def plot_filaments_2d(squelette, data):
 
 
 if __name__ == "__main__" :
-    squelette = Squelette("../gaussien_densite.fits_c1.up.NDskl.S001.a.NDskl")
-    data = "../gaussien_densite.fits"
-    plot_filaments_2d(squelette, data)
+    squelette = Squelette("../4_densite_0_0_0.fits_c1.up.NDskl.S001.a.NDskl")
+    data = "../4_densite_0_0_0.fits"
+    plot_filaments_2d(squelette,data)
