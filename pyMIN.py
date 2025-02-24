@@ -1,12 +1,12 @@
 import numpy as np 
 
 
-from sympy import LeviCivita
+
 from numba import jit
 
 
-@jit
-def calculateMFs(data,min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calculate_bin=True):
+
+def calculateMFs(data,thresholds=0,min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calculate_bin=True):
     '''
     Calculate the 3D MFs (v_{0}-v_{3}) of a given field (must be 3D)
 
@@ -30,7 +30,8 @@ def calculateMFs(data,min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calcula
     HII_y=datashape[1]
     HII_z=datashape[2]
     volume=HII_x*HII_y*HII_z
-    thresholds=np.linspace(min_sig,max_sig,int((max_sig-min_sig)/step)+1)*sig
+    if thresholds == 0:
+        thresholds=np.linspace(min_sig,max_sig,int((max_sig-min_sig)/step)+1)*sig
     nums=len(thresholds)
     v0=np.zeros((nums,),dtype=np.float32)
     v1=np.zeros((nums,),dtype=np.float32)
@@ -44,7 +45,7 @@ def calculateMFs(data,min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calcula
                        [[1, 0, -1], [0, 1, -1], [-1, 0, 1]],
                        [[-1, 1, 0], [1, -1, 0], [0, 1, -1]]], dtype=np.float32)
     levicivita=np.array(levicivita,dtype=np.float32)
-   
+    
     if is_need_calculate_bin:
         deltabin=deltabin*sig
     dth=0.5*deltabin
@@ -129,7 +130,6 @@ def calculateKdr(data,gradnorm,sum1,sum2,threshold,deltabin,HII_x,HII_y,HII_z,vo
     v2=v2/(6*volume*deltabin*np.pi)
     v3=v3/(4*volume*deltabin*np.pi)
     return v0,v1,v2,v3
-
 
 
 def hessian(x):
@@ -241,3 +241,10 @@ def substractwedge(data,m=0.5,nu_axis=2):
     mask=np.where(k_para<m*k_perp)
     datak[mask]=0
     return np.fft.irfftn(datak)
+
+
+if __name__ == "__main__" :
+
+
+    data = np.random.normal(size=(64,64,64))
+    v0,v1,v2,v3 = calculateMFs(data)
