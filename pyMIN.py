@@ -6,7 +6,7 @@ from numba import jit
 
 
 @jit
-def calculateMFs(data,thresholds=[],min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calculate_bin=True):
+def calculateMFs(data,thresholds,min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calculate_bin=True):
     '''
     Calculate the 3D MFs (v_{0}-v_{3}) of a given field (must be 3D)
 
@@ -30,8 +30,7 @@ def calculateMFs(data,thresholds=[],min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,i
     HII_y=datashape[1]
     HII_z=datashape[2]
     volume=HII_x*HII_y*HII_z
-    if len(thresholds)<1:
-        thresholds=np.linspace(min_sig,max_sig,int((max_sig-min_sig)/step)+1)*sig
+    thresholds=np.linspace(min_sig,max_sig,int((max_sig-min_sig)/step)+1)*sig
     nums=len(thresholds)
     v0=np.zeros((nums,),dtype=np.float32)
     v1=np.zeros((nums,),dtype=np.float32)
