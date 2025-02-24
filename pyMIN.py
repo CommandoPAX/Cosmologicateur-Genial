@@ -40,13 +40,11 @@ def calculateMFs(data,min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calcula
     sum1=np.zeros((HII_x,HII_y,HII_z),dtype=np.float64)
     sum2=np.zeros((HII_x,HII_y,HII_z),dtype=np.float64)
     
-    levicivita=np.zeros((3,3,3))
-    for i in range(3):
-        for j in range(3):
-            for k in range(3):
-                levicivita[i][j][k]=LeviCivita(i,j,k)
+    levicivita = np.array([[[0, 1, -1], [-1, 0, 1], [1, -1, 0]],
+                       [[1, 0, -1], [0, 1, -1], [-1, 0, 1]],
+                       [[-1, 1, 0], [1, -1, 0], [0, 1, -1]]], dtype=np.float32)
     levicivita=np.array(levicivita,dtype=np.float32)
-    
+   
     if is_need_calculate_bin:
         deltabin=deltabin*sig
     dth=0.5*deltabin

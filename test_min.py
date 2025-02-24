@@ -3,6 +3,9 @@ import numpy as np
 from pyMIN import*
 import matplotlib.pyplot as plt
 from math import*
+import sys
+
+print(sys.path)
 
 data = np.random.normal(size=(64,64,64))
 
