@@ -123,6 +123,32 @@ class Squelette_2d():
         
         fichier.close()
 
+    def plot(self, axe, field) :
+
+        if True :
+            im = axe.imshow(field, origin="lower", vmax = 10)
+            plt.colorbar(im)
+
+
+        for fil in self.liste_filaments :
+        
+            for n in range(len(fil.data_samp)-1):
+                p0 = fil.data_samp[n]
+                p1 = fil.data_samp[n+1]
+
+                x0 = float(p0[0])
+                y0 = float(p0[1])
+
+                x1 = float(p1[0])
+                y1 = float(p1[1])
+
+                d = (x0 - x1)**2 + (y0 - y1)**2
+
+                if d <2000 :
+
+                    axe.plot([x0,x1],[y0,y1],color="white", linewidth=1)
+
+ 
 
 class Squelette_3d():
     def __init__ (self, path):
@@ -322,6 +348,26 @@ def plot_filaments_2d(squelette, data):
 
 
 if __name__ == "__main__" :
-    squelette = Squelette_3d("../4_densite_0_0_0.fits_c1.up.NDskl.S001.a.NDskl")
-    data = "../4_densite_0_0_0.fits"
-    plot_filaments_2d(squelette,data)
+
+    Redshifts = {
+        0 : 32,
+        1 : 3,
+        2 : 1,
+        3 : 0.25,
+        4 : 0
+    }
+    for i in range(1,5):
+        plt.subplot(2,2,i)
+
+        axes = plt.gca()
+
+        axes.title.set_text (f"z = {Redshifts[i]}")
+
+        squelette = Squelette_2d(f"../slice/{i}_densite_slice.fits_c1.up.NDskl.S001.a.NDskl")
+        data = f"../slice/{i}_densite_slice.fits"
+        field_fichier = fits.open(data)
+        field = field_fichier[0].data
+        squelette.plot(axes, field = field)
+        field_fichier.close()
+
+    plt.show()

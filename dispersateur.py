@@ -44,8 +44,8 @@ fichier.write(f"""#!/bin/bash
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_}_slice.fits -cut 1 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits"}
-/softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits_c1.up.NDskl"} -smooth 1 -to NDskl_ascii
+/softs/disperse/0.9.24/bin/mse {input_}_slice.fits -cut 3 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits"}
+/softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits_c3.up.NDskl"} -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits_c3.up.NDskl"} -to NDskl_ascii
 
 exit 0""")
 
