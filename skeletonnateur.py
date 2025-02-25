@@ -126,7 +126,7 @@ class Squelette_2d():
     def plot(self, axe, field) :
 
         if True :
-            im = axe.imshow(field, origin="lower", vmax = 10)
+            im = axe.imshow(field, origin="lower", vmax = 10, vmin = -2)
             plt.colorbar(im)
 
 
@@ -356,14 +356,14 @@ if __name__ == "__main__" :
         3 : 0.25,
         4 : 0
     }
-    for i in range(1,5):
-        plt.subplot(2,2,i)
+    for i in range(0,4):
+        plt.subplot(2,2,i+1)
 
         axes = plt.gca()
 
         axes.title.set_text (f"z = {Redshifts[i]}")
 
-        squelette = Squelette_2d(f"../slice/{i}_densite_slice.fits_c1.up.NDskl.S001.a.NDskl")
+        squelette = Squelette_2d(f"../slice/{i}_densite_slice.fits_c3.up.NDskl.S001.a.NDskl")
         data = f"../slice/{i}_densite_slice.fits"
         field_fichier = fits.open(data)
         field = field_fichier[0].data
