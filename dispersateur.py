@@ -12,25 +12,28 @@ i = int(sys.argv[2])
 fichier = open("mse_"+str(n)+"_"+str(i)+".bash","w")
 
 input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
+slice = False
 
-hdul = fits.open(input_+".fits")
-data = hdul[0].data
-slice = np.sum(data[:,:,0:2], axis=2)
-hdul.close()
+if slice :
 
-header = fits.Header()
-header['COMMENT'] = 'Slice'
-header['NAXIS'] = 3  
-header['NAXIS1'] = data.shape[0]  
-header['NAXIS2'] = data.shape[1]  
-header['NAXIS3'] = data.shape[2] 
+    hdul = fits.open(input_+".fits")
+    data = hdul[0].data
+    slice = np.sum(data[:,:,0:2], axis=2)
+    hdul.close()
 
-hdu = fits.PrimaryHDU(data=slice, header=header)
+    header = fits.Header()
+    header['COMMENT'] = 'Slice'
+    header['NAXIS'] = 3  
+    header['NAXIS1'] = data.shape[0]  
+    header['NAXIS2'] = data.shape[1]  
+    header['NAXIS3'] = data.shape[2] 
 
-hdu.writeto(input_+"_slice.fits", overwrite=True)
+    hdu = fits.PrimaryHDU(data=slice, header=header)
+
+    hdu.writeto(input_+"_slice.fits", overwrite=True)
 
 
-fichier.write(f"""#!/bin/bash
+    fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=disperse_{n}_{i}
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -44,8 +47,28 @@ fichier.write(f"""#!/bin/bash
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_}_slice.fits -cut 100 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits"}
-/softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits_c100.up.NDskl"} -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits_c100.up.NDskl"} -to NDskl_ascii
+/softs/disperse/0.9.24/bin/mse {input_}_slice.fits -cut 1 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits"}
+/softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits_c1.up.NDskl"} -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite_slice.fits_c1.up.NDskl"} -to NDskl_ascii
+
+exit 0""")
+
+else :
+    fichier.write(f"""#!/bin/bash
+#SBATCH --job-name=disperse_{n}_{i}
+#SBATCH --nodes=1
+#SBATCH --ntasks=32
+#SBATCH --ntasks-per-node=32
+#SBATCH --mem=100gb
+#SBATCH --time=10:00:00
+#SBATCH --output=/home/fcastillo/disperse_slice_{n}_{i}.out   
+#SBATCH --mail-user=fabien.castillo@etu.unistra.fr
+#SBATCH --mail-type=ALL 
+
+module purge
+module load disperse/0.9.24
+
+/softs/disperse/0.9.24/bin/mse {input_}_slice.fits -cut 1 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite.fits -forceLoops"}
+/softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite.fits_c1.up.NDskl"} -nthreads 32 -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite.fits_c1.up.NDskl"} -to NDskl_ascii
 
 exit 0""")
 
