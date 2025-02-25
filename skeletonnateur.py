@@ -25,7 +25,106 @@ class Filament ():
         self.nsamp = nsamp
         self.data_samp = data_samp
 
-class Squelette():
+class Squelette_2d():
+    def __init__ (self, path):
+
+        self.path = path
+        fichier = open(self.path,"r")
+
+        fichier.readline()
+        self.ndim = fichier.readline()
+        self.comment = fichier.readline()
+        self.bbox = fichier.readline()
+
+        fichier.close()
+
+        self.Critical_points()
+
+    def Critical_points (self) :
+
+        self.fichier = open(self.path,"r")
+        fichier = self.fichier
+
+        while 1 :
+            ligne = fichier.readline()
+            if "[CRITICAL POINTS]" in ligne : break
+
+        self.ncrit = int(fichier.readline()[:-1])
+        self.Pointscrit = []
+        for nc in range(self.ncrit) :
+            info = fichier.readline()[:-1]
+            infos = info.split(" ")
+            type_ = infos[0]
+            x = infos[1]
+            y = infos[2]
+            value = infos[3]
+            pairid = infos[4]
+            boundary = infos[5]
+            nfil = int(fichier.readline()[1:-1])
+
+            data_fil = []
+
+            for n in range(nfil) :
+                info_fil = fichier.readline()[1:-1]
+                infos_fil = info_fil.split(" ")
+                data_fil.append(infos_fil)
+
+
+            self.Pointscrit.append(PointCrit(type_, x, y, 0, value, pairid, boundary, nfil, data_fil))
+     
+        if "[FILAMENTS]" in fichier.readline() :
+            self.filaments()
+
+    def filaments(self):
+        fichier = self.fichier
+
+        self.nfil = int(fichier.readline()[:-1])
+        self.liste_filaments = []
+
+        for nf in range(self.nfil):
+            infos = (fichier.readline()[:-1]).split(" ")
+            cp1 = infos[0]
+            cp2 = infos[1]
+            nsamp = int(infos[2])
+            data_samp = []
+            for ns in range(nsamp):
+                info_samp = (fichier.readline()[1:-1]).split(" ")
+                data_samp.append(info_samp)
+
+            self.liste_filaments.append(Filament(cp1, cp2, nsamp, data_samp))
+
+        if "[CRITICAL POINTS DATA]" in fichier.readline():
+            self.Critical_points_data()
+
+    def Critical_points_data(self):
+        fichier = self.fichier
+
+        self.num_fields = int(fichier.readline()[:-1])
+        self.nom_fields = []
+        for nom in range(self.num_fields):
+            self.nom_fields.append(fichier.readline()[:-1])
+
+        for pc in self.Pointscrit :
+            pc.value_fields = (fichier.readline()[:-1]).split(" ")
+
+        if "[FILAMENTS DATA]" in fichier.readline() :
+            self.Filaments_data()
+
+    def Filaments_data (self):
+        fichier = self.fichier
+
+        self.num_fields_fil = int(fichier.readline()[:-1])
+        self.nom_fields_fil = []
+        for nom in range(self.num_fields_fil):
+            self.nom_fields_fil.append(fichier.readline()[:-1])
+            
+        for fil in self.liste_filaments :
+            fil.value_fields = (fichier.readline()[:-1]).split(" ")
+        
+        fichier.close()
+
+
+class Squelette_3d():
     def __init__ (self, path):
 
         self.path = path
@@ -124,6 +223,7 @@ class Squelette():
         
         fichier.close()
 
+
 def plot_filaments(squelette):
     ax = plt.figure().add_subplot(projection='3d')
     i = 0
@@ -170,33 +270,48 @@ def plot_filaments_2d(squelette, data):
     delta = hdul[0].data
 
 
-    plt.imshow(np.sum(delta[:,:,:], axis=2),vmin=-50,vmax=50)
+    plt.imshow((np.sum(delta[:,:,0:2], axis=2)), origin="lower", vmax = 10)
     plt.colorbar()
+
+    data_slice = delta[:,:,0:2]
+
+    """header = fits.Header()
+    header['COMMENT'] = 'Slice'
+    header['NAXIS'] = 3  
+    header['NAXIS1'] = delta.shape[0]  
+    header['NAXIS2'] = delta.shape[1]  
+    header['NAXIS3'] = delta.shape[2] 
+
+    hdu = fits.PrimaryHDU(data=data_slice, header=header)
+
+    hdu.writeto(f"slice_densite.fits", overwrite=True)"""
+
+
 
     i = 0
     j = 0
     color = ["red", "blue", "green", "orange", "black"]
     for fil in squelette.liste_filaments :
         j+=1
-        if float(fil.value_fields[0])> 10:
+        if True:#float(fil.value_fields[0])> 1:
             for n in range(len(fil.data_samp)-1):
                 p0 = fil.data_samp[n]
                 p1 = fil.data_samp[n+1]
 
-                x0 = float(p0[0])
-                y0 = float(p0[1])
-                z0 = float(p0[2])
+                z0 = float(p0[0])
+                x0 = float(p0[1])
+                y0 = float(p0[2])
 
-                x1 = float(p1[0])
-                y1 = float(p1[1])
-                z1 = float(p1[2])
+                z1 = float(p1[0])
+                x1 = float(p1[1])
+                y1 = float(p1[2])
 
                 d = (x0 - x1)**2 + (y0 - y1)**2 + (z0-z1)**2
 
-                if d <2000:
+                if d <2000 and z1 <3 and z0 <3:
                     i+=1
 
-                    plt.plot([x0,x1],[y0,y1],color="blue")
+                    plt.plot([x0,x1],[y0,y1],color="white", linewidth=1)
                     #plt.scatter([x0,x1],[y0,y1],color="blue")
 
         #if i >= 5000 : break
@@ -207,6 +322,6 @@ def plot_filaments_2d(squelette, data):
 
 
 if __name__ == "__main__" :
-    squelette = Squelette("../4_densite_0_0_0.fits_c1.up.NDskl.S001.a.NDskl")
+    squelette = Squelette_3d("../4_densite_0_0_0.fits_c1.up.NDskl.S001.a.NDskl")
     data = "../4_densite_0_0_0.fits"
     plot_filaments_2d(squelette,data)
