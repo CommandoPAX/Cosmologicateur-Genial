@@ -402,19 +402,14 @@ if __name__ == "__main__" :
 
         for j in range(6):
 
-            try :
-                squelette = Squelette_2d(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_slice.fits_c1.up.NDskl.S001.a.NDskl")
-                data = f"../slice/{i}_densite_slice.fits"
-                #field_fichier = fits.open(data)
-                #field = field_fichier[0].data
-                #squelette.plot(axes, field = field)
-                PDF_len_filaments(axes, squelette, couleur = couleurs[j], ls = ls[j], label = labels[j])
-                #field_fichier.close()
+            squelette = Squelette_2d(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_slice.fits_c1.up.NDskl.S001.a.NDskl")
+            data = f"../slice/{i}_densite_slice.fits"
+            #field_fichier = fits.open(data)
+            #field = field_fichier[0].data
+            #squelette.plot(axes, field = field)
+            PDF_len_filaments(axes, squelette, couleur = couleurs[j], ls = ls[j], label = labels[j])
+            #field_fichier.close()
 
-
-            except :
-                pass
-        
             if j == 5 and i == 0: plt.legend() 
 
     plt.savefig("len.png")
