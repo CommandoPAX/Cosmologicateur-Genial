@@ -6,7 +6,6 @@ from math import*
 import sys
 from astropy.io import fits
 
-#
 n = int(sys.argv[1])
 i = int(sys.argv[2])
 
