@@ -393,6 +393,8 @@ if __name__ == "__main__" :
     ls = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "fuchsia", "orange", "fuchsia"]
 
+    plt.figure(figsize=(8,8))
+
     for i in range(1,5):
         plt.subplot(2,2,i)
 
@@ -410,7 +412,7 @@ if __name__ == "__main__" :
             PDF_len_filaments(axes, squelette, couleur = couleurs[j], ls = ls[j], label = labels[j])
             #field_fichier.close()
 
-            if j == 5 and i == 0: plt.legend() 
+            if j == 5 and i == 1: plt.legend() 
 
     plt.savefig("len.png")
 
