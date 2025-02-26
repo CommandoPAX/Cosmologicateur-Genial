@@ -10,7 +10,7 @@ from astropy.io import fits
 n = int(sys.argv[1])
 i = int(sys.argv[2])
 
-pre = "../../../data100/fcastillo/RESULT/"
+pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
