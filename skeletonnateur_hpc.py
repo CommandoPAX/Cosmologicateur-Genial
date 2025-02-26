@@ -362,13 +362,13 @@ def plot_filaments_2d(squelette, data):
 
     plt.show()
 
-def PDF_len_filaments (axes, squelette, couleur="blue", ls="-") :
+def PDF_len_filaments (axes, squelette, couleur="blue", ls="-", label = "LCDM") :
     longueurs = []
     for fil in squelette.liste_filaments :
         fil.len()
         longueurs.append(fil.l)
 
-    hist = np.histogram(np.array(longueurs), density= True, range = [0, 10], bins=10)
+    hist = np.histogram(np.array(longueurs), density= True, range = [0, 10], bins=10, label=label)
     axes.plot(hist [0], color= couleur, ls = ls)
     axes.set_xlabel("longueur [Mpc / h]")
     axes.set_ylabel("Probabilite")
@@ -388,6 +388,7 @@ if __name__ == "__main__" :
     }
     
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+    labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
     ls = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "fuchsia", "orange", "fuchsia"]
@@ -401,14 +402,20 @@ if __name__ == "__main__" :
 
         for j in range(6):
 
+            try :
+                squelette = Squelette_2d(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_slice.fits_c1.up.NDskl.S001.a.NDskl")
+                data = f"../slice/{i}_densite_slice.fits"
+                #field_fichier = fits.open(data)
+                #field = field_fichier[0].data
+                #squelette.plot(axes, field = field)
+                PDF_len_filaments(axes, squelette, couleur = couleurs[j], ls = ls[j], label = labels[j])
+                #field_fichier.close()
 
-            squelette = Squelette_2d(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_slice.fits_c1.up.NDskl.S001.a.NDskl")
-            data = f"../slice/{i}_densite_slice.fits"
-            #field_fichier = fits.open(data)
-            #field = field_fichier[0].data
-            #squelette.plot(axes, field = field)
-            PDF_len_filaments(axes, squelette, couleur = couleurs[j], ls = ls[j])
-            #field_fichier.close()
+
+            except :
+                pass
+        
+            if j == 5 and i == 0: plt.legend() 
 
     plt.savefig("len.png")
 
