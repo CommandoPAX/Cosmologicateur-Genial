@@ -38,7 +38,7 @@ source /etc/profile.d/modules.sh
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_}_0.fits -nthreads 32 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite_0_time.fits"} -periodicity 0 -forceLoops
+/softs/disperse/0.9.24/bin/mse {input_}_0.fits -nthreads 32 -cut 1-upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite_0_time.fits"} -periodicity 0 -forceLoops
 /softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite_0_time.fits_c1.up.NDskl"} -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite_0_time.fits_c1.up.NDskl"} -to NDskl_ascii
 
 exit 0""")
