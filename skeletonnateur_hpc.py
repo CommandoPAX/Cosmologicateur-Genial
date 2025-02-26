@@ -395,7 +395,7 @@ if __name__ == "__main__" :
     ls = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
-    plt.figure(figsize=(12,10))
+    plt.figure(figsize=(14,10))
 
     for i in range(1,5):
         plt.subplot(2,2,i)
@@ -416,5 +416,5 @@ if __name__ == "__main__" :
 
             if j == 5 and i == 1: plt.legend() 
 
-    plt.savefig("len.png")
+    plt.savefig("len.pdf")
 
