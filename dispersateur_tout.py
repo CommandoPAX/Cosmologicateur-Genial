@@ -40,11 +40,10 @@ for n in range(6):
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
         fichier.write(f"""
+/softs/disperse/0.9.24/bin/mse {input_}_0.fits -nthreads 32 -cut 1 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite_0.fits"} -periodicity 0 -forceLoops
+/softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite_0.fits_c1.up.NDskl"} -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite_0.fits_c1.up.NDskl"} -to NDskl_ascii
 
-        /softs/disperse/0.9.24/bin/mse {input_}_0.fits -nthreads 32 -cut 1 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite_0.fits"} -periodicity 0 -forceLoops
-        /softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite_0.fits_c1.up.NDskl"} -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite_0.fits_c1.up.NDskl"} -to NDskl_ascii
-
-        exit 0""")
+exit 0""")
             
 fichier.close()
 os.system("sbatch mse.sh")
