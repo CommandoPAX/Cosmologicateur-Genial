@@ -393,7 +393,7 @@ if __name__ == "__main__" :
     ls = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "fuchsia", "orange", "fuchsia"]
 
-    plt.figure(figsize=(8,8))
+    plt.figure(figsize=(12,10))
 
     for i in range(1,5):
         plt.subplot(2,2,i)
