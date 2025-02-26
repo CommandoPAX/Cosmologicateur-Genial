@@ -21,7 +21,7 @@ for n in range(6):
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=200gb
 #SBATCH --time=2:00:00
-#SBATCH --output=/home/fcastillo/disperse_{n}_{i}.out
+#SBATCH --output=/home/fcastillo/cut_{n}_{i}.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL
 #SBATCH --partition=pscomp""")
