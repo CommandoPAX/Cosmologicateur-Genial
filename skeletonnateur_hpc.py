@@ -368,11 +368,13 @@ def PDF_len_filaments (axes, squelette, couleur="blue", ls="-", label = "LCDM") 
         fil.len()
         longueurs.append(fil.l)
 
-    hist = np.histogram(np.array(longueurs), density= True, range = [0, 10], bins=10)
+    hist = np.histogram(np.array(longueurs), density= True, range = [0, 10], bins=20)
     axes.plot(hist [0], color= couleur, ls = ls, label=label)
     axes.set_xlabel("longueur [Mpc / h]")
+    plt.xscale("log")
     axes.set_ylabel("Probabilite")
     axes.set_ylim(0,0.3)
+    axes.hline(np.median(longueurs))
 
 
 
