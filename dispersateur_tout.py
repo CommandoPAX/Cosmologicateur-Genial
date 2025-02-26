@@ -9,13 +9,13 @@ snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminu
 
 fichier = open("mse.sh","w")
 fichier.write(f"""#!/bin/bash
-#SBATCH --job-name=disperse_{n}_{i}
+#SBATCH --job-name=disperse
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
 #SBATCH --ntasks-per-node=32
 #SBATCH --mem=500gb
 #SBATCH --time=24:00:00
-#SBATCH --output=/home/fcastillo/disperse_{n}_{i}.out
+#SBATCH --output=/home/fcastillo/disperse.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL
 #SBATCH --partition=pscomp
