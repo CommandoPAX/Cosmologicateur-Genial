@@ -12,7 +12,7 @@ i = int(sys.argv[2])
 fichier = open("mse_"+str(n)+"_"+str(i)+".bash","w")
 
 input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
-slice = False
+slice = True
 
 if slice :
 
@@ -43,6 +43,7 @@ if slice :
 #SBATCH --output=/home/fcastillo/disperse_slice_{n}_{i}.out   
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL 
+#SBATCH --partition=pscomp
 
 module purge
 module load disperse/0.9.24
@@ -67,8 +68,8 @@ else :
 module purge
 module load disperse/0.9.24
 
-/softs/disperse/0.9.24/bin/mse {input_}_slice.fits -cut 1 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite.fits -forceLoops"}
-/softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite.fits_c1.up.NDskl"} -nthreads 32 -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite.fits_c1.up.NDskl"} -to NDskl_ascii
+/softs/disperse/0.9.24/bin/mse {input_}.fits -cut 1 -upSkl -manifolds -outName {pre+snapshots[n]+"/"+str(i)+"_densite.fits -forceLoops"}
+/softs/disperse/0.9.24/bin/skelconv {pre+snapshots[n]+"/"+str(i)+"_densite.fits_c1.up.NDskl"} -smooth 1 -outName {pre+snapshots[n]+"/"+str(i)+"_densite.fits_c1.up.NDskl"} -to NDskl_ascii
 
 exit 0""")
 

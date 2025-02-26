@@ -4,6 +4,7 @@ import sys
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 from astropy.io import fits
+from math import*
 
 class PointCrit ():
     def __init__ (self, type, x, y, z, value, pairid, boundary, nfil, data_fil):
@@ -24,6 +25,18 @@ class Filament ():
         self.cp2 = cp2
         self.nsamp = nsamp
         self.data_samp = data_samp
+
+    def len (self) :
+
+        self.l = 0
+
+        for n in range(len(self.data_samp)-1):
+            p0 = self.data_samp[n]
+            p1 = self.data_samp[n+1]
+
+            for ndim in range(len(p0)):
+                self.l += sqrt((float(p0[ndim]) - float(p1[ndim]))**2) * 500/512
+
 
 class Squelette_2d():
     def __init__ (self, path):
@@ -349,6 +362,20 @@ def plot_filaments_2d(squelette, data):
 
     plt.show()
 
+def PDF_len_filaments (axes, squelette) :
+    longueurs = []
+    for fil in squelette.liste_filaments :
+        fil.len()
+        longueurs.append(fil.l)
+
+    hist = np.histogram(np.array(longueurs), density= True, range = [0, 10], bins=10)
+    axes.plot(hist [0])
+    axes.set_xlabel("longueur [Mpc / h]")
+    axes.set_ylabel("Probabilite")
+    axes.set_ylim(0,0.3)
+
+
+
 
 if __name__ == "__main__" :
 
@@ -359,8 +386,9 @@ if __name__ == "__main__" :
         3 : 0.25,
         4 : 0
     }
-    for i in range(0,4):
-        plt.subplot(2,2,i+1)
+    
+    for i in range(1,5):
+        plt.subplot(2,2,i)
 
         axes = plt.gca()
 
@@ -370,7 +398,9 @@ if __name__ == "__main__" :
         data = f"../slice/{i}_densite_slice.fits"
         field_fichier = fits.open(data)
         field = field_fichier[0].data
-        squelette.plot(axes, field = field)
+        #squelette.plot(axes, field = field)
+        PDF_len_filaments(axes, squelette)
         field_fichier.close()
 
     plt.show()
+
