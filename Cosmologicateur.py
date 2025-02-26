@@ -230,7 +230,7 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     header['NAXIS2'] = delta.shape[1]  
     header['NAXIS3'] = delta.shape[2] 
 
-    hdu = fits.PrimaryHDU(data=delta, header=header)
+    hdu = fits.PrimaryHDU(data=np.float32(delta), header=header)
 
     hdu.writeto(f"{path}/{index}_test_densite.fits", overwrite=True)
 
