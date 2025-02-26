@@ -416,5 +416,5 @@ if __name__ == "__main__" :
 
             if j == 5 and i == 1: plt.legend() 
 
-    plt.savefig("len.pdf")
+    plt.savefig("len20.pdf")
 
