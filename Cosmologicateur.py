@@ -190,6 +190,9 @@ def Get_Simu_Info(DATA, index, path : str, SimuName : str) : #Not sure if there 
         Simu_Info = DATA.parameters
         json.dump(Simu_Info, outf, indent=4, separators=(", ", ": "), sort_keys=True, skipkeys=True, ensure_ascii=False) 
 
+def save_particles (snap, index, path) :
+    pass
+
 def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
 
 
@@ -207,7 +210,7 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     MAS = 'CIC'
     snapshot = snap  #snapshot name
     grid     = 512                     #grid size
-    ptypes   = [1,2]                   #CDM + neutrinos
+    ptypes   = [1]                   #CDM + neutrinos
     MAS      = 'CIC'                   #Cloud-in-Cell
     do_RSD   = False                   #dont do redshif-space distortions
     axis     = 0                       #axis along which place RSD; not used here
@@ -217,21 +220,21 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     delta = MASL.density_field_gadget(snapshot, ptypes, grid, MAS, do_RSD, axis, verbose)
 
     # compute density contrast: delta = rho/<rho> - 1
-    delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
+    #delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
 
 
     header = fits.Header()
     header['COMMENT'] = 'Champ de densite'
     header['NAXIS'] = 3  
-    header['NAXIS1'] = delta.shape[1]  
-    header['NAXIS2'] = delta.shape[0]  
+    header['NAXIS1'] = delta.shape[0]  
+    header['NAXIS2'] = delta.shape[1]  
     header['NAXIS3'] = delta.shape[2] 
 
     hdu = fits.PrimaryHDU(data=delta, header=header)
 
-    hdu.writeto(f"{path}/{index}_densite.fits", overwrite=True)
+    hdu.writeto(f"{path}/{index}_test_densite.fits", overwrite=True)
 
-
+    """
     Pk = PKL.Pk(delta, BoxSize, axis, MAS, threads, verbose)
     k       = Pk.k3D
     Pk0     = Pk.Pk[:,0]
@@ -259,7 +262,7 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.savefig(output_)
-
+    """
 
 
 def main(argv):
