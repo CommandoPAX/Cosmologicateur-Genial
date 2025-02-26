@@ -374,7 +374,7 @@ def PDF_len_filaments (axes, squelette, couleur="blue", ls="-", label = "LCDM") 
     plt.xscale("log")
     axes.set_ylabel("Probabilite")
     axes.set_ylim(0,0.3)
-    axes.axhline(np.median(np.array(longueurs)))
+    axes.axvline(np.median(np.array(longueurs)), label="mediane LCDM", color="black")
 
 
 
