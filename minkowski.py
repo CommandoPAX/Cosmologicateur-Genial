@@ -20,7 +20,10 @@ hdul.close()
 
 v0,v1,v2,v3 = calculateMFs(data)
 
+result = np.array([v0,v1,v2,v3])
+np.save(f"minkowski_{n}_{i}.txt", result)
 
+"""
 plt.plot(v0,label="v0")
 plt.legend()
 
@@ -37,3 +40,4 @@ plt.plot(v3,label="v3")
 
 plt.legend()
 plt.savefig(pre+snapshots[n]+"/minkowski_"+str(i)+".png")
+"""
