@@ -391,7 +391,7 @@ if __name__ == "__main__" :
     labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
     ls = ["-", "-", "-.", "--", "-", "--"]
-    couleurs = ["blue", "orange", "green", "fuchsia", "orange", "fuchsia"]
+    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
     plt.figure(figsize=(12,10))
 
