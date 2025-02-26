@@ -46,5 +46,5 @@ for n in range(6):
 
         exit 0""")
             
-        fichier.close()
+fichier.close()
 os.system("sbatch mse.sh")
