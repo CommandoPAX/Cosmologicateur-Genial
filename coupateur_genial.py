@@ -18,8 +18,8 @@ N = np.shape(delta)[0]
 header = fits.Header()
 header['COMMENT'] = 'Champ de densite'
 header['NAXIS'] = 3  
-header['NAXIS1'] = delta.shape[1]/2  
-header['NAXIS2'] = delta.shape[0] /2
+header['NAXIS1'] = delta.shape[0]/2  
+header['NAXIS2'] = delta.shape[1] /2
 header['NAXIS3'] = delta.shape[2] /2
 
 for j in range(8):
