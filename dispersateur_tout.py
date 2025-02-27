@@ -12,7 +12,7 @@ for n in range(6):
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
 
-        fichier = open("mse.sh","w")
+        fichier = open(f"mse.sh","w")
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}_{i}
 #SBATCH --partition=pscomp
@@ -49,4 +49,4 @@ smoothing=1
 exit 0""")
             
         fichier.close()
-        os.system("sbatch mse.sh")
+        #os.system(f"sbatch mse_{n}_{i}.sh")
