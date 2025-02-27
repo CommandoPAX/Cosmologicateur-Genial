@@ -27,7 +27,7 @@ if __name__ == "__main__" :
     for p in range(4) :
         plt.title(  f"v_{p}")
         plt.tight_layout()
-        for i in range(1,5):
+        for i in [0,1,2,4]:
             plt.subplot(2,2,i)
 
             axes = plt.gca()
