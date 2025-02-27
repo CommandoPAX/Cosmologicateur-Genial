@@ -27,6 +27,7 @@ if __name__ == "__main__" :
 
     for p in range(4) :
         plt.title(  f"v_{p}")
+        plt.axis("off")
         #plt.tight_layout()
         for i in [0,1,2,4]:
             plt.subplot(2,2,min(i+1,4))
@@ -43,7 +44,7 @@ if __name__ == "__main__" :
                 #print(data)
                 axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
                 axes.set_xlabel(r"threshold [$\sigma$]")
-                if j == 5 and i == 1: 
+                if j == 5 and i == 0: 
                     axes.legend() 
 
         if i == 0:
