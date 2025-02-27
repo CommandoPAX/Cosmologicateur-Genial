@@ -42,11 +42,7 @@ if __name__ == "__main__" :
                     plt.legend() 
 
         if i == 0:
-            plt.gca().spines['top'].set_color('none')
-            plt.gca().spines['right'].set_color('none')
-            plt.gca().spines['left'].set_color('none')
-            plt.gca().spines['bottom'].set_color('none')
-
+            plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.savefig(f"v_{p}.pdf")
         plt.clf()
