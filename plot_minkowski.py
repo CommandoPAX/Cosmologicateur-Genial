@@ -39,7 +39,7 @@ if __name__ == "__main__" :
 
 
     for p in range(4) :
-        plt.title(  f"v_{p}")
+        plt.title(  rf"v$_{p}$")
         plt.axis("off")
         #plt.tight_layout()
 
