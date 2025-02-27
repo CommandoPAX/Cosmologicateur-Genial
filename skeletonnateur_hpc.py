@@ -408,7 +408,7 @@ if __name__ == "__main__" :
 
             try :
                     
-                squelette = Squelette_2d(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0.fits_c0.1.up.NDskl.S001.a.NDskl")
+                squelette = Squelette_2d(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1.up.NDskl.S001.a.NDskl")
                 data = f"../slice/{i}_densite_slice.fits"
                 #field_fichier = fits.open(data)
                 #field = field_fichier[0].data
