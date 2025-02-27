@@ -17,12 +17,13 @@ if __name__ == "__main__" :
     }
     
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-    labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
+    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
     ls = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
     plt.figure(figsize=(14,10))
+    X = np.arange(-3,3,61)
 
     for p in range(4) :
         plt.title(  f"v_{p}")
@@ -36,8 +37,10 @@ if __name__ == "__main__" :
 
             for j in range(6):
 
+
                 data = np.load(f"minkowski_{j}_{i}.txt.npy")
-                axes.plot(data[p], color=couleurs[j], ls=ls[j],label=labels[j])
+                axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
+                axes.set_xlabel(r"threshold [$\sigma$]")
                 if j == 5 and i == 1: 
                     axes.legend() 
 
