@@ -51,7 +51,7 @@ if __name__ == "__main__" :
 
                 axes = plt.gca()
 
-                if d == 0 : 
+                if d == 1 : 
                     axes.title.set_text (f"z = {Redshifts[i]}")
                     plt.subplots_adjust(hspace=0)
 
