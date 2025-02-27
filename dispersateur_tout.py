@@ -11,7 +11,7 @@ fichier = open("mse.sh","w")
 fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=disperse
 #SBATCH --mem=500gb
-#SBATCH --time=24:00:00
+#SBATCH --time=48:00:00
 #SBATCH --output=/home/fcastillo/disperse.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL
