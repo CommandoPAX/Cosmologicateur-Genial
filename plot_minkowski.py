@@ -59,6 +59,8 @@ if __name__ == "__main__" :
             for d in range(2):
                 place = places[str(i) + str(d)]
 
+                print(axs)
+
                 axes = axs[min(i, 3), d]
 
                 if d == 0 : 
