@@ -23,7 +23,7 @@ if __name__ == "__main__" :
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
     plt.figure(figsize=(14,10))
-    X = np.arange(-3,3,61)
+    X = np.linspace(-3,3,61)
 
     for p in range(4) :
         plt.title(  f"v_{p}")
@@ -39,8 +39,8 @@ if __name__ == "__main__" :
 
 
                 data = np.load(f"minkowski_{j}_{i}.txt.npy")
-                print(np.shape(data[p]))
-                print(data)
+                #print(np.shape(data[p]))
+                #print(data)
                 axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
                 axes.set_xlabel(r"threshold [$\sigma$]")
                 if j == 5 and i == 1: 
