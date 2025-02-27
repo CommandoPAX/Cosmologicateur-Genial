@@ -25,6 +25,7 @@ if __name__ == "__main__" :
     plt.figure(figsize=(14,10))
 
     for p in range(4) :
+        plt.title(  f"v_{p}")
         for i in range(1,5):
             plt.subplot(2,2,i)
 
@@ -37,7 +38,6 @@ if __name__ == "__main__" :
                 data = np.load(f"minkowski_{j}_{i}.txt.npy")
                 axes.plot(data[p], color=couleurs[j], ls=ls[j],label=labels[j])
                 if j == 5 and i == 1: 
-                    plt.title(f"v_{p}")
                     plt.legend() 
 
         plt.savefig(f"v_{p}.pdf")
