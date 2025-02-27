@@ -47,7 +47,7 @@ if __name__ == "__main__" :
 
             for d in range(2):
                 place = places[str(i) + str(d)]
-                plt.subplot(4,2,place, gridspec_kw = {'hspace': 0})
+                plt.subplot(4,2,place)
 
                 axes = plt.gca()
 
