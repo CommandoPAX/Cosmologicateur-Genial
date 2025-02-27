@@ -13,8 +13,8 @@ fichier.write(f"""#!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
 #SBATCH --ntasks-per-node=32
-#SBATCH --mem=100gb
-#SBATCH --time=24:00:00
+#SBATCH --mem=500gb
+#SBATCH --time=48:00:00
 #SBATCH --output=/home/fcastillo/minkowski.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL
@@ -32,6 +32,7 @@ source /etc/profile.d/modules.sh
 fichier.write(f"""
 module purge
 module load intelpython
+module load inteloneapi/2025.0.1
 """)
 
 for n in range(6):
@@ -40,7 +41,7 @@ for n in range(6):
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
         fichier.write(f"""
-python minkowski.py {n} {i}
+mpirun -np 32 python minkowski.py {n} {i}
 """)
             
 fichier.write("exit 0")
