@@ -39,7 +39,7 @@ if __name__ == "__main__" :
 
 
                 data = np.load(f"minkowski_{j}_{i}.txt.npy")
-                axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
+                axes.plot(X, data[p][0], color=couleurs[j], ls=ls[j],label=labels[j])
                 axes.set_xlabel(r"threshold [$\sigma$]")
                 if j == 5 and i == 1: 
                     axes.legend() 
