@@ -39,7 +39,7 @@ if __name__ == "__main__" :
                 data = np.load(f"minkowski_{j}_{i}.txt.npy")
                 axes.plot(data[p], color=couleurs[j], ls=ls[j],label=labels[j])
                 if j == 5 and i == 1: 
-                    plt.legend() 
+                    axes.legend() 
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
