@@ -2,8 +2,9 @@ import numpy as np
 
 
 
-from numba import jit
+from numba import jit, set_num_threads
 
+set_num_threads(32)
 
 
 def calculateMFs(data,thresholds=0,min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calculate_bin=True):

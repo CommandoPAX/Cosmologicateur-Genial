@@ -41,7 +41,7 @@ for n in range(6):
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
         fichier.write(f"""
-mpirun -np 32 python minkowski.py {n} {i}
+python minkowski.py {n} {i}
 """)
             
 fichier.write("exit 0")
