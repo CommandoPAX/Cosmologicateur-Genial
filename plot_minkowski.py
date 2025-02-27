@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 from astropy.io import fits
 from math import*
+from matplotlib import gridspec
 
 if __name__ == "__main__" :
 
@@ -46,7 +47,7 @@ if __name__ == "__main__" :
 
             for d in range(2):
                 place = places[str(i) + str(d)]
-                plt.subplot(4,2,place)
+                plt.subplot(4,2,place, gridspec_kw = {'hspace': 0})
 
                 axes = plt.gca()
 
