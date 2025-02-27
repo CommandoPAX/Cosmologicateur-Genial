@@ -35,7 +35,7 @@ if __name__ == "__main__" :
 
             for j in range(6):
 
-                data = np.load(f"minkowski_{i}_{j}.txt.npy")
+                data = np.load(f"minkowski_{j}_{i}.txt.npy")
                 axes.plot(data[p], color=couleurs[j], ls=ls[j],label=labels[j])
                 if j == 5 and i == 1: plt.legend() 
 
