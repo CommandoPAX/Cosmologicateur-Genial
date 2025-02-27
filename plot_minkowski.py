@@ -50,7 +50,7 @@ if __name__ == "__main__" :
 
                 axes = plt.gca()
 
-                axes.title.set_text (f"z = {Redshifts[i]}")
+                if d == 0 : axes.title.set_text (f"z = {Redshifts[i]}")
 
                 for j in range(6):
 
@@ -62,9 +62,9 @@ if __name__ == "__main__" :
                         axes.set_ylabel(rf"v$_{p}$")
                     else : 
                         axes.plot(X, data[p] - lcdm[p], color=couleurs[j], ls=ls[j],label=labels[j])
-                        axes.set_ylabel(r"\Delta")
+                        axes.set_ylabel(r"$\Delta$")
                     axes.set_xlabel(r"threshold [$\sigma$]")
-                    if j == 5 and i == 0: 
+                    if j == 5 and i == 0 and d == 0: 
                         axes.legend() 
 
         if i == 0:
