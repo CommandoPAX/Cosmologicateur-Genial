@@ -61,7 +61,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[min(i, 3), d]
+                axes = axs[str(i) + str(d)]
 
                 if d == 0 : 
                     axes.title.set_text (f"z = {Redshifts[i]}")
