@@ -7,7 +7,7 @@ import time
 pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 
-fichier = open("mse.sh","w")
+fichier = open("minkowski.sh","w")
 fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=minkowski
 #SBATCH --nodes=1
@@ -45,4 +45,4 @@ python minkowski.py {n} {i}
             
 fichier.write("exit 0")
 fichier.close()
-os.system("sbatch mse.sh")
+os.system("sbatch minkowski.sh")
