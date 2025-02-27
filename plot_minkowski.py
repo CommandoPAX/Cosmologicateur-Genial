@@ -60,7 +60,7 @@ if __name__ == "__main__" :
                     if d == 0 : 
                         axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
                         axes.set_ylabel(rf"v$_{p}$")
-                        axes.xaxis.set_visible("off")
+                        axes.xaxis.set_visible(False)
                     else : 
                         axes.plot(X, data[p] - lcdm[p], color=couleurs[j], ls=ls[j],label=labels[j])
                         axes.set_ylabel(r"$\Delta$")
