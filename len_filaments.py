@@ -2,8 +2,8 @@ from skeletonnateur_hpc import*
 import sys
 import numpy as np
 
-n = sys.argv[1]
-i = sys.argv[2]
+n = int(sys.argv[1])
+i = int(sys.argv[2])
 
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
