@@ -43,7 +43,7 @@ if __name__ == "__main__" :
                 try :
                     longueurs = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_len_fil.txt.npy")
 
-                    hist = np.histogram(longueurs, density= True, range = [0, 10], bins=50)
+                    hist = np.histogram(longueurs, density= True, range = [0, 10], bins=10)
                     hist = hist[0]
                     
                     axes.plot(hist, color= couleur, ls = ls, label=label)
