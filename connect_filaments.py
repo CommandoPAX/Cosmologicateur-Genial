@@ -13,6 +13,6 @@ squelette = Squelette_3d(f"/data100/fcastillo/RESULT/{snapshots[N]}/{i}_densite_
 
 n = []
 for p in squelette.Pointscrit :
-    n.append(p.nfil)
+    if int(p.type) == 3: n.append(p.nfil)
 
 np.save(f"/data100/fcastillo/RESULT/{snapshots[N]}/{i}_densite_0_c0.1_connect_fil.txt", np.array(n))
