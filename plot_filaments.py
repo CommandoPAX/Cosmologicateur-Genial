@@ -41,7 +41,7 @@ if __name__ == "__main__" :
                 label = labels[j]
 
             
-                hist = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_len_fil.txt")
+                hist = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_len_fil.txt.npy")
                 
                 axes.plot(hist, color= couleur, ls = ls, label=label)
                 axes.set_xlabel("log longueur [Mpc / h]")
