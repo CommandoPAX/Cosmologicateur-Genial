@@ -6,7 +6,7 @@ from mpl_toolkits.mplot3d import axes3d
 from astropy.io import fits
 from math import*
 from skeletonnateur_hpc import*
-
+from matplotlib import gridspec
 
 
 if __name__ == "__main__" :
@@ -20,44 +20,86 @@ if __name__ == "__main__" :
     }
     
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-    labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
+    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
     lss = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
     plt.figure(figsize=(14,10))
+    X = np.linspace(-3,3,61)
+    places = {
+        "00" : 1,
+        "01" : 2,
+        "10" : 3,
+        "11" : 4,
+        "20" : 5,
+        "21" : 6,
+        "40" : 7,
+        "41" : 8
+    }
 
-    nbins = 20
+    nbins = 10
+    
 
-    for i in range(1,5):
-        plt.subplot(2,2,i)
 
-        axes = plt.gca()
+    outer = gridspec.GridSpec(nrows=2, ncols=2)
 
-        axes.title.set_text (f"z = {Redshifts[i]}")
+    axs = []
+    for row in range(2):
+        for col in range(2):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
 
-        for j in range(6):
-                
+
+
+    for i in [0,1,2,4]:
+        lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
+        hist_lcdm = np.histogram(lcdm,  density= True, range = [0, 10], bins=nbins)
+        hist_lcdm = hist_lcdm[0]
+
+
+        for d in range(2):
+            place = places[str(i) + str(d)]
+
+            print(axs)
+
+            axes = axs[place-1]
+
+            if d == 0 : 
+                axes.title.set_text (f"z = {Redshifts[i]}")
+
+
+            for j in range(6):
+
                 ls = lss[j]
                 couleur = couleurs[j]
                 label = labels[j]
 
-                try :
-                    connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
-                    print(connect)
+                connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
+                #print(np.shape(data[p]))
+                #print(data)
+                hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
+                hist = hist[0]
+                
 
-                    hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
-                    hist = hist[0]
-                    
+                if d == 0 : 
                     axes.plot(hist, color= couleur, ls = ls, label=label)
-                    axes.set_xlabel("Connectivite")
                     axes.set_ylabel("Probabilite")
-                    #axes.set_ylim(0,0.35)
-                    axes.axvline(np.median(connect), color= couleur, ls = ls)
-                except:
-                     print(j, i)
-                    
-                if j == 5 and i == 1: plt.legend() 
+                    axes.xaxis.set_visible(False)
+                else : 
+                    axes.plot(hist-hist_lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                    axes.set_ylabel(r"$\Delta$")
+                if d ==1 : axes.set_xlabel("Connectivite")
+
+                if j == 5 and i == 0 and d == 0: 
+                    axes.legend() 
+
+    if i == 0:
+        plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
     plt.savefig(f"connect_{nbins}.pdf")
+    plt.savefig(f"connect_{nbins}.png")
+
+
+
 
