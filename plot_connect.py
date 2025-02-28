@@ -44,6 +44,7 @@ if __name__ == "__main__" :
 
                 try :
                     connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
+                    print(connect)
 
                     hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
                     hist = hist[0]
