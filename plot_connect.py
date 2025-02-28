@@ -87,7 +87,7 @@ if __name__ == "__main__" :
                     axes.set_ylabel("Probabilite")
                     axes.xaxis.set_visible(False)
                 else : 
-                    axes.plot(hist-hist_lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                    axes.plot(hist-hist_lcdm, color=couleurs[j], ls=ls,label=labels[j])
                     axes.set_ylabel(r"$\Delta$")
                 if d ==1 : axes.set_xlabel("Connectivite")
 
