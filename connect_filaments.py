@@ -12,7 +12,7 @@ labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "
 squelette = Squelette_3d(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1.up.NDskl.S001.a.NDskl")
 
 n = []
-for fil in squelette.liste_filaments :
-    n.append(len(fil.data_samp))
+for p in squelette.Pointscrit :
+    n.append(p.nfil)
 
 np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_connect_fil.txt", np.array(n))
