@@ -75,24 +75,29 @@ if __name__ == "__main__" :
                 couleur = couleurs[j]
                 label = labels[j]
 
-                connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
-                #print(np.shape(data[p]))
-                #print(data)
-                hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
-                hist = hist[0]
+
+                try :
+                        
+                    connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
+                    #print(np.shape(data[p]))
+                    #print(data)
+                    hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
+                    hist = hist[0]
+                    
+
+                    if d == 0 : 
+                        axes.plot(hist, color= couleur, ls = ls, label=label)
+                        axes.set_ylabel("Probabilite")
+                        axes.xaxis.set_visible(False)
+                    else : 
+                        axes.plot(hist-hist_lcdm, color=couleurs[j], ls=ls,label=labels[j])
+                        axes.set_ylabel(r"$\Delta$")
+                    if d ==1 : axes.set_xlabel("Connectivite")
+
+                    if j == 5 and i == 0 and d == 0: 
+                        axes.legend() 
                 
-
-                if d == 0 : 
-                    axes.plot(hist, color= couleur, ls = ls, label=label)
-                    axes.set_ylabel("Probabilite")
-                    axes.xaxis.set_visible(False)
-                else : 
-                    axes.plot(hist-hist_lcdm, color=couleurs[j], ls=ls,label=labels[j])
-                    axes.set_ylabel(r"$\Delta$")
-                if d ==1 : axes.set_xlabel("Connectivite")
-
-                if j == 5 and i == 0 and d == 0: 
-                    axes.legend() 
+                except : pass
 
     if i == 0:
         plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
