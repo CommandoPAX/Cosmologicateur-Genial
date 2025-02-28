@@ -16,5 +16,4 @@ for fil in squelette.liste_filaments :
     fil.len()
     longueurs.append(fil.l)
 
-hist = np.histogram(np.array(longueurs), density= True, range = [0, 10], bins=20)
-np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_len_fil.txt", hist[0])
+np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_len_fil.txt", np.array(longueurs))
