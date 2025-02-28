@@ -210,7 +210,7 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     MAS = 'CIC'
     snapshot = snap  #snapshot name
     grid     = 512                     #grid size
-    ptypes   = [1]                   #CDM + neutrinos
+    ptypes   = [1]                     #CDM + neutrinos
     MAS      = 'CIC'                   #Cloud-in-Cell
     do_RSD   = False                   #dont do redshif-space distortions
     axis     = 0                       #axis along which place RSD; not used here
@@ -220,7 +220,7 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     delta = MASL.density_field_gadget(snapshot, ptypes, grid, MAS, do_RSD, axis, verbose)
 
     # compute density contrast: delta = rho/<rho> - 1
-    #delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
+    delta /= np.mean(delta, dtype=np.float64);  delta -= 1.0
 
 
     header = fits.Header()
