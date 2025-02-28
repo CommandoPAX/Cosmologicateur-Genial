@@ -27,6 +27,8 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
+    nbins = 10
+
     for i in range(1,5):
         plt.subplot(2,2,i)
 
@@ -43,7 +45,7 @@ if __name__ == "__main__" :
                 try :
                     longueurs = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_len_fil.txt.npy")
 
-                    hist = np.histogram(longueurs, density= True, range = [0, 10], bins=20)
+                    hist = np.histogram(longueurs, density= True, range = [0, 10], bins=nbins)
                     hist = hist[0]
                     
                     axes.plot(hist, color= couleur, ls = ls, label=label)
@@ -57,5 +59,5 @@ if __name__ == "__main__" :
                     
                 if j == 5 and i == 1: plt.legend() 
 
-    plt.savefig("len20.pdf")
+    plt.savefig(f"len_{nbins}.pdf")
 
