@@ -27,7 +27,7 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
-    nbins = 10
+    nbins = 20
 
     for i in range(1,5):
         plt.subplot(2,2,i)
