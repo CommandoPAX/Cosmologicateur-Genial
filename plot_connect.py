@@ -42,19 +42,18 @@ if __name__ == "__main__" :
                 couleur = couleurs[j]
                 label = labels[j]
 
-                try :
-                    connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
+                connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
 
-                    hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
-                    hist = hist[0]
-                    
-                    axes.plot(hist, color= couleur, ls = ls, label=label)
-                    axes.set_xlabel("Connectivite")
-                    axes.set_ylabel("Probabilite")
-                    axes.set_ylim(0,0.35)
-                    axes.axvline(np.median(connect), color= couleur, ls = ls)
-                except:
-                     print(j, i)
+                hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
+                hist = hist[0]
+                
+                axes.plot(hist, color= couleur, ls = ls, label=label)
+                axes.set_xlabel("Connectivite")
+                axes.set_ylabel("Probabilite")
+                axes.set_ylim(0,0.35)
+                axes.axvline(np.median(connect), color= couleur, ls = ls)
+                #except:
+                #     print(j, i)
                     
                 if j == 5 and i == 1: plt.legend() 
 
