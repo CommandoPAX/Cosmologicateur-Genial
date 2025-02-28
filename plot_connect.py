@@ -51,7 +51,7 @@ if __name__ == "__main__" :
                     axes.plot(hist, color= couleur, ls = ls, label=label)
                     axes.set_xlabel("Connectivite")
                     axes.set_ylabel("Probabilite")
-                    axes.set_ylim(0,0.35)
+                    #axes.set_ylim(0,0.35)
                     axes.axvline(np.median(connect), color= couleur, ls = ls)
                 except:
                      print(j, i)
