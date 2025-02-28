@@ -16,8 +16,8 @@ for n in range(6):
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}_{i}
 #SBATCH --partition=pscomp
-#SBATCH --mem=100gb
-#SBATCH --time=2:00:00
+#SBATCH --mem=500gb
+#SBATCH --time=24:00:00
 #SBATCH --output=skl2_{n}_{i}_%j.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL
@@ -37,7 +37,7 @@ module load disperse/0.9.24""")
 path_dat="{pre+snapshots[n]}/"
 path="{pre+snapshots[n]}/"
 
-file="{i}_densite_0"
+file="{i}_densite"
 
 persistence=0.1
 smoothing=1
@@ -49,4 +49,4 @@ smoothing=1
 exit 0""")
             
         fichier.close()
-        #os.system(f"sbatch mse_{n}_{i}.sh")
+        os.system(f"sbatch mse_{n}_{i}.sh")
