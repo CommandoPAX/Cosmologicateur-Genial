@@ -58,5 +58,5 @@ if __name__ == "__main__" :
                     
                 if j == 5 and i == 1: plt.legend() 
 
-    plt.savefig(f"len_{nbins}.pdf")
+    plt.savefig(f"connect_{nbins}.pdf")
 
