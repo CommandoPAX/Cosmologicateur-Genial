@@ -49,8 +49,7 @@ if __name__ == "__main__" :
                     hist = hist[0]
                     
                     axes.plot(hist, color= couleur, ls = ls, label=label)
-                    axes.set_xlabel("log longueur [Mpc / h]")
-                    plt.xscale("log")
+                    axes.set_xlabel("Connectivite")
                     axes.set_ylabel("Probabilite")
                     axes.set_ylim(0,0.35)
                     axes.axvline(np.median(connect), color= couleur, ls = ls)
