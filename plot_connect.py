@@ -48,8 +48,9 @@ if __name__ == "__main__" :
 
                     hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
                     hist = hist[0]
+                    print(hist, hist[0])
                     
-                    axes.plot(hist, color= couleur, ls = ls, label=label)
+                    axes.plot(hist[0], color= couleur, ls = ls, label=label)
                     axes.set_xlabel("Connectivite")
                     axes.set_ylabel("Probabilite")
                     #axes.set_ylim(0,0.35)
