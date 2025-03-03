@@ -71,7 +71,8 @@ class Net ():
         while True :
             name = fichier.readline()
             if name == "" or "cell" in name : break
-            T = int(fichier.readline()[:-1])
+            try : T = int(fichier.readline()[:-1])
+            except : break
             if T == 2 :
                 for s in range(len(self.liste_simplexes[T-2])):
                     self.liste_simplexes[T-2][s].source = int(fichier.readline()[:-1])
