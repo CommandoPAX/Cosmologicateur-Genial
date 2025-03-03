@@ -65,7 +65,7 @@ class Net ():
                 vertices = []
                 for p in points :
                     vertices.append(self.list_vertices[int(p)])
-                self.liste_simplexes[t].append(Simplexe(int(T)),vertices)
+                self.liste_simplexes[t].append(Simplexe(int(T),vertices))
             t += 1
 
         while True :
