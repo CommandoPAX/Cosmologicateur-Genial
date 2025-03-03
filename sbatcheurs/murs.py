@@ -14,7 +14,7 @@ for n in range(6):
 
         fichier = open(f"../bash/murs_{n}_{i}.sh","w")
         fichier.write(f"""#!/bin/bash
-#SBATCH --job-name=skl2_{n}_{i}
+#SBATCH --job-name=wall_{n}_{i}
 #SBATCH --partition=pscomp
 #SBATCH --mem=100gb
 #SBATCH --time=2:00:00
@@ -49,7 +49,7 @@ smoothing=1
 exit 0""")
             
         fichier.close()
-        #os.system(f"sbatch ./bash/mse_{n}_{i}.sh")
+        os.system(f"sbatch ./bash/murs_{n}_{i}.sh")
 
 
 
