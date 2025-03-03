@@ -12,13 +12,13 @@ for n in range(6):
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
 
-        fichier = open(f"mse_{n}_{i}.sh","w")
+        fichier = open(f"./bash/mse_{n}_{i}.sh","w")
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}_{i}
 #SBATCH --partition=pscomp
 #SBATCH --mem=500gb
-#SBATCH --time=24:00:00
-#SBATCH --output=skl2_{n}_{i}_%j.out
+#SBATCH --time=48:00:00
+#SBATCH --output=/home/fcastillo/logs/skl2_{n}_{i}_%j.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL
 """)
@@ -49,4 +49,4 @@ smoothing=1
 exit 0""")
             
         fichier.close()
-        os.system(f"sbatch mse_{n}_{i}.sh")
+        #os.system(f"sbatch ./bash/mse_{n}_{i}.sh")
