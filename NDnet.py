@@ -70,7 +70,7 @@ class Net ():
 
         while True :
             name = fichier.readline()
-            if name == "" : break
+            if name == "" or "cell" in name : break
             T = int(fichier.readline()[:-1])
             if T == 2 :
                 for s in range(len(self.liste_simplexes[T-2])):
