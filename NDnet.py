@@ -39,7 +39,8 @@ class Net ():
 
         fichier.readline()
         self.ndim = int(fichier.readline()[:-1])
-        fichier.readline()*2
+        fichier.readline()
+        fichier.readline()
         self.num_vertices = int(fichier.readline()[:-1])
 
         self.list_vertices = []
@@ -59,6 +60,8 @@ class Net ():
             for i in range(N):
                 points = (fichier.readline()[:-1]).split(" ")
                 self.liste_simplexes.append(Simplexe(int(T),points))
+
+        fichier.close()
 
 if __name__ == "__main__" :
     n = int(sys.argv[1])
