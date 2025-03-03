@@ -59,7 +59,9 @@ class Net ():
 
             for i in range(N):
                 points = (fichier.readline()[:-1]).split(" ")
-                self.liste_simplexes.append(Simplexe(int(T),points))
+                self.liste_simplexes.append(Simplexe(int(T),[self.list_vertices[int(points[0])],
+                                                             self.list_vertices[int(points[1])],
+                                                             self.list_vertices[int(points[2])]]))
 
         fichier.close()
 
