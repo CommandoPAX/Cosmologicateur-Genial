@@ -54,7 +54,7 @@ if __name__ == "__main__" :
 
     for i in [0,1,2,4]:
         lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{i}_densite_0_c0.1_surf_murs.txt.npy")
-        hist_lcdm = np.histogram(lcdm,  density= True, range = [0, 10], bins=nbins)
+        hist_lcdm = np.histogram(lcdm,  density= True, range = [0, 4], bins=nbins)
         hist_lcdm = hist_lcdm[0]
 
 
