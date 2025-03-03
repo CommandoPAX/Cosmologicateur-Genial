@@ -12,7 +12,7 @@ for n in range(6):
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite_0"
 
 
-        fichier = open(f"../bash/murs_{n}_{i}.sh","w")
+        fichier = open(f"../../bash/murs_{n}_{i}.sh","w")
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=wall_{n}_{i}
 #SBATCH --partition=pscomp
@@ -49,7 +49,7 @@ smoothing=1
 exit 0""")
             
         fichier.close()
-        os.system(f"sbatch ../bash/murs_{n}_{i}.sh")
+        os.system(f"sbatch ../../bash/murs_{n}_{i}.sh")
 
 
 
