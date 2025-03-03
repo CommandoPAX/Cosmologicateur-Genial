@@ -55,7 +55,7 @@ class Net ():
             if "[" in ligne : break
             data_simplex = (ligne[:-1]).split(" ")
             T = data_simplex[0]
-            N = data_simplex[1]
+            N = int(data_simplex[1])
 
             for i in range(N):
                 points = (fichier.readline()[:-1]).split(" ")
