@@ -18,7 +18,7 @@ for n in range(6):
 #SBATCH --partition=pscomp
 #SBATCH --mem=100gb
 #SBATCH --time=2:00:00
-#SBATCH --output=/home/fcastillo/logs/skl2_{n}_{i}_%j.out
+#SBATCH --output=/home/fcastillo/logs/murs_{n}_{i}_%j.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL
 """)
@@ -43,6 +43,7 @@ persistence=0.1
 smoothing=1
 
 /softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -cut $persistence -loadMSC $path$file".MSC" -dumpManifolds J01a -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
+/softs/disperse/0.9.24/bin/netconv $path$file"_c"$persistence"_manifolds_J01a.NDnet" -smooth $smoothing -to NDnet_ascii
 
 #/softs/disperse/0.9.24/bin/skelconv $path$file"_c"$persistence".up.NDskl" -outName $path$file"_c"$persistence".up.NDskl" -smooth $smoothing -to NDskl_ascii
 
@@ -50,6 +51,6 @@ exit 0""")
             
         fichier.close()
         os.system(f"sbatch ../../bash/murs_{n}_{i}.sh")
-
+        time.sleep(10)
 
 
