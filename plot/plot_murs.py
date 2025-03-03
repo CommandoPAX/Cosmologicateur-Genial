@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 from astropy.io import fits
 from math import*
-from skeletonnateur_hpc import*
+from NDnet import*
 from matplotlib import gridspec
 
 
