@@ -45,7 +45,7 @@ class Net ():
 
         self.list_vertices = []
         for i in range(self.num_vertices):
-            coords = (fichier.readli()[:-1]).split(" ")
+            coords = (fichier.readline()[:-1]).split(" ")
             self.list_vertices.append(Vertex(coords[0], coords[1], coords[2]))
 
         self.liste_simplexes = []
