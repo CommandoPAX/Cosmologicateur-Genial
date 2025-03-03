@@ -89,7 +89,8 @@ if __name__ == "__main__" :
                         axes.plot(hist, color= couleur, ls = ls, label=label)
                         axes.set_ylabel("Probabilite")
                         axes.xaxis.set_visible(False)
-                        axes.set_ylim(0,0.25)
+                        axes.set_ylim(0,0.35)
+                        axes.set_xlim(0,6)
                     else : 
                         axes.plot(hist-hist_lcdm, color=couleurs[j], ls=ls,label=labels[j])
                         axes.set_ylabel(r"$\Delta$")
