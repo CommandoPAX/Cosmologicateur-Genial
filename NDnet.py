@@ -86,7 +86,7 @@ if __name__ == "__main__" :
     labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
 
-    reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_manifolds_J01a.NDnet.S001.a.NDnet")
+    reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_manifolds_J0a1a.NDnet.S001.a.NDnet")
 
     surfaces = []
     surfaces_t = []
