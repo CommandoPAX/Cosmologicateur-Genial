@@ -112,6 +112,7 @@ if __name__ == "__main__" :
 
     for i in range(6):
         moyennes = []
+        err = []
 
         ls = lss[i]
         couleur = couleurs[i]
@@ -122,13 +123,14 @@ if __name__ == "__main__" :
                     
                 connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_0_c0.1_connect_fil.txt.npy")
                 moyennes.append(np.mean(connect))
+                err.append(np.std(connect))
                 
             except : pass
 
         print(moyennes)
         axes = plt.gca()
         plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
-        plt.plot(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes,ls=ls, color=couleur, label=label)
+        plt.yerr(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
 
         axes.set_xlabel(r"$\log z$")
         axes.set_ylabel("Mean connectivity")
