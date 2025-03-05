@@ -129,6 +129,10 @@ if __name__ == "__main__" :
         plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
         plt.plot(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes,ls=ls, color=couleur, label=label)
 
+        plt.set_xlabel(r"$\log z$")
+        plt.set_ylabel("Mean connectivity")
+        plt.revert_xaxis()
+
         plt.legend()
     
     plt.savefig(f"connect_moyenne.pdf")
