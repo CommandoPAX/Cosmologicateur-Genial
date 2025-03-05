@@ -125,6 +125,7 @@ if __name__ == "__main__" :
                 
             except : pass
 
+        print(moyennes)
         plt.scatter(np.log(np.array([32,3,1,0.25,0])), moyennes, color=couleur)
         plt.plot(np.log(np.array([32,3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label)
 
