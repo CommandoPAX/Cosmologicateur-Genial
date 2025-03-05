@@ -42,8 +42,12 @@ file="{i}_densite_0"
 persistence=0.1
 smoothing=1
 
-/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -cut $persistence -loadMSC $path$file".MSC" -dumpManifolds J01a -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
-/softs/disperse/0.9.24/bin/netconv $path$file"_c"$persistence"_manifolds_J01a.NDnet" -outName $path$file"_c"$persistence"_manifolds_J01a.NDnet" -smooth $smoothing -to NDnet_ascii
+/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -cut $persistence -loadMSC $path$file".MSC" -dumpManifolds J0a -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
+/softs/disperse/0.9.24/bin/netconv $path$file"_c"$persistence"_manifolds_J0a.NDnet" -outName $path$file"_c"$persistence"_manifolds_J0a.NDnet" -smooth $smoothing -to NDnet_ascii
+
+/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -cut $persistence -loadMSC $path$file".MSC" -dumpManifolds J1a -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
+/softs/disperse/0.9.24/bin/netconv $path$file"_c"$persistence"_manifolds_J1a.NDnet" -outName $path$file"_c"$persistence"_manifolds_J1a.NDnet" -smooth $smoothing -to NDnet_ascii
+
 
 #/softs/disperse/0.9.24/bin/skelconv $path$file"_c"$persistence".up.NDskl" -outName $path$file"_c"$persistence".up.NDskl" -smooth $smoothing -to NDskl_ascii
 
