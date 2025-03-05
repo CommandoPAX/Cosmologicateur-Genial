@@ -113,9 +113,9 @@ if __name__ == "__main__" :
     for i in range(6):
         moyennes = []
 
-        ls = lss[j]
-        couleur = couleurs[j]
-        label = labels[j]
+        ls = lss[i]
+        couleur = couleurs[i]
+        label = labels[i]
     
         for j in range(5):
             try :
