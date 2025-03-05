@@ -106,6 +106,27 @@ if __name__ == "__main__" :
     plt.savefig(f"connect_{nbins}.pdf")
     plt.savefig(f"connect_{nbins}.png")
 
+    plt.clf()
 
+    plt.figure()
 
+    for i in range(6):
+        moyennes = []
 
+        ls = lss[j]
+        couleur = couleurs[j]
+        label = labels[j]
+    
+        for j in range(5):
+            try :
+                    
+                connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_0_c0.1_connect_fil.txt.npy")
+                moyennes.append(np.mean(connect))
+                
+            except : pass
+
+        plt.scatter(np.log(np.array([32,3,1,0.25,0])), moyennes, color=couleur)
+        plt.plot(np.log(np.array([32,3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label)
+
+        plt.legend()
+        plt.show()
