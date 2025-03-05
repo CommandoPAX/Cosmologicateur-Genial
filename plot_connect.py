@@ -129,4 +129,7 @@ if __name__ == "__main__" :
         plt.plot(np.log(np.array([32,3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label)
 
         plt.legend()
-        plt.show()
+    
+    plt.savefig(f"connect_moyenne.pdf")
+    plt.savefig(f"connect_moyenne.png")
+
