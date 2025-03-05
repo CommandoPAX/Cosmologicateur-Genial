@@ -123,7 +123,7 @@ if __name__ == "__main__" :
                     
                 connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_0_c0.1_connect_fil.txt.npy")
                 moyennes.append(np.mean(connect))
-                err.append(np.std(connect))
+                err.append(1/sqrt(len(connect)))
                 
             except : pass
 
