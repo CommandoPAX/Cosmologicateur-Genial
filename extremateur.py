@@ -19,8 +19,8 @@ import matplotlib.pyplot as plt
 
 import sys
 
-n = sys.argv[1]
-i = sys.argv[2]
+n = int(sys.argv[1])
+i = int(sys.argv[2])
 
 print(n, i)
 
