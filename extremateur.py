@@ -33,14 +33,22 @@ data = hdul[0].data
 hdul.close()
 print(np.shape(data))
 
+R = 10
+
 ef = ExtremaFinder(data, nthreads=32, loglevel=30)
-ef.find_extrema(10)
-curvature = ef.curvature
+ef.find_extrema(R)
+pos = ef.extrema[R].pos
+kind = ef.extrema[R].kind
+
+result = []
+for p in range(len(pos)):
+    x = float(pos[p][0])
+    y = float(pos[p][1])
+    z = float(pos[p][2])
+    type = kind[p]
+    result.append(np.array([x,y,z,type]))
 
 
-v0,v1,v2,v3 = calculateMFs(data)
-
-result = np.array([v0,v1,v2,v3])
 print(np.shape(result))
-np.save(f"minkowski_{n}_{i}.txt", result)
+np.save(f"extrema_{n}_{i}.txt", result)
 print("ok")
