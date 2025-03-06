@@ -86,9 +86,10 @@ if __name__ == "__main__" :
                                 print(j, i)
                                 
                             if j == 5 and i == 1: plt.legend() 
+                        except : pass
+
 
                 plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
                 plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
                 plt.clf()
-        except : pass
 
