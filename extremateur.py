@@ -105,6 +105,6 @@ for j in range(4):
                 z1 = q[2]
                 Rjk.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))       
 
-        np.save(f"extrema/snapshot_{n}_{i}_C_{k}_{j}_s{R}.txt", np.array(Ckj))
-        np.save(f"extrema/snapshot_{n}_{i}_R_{k}_{j}_s{R}.txt", np.array(Rkj))
-        np.save(f"extrema/snapshot_{n}_{i}_R_{j}_{k}_s{R}.txt", np.array(Rjk))
+        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_C_{k}_{j}_s{R}.txt", np.array(Ckj))
+        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_R_{k}_{j}_s{R}.txt", np.array(Rkj))
+        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_R_{j}_{k}_s{R}.txt", np.array(Rjk))
