@@ -15,7 +15,7 @@ import pandas as pd
 
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
-
+from math import sqrt
 
 import sys
 
@@ -52,4 +52,58 @@ for p in range(len(pos)):
 
 print(np.shape(result))
 np.save(f"extrema_{n}_{i}.txt", result)
-print("ok")
+print("Extrema calcules")
+
+data_random = np.load(f"extrema_random_{R}.txt.npy")
+
+for j in range(4):
+    for k in range(4):
+        result_k = []
+        for p in result :
+            if p[3] == k : result_k.append(p)
+
+
+        result_j = []
+        for p in result :
+            if p[3] == j : result_j.append(p)
+
+        random_k = []
+        for p in data_random :
+            if p[3] == k : random_k.append(p)
+
+
+        random_j = []
+        for p in data_random :
+            if p[3] == j : random_j.append(p)
+
+        Ckj = []
+        Rkj = []
+        Rjk = []
+
+        for p in result_k :
+            x0 = p[0]
+            y0 = p[1]
+            z0 = p[2]
+            for q in random_j :
+                x1 = q[0]
+                y1 = q[1]
+                z1 = q[2]
+                Rkj.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))       
+            for q in result_j :
+                x1 = q[0]
+                y1 = q[1]
+                z1 = q[2]
+                Ckj.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))   
+        for p in random_k :
+            x0 = p[0]
+            y0 = p[1]
+            z0 = p[2]
+            for q in result_j :
+                x1 = q[0]
+                y1 = q[1]
+                z1 = q[2]
+                Rjk.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))       
+
+        np.save(f"{n}_{i}_C_{k}_{j}.txt", np.array(Ckj))
+        np.save(f"{n}_{i}_R_{k}_{j}.txt", np.array(Rkj))
+        np.save(f"{n}_{i}_R_{j}_{k}.txt", np.array(Rjk))
