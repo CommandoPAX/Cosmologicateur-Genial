@@ -75,7 +75,7 @@ class Net ():
             except : break
             if T == 2 :
                 for s in range(len(self.liste_simplexes[T-2])):
-                    self.liste_simplexes[T-2][s].source = int(fichier.readline()[:-1])
+                    self.liste_simplexes[T-2][s].source = float(fichier.readline()[:-1])
 
         fichier.close()
 
