@@ -1,0 +1,91 @@
+import numpy as np
+import os
+import sys
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import axes3d
+from astropy.io import fits
+from math import*
+from skeletonnateur_hpc import*
+
+
+
+if __name__ == "__main__" :
+
+    Redshifts = {
+        0 : 32,
+        1 : 3,
+        2 : 1,
+        3 : 0.25,
+        4 : 0
+    }
+    
+    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+    labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
+
+    lss = ["-", "-", "-.", "--", "-", "--"]
+    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
+
+    plt.figure(figsize=(14,10))
+
+    nbins = 10
+    R = 5
+    data_random = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt.npy")
+
+    for a in range(4) :
+        for b in range(a,4):
+
+            for i in range(1,5):
+                plt.subplot(2,2,i)
+
+                axes = plt.gca()
+
+                axes.title.set_text (f"z = {Redshifts[i]}")
+
+                for j in range(6):
+                        
+                        ls = lss[j]
+                        couleur = couleurs[j]
+                        label = labels[j]
+
+                        points = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{j}_{i}_{R}.txt.npy")
+
+                        result_a = points[points[:,3]==a]
+                        result_b = points[points[:,3]==b]
+                        random_a = data_random[data_random[:,3]==a]
+                        random_b = data_random[data_random[:,3]==b]
+
+                        Nra = len(random_a)
+                        Nrb = len(random_b)
+                        Nca = len(result_a)
+                        Ncb = len(result_b)
+
+                        Cab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_C_{a}_{b}_s{R}.txt")
+                        Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt")
+                        Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt")
+
+                        Cabm = np.histogram(Cab, bins =nbins)[0]
+                        Rabm = np.histogram(Rab, bins =nbins)[0]
+                        Rbam = np.histogram(Rba, bins =nbins)[0]
+                        zeta = Cabm / np.sqrt(Rabm * Rbam) *sqrt(Nra * Nrb / (Nca* Ncb))
+
+                        try :
+                            longueurs = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_len_fil.txt.npy")
+
+                            hist = np.histogram(longueurs, density= True, range = [0, 10], bins=nbins)
+                            hist = hist[0]
+                            
+                            axes.plot(hist, color= couleur, ls = ls, label=label)
+                            axes.set_xlabel("log longueur [Mpc / h]")
+                            plt.xscale("log")
+                            axes.set_ylabel("Probabilite")
+                            axes.set_ylim(0,0.35)
+                            axes.axvline(np.median(longueurs), color= couleur, ls = ls)
+                        except:
+                            print(j, i)
+                            
+                        if j == 5 and i == 1: plt.legend() 
+
+            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
+            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
+            plt.clf()
+

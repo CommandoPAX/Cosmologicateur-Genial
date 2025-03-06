@@ -22,60 +22,53 @@ import sys
 n = int(sys.argv[1])
 i = int(sys.argv[2])
 
+
 print(n, i)
 
 pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
-hdul = fits.open(data)
-data = hdul[0].data
-hdul.close()
-print(np.shape(data))
-data = data.astype(np.float64)
-
 R = 5
 
-ef = ExtremaFinder(data, nthreads=32, loglevel=30)
-ef.find_extrema(R)
-pos = ef.extrema[R].pos
-kind = ef.extrema[R].kind
+try : 
+    result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
 
-result = []
-for p in range(len(pos)):
-    x = float(pos[p][0])
-    y = float(pos[p][1])
-    z = float(pos[p][2])
-    type = kind[p]
-    result.append(np.array([x,y,z,type]))
+except: 
+    hdul = fits.open(data)
+    data = hdul[0].data
+    hdul.close()
+    print(np.shape(data))
+    data = data.astype(np.float64)
 
 
-print(np.shape(result))
-np.save(f"extrema/extrema_{n}_{i}_{R}.txt", result)
-print("Extrema calcules")
+    ef = ExtremaFinder(data, nthreads=32, loglevel=30)
+    ef.find_extrema(R)
+    pos = ef.extrema[R].pos
+    kind = ef.extrema[R].kind
+
+    result = []
+    for p in range(len(pos)):
+        x = float(pos[p][0])
+        y = float(pos[p][1])
+        z = float(pos[p][2])
+        type = kind[p]
+        result.append(np.array([x,y,z,type]))
+
+
+    print(np.shape(result))
+    np.save(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt", result)
+    print("Extrema calcules")
 
 data_random = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt.npy")
 
 for j in range(4):
-    for k in range(4):
+    for k in range(j, 4):
         print(j, k)
-        result_k = []
-        for p in result :
-            if p[3] == k : result_k.append(p)
-
-
-        result_j = []
-        for p in result :
-            if p[3] == j : result_j.append(p)
-
-        random_k = []
-        for p in data_random :
-            if p[3] == k : random_k.append(p)
-
-
-        random_j = []
-        for p in data_random :
-            if p[3] == j : random_j.append(p)
+        result_k = result[result[:,3]==k]
+        result_j = result[result[:,3]==j]
+        random_k = data_random[data_random[:,3]==k]
+        random_j = data_random[data_random[:,3]==j]
 
         Ckj = []
         Rkj = []
