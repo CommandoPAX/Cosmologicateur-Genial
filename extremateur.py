@@ -32,6 +32,7 @@ hdul = fits.open(data)
 data = hdul[0].data
 hdul.close()
 print(np.shape(data))
+data = data.astype(np.float)
 
 R = 10
 
