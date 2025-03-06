@@ -54,7 +54,7 @@ print(np.shape(result))
 np.save(f"extrema/extrema_{n}_{i}_{R}.txt", result)
 print("Extrema calcules")
 
-data_random = np.load(f"extrema/extrema_random_{R}.txt.npy")
+data_random = np.load(f"data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt.npy")
 
 for j in range(4):
     for k in range(4):

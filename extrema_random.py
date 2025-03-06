@@ -36,5 +36,5 @@ for p in range(len(pos)):
 
 
 print(np.shape(result))
-np.save(f"extrema_random_{R}.txt", result)
+np.save(f"/data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt", result)
 print("ok")
