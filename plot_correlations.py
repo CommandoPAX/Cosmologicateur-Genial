@@ -43,49 +43,52 @@ if __name__ == "__main__" :
 
                 for j in range(6):
                         
-                        ls = lss[j]
-                        couleur = couleurs[j]
-                        label = labels[j]
-
-                        points = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{j}_{i}_{R}.txt.npy")
-
-                        result_a = points[points[:,3]==a]
-                        result_b = points[points[:,3]==b]
-                        random_a = data_random[data_random[:,3]==a]
-                        random_b = data_random[data_random[:,3]==b]
-
-                        Nra = len(random_a)
-                        Nrb = len(random_b)
-                        Nca = len(result_a)
-                        Ncb = len(result_b)
-
-                        Cab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_C_{a}_{b}_s{R}.txt")
-                        Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt")
-                        Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt")
-
-                        Cabm = np.histogram(Cab, bins =nbins)[0]
-                        Rabm = np.histogram(Rab, bins =nbins)[0]
-                        Rbam = np.histogram(Rba, bins =nbins)[0]
-                        zeta = Cabm / np.sqrt(Rabm * Rbam) *sqrt(Nra * Nrb / (Nca* Ncb))
-
                         try :
-                            longueurs = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_len_fil.txt.npy")
+                             
+                            ls = lss[j]
+                            couleur = couleurs[j]
+                            label = labels[j]
 
-                            hist = np.histogram(longueurs, density= True, range = [0, 10], bins=nbins)
-                            hist = hist[0]
-                            
-                            axes.plot(hist, color= couleur, ls = ls, label=label)
-                            axes.set_xlabel("log longueur [Mpc / h]")
-                            plt.xscale("log")
-                            axes.set_ylabel("Probabilite")
-                            axes.set_ylim(0,0.35)
-                            axes.axvline(np.median(longueurs), color= couleur, ls = ls)
-                        except:
-                            print(j, i)
-                            
-                        if j == 5 and i == 1: plt.legend() 
+                            points = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{j}_{i}_{R}.txt.npy")
 
-            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
-            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
-            plt.clf()
+                            result_a = points[points[:,3]==a]
+                            result_b = points[points[:,3]==b]
+                            random_a = data_random[data_random[:,3]==a]
+                            random_b = data_random[data_random[:,3]==b]
+
+                            Nra = len(random_a)
+                            Nrb = len(random_b)
+                            Nca = len(result_a)
+                            Ncb = len(result_b)
+
+                            Cab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_C_{a}_{b}_s{R}.txt")
+                            Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt")
+                            Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt")
+
+                            Cabm = np.histogram(Cab, bins =nbins)[0]
+                            Rabm = np.histogram(Rab, bins =nbins)[0]
+                            Rbam = np.histogram(Rba, bins =nbins)[0]
+                            zeta = Cabm / np.sqrt(Rabm * Rbam) *sqrt(Nra * Nrb / (Nca* Ncb)) - 1
+
+                            try :
+                                longueurs = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_len_fil.txt.npy")
+
+                                hist = np.histogram(longueurs, density= True, range = [0, 10], bins=nbins)
+                                hist = hist[0]
+                                
+                                axes.plot(hist, color= couleur, ls = ls, label=label)
+                                axes.set_xlabel("log longueur [Mpc / h]")
+                                plt.xscale("log")
+                                axes.set_ylabel("Probabilite")
+                                axes.set_ylim(0,0.35)
+                                axes.axvline(np.median(longueurs), color= couleur, ls = ls)
+                            except:
+                                print(j, i)
+                                
+                            if j == 5 and i == 1: plt.legend() 
+
+                plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
+                plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
+                plt.clf()
+        except : pass
 
