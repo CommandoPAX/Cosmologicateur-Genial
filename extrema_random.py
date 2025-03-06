@@ -17,7 +17,7 @@ from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 
 
-data = np.uniform(size=(512,512,512))
+data = np.random.uniform(size=(512,512,512))
 
 R = 5
 
