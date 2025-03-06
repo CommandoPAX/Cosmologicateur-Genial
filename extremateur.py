@@ -34,7 +34,7 @@ hdul.close()
 print(np.shape(data))
 data = data.astype(np.float64)
 
-R = 10
+R = 1
 
 ef = ExtremaFinder(data, nthreads=32, loglevel=30)
 ef.find_extrema(R)
