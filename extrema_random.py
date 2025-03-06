@@ -17,22 +17,7 @@ from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 
 
-import sys
-
-n = int(sys.argv[1])
-i = int(sys.argv[2])
-
-print(n, i)
-
-pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
-
-hdul = fits.open(data)
-data = hdul[0].data
-hdul.close()
-print(np.shape(data))
-data = data.astype(np.float64)
+data = np.uniform(size=(512,512,512))
 
 R = 5
 
@@ -51,5 +36,5 @@ for p in range(len(pos)):
 
 
 print(np.shape(result))
-np.save(f"extrema_{n}_{i}.txt", result)
+np.save(f"extrema_random_{R}.txt", result)
 print("ok")
