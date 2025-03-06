@@ -58,6 +58,7 @@ data_random = np.load(f"extrema/extrema_random_{R}.txt.npy")
 
 for j in range(4):
     for k in range(4):
+        print(j, k)
         result_k = []
         for p in result :
             if p[3] == k : result_k.append(p)
