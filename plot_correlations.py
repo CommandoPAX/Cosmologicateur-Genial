@@ -71,13 +71,14 @@ if __name__ == "__main__" :
                         Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt.npy")
                         Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt.npy")
 
-                        Cabm = np.histogram(Cab, bins =nbins,range=[0,886])[0]
-                        Rabm = np.histogram(Rab, bins =nbins,range=[0,886])[0]
-                        Rbam = np.histogram(Rba, bins =nbins,range=[0,886])[0]
+                        Cabm = np.histogram(Cab, bins =nbins,range=[0,10])[0]
+                        Rabm = np.histogram(Rab, bins =nbins,range=[0,10])[0]
+                        Rbam = np.histogram(Rba, bins =nbins,range=[0,10])[0]
                         zeta = Cabm / np.sqrt(Rabm * Rbam) *sqrt(Nra * Nrb / (Nca* Ncb)) - 1
 
-                            
-                        axes.plot(zeta, color= couleur, ls = ls, label=label)
+                        X = np.linspace(0, 10,nbins)
+
+                        axes.plot(X,zeta, color= couleur, ls = ls, label=label)
                         axes.set_xlabel("r [Mpc / h]")
                         #plt.xscale("log")
                         axes.set_ylabel(r"$\zeta (r)$")
