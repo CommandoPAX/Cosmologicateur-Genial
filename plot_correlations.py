@@ -27,7 +27,7 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
-    nbins = 1000
+    nbins = 100
     R = 5
 
     #for a in range(4) :
