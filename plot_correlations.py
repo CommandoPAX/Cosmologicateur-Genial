@@ -27,7 +27,7 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
-    nbins = 10
+    nbins = 100
     R = 5
     data_random = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt.npy")
 
@@ -38,8 +38,8 @@ if __name__ == "__main__" :
             a = 0
             b = 0
 
-            for i in range(1,5):
-                plt.subplot(2,2,i)
+            for i in [0,1,2,4]:
+                plt.subplot(2,2,min(i+1,4))
 
                 axes = plt.gca()
 
@@ -68,14 +68,14 @@ if __name__ == "__main__" :
                         Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt.npy")
                         Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt.npy")
 
-                        Cabm = np.histogram(Cab, bins =nbins)[0]
-                        Rabm = np.histogram(Rab, bins =nbins)[0]
-                        Rbam = np.histogram(Rba, bins =nbins)[0]
+                        Cabm = np.histogram(Cab, bins =nbins,range=[0,100])[0]
+                        Rabm = np.histogram(Rab, bins =nbins,range=[0,100])[0]
+                        Rbam = np.histogram(Rba, bins =nbins,range=[0,100])[0]
                         zeta = Cabm / np.sqrt(Rabm * Rbam) *sqrt(Nra * Nrb / (Nca* Ncb)) - 1
 
                             
                         axes.plot(zeta, color= couleur, ls = ls, label=label)
-                        axes.set_xlabel("log longueur [Mpc / h]")
+                        axes.set_xlabel("r [Mpc / h]")
                         #plt.xscale("log")
                         axes.set_ylabel(r"$\zeta (r)$")
                         #axes.set_ylim(0,0.35)

@@ -84,7 +84,7 @@ if __name__ == "__main__" :
                         if j == 5 and i == 1: plt.legend() 
 
 
-                plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
-                plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
-                plt.clf()
+            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
+            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
+            plt.clf()
 
