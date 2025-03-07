@@ -72,7 +72,7 @@ if True :
         result_k = result[result[:,3]==k]
         result_j = result[result[:,3]==j]
 
-        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k)]
+        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:,:len(result_k)]
 
         Ckj = []
         Rkj = []
