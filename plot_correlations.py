@@ -29,7 +29,6 @@ if __name__ == "__main__" :
 
     nbins = 10
     R = 5
-    data_random = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt.npy")
 
     #for a in range(4) :
     #    for b in range(a,4):
@@ -54,10 +53,14 @@ if __name__ == "__main__" :
 
                         points = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{j}_{i}_{R}.txt.npy")
 
+
                         result_a = points[points[:,3]==a]
                         result_b = points[points[:,3]==b]
-                        random_a = data_random[data_random[:,3]==a]
-                        random_b = data_random[data_random[:,3]==b]
+                        
+                        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:,:len(result_a)]
+
+                        random_a = data_random
+                        random_b = data_random
 
                         Nra = len(random_a)
                         Nrb = len(random_b)
