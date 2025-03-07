@@ -60,15 +60,18 @@ except:
     np.save(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt", result)
     print("Extrema calcules")
 
-data_random = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt.npy")
+data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")
 
-for j in range(4):
-    for k in range(j, 4):
+#for j in range(4):
+#    for k in range(j, 4):
+
+if True :
+    if True :
+        j = 3
+        k = 3
         print(j, k)
         result_k = result[result[:,3]==k]
         result_j = result[result[:,3]==j]
-        random_k = data_random[data_random[:,3]==k]
-        random_j = data_random[data_random[:,3]==j]
 
         Ckj = []
         Rkj = []
@@ -78,20 +81,20 @@ for j in range(4):
             x0 = p[0]
             y0 = p[1]
             z0 = p[2]
-            for q in random_j :
-                x1 = q[0]
-                y1 = q[1]
-                z1 = q[2]
+            for q in range(512**3) :
+                x1 = data_random[0][q]
+                y1 = data_random[1][q]
+                z1 = data_random[2][q]
                 Rkj.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))       
             for q in result_j :
                 x1 = q[0]
                 y1 = q[1]
                 z1 = q[2]
                 Ckj.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))   
-        for p in random_k :
-            x0 = p[0]
-            y0 = p[1]
-            z0 = p[2]
+        for p in range(512**3) :
+            x0 = data_random[0][p]
+            y0 = data_random[1][p]
+            z0 = data_random[2][p]
             for q in result_j :
                 x1 = q[0]
                 y1 = q[1]
