@@ -17,24 +17,7 @@ from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 
 
-data = np.random.uniform(size=(512,512,512))
+data = np.random.uniform(low=0,high=512,size=512**3)
 
-R = 5
-
-ef = ExtremaFinder(data, nthreads=32, loglevel=30)
-ef.find_extrema(R)
-pos = ef.extrema[R].pos
-kind = ef.extrema[R].kind
-
-result = []
-for p in range(len(pos)):
-    x = float(pos[p][0])
-    y = float(pos[p][1])
-    z = float(pos[p][2])
-    type = kind[p]
-    result.append(np.array([x,y,z,type]))
-
-
-print(np.shape(result))
-np.save(f"/data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt", result)
+np.save(f"/data100/fcastillo/RESULT/extrema/random.txt", data)
 print("ok")
