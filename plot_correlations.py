@@ -64,9 +64,9 @@ if __name__ == "__main__" :
                         Nca = len(result_a)
                         Ncb = len(result_b)
 
-                        Cab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_C_{a}_{b}_s{R}.txt")
-                        Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt")
-                        Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt")
+                        Cab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_C_{a}_{b}_s{R}.txt.npy")
+                        Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt.npy")
+                        Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt.npy")
 
                         Cabm = np.histogram(Cab, bins =nbins)[0]
                         Rabm = np.histogram(Rab, bins =nbins)[0]
