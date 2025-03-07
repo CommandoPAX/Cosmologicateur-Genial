@@ -29,6 +29,8 @@ if __name__ == "__main__" :
 
     nbins = 20
     R = 5
+    x0 = 0
+    x1 = 4
 
     #for a in range(4) :
     #    for b in range(a,4):
@@ -71,12 +73,12 @@ if __name__ == "__main__" :
                         Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt.npy")
                         Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt.npy")
 
-                        Cabm = np.histogram(Cab, bins =nbins,range=[0,10])[0]
-                        Rabm = np.histogram(Rab, bins =nbins,range=[0,10])[0]
-                        Rbam = np.histogram(Rba, bins =nbins,range=[0,10])[0]
+                        Cabm = np.histogram(Cab, bins =nbins,range=[x0,x1])[0]
+                        Rabm = np.histogram(Rab, bins =nbins,range=[x0,x1])[0]
+                        Rbam = np.histogram(Rba, bins =nbins,range=[x0,x1])[0]
                         zeta = Cabm / np.sqrt(Rabm * Rbam) *sqrt(Nra * Nrb / (Nca* Ncb)) - 1
 
-                        X = np.linspace(0, 10,nbins)
+                        X = np.linspace(x0, x1,nbins)
 
                         axes.plot(X,zeta, color= couleur, ls = ls, label=label)
                         axes.set_xlabel("r [Mpc / h]")
