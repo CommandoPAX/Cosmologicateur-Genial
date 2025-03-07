@@ -62,8 +62,8 @@ if __name__ == "__main__" :
                         random_a = data_random
                         random_b = data_random
 
-                        Nra = len(random_a)
-                        Nrb = len(random_b)
+                        Nra = len(result_a)
+                        Nrb = len(result_a)
                         Nca = len(result_a)
                         Ncb = len(result_b)
 
