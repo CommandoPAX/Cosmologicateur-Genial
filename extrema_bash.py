@@ -47,3 +47,4 @@ python extremateur.py {n} {i}
         fichier.write("exit 0")
         fichier.close()
         os.system(f"sbatch extrema_{n}_{i}.sh")
+        time.sleep(10)
