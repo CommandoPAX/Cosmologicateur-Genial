@@ -35,8 +35,8 @@ if __name__ == "__main__" :
     #    for b in range(a,4):
     if True :
         if True :
-            a = 0
-            b = 0
+            a = 3
+            b = 3
 
             for i in [0,1,2,4]:
                 plt.subplot(2,2,min(i+1,4))

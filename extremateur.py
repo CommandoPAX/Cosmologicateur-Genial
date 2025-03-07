@@ -33,8 +33,10 @@ R = 5
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
+    print("trouve")
 
 except: 
+    print("pas trouve")
     hdul = fits.open(data)
     data = hdul[0].data
     hdul.close()
