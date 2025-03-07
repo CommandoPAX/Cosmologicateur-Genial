@@ -27,7 +27,7 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
-    nbins = 10
+    nbins = 1000
     R = 5
 
     #for a in range(4) :
@@ -71,9 +71,9 @@ if __name__ == "__main__" :
                         Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt.npy")
                         Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt.npy")
 
-                        Cabm = np.histogram(Cab, bins =nbins)[0]
-                        Rabm = np.histogram(Rab, bins =nbins)[0]
-                        Rbam = np.histogram(Rba, bins =nbins)[0]
+                        Cabm = np.histogram(Cab, bins =nbins,range=[0,886])[0]
+                        Rabm = np.histogram(Rab, bins =nbins,range=[0,886])[0]
+                        Rbam = np.histogram(Rba, bins =nbins,range=[0,886])[0]
                         zeta = Cabm / np.sqrt(Rabm * Rbam) *sqrt(Nra * Nrb / (Nca* Ncb)) - 1
 
                             
