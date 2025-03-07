@@ -74,6 +74,8 @@ if True :
 
         data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:,:len(result_k)]
 
+        Np = len(result_k)
+
         Ckj = []
         Rkj = []
         Rjk = []
@@ -82,7 +84,7 @@ if True :
             x0 = p[0]
             y0 = p[1]
             z0 = p[2]
-            for q in range(512**3) :
+            for q in range(Np) :
                 x1 = data_random[0][q]
                 y1 = data_random[1][q]
                 z1 = data_random[2][q]
@@ -92,7 +94,7 @@ if True :
                 y1 = q[1]
                 z1 = q[2]
                 Ckj.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))   
-        for p in range(512**3) :
+        for p in range(Np) :
             x0 = data_random[0][p]
             y0 = data_random[1][p]
             z0 = data_random[2][p]
