@@ -17,7 +17,9 @@ from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 
 
-data = np.random.uniform(low=0,high=512,size=512**3)
+X = np.random.uniform(low=0,high=512,size=512**3)
+Y = np.random.uniform(low=0,high=512,size=512**3)
+Z = np.random.uniform(low=0,high=512,size=512**3)
 
-np.save(f"/data100/fcastillo/RESULT/extrema/random.txt", data)
+np.save(f"/data100/fcastillo/RESULT/extrema/random.txt", np.array([X, Y, Z]))
 print("ok")
