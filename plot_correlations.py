@@ -27,7 +27,7 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
-    nbins = 100
+    nbins = 10
     R = 5
     data_random = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_random_{R}.txt.npy")
 
