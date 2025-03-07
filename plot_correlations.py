@@ -27,10 +27,10 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
-    nbins = 20
+    nbins = 10
     R = 5
-    x0 = 0
-    x1 = 4
+    x0 = 1
+    x1 = 3
 
     #for a in range(4) :
     #    for b in range(a,4):
