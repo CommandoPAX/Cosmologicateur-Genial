@@ -17,7 +17,7 @@ for n in range(6):
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=extrema_{n}_{i}
 #SBATCH --nodes=1
-#SBATCH --mem=100gb
+#SBATCH --mem=500gb
 #SBATCH --time=2:00:00
 #SBATCH --output=/home/fcastillo/logs/extrema_{n}_{i}.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
