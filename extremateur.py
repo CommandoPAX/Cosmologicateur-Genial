@@ -59,7 +59,7 @@ except:
 
 
     print(np.shape(result))
-    np.save(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt", np.array(result).astype(np.float64))
+    np.save(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt", result)
     print("Extrema calcules")
 
 
