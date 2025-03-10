@@ -52,20 +52,21 @@ if __name__ == "__main__" :
                         couleur = couleurs[j]
                         label = labels[j]
 
-                        zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
-                        print(zeta)
+                        try:
+                             zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
+                            print(zeta)
 
-                        X = np.linspace(x0, x1,nbins-1)
+                            X = np.linspace(x0, x1,nbins-1)
 
-                        axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
-                        axes.set_xlabel("r [Mpc / h]")
-                        #plt.xscale("log")
-                        axes.set_ylabel(r"$1 + \zeta (r)$")
-                        #axes.set_ylim(0,0.35)
+                            axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
+                            axes.set_xlabel("r [Mpc / h]")
+                            #plt.xscale("log")
+                            axes.set_ylabel(r"$1 + \zeta (r)$")
+                            #axes.set_ylim(0,0.35)
 
-                            
-                        if j == 5 and i == 1: plt.legend() 
-
+                                
+                            if j == 5 and i == 1: plt.legend() 
+                except: pass
 
             plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
             plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
