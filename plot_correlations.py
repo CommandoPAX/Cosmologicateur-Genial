@@ -58,10 +58,10 @@ if __name__ == "__main__" :
 
                         X = np.linspace(x0, x1,nbins-1)
 
-                        axes.plot(X,zeta, color= couleur, ls = ls, label=label)
+                        axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
                         axes.set_xlabel("r [Mpc / h]")
                         #plt.xscale("log")
-                        axes.set_ylabel(r"$\zeta (r)$")
+                        axes.set_ylabel(r"$1 + \zeta (r)$")
                         #axes.set_ylim(0,0.35)
 
                             
