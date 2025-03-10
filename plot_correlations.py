@@ -34,8 +34,8 @@ if __name__ == "__main__" :
 
     #for a in range(4) :
     #    for b in range(a,4):
-    if True :
-        if True :
+    for a in range(4) :
+        for b in range(4) :
             a = 3
             b = 3
 
