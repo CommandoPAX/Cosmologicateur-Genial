@@ -25,6 +25,8 @@ if __name__ == "__main__" :
     lss = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
+    nom_corr = ["V", "W", "F", "P"]
+
     plt.figure(figsize=(14,10))
 
     nbins = 40
@@ -43,7 +45,7 @@ if __name__ == "__main__" :
 
                 axes = plt.gca()
 
-                axes.title.set_text (f"z = {Redshifts[i]}")
+                axes.title.set_text (f"{nom_corr[a]}{nom_corr[b]} z = {Redshifts[i]}")
 
                 for j in range(6):
                         
