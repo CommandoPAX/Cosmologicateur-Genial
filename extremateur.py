@@ -21,12 +21,9 @@ from math import sqrt
 import sys
 
 def count_pairs(tree_A, tree_B, r):
-            neighbors = tree_A.query_ball_tree(tree_B, r)
-            count = sum(
-                sum(1 for idx in indices if np.linalg.norm(tree_A.data[i] - tree_B.data[idx]) > 0)
-                for i, indices in enumerate(neighbors)
-            )
-            return count
+    neighbors = tree_A.query_ball_tree(tree_B, r)  # Trouver voisins
+    count = np.sum([len(n) - 1 for n in neighbors if len(n) > 1])  # Exclure les paires (i, i)
+    return count
 
 n = int(sys.argv[1])
 i = int(sys.argv[2])
@@ -106,7 +103,7 @@ for j in range(4) :
         DRj_counts[DRj_counts == 0] = 1
 
         # Calcul de ξ(r) selon Davis & Peebles
-        correlation = DD_counts / np.sqrt(DRk_counts * DRj_counts) - 1
+        correlation = DD_counts / np.sqrt(DRk_counts * DRj_counts) *sqrt(len(data_random) * len(data_random) / (len(result_k) * len(result_j))) - 1
 
         print(DD_counts)
         print(DRk_counts)
