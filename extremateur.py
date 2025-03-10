@@ -75,11 +75,13 @@ if True :
         result_k = result[result[:,3]==k][:,0:3]
         result_j = result[result[:,3]==j][:,0:3]
 
-        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:,:len(result_k)]
+        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:]
 
         tree_k = KDTree(result_k)
         tree_j = KDTree(result_j)
         tree_r = KDTree(data_random)
+
+        print("points charges")
 
         r_bins = np.linspace(0, 180, 180)  # 20 intervalles entre 0 et 0.2
         r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
