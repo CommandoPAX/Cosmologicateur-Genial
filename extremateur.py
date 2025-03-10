@@ -68,7 +68,7 @@ except:
 #    for k in range(j, 4):
 
 for j in range(4) :
-    for k in range(4) :
+    for k in range(j,4) :
 
         print(j, k)
         result_k = result[result[:,3]==k][:,0:3]
@@ -76,16 +76,14 @@ for j in range(4) :
 
         data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:]
 
-        print(result_k)
-
         tree_k = KDTree(result_k)
         tree_j = KDTree(result_j)
         tree_r = KDTree(data_random)
 
         print("points charges")
 
-        r_bins = np.linspace(1, 40, 40)  # 20 intervalles entre 0 et 0.2
-        print(r_bins)
+        r_bins = np.linspace(0, 40, 40)  # 20 intervalles entre 0 et 0.2
+
         r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
 
         # Compter les paires DD (données-données)

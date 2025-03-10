@@ -18,7 +18,7 @@ for n in range(6):
 #SBATCH --job-name=extrema_{n}_{i}
 #SBATCH --nodes=1
 #SBATCH --mem=500gb
-#SBATCH --time=02:00:00
+#SBATCH --time=24:00:00
 #SBATCH --output=/home/fcastillo/logs/extrema_{n}_{i}.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr
 #SBATCH --mail-type=ALL

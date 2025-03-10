@@ -35,7 +35,7 @@ if __name__ == "__main__" :
     #for a in range(4) :
     #    for b in range(a,4):
     for a in range(4) :
-        for b in range(4) :
+        for b in range(a,4) :
 
 
             for i in [0,1,2,4]:
