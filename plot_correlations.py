@@ -19,6 +19,19 @@ if __name__ == "__main__" :
         4 : 0
     }
     
+    plt.figure(figsize=(14,10))
+    X = np.linspace(-3,3,61)
+    places = {
+        "00" : 1,
+        "01" : 2,
+        "10" : 3,
+        "11" : 4,
+        "20" : 5,
+        "21" : 6,
+        "40" : 7,
+        "41" : 8
+    }
+
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
     labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
@@ -39,6 +52,13 @@ if __name__ == "__main__" :
     for a in range(4) :
         for b in range(a,4) :
 
+            axs = []
+            for row in range(2):
+                for col in range(2):
+                    inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+                    axs += [plt.subplot(cell) for cell in inner]
+
+
 
             for i in [0,1,2,4]:
                 plt.subplot(2,2,min(i+1,4))
@@ -47,8 +67,21 @@ if __name__ == "__main__" :
 
                 axes.title.set_text (f"{nom_corr[a]}{nom_corr[b]} z = {Redshifts[i]}")
 
-                for j in range(6):
-                        
+                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
+                            
+                for d in range(2):
+                    place = places[str(i) + str(d)]
+
+                    print(axs)
+
+                    axes = axs[place-1]
+
+                    if d == 0 : 
+                        axes.title.set_text (f"z = {Redshifts[i]}")
+
+
+                    for j in range(6):
+                            
                             
                         ls = lss[j]
                         couleur = couleurs[j]
@@ -56,20 +89,33 @@ if __name__ == "__main__" :
 
                         try:
                             zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
-                            zeta[0] = 0
+                            #zeta[0] = 0
 
                             X = np.linspace(x0, x1,nbins-1)
 
-                            axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
-                            axes.set_xlabel("r [Mpc / h]")
+                            #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
                             #plt.xscale("log")
-                            axes.set_ylabel(r"$1 + \zeta (r)$")
                             #axes.set_ylim(0,0.35)
 
-                                
-                            if j == 5 and i == 1: plt.legend() 
+                            if d == 0 : 
+                                axes.plot(X, zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                                axes.set_ylabel(r"$1 + \zeta (r)$")
+                                axes.xaxis.set_visible(False)
+                            else : 
+                                axes.plot(X, zeta-lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                                axes.set_ylabel(r"$\Delta$")
+                            if d ==1 : axes.set_xlabel("r [Mpc / h]")
+
+                            if j == 5 and i == 0 and d == 0: 
+                                axes.legend() 
                         except: pass
 
+                if i == 0:
+                    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
+
+
+                
             plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
             plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
             plt.clf()
