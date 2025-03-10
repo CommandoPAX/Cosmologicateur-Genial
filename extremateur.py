@@ -72,8 +72,8 @@ if True :
         j = 3
         k = 3
         print(j, k)
-        result_k = result[result[:,3]==k]
-        result_j = result[result[:,3]==j]
+        result_k = result[result[:,3]==k][:,0:3]
+        result_j = result[result[:,3]==j][:,0:3]
 
         data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:,:len(result_k)]
 
