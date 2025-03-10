@@ -103,5 +103,9 @@ if True :
         # Calcul de ξ(r) selon Davis & Peebles
         correlation = DD_counts / np.sqrt(DRk_counts * DRj_counts) - 1
 
+        print(DD_counts)
+        print(DRk_counts)
+        print(DRj_counts)
+        print(correlation, np.array(correlation))
 
         np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}.txt", np.array(correlation))
