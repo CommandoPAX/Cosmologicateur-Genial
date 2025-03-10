@@ -21,7 +21,7 @@ if __name__ == "__main__" :
     }
     
     plt.figure(figsize=(14,10))
-    X = np.linspace(-3,3,61)
+    
     places = {
         "00" : 1,
         "01" : 2,
@@ -76,8 +76,6 @@ if __name__ == "__main__" :
                 for d in range(2):
                     place = places[str(i) + str(d)]
 
-                    print(axs)
-
                     axes = axs[place-1]
 
                     if d == 0 : 
@@ -92,7 +90,7 @@ if __name__ == "__main__" :
                         couleur = couleurs[j]
                         label = labels[j]
 
-                        try:
+                        if True:
                             zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
                             #zeta[0] = 0
 
@@ -103,7 +101,7 @@ if __name__ == "__main__" :
                             #axes.set_ylim(0,0.35)
 
                             if d == 0 : 
-                                axes.plot(X, zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                                axes.plot(X, zeta + 1 , color=couleurs[j], ls=ls[j],label=labels[j])
                                 axes.set_ylabel(r"$1 + \zeta (r)$")
                                 axes.xaxis.set_visible(False)
                             else : 
@@ -113,7 +111,7 @@ if __name__ == "__main__" :
 
                             if j == 5 and i == 0 and d == 0: 
                                 axes.legend() 
-                        except: pass
+
 
                 if i == 0:
                     plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
