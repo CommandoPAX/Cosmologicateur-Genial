@@ -13,7 +13,7 @@ for n in range(6):
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
 
-        fichier = open(f"extrema_{n}_{i}_2.sh","w")
+        fichier = open(f"extrema_{n}_{i}.sh","w")
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=extrema_{n}_{i}
 #SBATCH --nodes=1
