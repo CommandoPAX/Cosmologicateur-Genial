@@ -20,6 +20,14 @@ from math import sqrt
 
 import sys
 
+def count_pairs(tree_A, tree_B, r):
+            neighbors = tree_A.query_ball_tree(tree_B, r)
+            count = sum(
+                sum(1 for idx in indices if np.linalg.norm(tree_A.data[i] - tree_B.data[idx]) > 0)
+                for i, indices in enumerate(neighbors)
+            )
+            return count
+
 n = int(sys.argv[1])
 i = int(sys.argv[2])
 
@@ -82,20 +90,15 @@ for j in range(4) :
 
         print("points charges")
 
-        r_bins = np.linspace(0, 40, 40)  # 20 intervalles entre 0 et 0.2
-
+        r_bins = np.linspace(0, 40, 40)  
         r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
 
         # Compter les paires DD (données-données)
-
-        #DD_counts = np.array([len(tree_k.query_ball_tree(tree_j, r)) for r in r_bins[1:]])
-        DD_counts = np.array([sum(len(neighbors) for neighbors in tree_k.query_ball_tree(tree_j, r)) for r in r_bins[1:]])
-
-
+        DD_counts = np.array([count_pairs(tree_k, tree_j, r) for r in r_bins[1:]])
 
         # Compter les paires DR (données-aléatoires)
-        DRk_counts = np.array([sum(len(neighbors) for neighbors in tree_k.query_ball_tree(tree_r, r)) for r in r_bins[1:]])
-        DRj_counts = np.array([sum(len(neighbors) for neighbors in tree_j.query_ball_tree(tree_r, r)) for r in r_bins[1:]])
+        DRk_counts = np.array([count_pairs(tree_k, tree_r, r) for r in r_bins[1:]])
+        DRj_counts = np.array([count_pairs(tree_j, tree_r, r) for r in r_bins[1:]])
 
 
         # Éviter la division par zéro
