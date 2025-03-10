@@ -54,7 +54,7 @@ if __name__ == "__main__" :
                         label = labels[j]
 
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
-
+                        print(zeta)
 
                         X = np.linspace(x0, x1,nbins-1)
 
