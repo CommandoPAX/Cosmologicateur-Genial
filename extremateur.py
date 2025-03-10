@@ -91,13 +91,14 @@ if True :
 
         # Compter les paires DD (données-données)
 
-        DD_counts = np.array([sum(len(tree_k.query_ball_tree(tree_j, r)) for r in r_bins[1:])])
+        #DD_counts = np.array([len(tree_k.query_ball_tree(tree_j, r)) for r in r_bins[1:]])
+        DD_counts = np.array([sum(len(neighbors) for neighbors in tree_k.query_ball_tree(tree_j, r)) for r in r_bins[1:]])
 
 
 
         # Compter les paires DR (données-aléatoires)
-        DRk_counts = np.array([sum(len(tree_k.query_ball_tree(tree_r, r)) for r in r_bins[1:])])
-        DRj_counts = np.array([sum(len(tree_j.query_ball_tree(tree_r, r)) for r in r_bins[1:])])
+        DRk_counts = np.array([sum(len(neighbors) for neighbors in tree_k.query_ball_tree(tree_r, r)) for r in r_bins[1:]])
+        DRj_counts = np.array([sum(len(neighbors) for neighbors in tree_j.query_ball_tree(tree_r, r)) for r in r_bins[1:]])
 
 
         # Éviter la division par zéro
