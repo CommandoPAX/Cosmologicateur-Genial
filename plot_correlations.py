@@ -52,6 +52,11 @@ if __name__ == "__main__" :
     #    for b in range(a,4):
     for a in range(4) :
         for b in range(a,4) :
+            plt.axis("off")
+            #plt.tight_layout()
+
+            outer = gridspec.GridSpec(nrows=2, ncols=2)
+
 
             axs = []
             for row in range(2):
