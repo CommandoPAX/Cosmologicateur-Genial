@@ -27,10 +27,10 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
-    nbins = 10
-    R = 2
-    x0 = 1
-    x1 = 3
+    nbins = 20
+    R = 5
+    x0 = 0
+    x1 = 180
 
     #for a in range(4) :
     #    for b in range(a,4):
@@ -53,30 +53,8 @@ if __name__ == "__main__" :
                         couleur = couleurs[j]
                         label = labels[j]
 
-                        points = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{j}_{i}_{R}.txt.npy")
+                        zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
 
-
-                        result_a = points[points[:,3]==a]
-                        result_b = points[points[:,3]==b]
-                        
-                        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:,:len(result_a)]
-
-                        random_a = data_random
-                        random_b = data_random
-
-                        Nra = len(result_a)
-                        Nrb = len(result_a)
-                        Nca = len(result_a)
-                        Ncb = len(result_b)
-
-                        Cab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_C_{a}_{b}_s{R}.txt.npy")
-                        Rab = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{a}_{b}_s{R}.txt.npy")
-                        Rba = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_R_{b}_{a}_s{R}.txt.npy")
-
-                        Cabm = np.histogram(Cab, bins =nbins,range=[x0,x1])[0]
-                        Rabm = np.histogram(Rab, bins =nbins,range=[x0,x1])[0]
-                        Rbam = np.histogram(Rba, bins =nbins,range=[x0,x1])[0]
-                        zeta = Cabm / np.sqrt(Rabm * Rbam) *sqrt(Nra * Nrb / (Nca* Ncb)) - 1
 
                         X = np.linspace(x0, x1,nbins)
 
