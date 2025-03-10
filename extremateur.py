@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import ipyvolume.pylab as p34
 from astropy.io import fits
+from scipy.spatial import KDTree
 
 
 from scipy.interpolate import interp1d, RegularGridInterpolator
@@ -76,36 +77,29 @@ if True :
 
         data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:,:len(result_k)]
 
-        Np = len(result_k)
+        tree_k = KDTree(result_k)
+        tree_j = KDTree(result_j)
+        tree_r = KDTree(data_random)
 
-        Ckj = []
-        Rkj = []
-        Rjk = []
+        r_bins = np.linspace(0, 180, 180)  # 20 intervalles entre 0 et 0.2
+        r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
 
-        for p in result_k :
-            x0 = p[0]
-            y0 = p[1]
-            z0 = p[2]
-            for q in range(Np) :
-                x1 = data_random[0][q]
-                y1 = data_random[1][q]
-                z1 = data_random[2][q]
-                Rkj.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))       
-            for q in result_j :
-                x1 = q[0]
-                y1 = q[1]
-                z1 = q[2]
-                Ckj.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))   
-        for p in range(Np) :
-            x0 = data_random[0][p]
-            y0 = data_random[1][p]
-            z0 = data_random[2][p]
-            for q in result_j :
-                x1 = q[0]
-                y1 = q[1]
-                z1 = q[2]
-                Rjk.append(sqrt((x0-x1)**2+(y0-y1)**2 +(z0-z1)**2))       
+        # Compter les paires DD (données-données)
 
-        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_C_{k}_{j}_s{R}.txt", np.array(Ckj))
-        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_R_{k}_{j}_s{R}.txt", np.array(Rkj))
-        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_R_{j}_{k}_s{R}.txt", np.array(Rjk))
+        DD_counts = np.array([len(tree_k.query_ball_tree(tree_j, r)) for r in r_bins[1:]])
+
+
+        # Compter les paires DR (données-aléatoires)
+        DRk_counts = np.array([len(tree_k.query_ball_tree(tree_r, r)) for r in r_bins[1:]])
+        DRj_counts = np.array([len(tree_j.query_ball_tree(tree_r, r)) for r in r_bins[1:]])
+
+
+        # Éviter la division par zéro
+        DRk_counts[DRk_counts == 0] = 1
+        DRj_counts[DRj_counts == 0] = 1
+
+        # Calcul de ξ(r) selon Davis & Peebles
+        correlation = DD_counts / np.sqrt(DRk_counts * DRj_counts) - 1
+
+
+        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}.txt", np.array(correlation))
