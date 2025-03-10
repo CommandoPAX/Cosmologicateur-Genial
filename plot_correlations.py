@@ -73,49 +73,51 @@ if __name__ == "__main__" :
 
                 axes.title.set_text (f"{nom_corr[a]}{nom_corr[b]} z = {Redshifts[i]}")
 
-                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
-                            
-                for d in range(2):
-                    place = places[str(i) + str(d)]
+                try :
 
-                    print(axs)
+                    lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
+                                
+                    for d in range(2):
+                        place = places[str(i) + str(d)]
 
-                    axes = axs[place-1]
+                        print(axs)
 
-                    if d == 0 : 
-                        axes.title.set_text (f"z = {Redshifts[i]}")
+                        axes = axs[place-1]
+
+                        if d == 0 : 
+                            axes.title.set_text (f"z = {Redshifts[i]}")
 
 
-                    for j in range(6):
-                            
-                            
-                        ls = lss[j]
-                        couleur = couleurs[j]
-                        label = labels[j]
+                        for j in range(6):
+                                
+                                
+                            ls = lss[j]
+                            couleur = couleurs[j]
+                            label = labels[j]
 
-                        try:
-                            zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
-                            #zeta[0] = 0
+                            try:
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
+                                #zeta[0] = 0
 
-                            X = np.linspace(x0, x1,nbins-1)
+                                X = np.linspace(x0, x1,nbins-1)
 
-                            #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
-                            #plt.xscale("log")
-                            #axes.set_ylim(0,0.35)
+                                #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
+                                #plt.xscale("log")
+                                #axes.set_ylim(0,0.35)
 
-                            if d == 0 : 
-                                axes.plot(X, zeta, color=couleurs[j], ls=ls[j],label=labels[j])
-                                axes.set_ylabel(r"$1 + \zeta (r)$")
-                                axes.xaxis.set_visible(False)
-                            else : 
-                                axes.plot(X, zeta-lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
-                                axes.set_ylabel(r"$\Delta$")
-                            if d ==1 : axes.set_xlabel("r [Mpc / h]")
+                                if d == 0 : 
+                                    axes.plot(X, zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                                    axes.set_ylabel(r"$1 + \zeta (r)$")
+                                    axes.xaxis.set_visible(False)
+                                else : 
+                                    axes.plot(X, zeta-lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                                    axes.set_ylabel(r"$\Delta$")
+                                if d ==1 : axes.set_xlabel("r [Mpc / h]")
 
-                            if j == 5 and i == 0 and d == 0: 
-                                axes.legend() 
-                        except: pass
-
+                                if j == 5 and i == 0 and d == 0: 
+                                    axes.legend() 
+                            except: pass
+                except: pass
                 if i == 0:
                     plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
