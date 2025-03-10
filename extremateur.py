@@ -77,6 +77,8 @@ if True :
 
         data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:]
 
+        print(result_k)
+
         tree_k = KDTree(result_k)
         tree_j = KDTree(result_j)
         tree_r = KDTree(data_random)
