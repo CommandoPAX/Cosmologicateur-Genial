@@ -67,11 +67,8 @@ if __name__ == "__main__" :
 
 
             for i in [0,1,2,4]:
-                plt.subplot(2,2,min(i+1,4))
+                
 
-                axes = plt.gca()
-
-                axes.title.set_text (f"{nom_corr[a]}{nom_corr[b]} z = {Redshifts[i]}")
 
                 try :   lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
                 except : lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{1}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
@@ -84,7 +81,8 @@ if __name__ == "__main__" :
                     axes = axs[place-1]
 
                     if d == 0 : 
-                        axes.title.set_text (f"z = {Redshifts[i]}")
+                        axes.title.set_text (f"{nom_corr[a]}{nom_corr[b]} z = {Redshifts[i]}")
+
 
 
                     for j in range(6):
