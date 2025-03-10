@@ -67,10 +67,9 @@ except:
 #for j in range(4):
 #    for k in range(j, 4):
 
-if True :
-    if True :
-        j = 3
-        k = 3
+for j in range(4) :
+    for k in range(4) :
+
         print(j, k)
         result_k = result[result[:,3]==k][:,0:3]
         result_j = result[result[:,3]==j][:,0:3]
