@@ -21,9 +21,13 @@ from math import sqrt
 import sys
 
 def count_pairs(tree_A, tree_B, r):
-    neighbors = tree_A.query_ball_tree(tree_B, r)  # Trouver voisins
-    count = np.sum([len(n) - 1 for n in neighbors if len(n) > 1])  # Exclure les paires (i, i)
-    return count
+    
+    count = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, r))
+
+    count0 = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, 0.1))
+
+
+    return count - count0
 
 n = int(sys.argv[1])
 i = int(sys.argv[2])
