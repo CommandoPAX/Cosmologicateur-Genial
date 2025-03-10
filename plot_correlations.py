@@ -56,7 +56,7 @@ if __name__ == "__main__" :
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
 
 
-                        X = np.linspace(x0, x1,nbins)
+                        X = np.linspace(x0, x1,nbins-1)
 
                         axes.plot(X,zeta, color= couleur, ls = ls, label=label)
                         axes.set_xlabel("r [Mpc / h]")
