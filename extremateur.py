@@ -30,7 +30,7 @@ pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
-R = 2
+R = 5
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -83,7 +83,7 @@ if True :
 
         print("points charges")
 
-        r_bins = np.linspace(0, 180, 180)  # 20 intervalles entre 0 et 0.2
+        r_bins = np.linspace(0, 180, 20)  # 20 intervalles entre 0 et 0.2
         r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
 
         # Compter les paires DD (données-données)
