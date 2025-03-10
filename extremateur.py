@@ -85,7 +85,7 @@ if True :
 
         print("points charges")
 
-        r_bins = np.linspace(1, 180, 20)  # 20 intervalles entre 0 et 0.2
+        r_bins = np.linspace(1, 40, 40)  # 20 intervalles entre 0 et 0.2
         print(r_bins)
         r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
 
