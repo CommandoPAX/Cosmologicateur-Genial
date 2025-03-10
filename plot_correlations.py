@@ -53,7 +53,7 @@ if __name__ == "__main__" :
                         label = labels[j]
 
                         try:
-                             zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
+                            zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
                             print(zeta)
 
                             X = np.linspace(x0, x1,nbins-1)
@@ -66,7 +66,7 @@ if __name__ == "__main__" :
 
                                 
                             if j == 5 and i == 1: plt.legend() 
-                except: pass
+                        except: pass
 
             plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
             plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
