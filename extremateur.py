@@ -85,18 +85,19 @@ if True :
 
         print("points charges")
 
-        r_bins = np.linspace(0, 180, 20)  # 20 intervalles entre 0 et 0.2
+        r_bins = np.linspace(1, 180, 20)  # 20 intervalles entre 0 et 0.2
         print(r_bins)
         r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
 
         # Compter les paires DD (données-données)
 
-        DD_counts = np.array([len(tree_k.query_ball_tree(tree_j, r)) for r in r_bins[1:]])
+        DD_counts = np.array([sum(len(tree_k.query_ball_tree(tree_j, r)) for r in r_bins[1:])])
+
 
 
         # Compter les paires DR (données-aléatoires)
-        DRk_counts = np.array([len(tree_k.query_ball_tree(tree_r, r)) for r in r_bins[1:]])
-        DRj_counts = np.array([len(tree_j.query_ball_tree(tree_r, r)) for r in r_bins[1:]])
+        DRk_counts = np.array([sum(len(tree_k.query_ball_tree(tree_r, r)) for r in r_bins[1:])])
+        DRj_counts = np.array([sum(len(tree_j.query_ball_tree(tree_r, r)) for r in r_bins[1:])])
 
 
         # Éviter la division par zéro
