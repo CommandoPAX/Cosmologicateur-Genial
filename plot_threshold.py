@@ -88,7 +88,7 @@ if __name__ == "__main__" :
                     label = labels[j]
 
                     if True :#try:
-                        count = np.load("f/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
+                        count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
                         #zeta[0] = 0
 
                         X = np.linspace(-4,6,100)
