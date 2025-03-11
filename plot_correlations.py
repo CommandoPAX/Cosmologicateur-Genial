@@ -102,11 +102,11 @@ if __name__ == "__main__" :
                             #axes.set_ylim(0,0.35)
 
                             if d == 0 : 
-                                axes.plot(r_bins, zeta + 1 , color=couleur, ls=ls,label=label)
+                                axes.plot(r_bins[1:], zeta + 1 , color=couleur, ls=ls,label=label)
                                 axes.set_ylabel(r"$1 + \zeta (r)$")
                                 axes.xaxis.set_visible(False)
                             else : 
-                                axes.plot(r_bins, zeta-lcdm, color=couleur, ls=ls,label=label)
+                                axes.plot(r_bins[1:], zeta-lcdm, color=couleur, ls=ls,label=label)
                                 axes.set_ylabel(r"$\Delta$")
                             if d ==1 : axes.set_xlabel("r [Mpc / h]")
 
