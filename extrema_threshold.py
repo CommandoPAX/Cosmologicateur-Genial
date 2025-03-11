@@ -21,7 +21,7 @@ from math import sqrt
 import sys
 
 
-def filtrer_points_critiques(points_critiques, champ_densite, seuil):
+def filtrer_points_critiques(points_critiques, champ_densite, seuil_max, seuil_min):
     """
     Ne garde que les points critiques dont la densité est supérieure à un seuil donné.
     
@@ -37,7 +37,7 @@ def filtrer_points_critiques(points_critiques, champ_densite, seuil):
     densites = champ_densite[X, Y, Z]
     
     # Filtrer les points dont la densité dépasse le seuil
-    indices_valides = densites > seuil
+    indices_valides = densites >= seuil_max & densites < seuil_min
     points_filtres = points_critiques[indices_valides]
     
     return points_filtres
@@ -99,9 +99,10 @@ hdul.close()
 threshold = np.linspace(-4,6,100)
 count = []
 sigma = np.std(field)
+delta = threshold[1] - threshold[0]
 
 for t in threshold :
-    points_filtres = filtrer_points_critiques(result, field, t*sigma)
+    points_filtres = filtrer_points_critiques(result, field, t*sigma, (t-delta)*sigma)
 
     count_t = []
 
