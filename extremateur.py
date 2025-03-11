@@ -21,11 +21,25 @@ from math import sqrt
 import sys
 
 def count_pairs(tree_A, tree_B, r):
-    
-    count = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, r))
+    global R
 
-    count0 = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, 0.1))
+    count = 0
+    count0 = 0
 
+    if R >= 2 :
+        
+        count = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, r))
+
+        count0 = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, 0.1))
+
+    else :
+        for i in range(0, len(tree_A.data), 100000):
+            sub_tree_A = tree_A.data[i : min(i + 100000,len(tree_A.data))]
+            sub_count = np.sum(len(neighbors) for neighbors in sub_tree_A.query_ball_tree(tree_B, r))
+            sub_count_0 = np.sum(len(neighbors) for neighbors in sub_tree_A.query_ball_tree(tree_B, 0.1))
+            
+            count += sub_count
+            count0 += sub_count_0
 
     return count - count0
 
