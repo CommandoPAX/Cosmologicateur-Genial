@@ -82,12 +82,12 @@ for j in range(4) :
     for k in range(j,4) :
 
         print(j, k)
-        result_k = result[result[:,3]==k][:,0:3]
-        result_j = result[result[:,3]==j][:,0:3]
+        result_k = result[result[:,3]==k][:,0:3] % 512
+        result_j = result[result[:,3]==j][:,0:3] % 512
 
-        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:]
+        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:] % 512
 
-        tree_k = KDTree(result_k,boxsize=512)
+        tree_k = KDTree(result_k,boxsize=512) 
         tree_j = KDTree(result_j,boxsize=512)
         tree_r = KDTree(data_random,boxsize=512)
 
