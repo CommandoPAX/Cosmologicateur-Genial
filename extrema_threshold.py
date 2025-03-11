@@ -101,22 +101,20 @@ count = []
 sigma = np.std(field)
 delta = threshold[1] - threshold[0]
 
+N = 0
+
+
 for t in threshold :
     points_filtres = filtrer_points_critiques(result, field, t*sigma, (t-delta)*sigma)
 
     count_t = []
 
-    N = 0
 
     for j in range(4) :
 
         count_t.append(len(points_filtres[points_filtres[:,3]==j]))
         N += len(points_filtres[points_filtres[:,3]==j])
 
-    if N ==0 : 
-        count.append(count_t)
-    else :
-        count.append(np.array(count_t)/N)
+    count.append(count_t)
 
-
-np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_threshold_s{R}.txt", np.array(count))
+np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_threshold_s{R}.txt", np.array(count)/N)
