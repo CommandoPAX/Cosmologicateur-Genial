@@ -88,7 +88,7 @@ if __name__ == "__main__" :
                         couleur = couleurs[j]
                         label = labels[j]
 
-                        try:
+                        if True :#try:
                             zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_varbin.txt.npy")
                             #zeta[0] = 0
 
@@ -112,7 +112,7 @@ if __name__ == "__main__" :
 
                             if j == 5 and i == 0 and d == 0: 
                                 axes.legend() 
-                        except: pass
+                        #except: pass
 
                 if i == 0:
                     plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
