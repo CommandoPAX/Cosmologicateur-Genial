@@ -34,7 +34,7 @@ def count_pairs(tree_A, tree_B, r):
 
     else :
         for i in range(0, len(tree_A.data), 100000):
-            sub_tree_A = tree_A.data[i : min(i + 100000,len(tree_A.data))]
+            sub_tree_A = KDTree(tree_A.data[i : min(i + 100000,len(tree_A.data))], boxsize=512)
             sub_count = np.sum(len(neighbors) for neighbors in sub_tree_A.query_ball_tree(tree_B, r))
             sub_count_0 = np.sum(len(neighbors) for neighbors in sub_tree_A.query_ball_tree(tree_B, 0.1))
             
