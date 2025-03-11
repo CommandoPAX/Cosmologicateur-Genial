@@ -104,7 +104,9 @@ if __name__ == "__main__" :
                         else : 
                             axes.plot(X, count[:,b]/np.sum(count,axis=1)-lcdm[:,b]/np.sum(lcdm,axis=1), color=couleur, ls=ls,label=label)
                             axes.set_ylabel(r"$\Delta$")
-                        if d ==1 : axes.set_xlabel(r"$\nu [\sigma]$")
+                        if d ==1 : 
+                            axes.set_xlabel(r"$\nu [\sigma]$")
+                            axes.set_xlim(-4,6)
 
                         if j == 5 and i == 0 and d == 0: 
                             axes.legend() 
