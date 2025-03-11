@@ -69,9 +69,7 @@ if __name__ == "__main__" :
             for i in [0,1,2,4]:
                 
 
-
-                try :   lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
-                except : lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{1}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
+                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_varbin.txt.npy")
                 
                 for d in range(2):
                     place = places[str(i) + str(d)]
@@ -91,21 +89,24 @@ if __name__ == "__main__" :
                         label = labels[j]
 
                         try:
-                            zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}.txt.npy")
+                            zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_varbin.txt.npy")
                             #zeta[0] = 0
 
-                            X = np.linspace(x0, x1,nbins-1)
+                            r_small = np.linspace(0, 5, 20)  # 10 points entre 0 et 1
+                            r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                            r_bins = np.concatenate((r_small, r_large))
+
 
                             #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
                             #plt.xscale("log")
                             #axes.set_ylim(0,0.35)
 
                             if d == 0 : 
-                                axes.plot(X, zeta + 1 , color=couleur, ls=ls,label=label)
+                                axes.plot(r_bins, zeta + 1 , color=couleur, ls=ls,label=label)
                                 axes.set_ylabel(r"$1 + \zeta (r)$")
                                 axes.xaxis.set_visible(False)
                             else : 
-                                axes.plot(X, zeta-lcdm, color=couleur, ls=ls,label=label)
+                                axes.plot(r_bins, zeta-lcdm, color=couleur, ls=ls,label=label)
                                 axes.set_ylabel(r"$\Delta$")
                             if d ==1 : axes.set_xlabel("r [Mpc / h]")
 
@@ -119,7 +120,7 @@ if __name__ == "__main__" :
 
 
                 
-            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.pdf")
-            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}.png")
+            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}_varbin.pdf")
+            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}_varbin.png")
             plt.clf()
 

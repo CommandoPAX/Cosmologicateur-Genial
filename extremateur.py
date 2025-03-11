@@ -93,7 +93,11 @@ for j in range(4) :
 
         print("points charges")
 
-        r_bins = np.linspace(0, 40, 40)  
+        r_small = np.linspace(0, 5, 20)  # 10 points entre 0 et 1
+        r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+        r_bins = np.concatenate((r_small, r_large))
+
+
         r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
 
         # Compter les paires DD (données-données)
@@ -116,4 +120,4 @@ for j in range(4) :
         print(DRj_counts)
         print(correlation, np.array(correlation))
 
-        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}.txt", np.array(correlation))
+        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_varbin.txt", np.array(correlation))
