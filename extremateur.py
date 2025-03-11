@@ -71,6 +71,8 @@ except:
     print(np.shape(result))
     np.save(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt", result)
     print("Extrema calcules")
+    result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
+
 
 
 #for j in range(4):
@@ -85,9 +87,9 @@ for j in range(4) :
 
         data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:]
 
-        tree_k = KDTree(result_k)
-        tree_j = KDTree(result_j)
-        tree_r = KDTree(data_random)
+        tree_k = KDTree(result_k,boxsize=512)
+        tree_j = KDTree(result_j,boxsize=512)
+        tree_r = KDTree(data_random,boxsize=512)
 
         print("points charges")
 
