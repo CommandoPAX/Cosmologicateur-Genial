@@ -116,7 +116,7 @@ for t in threshold :
     if N ==0 : 
         count.append(count_t)
     else :
-        count.append(count_t/N)
+        count.append(np.array(count_t)/N)
 
 
 np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_threshold_s{R}.txt", np.array(count))
