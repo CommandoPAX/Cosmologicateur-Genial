@@ -96,7 +96,13 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
-threshold = np.linspace(-4,6,50)
+threshold1 = np.linspace(-4,-1,50)
+threshold2 = np.linspace(-1,1,50)
+threshold3 = np.linspace(1,6,50)
+
+threshold =  np.concatenate((threshold1,threshold2,threshold3))
+
+
 count = []
 sigma = np.std(field)
 delta = threshold[1] - threshold[0]
