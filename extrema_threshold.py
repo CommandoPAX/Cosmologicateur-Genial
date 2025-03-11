@@ -96,7 +96,7 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
-threshold = np.linspace(-4,6,100)
+threshold = np.linspace(-4,6,50)
 count = []
 sigma = np.std(field)
 delta = threshold[1] - threshold[0]
@@ -106,12 +106,17 @@ for t in threshold :
 
     count_t = []
 
+    N = 0
+
     for j in range(4) :
 
         count_t.append(len(points_filtres[points_filtres[:,3]==j]))
-    
-    count.append(count_t)
+        N += len(points_filtres[points_filtres[:,3]==j])
 
+    if N ==0 : 
+        count.append(count_t)
+    else :
+        count.append(count_t/N)
 
 
 np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_threshold_s{R}.txt", np.array(count))

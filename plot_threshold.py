@@ -91,7 +91,7 @@ if __name__ == "__main__" :
                         count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
                         #zeta[0] = 0
 
-                        X = np.linspace(-4,6,100)
+                        X = np.linspace(-4,6,50)
 
                         #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
                         #plt.xscale("log")
