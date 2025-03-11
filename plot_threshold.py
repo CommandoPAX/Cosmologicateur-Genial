@@ -98,11 +98,11 @@ if __name__ == "__main__" :
                         #axes.set_ylim(0,0.35)
 
                         if d == 0 : 
-                            axes.plot(X, count[:,b]/np.sum(count,axis=0) , color=couleur, ls=ls,label=label)
+                            axes.plot(X, count[:,b]/np.sum(count,axis=1) , color=couleur, ls=ls,label=label)
                             axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
                             axes.xaxis.set_visible(False)
                         else : 
-                            axes.plot(X, count[:,b]/np.sum(count,axis=0)-lcdm[:,b]/np.sum(lcdm,axis=0), color=couleur, ls=ls,label=label)
+                            axes.plot(X, count[:,b]/np.sum(count,axis=1)-lcdm[:,b]/np.sum(lcdm,axis=1), color=couleur, ls=ls,label=label)
                             axes.set_ylabel(r"$\Delta$")
                         if d ==1 : axes.set_xlabel(r"$\nu [\sigma]$")
 
