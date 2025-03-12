@@ -26,7 +26,7 @@ def count_pairs(tree_A, tree_B, r):
     count = 0
     count0 = 0
 
-    if R >= 2 :
+    if True : #R >= 2 :
         
         count = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, r))
 
@@ -53,7 +53,7 @@ pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
-R = 1
+R = 2
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -92,6 +92,14 @@ except:
 #for j in range(4):
 #    for k in range(j, 4):
 
+hdul = fits.open(data)
+field = hdul[0].data
+hdul.close()
+
+x = np.arange(512)
+y = np.arange(512)
+z = np.arange(512)
+
 for j in range(4) :
     for k in range(j,4) :
 
@@ -99,10 +107,16 @@ for j in range(4) :
         result_k = result[result[:,3]==k][:,0:3] % 512
         result_j = result[result[:,3]==j][:,0:3] % 512
 
+        Xk, Yk, Zk = result_k[:, 0].astype(int), result_k[:, 1].astype(int), result_k[:, 2].astype(int)
+        Xj, Yj, Zj = result_j[:, 0].astype(int), result_j[:, 1].astype(int), result_j[:, 2].astype(int)
+
+        indices_k = (field[Xk, Yk, Zk] >= 2*np.std(field[Xk,Yk,Zk])) | (field[Xk, Yk, Zk] <= -2*np.std(field[Xk,Yk,Zk]))
+        indices_j = (field[Xj, Yj, Zj] >= 2*np.std(field[Xj,Yj,Zj])) | (field[Xj, Yj, Zj] <= -2*np.std(field[Xj,Yj,Zj]))
+
         data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:] % 512
 
-        tree_k = KDTree(result_k,boxsize=512) 
-        tree_j = KDTree(result_j,boxsize=512)
+        tree_k = KDTree(result_k[indices_k],boxsize=512) 
+        tree_j = KDTree(result_j[indices_j],boxsize=512)
         tree_r = KDTree(data_random,boxsize=512)
 
         print("points charges")

@@ -118,7 +118,7 @@ densites_interpolees = interpolateur(positions)
 count = []
 Q1, Q3 = np.percentile(field, [25, 75])
 iqr = Q3 - Q1
-sigma = iqr / 1.349  # Approximation pour une loi normale
+sigma = iqr / 1.349 
 
 delta = threshold[1] - threshold[0]
 
