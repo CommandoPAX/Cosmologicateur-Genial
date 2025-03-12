@@ -96,8 +96,8 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
-threshold1 = np.linspace(-4,-1,50)
-threshold2 = np.linspace(-1,1,50)
+threshold1 = np.linspace(-4,-0.94,50)
+threshold2 = np.linspace(-1,0.98,50)
 threshold3 = np.linspace(1,6,50)
 
 threshold =  np.concatenate((threshold1,threshold2,threshold3))
@@ -114,7 +114,7 @@ for thr in range(len(threshold)) :
     t = threshold[thr]
     try : 
         delta = threshold[thr+1]-threshold[thr]
-        print(delta)
+        #print(delta)
     except: pass
     points_filtres = filtrer_points_critiques(result, field, t*sigma, (t-delta)*sigma)
 
