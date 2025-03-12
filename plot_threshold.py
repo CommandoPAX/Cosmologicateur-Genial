@@ -101,6 +101,11 @@ if __name__ == "__main__" :
                         #plt.xscale("log")
                         #axes.set_ylim(0,0.35)
 
+                        if i == 0 : axes.set_xlim(-4,2)
+                        if i == 1 : axes.set_xlim(-2,2)
+                        if i == 2 : axes.set_xlim(-1,1)
+                        if i == 4 : axes.set_xlim(-1,1)
+
                         if d == 0 : 
                             axes.plot(X, count[:,b] , color=couleur, ls=ls,label=label)
                             axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
