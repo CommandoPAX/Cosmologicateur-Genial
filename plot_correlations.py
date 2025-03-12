@@ -92,9 +92,10 @@ if __name__ == "__main__" :
                             zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_varbin.txt.npy")
                             #zeta[0] = 0
 
-                            r_small = np.linspace(0, 5, 20)  # 10 points entre 0 et 1
+                            r_small = np.linspace(0, 5, 80)  # 10 points entre 0 et 1
                             r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
                             r_bins = np.concatenate((r_small, r_large))
+
 
 
                             #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
