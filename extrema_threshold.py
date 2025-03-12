@@ -111,7 +111,7 @@ z = np.arange(512)
 interpolateur = RegularGridInterpolator((x, y, z), field, bounds_error=False, fill_value=None)
 positions = result[:, :3]  # Exclure la colonne "type"
 densites_interpolees = interpolateur(positions)
-densites_interpolees = densites_interpolees[(densites_interpolees<2) & (densites_interpolees > -1)]
+#densites_interpolees = densites_interpolees[(densites_interpolees<2) & (densites_interpolees > -1)]
 
 count = []
 
