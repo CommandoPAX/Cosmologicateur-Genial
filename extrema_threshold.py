@@ -112,7 +112,9 @@ delta = threshold[1]-threshold[0]
 
 for thr in range(len(threshold)) :
     t = threshold[thr]
-    try : delta = thr[t+1]-thr[t]
+    try : 
+        delta = thr[t+1]-thr[t]
+        print(delta)
     except: pass
     points_filtres = filtrer_points_critiques(result, field, t*sigma, (t-delta)*sigma)
 
