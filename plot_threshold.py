@@ -101,14 +101,14 @@ if __name__ == "__main__" :
                         #plt.xscale("log")
                         #axes.set_ylim(0,0.35)
 
-                        if i == 0  and b in (0,1) : axes.set_xlim(-4,4)
+                        """if i == 0  and b in (0,1) : axes.set_xlim(-4,4)
                         if i == 1  and b in (0,1) : axes.set_xlim(-2,4)
                         if i == 0  and b in (2,3) : axes.set_xlim(-4,2)
                         if i == 1  and b in (2,3) : axes.set_xlim(-2,2)
                         if i == 2 and b in (0,1) : axes.set_xlim(-1,1)
                         if i == 4 and b in (0,1) : axes.set_xlim(-1,1)
                         if i == 2 and b in (2,3) : axes.set_xlim(-0.5,0.5)
-                        if i == 4 and b in (2,3) : axes.set_xlim(-0.5,0.5)
+                        if i == 4 and b in (2,3) : axes.set_xlim(-0.5,0.5)"""
                         if d == 0 : 
                             axes.plot(X, count[:,b] , color=couleur, ls=ls,label=label)
                             axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
@@ -118,6 +118,7 @@ if __name__ == "__main__" :
                             axes.set_ylabel(r"$\Delta$")
                         if d ==1 : 
                             axes.set_xlabel(r"$\nu [\sigma]$")
+                            axes.set_xlim(-4,6)
 
                         if j == 5 and i == 0 and d == 0: 
                             axes.legend() 
