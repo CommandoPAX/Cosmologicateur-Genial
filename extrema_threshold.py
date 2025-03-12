@@ -98,10 +98,6 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
-hdul = fits.open(data0)
-field0 = hdul[0].data
-hdul.close()
-
 if i == 0 : Npoints = 100//R**2
 if i == 1 : Npoints = 150//R**2
 if i == 2 : Npoints = 300//R**2
@@ -120,8 +116,9 @@ densites_interpolees = interpolateur(positions)
 #densites_interpolees = densites_interpolees[(densites_interpolees<2) & (densites_interpolees > -1)]
 
 count = []
-
-sigma = np.std(field0)
+Q1, Q3 = np.percentile(field, [25, 75])
+iqr = Q3 - Q1
+sigma = iqr / 1.349  # Approximation pour une loi normale
 
 delta = threshold[1] - threshold[0]
 
