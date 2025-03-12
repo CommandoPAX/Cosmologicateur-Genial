@@ -91,11 +91,11 @@ if __name__ == "__main__" :
                         count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
                         #zeta[0] = 0
 
-                        if j == 0 : Npoints = 100
-                        if j == 1 : Npoints = 150
-                        if j == 2 : Npoints = 300
-                        if j == 3 : Npoints = 500
-                        if j == 4 : Npoints = 500
+                        if i == 0 : Npoints = 100
+                        if i == 1 : Npoints = 150
+                        if i == 2 : Npoints = 300
+                        if i == 3 : Npoints = 500
+                        if i == 4 : Npoints = 500
 
                         X = np.linspace(-4,6,Npoints)
 
