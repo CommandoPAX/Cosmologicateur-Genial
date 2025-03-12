@@ -96,7 +96,21 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
-threshold = np.linspace(-4,6,500)
+if i == 0 : Npoints = 100
+if i == 1 : Npoints = 150
+if i == 2 : Npoints = 300
+if i == 3 : Npoints = 500
+if i == 4 : Npoints = 500
+
+threshold = np.linspace(-4,6,Npoints)
+
+x = np.arange(512)
+y = np.arange(512)
+z = np.arange(512)
+
+interpolateur = RegularGridInterpolator((x, y, z), field, bounds_error=False, fill_value=None)
+positions = result[:, :3]  # Exclure la colonne "type"
+densites_interpolees = interpolateur(positions)
 
 
 count = []
@@ -109,7 +123,7 @@ delta = threshold[1]-threshold[0]
 for thr in range(len(threshold)) :
     t = threshold[thr]
 
-    points_filtres = filtrer_points_critiques(result, field, t*sigma, (t-delta)*sigma)
+    points_filtres = filtrer_points_critiques(result, densites_interpolees, t*sigma, (t-delta)*sigma)
 
     count_t = []
     delta = threshold[1] - threshold[0]
