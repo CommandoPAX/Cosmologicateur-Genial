@@ -112,6 +112,7 @@ interpolateur = RegularGridInterpolator((x, y, z), field, bounds_error=False, fi
 positions = result[:, :3]  # Exclure la colonne "type"
 densites_interpolees = interpolateur(positions)
 
+print(densites_interpolees)
 
 count = []
 sigma = np.std(field)
