@@ -108,12 +108,16 @@ sigma = np.std(field)
 delta = threshold[1] - threshold[0]
 
 N = 0
+delta = threshold[1]-threshold[0]
 
-
-for t in threshold :
+for thr in range(len(threshold)) :
+    t = threshold[thr]
+    try : delta = thr[t+1]-thr[t]
+    except: pass
     points_filtres = filtrer_points_critiques(result, field, t*sigma, (t-delta)*sigma)
 
     count_t = []
+    delta = threshold[1] - threshold[0]
 
 
     for j in range(4) :
