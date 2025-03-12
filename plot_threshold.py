@@ -137,7 +137,7 @@ if __name__ == "__main__" :
         plt.clf()
 
 
-    for i in range([0,1,2,4]):
+    for i in [0,1,2,4]:
         plt.subplot(2,2,min(i+1,4))
 
         axes = plt.gca()
