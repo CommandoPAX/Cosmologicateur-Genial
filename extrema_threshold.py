@@ -99,10 +99,10 @@ field = hdul[0].data
 hdul.close()
 
 if i == 0 : Npoints = 100//R**2
-if i == 1 : Npoints = 150//R**2
-if i == 2 : Npoints = 300//R**2
-if i == 3 : Npoints = 500//R**2
-if i == 4 : Npoints = 500//R**2
+if i == 1 : Npoints = 100//R**2
+if i == 2 : Npoints = 100//R**2
+if i == 3 : Npoints = 100//R**2
+if i == 4 : Npoints = 100//R**2
 
 threshold = np.linspace(-4,6,Npoints)
 
