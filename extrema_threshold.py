@@ -34,7 +34,7 @@ def filtrer_points_critiques(points_critiques, champ_densite, seuil_max, seuil_m
     X, Y, Z = points_critiques[:, 0].astype(int), points_critiques[:, 1].astype(int), points_critiques[:, 2].astype(int)
     
     # Récupérer la densité aux positions des points critiques
-    densites = champ_densite[X, Y, Z]
+    densites = champ_densite#[X, Y, Z]
     
     # Filtrer les points dont la densité dépasse le seuil
     indices_valides = (densites <= seuil_max) & (densites > seuil_min)
