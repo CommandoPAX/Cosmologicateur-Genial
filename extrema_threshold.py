@@ -128,7 +128,6 @@ delta = threshold[1]-threshold[0]
 for thr in range(len(threshold)) :
     t = threshold[thr]
 
-    points_filtres = filtrer_points_critiques(result, densites_interpolees, t*sigma, (t-delta)*sigma)
 
     count_t = []
     delta = threshold[1] - threshold[0]
@@ -136,8 +135,12 @@ for thr in range(len(threshold)) :
 
     for j in range(4) :
 
-        count_t.append(len(points_filtres[points_filtres[:,3]==j]))
-        N += len(points_filtres[points_filtres[:,3]==j])
+        type_t = result[result[:,3] == j]
+        sigma = np.std(type_t)
+        points_filtres_t = filtrer_points_critiques(type_t, densites_interpolees, t*sigma, (t-delta)*sigma)
+
+        count_t.append(len(points_filtres_t))
+        N += len(points_filtres_t)
 
     count.append(count_t)
 
