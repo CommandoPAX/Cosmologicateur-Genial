@@ -39,7 +39,7 @@ if __name__ == "__main__" :
     lss = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
-    nom_corr = ["V", "W", "F", "P"]
+    nom_corr = ["P", "F", "W", "V"]
 
     plt.figure(figsize=(14,10))
 
