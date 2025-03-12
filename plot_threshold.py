@@ -64,7 +64,6 @@ if __name__ == "__main__" :
                 axs += [plt.subplot(cell) for cell in inner]
 
 
-
         for i in [0,1,2,4]:
             
 

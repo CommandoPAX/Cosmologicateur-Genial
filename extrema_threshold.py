@@ -112,10 +112,10 @@ interpolateur = RegularGridInterpolator((x, y, z), field, bounds_error=False, fi
 positions = result[:, :3]  # Exclure la colonne "type"
 densites_interpolees = interpolateur(positions)
 
-print(densites_interpolees)
-
 count = []
-sigma = np.std(field)
+Q1, Q3 = np.percentile(field, [25, 75])
+iqr = Q3 - Q1
+sigma = iqr / 1.349  # Approximation pour une loi normale
 delta = threshold[1] - threshold[0]
 
 N = 0
