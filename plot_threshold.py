@@ -147,7 +147,7 @@ if __name__ == "__main__" :
         for j in range(4):
                 
                 ls = "-"#lss[j]
-                couleur = ["orange","green","blue","red"][j]
+                couleur = ["orange","green","blue","red"][3-j]
                 label = nom_corr[j]#labels[j]
 
                 try :
@@ -159,6 +159,6 @@ if __name__ == "__main__" :
                 except:
                      print(j, i)
                     
-                if j == 3 and i == 1: plt.legend() 
+                if j == 3 and i == 0: plt.legend() 
 
     plt.savefig("extrema_lcdm.pdf")
