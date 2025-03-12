@@ -57,7 +57,7 @@ pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
-R = 2
+R = 1
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -96,11 +96,11 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
-if i == 0 : Npoints = 150//R**2
+if i == 0 : Npoints = 100//R**2
 if i == 1 : Npoints = 150//R**2
-if i == 2 : Npoints = 150//R**2
-if i == 3 : Npoints = 150//R**2
-if i == 4 : Npoints = 150//R**2
+if i == 2 : Npoints = 300//R**2
+if i == 3 : Npoints = 500//R**2
+if i == 4 : Npoints = 500//R**2
 
 threshold = np.linspace(-4,6,Npoints)
 

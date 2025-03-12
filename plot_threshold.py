@@ -44,7 +44,7 @@ if __name__ == "__main__" :
     plt.figure(figsize=(14,10))
 
     nbins = 40
-    R = 2
+    R = 1
     x0 = 0
     x1 = 40
 
@@ -90,11 +90,12 @@ if __name__ == "__main__" :
                         count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
                         #zeta[0] = 0
 
-                        if i == 0 : Npoints = 150//R**2
+                        if i == 0 : Npoints = 100//R**2
                         if i == 1 : Npoints = 150//R**2
-                        if i == 2 : Npoints = 150//R**2
-                        if i == 3 : Npoints = 150//R**2
-                        if i == 4 : Npoints = 150//R**2
+                        if i == 2 : Npoints = 300//R**2
+                        if i == 3 : Npoints = 500//R**2
+                        if i == 4 : Npoints = 500//R**2
+
                         X = np.linspace(-4,6,Npoints)
 
 
