@@ -56,11 +56,13 @@ print(n, i)
 pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
+data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
 
 R = 1
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
+
     print("trouve")
 
 except: 
@@ -96,6 +98,10 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
+hdul = fits.open(data0)
+field0 = hdul[0].data
+hdul.close()
+
 if i == 0 : Npoints = 100//R**2
 if i == 1 : Npoints = 150//R**2
 if i == 2 : Npoints = 300//R**2
@@ -115,7 +121,7 @@ densites_interpolees = interpolateur(positions)
 
 count = []
 
-sigma = np.std(densites_interpolees)
+sigma = np.std(field0)
 
 delta = threshold[1] - threshold[0]
 
