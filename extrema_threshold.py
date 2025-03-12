@@ -136,7 +136,12 @@ for thr in range(len(threshold)) :
     for j in range(4) :
 
         type_t = result[result[:,3] == j]
-        sigma = np.std(type_t)
+        Xt, Yt, Zt = type_t[:, 0].astype(int), type_t[:, 1].astype(int), type_t[:, 2].astype(int)
+    
+        field_t = densites_interpolees[Xt, Yt, Zt]
+
+        sigma = np.std(field_t)
+        print(sigma, len(type_t))
         points_filtres_t = filtrer_points_critiques(type_t, densites_interpolees, t*sigma, (t-delta)*sigma)
 
         count_t.append(len(points_filtres_t))
