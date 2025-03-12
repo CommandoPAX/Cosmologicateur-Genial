@@ -136,3 +136,29 @@ if __name__ == "__main__" :
         plt.savefig(f"crit_threshold_{b}_s{R}.png")
         plt.clf()
 
+
+    for i in range([0,1,2,4]):
+        plt.subplot(2,2,min(i+1,4))
+
+        axes = plt.gca()
+
+        axes.title.set_text (f"z = {Redshifts[i]}")
+
+        for j in range(4):
+                
+                ls = "-"#lss[j]
+                couleur = couleurs[j]
+                label = nom_corr[j]#labels[j]
+
+                try :
+                    count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_threshold_s{R}.txt.npy")
+
+                    axes.plot(X, count[:,j] , color=couleur, ls=ls,label=label)
+                    axes.set_xlabel(r"$\nu [\sigma]$")
+                    axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
+                except:
+                     print(j, i)
+                    
+                if j == 5 and i == 1: plt.legend() 
+
+    plt.savefig("extrema_lcdm.pdf")
