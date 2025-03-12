@@ -120,7 +120,7 @@ if __name__ == "__main__" :
                             axes.set_ylabel(r"$\Delta$")
                         if d ==1 : 
                             axes.set_xlabel(r"$\nu [\sigma]$")
-                            axes.set_xlim(-4,6)
+                            #axes.set_xlim(-4,6)
 
                         if j == 5 and i == 0 and d == 0: 
                             axes.legend() 
