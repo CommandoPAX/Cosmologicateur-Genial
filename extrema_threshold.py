@@ -24,7 +24,7 @@ import sys
 def filtrer_points_critiques(points_critiques, champ_densite, seuil_max, seuil_min):
     """
     Ne garde que les points critiques dont la densité est supérieure à un seuil donné.
-    
+
     :param points_critiques: np.array de forme (N, 4) contenant [X, Y, Z, type]
     :param champ_densite: np.array de forme (512, 512, 512) contenant le champ de densité
     :param seuil: float, seuil de densité
@@ -116,9 +116,6 @@ densites_interpolees = interpolateur(positions)
 #densites_interpolees = densites_interpolees[(densites_interpolees<2) & (densites_interpolees > -1)]
 
 count = []
-Q1, Q3 = np.percentile(field, [25, 75])
-iqr = Q3 - Q1
-sigma = iqr / 1.349 
 
 delta = threshold[1] - threshold[0]
 
@@ -137,12 +134,12 @@ for thr in range(len(threshold)) :
 
         type_t = result[result[:,3] == j]
         Xt, Yt, Zt = type_t[:, 0].astype(int), type_t[:, 1].astype(int), type_t[:, 2].astype(int)
-    
-        field_t = densites_interpolees[Xt, Yt, Zt]
+
+        field_t = field[Xt, Yt, Zt]
 
         sigma = np.std(field_t)
         print(sigma, len(type_t))
-        points_filtres_t = filtrer_points_critiques(type_t, densites_interpolees, t*sigma, (t-delta)*sigma)
+        points_filtres_t = filtrer_points_critiques(type_t, field_t, t*sigma, (t-delta)*sigma)
 
         count_t.append(len(points_filtres_t))
         N += len(points_filtres_t)
