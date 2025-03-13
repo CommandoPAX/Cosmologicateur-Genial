@@ -141,8 +141,8 @@ for j in range(4):
     if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
         densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
     elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
-        densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]# | (densites_interpolees >= seuil_haut)]
-
+        densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]
+        
     print(len(type_t), len(densites_interpolees))
 
     densites.append(densites_interpolees)
