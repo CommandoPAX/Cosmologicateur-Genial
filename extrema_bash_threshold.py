@@ -17,7 +17,7 @@ for n in range(6):
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=threshold_{n}_{i}
 #SBATCH --nodes=1
-#SBATCH --mem=500gb
+#SBATCH --mem=100gb
 #SBATCH --time=00:10:00
 #SBATCH --output=/home/fcastillo/logs/threshold_{n}_{i}.out
 #SBATCH --mail-user=fabien.castillo@etu.unistra.fr

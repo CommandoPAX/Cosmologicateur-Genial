@@ -58,7 +58,7 @@ snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminu
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
 
-R = 2
+R = 1
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
