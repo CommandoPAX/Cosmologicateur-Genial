@@ -133,8 +133,8 @@ for j in range(4):
 
 
     # Détermination des seuils spécifiques à chaque type
-    seuil_haut = np.percentile(densites_interpolees, 95)  # 5% des points les plus hauts
-    seuil_bas = np.percentile(densites_interpolees, 5)    # 5% des points les plus bas
+    seuil_haut = np.percentile(densites_interpolees, 80)  # 5% des points les plus hauts
+    seuil_bas = np.percentile(densites_interpolees, 20)    # 5% des points les plus bas
 
 
     # Sélection des points en fonction de leur rareté
