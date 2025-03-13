@@ -159,4 +159,4 @@ for t in threshold:
         N += len(points_filtres_t)
 
     count.append(count_t)
-np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_threshold_s{R}.txt", np.array(count)/N)
+np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_threshold_s{R}.txt", np.array(count))
