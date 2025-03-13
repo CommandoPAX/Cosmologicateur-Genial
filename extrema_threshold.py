@@ -132,20 +132,24 @@ for j in range(4):
     densites_interpolees = densites_interpolees/np.std(densites_interpolees)
 
 
+
     # Détermination des seuils spécifiques à chaque type
     seuil_haut = np.percentile(densites_interpolees, 50)  # 5% des points les plus hauts
     seuil_bas = np.percentile(densites_interpolees, 50)    # 5% des points les plus bas
 
 
     # Sélection des points en fonction de leur rareté
-    if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
-        densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
-    elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
-        densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]
+    #if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
+    #    densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
+    #elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
+    #    densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]
         
     print(len(type_t), len(densites_interpolees))
 
     densites.append(densites_interpolees)
+
+np.save(f"densites_crit_{n}_{i}_{R}.txt", np.array(densites))
+
 
 for t in threshold:
     count_t = []
