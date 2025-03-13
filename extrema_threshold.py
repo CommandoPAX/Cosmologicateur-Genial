@@ -116,9 +116,6 @@ y = np.arange(512)
 z = np.arange(512)
 
 interpolateur = RegularGridInterpolator((x, y, z), field, bounds_error=False, fill_value=None)
-positions = result[:, :3]  # Exclure la colonne "type"
-densites_interpolees = interpolateur(positions)
-#densites_interpolees = densites_interpolees[(densites_interpolees<2) & (densites_interpolees > -1)]
 
 count = []
 N = 0
@@ -131,6 +128,7 @@ for j in range(4):
     positions = type_t[:, :3]  # Exclure la colonne "type"
     densites_interpolees = interpolateur(positions)
 
+
     # Détermination des seuils spécifiques à chaque type
     seuil_haut = np.percentile(densites_interpolees, 95)  # 5% des points les plus hauts
     seuil_bas = np.percentile(densites_interpolees, 5)    # 5% des points les plus bas
@@ -140,6 +138,8 @@ for j in range(4):
         densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
     elif j in (2, 3):  # Vides et murs : ν < seuil_bas
         densites_interpolees = densites_interpolees[densites_interpolees <= seuil_bas]
+
+    print(len(type_t), len(densites_interpolees))
 
     densites.append(densites_interpolees)
 
