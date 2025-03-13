@@ -130,15 +130,15 @@ for j in range(4):
 
 
     # Détermination des seuils spécifiques à chaque type
-    seuil_haut = np.percentile(field, 90)  # 5% des points les plus hauts
-    seuil_bas = np.percentile(field, 10)    # 5% des points les plus bas
+    seuil_haut = np.percentile(densites_interpolees, 95)  # 5% des points les plus hauts
+    seuil_bas = np.percentile(densites_interpolees, 5)    # 5% des points les plus bas
 
-    """
+
     # Sélection des points en fonction de leur rareté
     if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
         densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
     elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
-    if True :    densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas) | (densites_interpolees >= seuil_haut)]
+        densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]# | (densites_interpolees >= seuil_haut)]
 
     print(len(type_t), len(densites_interpolees))
 
