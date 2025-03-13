@@ -151,8 +151,7 @@ for t in threshold:
         densites_interpolees = densites[j]
 
         # Application du filtrage avec le nouveau σ (calculé après sélection)
-        sigma = np.std(densites_interpolees)
-        print(f"Type {j} : sigma = {sigma}, points restants = {len(densites_interpolees)}")
+        sigma = np.std(field)
 
         points_filtres_t = densites_interpolees[(densites_interpolees> (t-delta)*sigma) & (densites_interpolees < t*sigma)]
 
