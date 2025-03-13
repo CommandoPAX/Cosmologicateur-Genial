@@ -137,6 +137,19 @@ for thr in range(len(threshold)) :
 
         field_t = field[Xt, Yt, Zt]
 
+        if j in (0,1):
+
+            indices_t = (field[Xt, Yt, Zt] >= 2*np.std(field_t[Xt,Yt,Zt]))
+            field_t = field_t[indices_t]
+            type_t = type_t[indices_t]
+
+
+        if j in (2,3):
+
+            indices_t = (field[Xt, Yt, Zt] <= 2*np.std(field_t[Xt,Yt,Zt]))
+            field_t = field_t[indices_t]
+            type_t = type_t[indices_t]
+
         sigma = np.std(field_t)
         print(sigma, len(type_t))
         points_filtres_t = filtrer_points_critiques(type_t, field_t, t*sigma, (t-delta)*sigma)
