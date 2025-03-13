@@ -135,10 +135,10 @@ for j in range(4):
 
 
     # Sélection des points en fonction de leur rareté
-    if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
-        densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
-    elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
-        densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]# | (densites_interpolees >= seuil_haut)]
+    #if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
+    #    densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
+    #elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
+    #    densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]# | (densites_interpolees >= seuil_haut)]
 
     print(len(type_t), len(densites_interpolees))
 
