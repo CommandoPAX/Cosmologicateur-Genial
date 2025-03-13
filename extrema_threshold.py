@@ -148,7 +148,7 @@ for j in range(4):
 
     densites.append(densites_interpolees)
 
-np.save(f"densites_crit_{n}_{i}_{R}.txt", np.array(densites))
+    np.save(f"densites_crit_{n}_{i}_s{R}_{j}.txt", np.array(densites_interpolees))
 
 
 for t in threshold:
