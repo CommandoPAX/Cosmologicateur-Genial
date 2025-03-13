@@ -63,7 +63,7 @@ snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminu
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
 
-R = 5
+R = 1
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -133,8 +133,8 @@ for j in range(4):
 
 
     # Détermination des seuils spécifiques à chaque type
-    seuil_haut = np.percentile(densites_interpolees, 80)  # 5% des points les plus hauts
-    seuil_bas = np.percentile(densites_interpolees, 20)    # 5% des points les plus bas
+    seuil_haut = np.percentile(field, 80)  # 5% des points les plus hauts
+    seuil_bas = np.percentile(field, 20)    # 5% des points les plus bas
 
 
     # Sélection des points en fonction de leur rareté
