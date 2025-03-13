@@ -124,23 +124,30 @@ count = []
 N = 0
 delta = threshold[1] - threshold[0]
 
+densites = []
+
+for j in range(4):
+    type_t = result[result[:, 3] == j]  # Sélection des points critiques du type j
+    positions = type_t[:, :3]  # Exclure la colonne "type"
+    densites_interpolees = interpolateur(positions)
+
+    # Détermination des seuils spécifiques à chaque type
+    seuil_haut = np.percentile(densites_interpolees, 90)  # 5% des points les plus hauts
+    seuil_bas = np.percentile(densites_interpolees, 10)    # 5% des points les plus bas
+
+    # Sélection des points en fonction de leur rareté
+    if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
+        densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
+    elif j in (2, 3):  # Vides et murs : ν < seuil_bas
+        densites_interpolees = densites_interpolees[densites_interpolees <= seuil_bas]
+
+    densites.append(densites_interpolees)
+
 for t in threshold:
     count_t = []
 
     for j in range(4):
-        type_t = result[result[:, 3] == j]  # Sélection des points critiques du type j
-        positions = type_t[:, :3]  # Exclure la colonne "type"
-        densites_interpolees = interpolateur(positions)
-
-        # Détermination des seuils spécifiques à chaque type
-        seuil_haut = np.percentile(densites_interpolees, 90)  # 5% des points les plus hauts
-        seuil_bas = np.percentile(densites_interpolees, 10)    # 5% des points les plus bas
-
-        # Sélection des points en fonction de leur rareté
-        if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
-            densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
-        elif j in (2, 3):  # Vides et murs : ν < seuil_bas
-            densites_interpolees = densites_interpolees[densites_interpolees <= seuil_bas]
+        densites_interpolees = densites[j]
 
         # Application du filtrage avec le nouveau σ (calculé après sélection)
         sigma = np.std(densites_interpolees)
