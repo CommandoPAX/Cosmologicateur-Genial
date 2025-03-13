@@ -152,7 +152,7 @@ for t in threshold:
 
         # Application du filtrage avec le nouveau σ (calculé après sélection)
 
-        #densites_interpolees -= np.mean(densites_interpolees)
+        densites_interpolees -= np.mean(densites_interpolees)
 
         sigma = np.std(densites_interpolees)
 
