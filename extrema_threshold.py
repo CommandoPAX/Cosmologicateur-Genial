@@ -103,11 +103,11 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
-if i == 0 : Npoints = 40//R**2
-if i == 1 : Npoints = 40//R**2
-if i == 2 : Npoints = 40//R**2
-if i == 3 : Npoints = 40//R**2
-if i == 4 : Npoints = 40//R**2
+if i == 0 : Npoints = 100//R**2
+if i == 1 : Npoints = 100//R**2
+if i == 2 : Npoints = 100//R**2
+if i == 3 : Npoints = 100//R**2
+if i == 4 : Npoints = 100//R**2
 
 threshold = np.linspace(-4,6,Npoints)
 
@@ -123,12 +123,13 @@ delta = threshold[1] - threshold[0]
 
 densites = []
 
-field = field/np.std(field)
+field = field
 
 for j in range(4):
     type_t = result[result[:, 3] == j]  # Sélection des points critiques du type j
     positions = type_t[:, :3]  # Exclure la colonne "type"
     densites_interpolees = interpolateur(positions)
+    densites_interpolees = densites_interpolees/np.std(densites_interpolees)
 
 
     # Détermination des seuils spécifiques à chaque type
