@@ -132,17 +132,16 @@ for t in threshold:
         Xt, Yt, Zt = type_t[:, 0].astype(int), type_t[:, 1].astype(int), type_t[:, 2].astype(int)
 
         field_t = field[Xt, Yt, Zt]  # Densité aux points critiques du type j
-        nu_t = (field_t - np.mean(field_t)) / np.std(field_t)  # Calcul de ν spécifique à ce type
 
         # Détermination des seuils spécifiques à chaque type
-        seuil_haut = np.percentile(nu_t, 90)  # 5% des points les plus hauts
-        seuil_bas = np.percentile(nu_t, 10)    # 5% des points les plus bas
+        seuil_haut = np.percentile(field_t, 90)  # 5% des points les plus hauts
+        seuil_bas = np.percentile(field_t, 10)    # 5% des points les plus bas
 
         # Sélection des points en fonction de leur rareté
         if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
-            indices_t = nu_t >= seuil_haut
+            indices_t = field_t >= seuil_haut
         elif j in (2, 3):  # Vides et murs : ν < seuil_bas
-            indices_t = nu_t <= seuil_bas
+            indices_t = field_t <= seuil_bas
 
         type_t = type_t[indices_t]
         field_t = field_t[indices_t]
