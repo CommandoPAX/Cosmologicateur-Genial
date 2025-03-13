@@ -153,6 +153,8 @@ for t in threshold:
         # Application du filtrage avec le nouveau σ (calculé après sélection)
         sigma = np.std(densites_interpolees)
 
+        densites_interpolees -= np.mean(densites_interpolees)
+
         points_filtres_t = densites_interpolees[(densites_interpolees> (t-delta)*sigma) & (densites_interpolees < t*sigma)]
 
         count_t.append(len(points_filtres_t))
