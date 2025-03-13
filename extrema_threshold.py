@@ -103,11 +103,11 @@ hdul = fits.open(data)
 field = hdul[0].data
 hdul.close()
 
-if i == 0 : Npoints = 100//R**2
-if i == 1 : Npoints = 100//R**2
-if i == 2 : Npoints = 100//R**2
-if i == 3 : Npoints = 100//R**2
-if i == 4 : Npoints = 100//R**2
+if i == 0 : Npoints = 40//R**2
+if i == 1 : Npoints = 40//R**2
+if i == 2 : Npoints = 40//R**2
+if i == 3 : Npoints = 40//R**2
+if i == 4 : Npoints = 40//R**2
 
 threshold = np.linspace(-4,6,Npoints)
 
@@ -122,6 +122,8 @@ N = 0
 delta = threshold[1] - threshold[0]
 
 densites = []
+
+field = field/np.std(field)
 
 for j in range(4):
     type_t = result[result[:, 3] == j]  # Sélection des points critiques du type j
@@ -152,12 +154,12 @@ for t in threshold:
 
         # Application du filtrage avec le nouveau σ (calculé après sélection)
 
-        densites_interpolees -= np.mean(field)
+        #densites_interpolees -= np.mean(densites_interpolees)
 
-        sigma = np.std(densites_interpolees)
+        #sigma = np.std(densites_interpolees)
 
 
-        points_filtres_t = densites_interpolees[(densites_interpolees> (t-delta)*sigma) & (densites_interpolees < t*sigma)]
+        points_filtres_t = densites_interpolees[(densites_interpolees> (t-delta)) & (densites_interpolees < t)]
 
         count_t.append(len(points_filtres_t))
         N += len(points_filtres_t)
