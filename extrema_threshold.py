@@ -139,14 +139,14 @@ for thr in range(len(threshold)) :
 
         if j in (0,1):
 
-            indices_t = (field_t >= 2*np.std(field_t))
+            indices_t = (field_t >= np.mean(field_t)+2*np.std(field_t))
             field_t = field_t[indices_t]
             type_t = type_t[indices_t]
 
 
         if j in (2,3):
 
-            indices_t = (field_t <= 2*np.std(field_t))
+            indices_t = (field_t <= np.mean(field_t)-2*np.std(field_t))
             field_t = field_t[indices_t]
             type_t = type_t[indices_t]
 
