@@ -44,7 +44,7 @@ if __name__ == "__main__" :
     plt.figure(figsize=(14,10))
 
     nbins = 40
-    R = 1
+    R = 5
     x0 = 0
     x1 = 40
 
