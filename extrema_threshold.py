@@ -130,8 +130,8 @@ for j in range(4):
 
 
     # Détermination des seuils spécifiques à chaque type
-    seuil_haut = np.percentile(densites_interpolees, 95)  # 5% des points les plus hauts
-    seuil_bas = np.percentile(densites_interpolees, 5)    # 5% des points les plus bas
+    seuil_haut = np.percentile(densites_interpolees, 80)  # 5% des points les plus hauts
+    seuil_bas = np.percentile(densites_interpolees, 20)    # 5% des points les plus bas
 
 
     # Sélection des points en fonction de leur rareté
@@ -151,7 +151,7 @@ for t in threshold:
         densites_interpolees = densites[j]
 
         # Application du filtrage avec le nouveau σ (calculé après sélection)
-        sigma = np.std(field)
+        sigma = np.std(densites_interpolees)
 
         densites_interpolees -= np.mean(densites_interpolees)
 
