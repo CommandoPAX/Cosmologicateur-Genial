@@ -20,30 +20,35 @@ from math import sqrt
 
 import sys
 
-
 def filtrer_points_critiques(points_critiques, champ_densite, seuil_max, seuil_min):
     """
-    Ne garde que les points critiques dont la densité est supérieure à un seuil donné.
-
+    Ne garde que les points critiques dont la densité est entre seuil_min et seuil_max.
+    
     :param points_critiques: np.array de forme (N, 4) contenant [X, Y, Z, type]
     :param champ_densite: np.array de forme (512, 512, 512) contenant le champ de densité
-    :param seuil: float, seuil de densité
+    :param seuil_max: float, seuil supérieur de densité
+    :param seuil_min: float, seuil inférieur de densité
     :return: np.array filtré des points critiques
     """
     # Extraire les coordonnées des points critiques
     X, Y, Z = points_critiques[:, 0].astype(int), points_critiques[:, 1].astype(int), points_critiques[:, 2].astype(int)
     
     # Récupérer la densité aux positions des points critiques
-    densites = champ_densite#[X, Y, Z]
+    densites = champ_densite[X, Y, Z]
     
-    # Filtrer les points dont la densité dépasse le seuil
+    # Vérifier la taille de densites et de points_critiques
+    assert densites.shape[0] == points_critiques.shape[0], "Mismatch in number of points"
+    
+    # Filtrer les points dont la densité est dans l'intervalle donné
     indices_valides = (densites <= seuil_max) & (densites > seuil_min)
-    points_filtres = points_critiques[indices_valides]
+    
+    # Correction : s'assurer que l'indexation fonctionne
+    if len(indices_valides.shape) > 1:
+        indices_valides = indices_valides.flatten()  # Assurer une forme 1D
+
+    points_filtres = points_critiques[indices_valides]  # Appliquer le masque booléen
     
     return points_filtres
-
-
-
 
 
 
