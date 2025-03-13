@@ -153,6 +153,8 @@ if __name__ == "__main__" :
                 try :
                     count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_threshold_s{R}.txt.npy")
 
+                    print(count)
+
                     axes.plot(X, count[:,j] , color=couleur, ls=ls,label=label)
                     axes.set_xlabel(r"$\nu [\sigma]$")
                     axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
