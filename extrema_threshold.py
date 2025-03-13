@@ -135,8 +135,8 @@ for t in threshold:
         nu_t = (field_t - np.mean(field_t)) / np.std(field_t)  # Calcul de ν spécifique à ce type
 
         # Détermination des seuils spécifiques à chaque type
-        seuil_haut = np.percentile(nu_t, 95)  # 5% des points les plus hauts
-        seuil_bas = np.percentile(nu_t, 5)    # 5% des points les plus bas
+        seuil_haut = np.percentile(nu_t, 90)  # 5% des points les plus hauts
+        seuil_bas = np.percentile(nu_t, 10)    # 5% des points les plus bas
 
         # Sélection des points en fonction de leur rareté
         if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
