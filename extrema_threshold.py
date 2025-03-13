@@ -153,7 +153,7 @@ for t in threshold:
         sigma = np.std(densites_interpolees)
         print(f"Type {j} : sigma = {sigma}, points restants = {len(densites_interpolees)}")
 
-        points_filtres_t = densites_interpolees[(densites_interpolees> (t-1)*sigma) & (densites_interpolees < t*sigma)]
+        points_filtres_t = densites_interpolees[(densites_interpolees> (t-delta)*sigma) & (densites_interpolees < t*sigma)]
 
         count_t.append(len(points_filtres_t))
         N += len(points_filtres_t)
