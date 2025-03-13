@@ -116,47 +116,40 @@ densites_interpolees = interpolateur(positions)
 #densites_interpolees = densites_interpolees[(densites_interpolees<2) & (densites_interpolees > -1)]
 
 count = []
-
+N = 0
 delta = threshold[1] - threshold[0]
 
-N = 0
-delta = threshold[1]-threshold[0]
-
-for thr in range(len(threshold)) :
-    t = threshold[thr]
-
-
+for t in threshold:
     count_t = []
-    delta = threshold[1] - threshold[0]
 
-
-    for j in range(4) :
-
-        type_t = result[result[:,3] == j]
+    for j in range(4):
+        type_t = result[result[:, 3] == j]  # Sélection des points critiques du type j
         Xt, Yt, Zt = type_t[:, 0].astype(int), type_t[:, 1].astype(int), type_t[:, 2].astype(int)
 
-        field_t = field[Xt, Yt, Zt]
+        field_t = field[Xt, Yt, Zt]  # Densité aux points critiques du type j
+        nu_t = (field_t - np.mean(field_t)) / np.std(field_t)  # Calcul de ν spécifique à ce type
 
-        if j in (2,3):
+        # Détermination des seuils spécifiques à chaque type
+        seuil_haut = np.percentile(nu_t, 95)  # 5% des points les plus hauts
+        seuil_bas = np.percentile(nu_t, 5)    # 5% des points les plus bas
 
-            indices_t = (field_t >= np.mean(field_t)+2*np.std(field_t))
-            field_t = field_t[indices_t]
-            type_t = type_t[indices_t]
+        # Sélection des points en fonction de leur rareté
+        if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
+            indices_t = nu_t >= seuil_haut
+        elif j in (2, 3):  # Vides et murs : ν < seuil_bas
+            indices_t = nu_t <= seuil_bas
 
+        type_t = type_t[indices_t]
+        field_t = field_t[indices_t]
 
-        if j in (0,1):
-
-            indices_t = (field_t <= np.mean(field_t)-2*np.std(field_t))
-            field_t = field_t[indices_t]
-            type_t = type_t[indices_t]
-
+        # Application du filtrage avec le nouveau σ (calculé après sélection)
         sigma = np.std(field_t)
-        print(sigma, len(type_t))
-        points_filtres_t = filtrer_points_critiques(type_t, field_t, t*sigma, (t-delta)*sigma)
+        print(f"Type {j} : sigma = {sigma}, points restants = {len(type_t)}")
+
+        points_filtres_t = filtrer_points_critiques(type_t, field, t * sigma, (t - delta) * sigma)
 
         count_t.append(len(points_filtres_t))
         N += len(points_filtres_t)
 
     count.append(count_t)
-
 np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_threshold_s{R}.txt", np.array(count)/N)
