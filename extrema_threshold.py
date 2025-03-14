@@ -31,7 +31,7 @@ for n in range(6):
         data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
         data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
 
-        R = 2
+        R = 5
 
         try : 
             result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -117,7 +117,7 @@ for n in range(6):
             count_t = []
 
             for j in range(4):
-                
+
                 densites_interpolees = densites[j]
 
                 points_filtres_t = densites_interpolees[(densites_interpolees> (t-delta)) & (densites_interpolees < t)]
