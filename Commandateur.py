@@ -11,8 +11,6 @@ for n in range(6):
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=10:00:00
 #SBATCH --output=/home/fcastillo/yt_{n}_{i}.out
-#SBATCH --mail-user=fabien.castillo@etu.unistra.fr
-#SBATCH --mail-type=END,FAIL 
 
 module purge
 module load intelpython

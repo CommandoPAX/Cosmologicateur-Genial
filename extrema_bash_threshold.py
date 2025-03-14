@@ -20,8 +20,6 @@ for n in range(6):
 #SBATCH --mem=100gb
 #SBATCH --time=00:10:00
 #SBATCH --output=/home/fcastillo/logs/threshold_{n}_{i}.out
-#SBATCH --mail-user=fabien.castillo@etu.unistra.fr
-#SBATCH --mail-type=ALL
 #SBATCH --partition=pscomp
 """)
         fichier.write("""

@@ -22,8 +22,6 @@ for n in range(6):
 #SBATCH --mem=500gb
 #SBATCH --time=2:00:00
 #SBATCH --output=/home/fcastillo/cut_{n}_{i}.out
-#SBATCH --mail-user=fabien.castillo@etu.unistra.fr
-#SBATCH --mail-type=ALL
 #SBATCH --partition=pscomp""")
         fichier.write("""
 

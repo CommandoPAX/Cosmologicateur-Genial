@@ -41,8 +41,6 @@ if slice :
 #SBATCH --mem=100gb
 #SBATCH --time=10:00:00
 #SBATCH --output=/home/fcastillo/disperse_slice_{n}_{i}.out   
-#SBATCH --mail-user=fabien.castillo@etu.unistra.fr
-#SBATCH --mail-type=ALL 
 #SBATCH --partition=pscomp
 
 module purge

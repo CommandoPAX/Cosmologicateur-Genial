@@ -19,8 +19,6 @@ for n in range(6):
 #SBATCH --mem=100gb
 #SBATCH --time=2:00:00
 #SBATCH --output=/home/fcastillo/logs/murs_{n}_{i}_%j.out
-#SBATCH --mail-user=fabien.castillo@etu.unistra.fr
-#SBATCH --mail-type=ALL
 """)
         fichier.write("""
 
