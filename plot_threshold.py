@@ -96,7 +96,7 @@ if __name__ == "__main__" :
                         if i == 3 : Npoints = 100//R**2
                         if i == 4 : Npoints = 100//R**2
 
-                        X = np.linspace(-4,6,Npoints)
+                        X = np.linspace(-6,6,Npoints)
 
 
                         #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
