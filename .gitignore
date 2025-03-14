@@ -166,3 +166,6 @@ Simulations/*
 bash_*_*.bash
 ./GRAPHES/*
 ./densites/*
+densites/densites_crit_0_0_s1_0.txt.npy
+densites/densites_crit_0_0_s1_1.txt.npy
+densites/densites_crit_0_4_s1_0.txt.npy
