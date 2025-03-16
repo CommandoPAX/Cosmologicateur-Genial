@@ -31,7 +31,7 @@ for n in range(6):
         data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
         data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
 
-        R = 5
+        R = 2
 
         try : 
             result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -70,6 +70,10 @@ for n in range(6):
         hdul = fits.open(data)
         field = hdul[0].data
         hdul.close()
+
+        ef = ExtremaFinder(field)
+
+        field = ef.smooth(R)
 
         Npoints = 100
 
