@@ -71,7 +71,7 @@ for n in range(6):
         field = hdul[0].data
         hdul.close()
 
-        ef = ExtremaFinder(field)
+        ef = ExtremaFinder(field.astype(np.float64))
 
         field = ef.smooth(R)
 
