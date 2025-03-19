@@ -80,25 +80,25 @@ class Net ():
         fichier.close()
 
 if __name__ == "__main__" :
-    n = int(sys.argv[1])
-    i = int(sys.argv[2])
+    for n in range(6):
+        for i in range(5):
 
-    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-    labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
+            snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+            labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
 
-    reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
+            reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
 
-    surfaces = []
-    surfaces_t = []
-    indice_p = ""
-    for triangle in reseau.liste_simplexes[0] :
-        indice = triangle.source
-        if indice != indice_p :
-            surfaces.append(np.sum(np.array(surfaces_t)))
+            surfaces = []
             surfaces_t = []
-        surfaces_t.append(triangle.Surface())
+            indice_p = ""
+            for triangle in reseau.liste_simplexes[0] :
+                indice = triangle.source
+                if indice != indice_p :
+                    surfaces.append(np.sum(np.array(surfaces_t)))
+                    surfaces_t = []
+                surfaces_t.append(triangle.Surface())
 
-    np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
+            np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
 
 
