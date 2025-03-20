@@ -27,7 +27,7 @@ from Errorateur import LogError
 # Utilisation (not currently functionnal):
 # python Cosmologicateur.py -i entree -o sortie
 
-Result_Path = "./RESULT" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
+Result_Path = "/data100/fcastillo/RESULT/" #Path where all results will be saved, default is Cosmologicateur-Genial/RESULT/
 #yt.enable_parallelism()
 
 def Copy_Mono_Config(path : str) : 
@@ -230,9 +230,9 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     header['NAXIS2'] = delta.shape[1]  
     header['NAXIS3'] = delta.shape[2] 
 
-    hdu = fits.PrimaryHDU(data=np.float32(delta), header=header)
+    hdu = fits.PrimaryHDU(data=delta, header=header)
 
-    hdu.writeto(f"{path}/{index}_test_densite.fits", overwrite=True)
+    hdu.writeto(f"{path}/{index}_densite.fits", overwrite=True)
 
     """
     Pk = PKL.Pk(delta, BoxSize, axis, MAS, threads, verbose)
@@ -273,8 +273,8 @@ def main(argv):
     SPE = True 
     HAL = False
 
-    pre = "../../../data77/stahl/Scale/Nb/WDM/KF/"
-    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+    pre = "../../../data77/stahl/Scale/Nb/WDM/ViVi/"
+    snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
     n = int (sys.argv[1])
     i = int(sys.argv[2])
