@@ -11,9 +11,8 @@ i = int(sys.argv[2])
 
 print(n, i)
 
-#pre = "/data100/fcastillo/RESULT/"
+pre = "/data100/fcastillo/RESULT/"
 #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
 snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
 
@@ -29,7 +28,7 @@ v0,v1,v2,v3 = calculateMFs(data)
 
 result = np.array([v0,v1,v2,v3])
 print(np.shape(result))
-np.save(f"minkowski_{n}_{i}.txt", result)
+np.save(f"{pre+snapshots[n]}/{i}_minkowski.txt", result)
 print("ok")
 
 """
