@@ -11,8 +11,12 @@ i = int(sys.argv[2])
 
 print(n, i)
 
-pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+#pre = "/data100/fcastillo/RESULT/"
+#snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
+snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
+
+
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
 hdul = fits.open(data)

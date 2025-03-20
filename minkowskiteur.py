@@ -4,16 +4,18 @@ from astropy.io import fits
 import numpy as np
 import time
 
-pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+#pre = "/data100/fcastillo/RESULT/"
+#snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
+snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
-for n in range(6):
+for n in range(3):
     for i in range(5):
 
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
 
-        fichier = open(f"minkowski_{n}_{i}.sh","w")
+        fichier = open(f"../bash/minkowski_{n}_{i}.sh","w")
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=minkowski_{n}_{i}
 #SBATCH --nodes=1
@@ -21,7 +23,7 @@ for n in range(6):
 #SBATCH --ntasks-per-node=32
 #SBATCH --mem=100gb
 #SBATCH --time=2:00:00
-#SBATCH --output=/home/fcastillo/minkowski_{n}_{i}.out
+#SBATCH --output=/home/fcastillo/logs/minkowski_{n}_{i}.out
 #SBATCH --partition=pscomp
 """)
         fichier.write("""
@@ -46,4 +48,4 @@ python minkowski.py {n} {i}
             
         fichier.write("exit 0")
         fichier.close()
-        os.system(f"sbatch minkowski_{n}_{i}.sh")
+        os.system(f"sbatch ../bash/minkowski_{n}_{i}.sh")
