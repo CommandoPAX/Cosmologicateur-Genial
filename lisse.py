@@ -8,12 +8,13 @@ snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminu
 for R in [1,2,5]:
     for n in range(6):
         for i in range(5):
+            print(R, n, i)
             data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
             hdul = fits.open(data)
             data = hdul[0].data
             hdul.close()
 
-            ef = ExtremaFinder(data, nthreads=32, loglevel=30)  
+            ef = ExtremaFinder(data.astype(np.float32), nthreads=32, loglevel=30)  
             field = ef.smooth(R)
 
             header = fits.Header()
