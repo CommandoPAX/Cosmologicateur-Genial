@@ -78,6 +78,7 @@ if __name__ == "__main__" :
 
 
                 for j in range(6):
+                    lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
 
                     data = np.load(f"/home/fcastillo/minkowski/minkowski_{j}_{i}.txt.npy")
                     if i in [2,4]:
