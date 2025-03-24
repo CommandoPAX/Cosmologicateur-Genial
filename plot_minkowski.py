@@ -117,7 +117,7 @@ if __name__ == "__main__" :
                         axes.plot(X, data[p] - lcdm[p], color=couleurs[j], ls=ls[j],label=labels[j])
                         axes.set_ylabel(r"$\Delta$")
                     if d ==1 : axes.set_xlabel(r"threshold [$\sigma$]")
-                    if j == 5 and i == 0 and d == 0: 
+                    if j == 6 and i == 0 and d == 0: 
                         axes.legend() 
 
                     if p == 0 and i in [2,4] : axes.set_xlim(-1,1)
