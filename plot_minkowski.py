@@ -81,10 +81,10 @@ if __name__ == "__main__" :
                     if i in [2,4]:
                         datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
 
-                        data = np.concatenate([data[:len(X1)],datazoom, data[len(X1)+len(datazoom):]])
+                        data = np.concatenate([data[:len(X1)],datazoom, data[(len(X1)+len(datazoom)):]])
 
 
-                        lcdm = np.concatenate([lcdm[:len(X1)],lcdmzoom, data[len(X1)+len(lcdmzoom):]])
+                        lcdm = np.concatenate([lcdm[:len(X1)],lcdmzoom, data[(len(X1)+len(lcdmzoom)):]])
 
 
                     #print(np.shape(data[p]))
