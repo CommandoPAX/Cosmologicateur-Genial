@@ -10,7 +10,6 @@ for n in range(3):
     fichier = open(f"../bash/mse_{n}.sh","w")
     fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}
-#SBATCH --partition=pscomp
 #SBATCH --mem=500gb
 #SBATCH --time=48:00:00
 #SBATCH --nodelist=i{21+n}
