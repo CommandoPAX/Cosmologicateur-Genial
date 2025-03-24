@@ -51,7 +51,7 @@ smoothing=1
 /softs/disperse/0.9.24/bin/netconv $path$file"_c"$persistence"_manifolds_J1a.NDnet" -outName $path$file"_c"$persistence"_manifolds_J1a.NDnet" -smooth $smoothing -to NDnet_ascii
 
 
-exit 0""")
-            
+""")
+    fichier.write("exit 0")        
     fichier.close()
     #os.system(f"sbatch ./bash/mse_{n}_{i}.sh")
