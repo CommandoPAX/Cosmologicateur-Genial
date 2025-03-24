@@ -87,10 +87,10 @@ if __name__ == "__main__" :
                         data2 = data[:,41:]
                         print(np.shape(data1), np.shape(data1),np.shape(data2),np.shape(datazoom))
 
-                        data = np.concatenate([data1,datazoom, data2])
+                        data = np.concatenate([data1,datazoom, data2],axis=1)
 
 
-                        lcdm = np.concatenate([lcdm[:20],lcdmzoom, lcdm[41:]])
+                        lcdm = np.concatenate([lcdm[:20],lcdmzoom, lcdm[41:]],axis=1)
 
 
                     #print(np.shape(data[p]))
