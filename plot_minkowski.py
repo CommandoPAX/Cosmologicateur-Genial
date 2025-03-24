@@ -83,8 +83,8 @@ if __name__ == "__main__" :
                     if i in [2,4]:
                         datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
 
-                        data1 = data[:20]
-                        data2 = data[121:]
+                        data1 = data[:,:20]
+                        data2 = data[:,121:]
                         print(np.shape(data1), np.shape(data1),np.shape(data2),np.shape(datazoom))
 
                         data = np.concatenate([data1,datazoom, data2])
