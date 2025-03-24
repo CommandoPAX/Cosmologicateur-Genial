@@ -53,7 +53,7 @@ if __name__ == "__main__" :
 
 
         for i in [0,1,2,4]:
-            lcdm = np.load(f"/home/fcastillo/minkowski_{0}_{i}.txt.npy")
+            lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
             if i in [2,4]:lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
 
             X = np.linspace(-3,3,61)
@@ -77,7 +77,7 @@ if __name__ == "__main__" :
 
                 for j in range(6):
 
-                    data = np.load(f"/home/fcastillo/minkowski_{j}_{i}.txt.npy")
+                    data = np.load(f"/home/fcastillo/minkowski/minkowski_{j}_{i}.txt.npy")
                     if i in [2,4]:
                         datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
 
