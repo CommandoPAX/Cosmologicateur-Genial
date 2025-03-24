@@ -85,7 +85,7 @@ if __name__ == "__main__" :
 
                         data1 = data[:20]
                         data2 = data[121:]
-                        print(np.shape(data1), np.shape(data1),np.shape(data2))
+                        print(np.shape(data1), np.shape(data1),np.shape(data2),np.shape(datazoom))
 
                         data = np.concatenate([data1,datazoom, data2])
 
