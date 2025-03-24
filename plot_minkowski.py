@@ -24,7 +24,6 @@ if __name__ == "__main__" :
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
     plt.figure(figsize=(14,10))
-    X = np.linspace(-3,3,61)
     places = {
         "00" : 1,
         "01" : 2,
@@ -55,6 +54,15 @@ if __name__ == "__main__" :
 
         for i in [0,1,2,4]:
             lcdm = np.load(f"minkowski_{0}_{i}.txt.npy")
+            lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
+
+            X = np.linspace(-3,3,61)
+            if i in [2,4]: 
+                X1 = X[X<-1]
+                X2 = np.linspace(-1,1,101)
+                X3 = X[X>1]
+
+                X = np.concatenate((X1,X2,X3))
 
             for d in range(2):
                 place = places[str(i) + str(d)]
@@ -70,6 +78,15 @@ if __name__ == "__main__" :
                 for j in range(6):
 
                     data = np.load(f"minkowski_{j}_{i}.txt.npy")
+                    if i in [2,4]:
+                        datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
+
+                        data = np.concatenate([data[:len(X1)],datazoom, data[len(X1)+len(datazoom):]])
+
+
+                        lcdm = np.concatenate([lcdm[:len(X1)],lcdmzoom, data[len(X1)+len(lcdmzoom):]])
+
+
                     #print(np.shape(data[p]))
                     #print(data)
                     if d == 0 : 
