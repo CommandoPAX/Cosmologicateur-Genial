@@ -89,7 +89,7 @@ if __name__ == "__main__" :
                     try:
                         data = np.load(f"/home/fcastillo/minkowski/minkowski_{j}_{i}.txt.npy")
                     except :
-                        data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski.txt.npy"
+                        data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski.txt.npy")
                     if i in [2,4]:
                         datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
 
