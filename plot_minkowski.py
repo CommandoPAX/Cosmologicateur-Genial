@@ -54,7 +54,7 @@ if __name__ == "__main__" :
 
         for i in [0,1,2,4]:
             lcdm = np.load(f"/home/fcastillo/minkowski_{0}_{i}.txt.npy")
-            lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
+            if i in [2,4]:lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
 
             X = np.linspace(-3,3,61)
             if i in [2,4]: 
