@@ -66,6 +66,8 @@ if __name__ == "__main__" :
 
                 X = np.concatenate((X1,X2,X3))
 
+            if p == 0 and i in [2,4] : X = X2
+
             for d in range(2):
                 place = places[str(i) + str(d)]
 
@@ -93,6 +95,10 @@ if __name__ == "__main__" :
 
                         lcdm = np.concatenate([lcdm[:,:20],lcdmzoom, lcdm[:,41:]],axis=1)
 
+                        if p == 0 : 
+                            data = datazoom
+                            lcdm = lcdmzoom
+
 
                     #print(np.shape(data[p]))
                     #print(data)
@@ -106,6 +112,9 @@ if __name__ == "__main__" :
                     if d ==1 : axes.set_xlabel(r"threshold [$\sigma$]")
                     if j == 5 and i == 0 and d == 0: 
                         axes.legend() 
+
+                    if p == 0 and i in [2,4] : axes.set_xlim(-1,1)
+                    else : axes.set_xlim (-3,3)
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
