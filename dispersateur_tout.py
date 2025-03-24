@@ -9,7 +9,7 @@ snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminu
 for n in range(3):
     fichier = open(f"../bash/mse_{n}.sh","w")
     fichier.write(f"""#!/bin/bash
-#SBATCH --job-name=skl2_{n}_{i}
+#SBATCH --job-name=skl2_{n}
 #SBATCH --partition=pscomp
 #SBATCH --mem=500gb
 #SBATCH --time=48:00:00
