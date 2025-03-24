@@ -62,6 +62,8 @@ if __name__ == "__main__" :
                 X2 = np.linspace(-1,1,101)
                 X3 = X[X>1]
 
+                print(np.shape(X1))
+
                 X = np.concatenate((X1,X2,X3))
 
             for d in range(2):
