@@ -84,13 +84,13 @@ if __name__ == "__main__" :
                         datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
 
                         data1 = data[:,:20]
-                        data2 = data[:,121:]
+                        data2 = data[:,41:]
                         print(np.shape(data1), np.shape(data1),np.shape(data2),np.shape(datazoom))
 
                         data = np.concatenate([data1,datazoom, data2])
 
 
-                        lcdm = np.concatenate([lcdm[:20],lcdmzoom, data[121:]])
+                        lcdm = np.concatenate([lcdm[:20],lcdmzoom, lcdm[41:]])
 
 
                     #print(np.shape(data[p]))
