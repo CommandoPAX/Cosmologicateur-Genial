@@ -13,7 +13,7 @@ for n in range(3):
 #SBATCH --partition=pscomp
 #SBATCH --mem=500gb
 #SBATCH --time=48:00:00
-#SBATCH --nodelist=i{23+n}
+#SBATCH --nodelist=i{21+n}
 #SBATCH --output=/home/fcastillo/logs/skl2_{n}.out
 """)
     fichier.write("""
