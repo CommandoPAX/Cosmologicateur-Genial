@@ -13,6 +13,7 @@ for n in range(3):
 #SBATCH --mem=500gb
 #SBATCH --time=48:00:00
 #SBATCH --nodelist=i{21+n}
+#SBATCH --ntasks=128
 #SBATCH --output=/home/fcastillo/logs/skl2_{n}.out
 """)
     fichier.write("""
@@ -40,13 +41,13 @@ file="{i}_densite_smooth2"
 persistence=0.1
 smoothing=1
 
-/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -cut $persistence -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
+/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -nthreads 128 -cut $persistence -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
 /softs/disperse/0.9.24/bin/skelconv $path$file"_c"$persistence".up.NDskl" -outName $path$file"_c"$persistence".up.NDskl" -smooth $smoothing -to NDskl_ascii
 
-/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -cut $persistence -loadMSC $path$file".MSC" -dumpManifolds J0a -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
+/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -nthreads 128 -cut $persistence -loadMSC $path$file".MSC" -dumpManifolds J0a -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
 /softs/disperse/0.9.24/bin/netconv $path$file"_c"$persistence"_manifolds_J0a.NDnet" -outName $path$file"_c"$persistence"_manifolds_J0a.NDnet" -smooth $smoothing -to NDnet_ascii
 
-/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -cut $persistence -loadMSC $path$file".MSC" -dumpManifolds J1a -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
+/softs/disperse/0.9.24/bin/mse $path_dat$file".fits" -nthreads 128 -cut $persistence -loadMSC $path$file".MSC" -dumpManifolds J1a -upSkl -manifolds -outName $path$file -periodicity 0 -forceLoops
 /softs/disperse/0.9.24/bin/netconv $path$file"_c"$persistence"_manifolds_J1a.NDnet" -outName $path$file"_c"$persistence"_manifolds_J1a.NDnet" -smooth $smoothing -to NDnet_ascii
 
 
