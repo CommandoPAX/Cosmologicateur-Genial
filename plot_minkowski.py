@@ -80,7 +80,7 @@ if __name__ == "__main__" :
                 axes = axs[place-1]
 
                 if d == 0 : 
-                    axes.title.set_text (f"z = {Redshifts[i]}")
+                    axes.title.set_text (Redshifts[i])
 
 
                 for j in range(7):
