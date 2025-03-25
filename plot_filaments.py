@@ -77,7 +77,7 @@ if __name__ == "__main__" :
             try :
                     
                 long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
-                moyennes.append(np.mean(long))
+                moyennes.append(np.median(long))
                 err.append(1/sqrt(len(long))) *np.std(long)
                 
             except : pass
@@ -92,7 +92,7 @@ if __name__ == "__main__" :
         plt.errorbar(a, moyennes,ls=ls, color=couleur, label=label, yerr = err)
 
         axes.set_xlabel(r"$a$")
-        axes.set_ylabel("Mean length")
+        axes.set_ylabel("Median length")
         axes.invert_xaxis()
 
         plt.legend()
