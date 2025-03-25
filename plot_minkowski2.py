@@ -87,7 +87,7 @@ if __name__ == "__main__" :
                     axes.title.set_text (rf"$v_{p}$,  $z = $"+str(Redshifts[i]))
 
 
-                for j in range(7):
+                for j in range(6):
                     if True:
                         lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
 
