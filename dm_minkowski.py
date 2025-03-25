@@ -52,7 +52,7 @@ if __name__ == "__main__" :
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
 
-    for i in [0,1,2,3] :
+    for i in [0,1,2,4] :
 
 
 
@@ -77,7 +77,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(i)*8]
+                axes = axs[(place-1)+(max(i,3))*8]
 
                 if d == 0 : 
                     axes.title.set_text (r"$z = $"+str(Redshifts[i]))
