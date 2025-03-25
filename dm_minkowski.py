@@ -47,7 +47,7 @@ if __name__ == "__main__" :
     outer = gridspec.GridSpec(nrows=4, ncols=4)
 
     axs = []
-    for row in range(2):
+    for row in range(4):
         for col in range(4):
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
