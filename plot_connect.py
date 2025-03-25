@@ -38,7 +38,7 @@ if __name__ == "__main__" :
         "41" : 8
     }
 
-    nbins = 10
+    nbins = 15
     
 
 
