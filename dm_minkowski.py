@@ -130,5 +130,5 @@ if __name__ == "__main__" :
         plt.savefig(f"v_dm_{i}.pdf")
         plt.savefig(f"v_dm_{i}.png")
 
-        plt.clf()
+        #plt.clf()
 
