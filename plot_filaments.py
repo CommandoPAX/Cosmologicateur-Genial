@@ -89,7 +89,7 @@ if __name__ == "__main__" :
 
 
         #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
-        plt.errorbar(a, moyennes[1:],ls=ls, color=couleur, label=label, yerr = err)
+        plt.errorbar(a, moyennes[1:],ls=ls, color=couleur, label=label, yerr = err[1:])
 
         axes.set_xlabel(r"$a$")
         axes.set_ylabel("Mean length")
