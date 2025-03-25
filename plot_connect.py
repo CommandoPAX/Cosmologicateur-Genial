@@ -129,10 +129,13 @@ if __name__ == "__main__" :
 
         print(moyennes)
         axes = plt.gca()
+
+        a = 1/(1+np.array([32,3,1,0.25,0]))
+
         #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
         plt.errorbar(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
 
-        axes.set_xlabel(r"$\log z$")
+        axes.set_xlabel(r"$a$")
         axes.set_ylabel("Mean connectivity")
         axes.invert_xaxis()
 
