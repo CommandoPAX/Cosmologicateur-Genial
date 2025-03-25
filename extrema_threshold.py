@@ -21,8 +21,11 @@ from math import sqrt
 import sys
 
 
+R = int(sys.argv[1])
+
 for n in range(6):
     for i in range(5):
+
 
         print(n, i)
 
@@ -31,7 +34,7 @@ for n in range(6):
         data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
         data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
 
-        R = 5
+        #R = 5
 
         try : 
             result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -75,7 +78,8 @@ for n in range(6):
 
         field = ef.smooth(R)
 
-        Npoints = 100
+        if i != 4 : Npoints = int(sys.argv[2])
+        else : Npoints = int(sys.argv[2]) *2
 
         threshold = np.linspace(-6,6,Npoints)
 
@@ -104,11 +108,11 @@ for n in range(6):
             seuil_bas = np.percentile(densites_interpolees, 5)    # 5% des points les plus bas
 
 
-            #Sélection des points en fonction de leur rareté
-            if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
-                densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
-            elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
-                densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]
+
+            #if j in (0, 1):  # Peaks et filaments : ν > seuil_haut
+            #    densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
+            #elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
+            #    densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]
                 
             #print(len(type_t), len(densites_interpolees))
 

@@ -17,10 +17,10 @@ for n in range(6):
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=extrema_{n}_{i}
 #SBATCH --nodes=1
-#SBATCH --mem=500gb
 #SBATCH --time=24:00:00
 #SBATCH --output=/home/fcastillo/logs/extrema_{n}_{i}.out
 #SBATCH --partition=pscomp
+#SBATCH --nodelist=i02
 """)
         fichier.write("""
 

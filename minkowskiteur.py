@@ -9,22 +9,21 @@ import time
 pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
 snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
-for n in range(3):
-    for i in range(5):
-
-        input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
+for n in range(9):
+    if True :#for i in range(5):
 
 
-        fichier = open(f"../bash/minkowski_{n}_{i}.sh","w")
+        fichier = open(f"../bash/minkowski_{n}.sh","w")
         fichier.write(f"""#!/bin/bash
-#SBATCH --job-name=minkowski_{n}_{i}
+#SBATCH --job-name=minkowski_{n}
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
 #SBATCH --ntasks-per-node=32
 #SBATCH --mem=100gb
-#SBATCH --time=2:00:00
-#SBATCH --output=/home/fcastillo/logs/minkowski_{n}_{i}.out
+#SBATCH --time=48:00:00
+#SBATCH --output=/home/fcastillo/logs/minkowski_{n}.out
 #SBATCH --partition=pscomp
+#SBATCH --nodelist=i27
 """)
         fichier.write("""
 
@@ -43,9 +42,9 @@ module load inteloneapi/2025.0.1
 
 
         fichier.write(f"""
-python minkowski.py {n} {i}
+python minkowski.py {n}
 """)
             
         fichier.write("exit 0")
         fichier.close()
-        os.system(f"sbatch ../bash/minkowski_{n}_{i}.sh")
+        #os.system(f"sbatch ../bash/minkowski_{n}_{i}.sh")

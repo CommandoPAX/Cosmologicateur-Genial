@@ -7,7 +7,7 @@ from numba import jit, set_num_threads
 set_num_threads(32)
 
 
-def calculateMFs(data,thresholds=0,min_sig=-3,max_sig=3,step=0.1,deltabin=0.4,is_need_calculate_bin=True):
+def calculateMFs(data,thresholds=0,min_sig=-1,max_sig=1,step=0.02,deltabin=0.4,is_need_calculate_bin=True):
     '''
     Calculate the 3D MFs (v_{0}-v_{3}) of a given field (must be 3D)
 

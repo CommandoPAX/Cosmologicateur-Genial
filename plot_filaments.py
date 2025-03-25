@@ -27,7 +27,7 @@ if __name__ == "__main__" :
 
     plt.figure(figsize=(14,10))
 
-    nbins = 10
+    nbins = 15
 
     for i in range(1,5):
         plt.subplot(2,2,i)
@@ -43,17 +43,17 @@ if __name__ == "__main__" :
                 label = labels[j]
 
                 try :
-                    longueurs = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_len_fil.txt.npy")
+                    longueurs = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_smooth2_c0.1_len_fil.txt.npy")
 
-                    hist = np.histogram(longueurs, density= True, range = [0, 10], bins=nbins)
+                    hist = np.histogram(longueurs, density= True, range = [0, 30], bins=nbins)
                     hist = hist[0]
                     
                     axes.plot(hist, color= couleur, ls = ls, label=label)
-                    axes.set_xlabel("log longueur [Mpc / h]")
-                    plt.xscale("log")
-                    axes.set_ylabel("Probabilite")
-                    axes.set_ylim(0,0.35)
-                    axes.axvline(np.median(longueurs), color= couleur, ls = ls)
+                    axes.set_xlabel("length [Mpc / h]")
+                    #plt.xscale("log")
+                    axes.set_ylabel("PDF")
+                    axes.set_ylim(0,0.08)
+                    #axes.axvline(np.median(longueurs), color= couleur, ls = ls)
                 except:
                      print(j, i)
                     

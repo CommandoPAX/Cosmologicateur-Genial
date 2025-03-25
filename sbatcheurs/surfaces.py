@@ -46,4 +46,4 @@ python ../NDnet.py {n} {i}
             
         fichier.write("exit 0")
         fichier.close()
-        os.system(f"sbatch ../../bash/surf_{n}_{i}.sh")
+        #os.system(f"sbatch ../../bash/surf_{n}_{i}.sh")

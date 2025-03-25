@@ -52,7 +52,7 @@ smoothing=1
 exit 0""")
             
         fichier.close()
-        os.system(f"sbatch ../../bash/murs_{n}_{i}.sh")
-        time.sleep(10)
+        #os.system(f"sbatch ../../bash/murs_{n}_{i}.sh")
+        #time.sleep(10)
 
 

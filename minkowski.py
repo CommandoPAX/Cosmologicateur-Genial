@@ -9,13 +9,12 @@ from astropy.io import fits
 n = int(sys.argv[1])
 #i = int(sys.argv[2])
 
-for i in range(5):
+for i in range(2,5):
         
     print(n, i)
 
     pre = "/data100/fcastillo/RESULT/"
-    #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-    snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
+    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
 
     data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
@@ -30,7 +29,7 @@ for i in range(5):
 
     result = np.array([v0,v1,v2,v3])
     print(np.shape(result))
-    np.save(f"{pre+snapshots[n]}/{i}_minkowski.txt", result)
+    np.save(f"{pre+snapshots[n]}/{i}_minkowski_zoom.txt", result)
     print("ok")
 
 """

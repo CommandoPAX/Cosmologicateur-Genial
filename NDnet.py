@@ -80,25 +80,26 @@ class Net ():
         fichier.close()
 
 if __name__ == "__main__" :
-    for n in range(6):
+    for n in range(2,6):
         for i in range(5):
 
             snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
             labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
+            if (n==2 and i==0) or (n==5 and i ==4) :
+                reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
 
-            reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
+                surfaces = []
+                surfaces_t = []
+                indice_p = ""
+                for triangle in reseau.liste_simplexes[0] :
+                    indice = triangle.source
+                    if indice != indice_p :
+                        surfaces.append(np.sum(np.array(surfaces_t)))
+                        surfaces_t = []
+                    surfaces_t.append(triangle.Surface())
 
-            surfaces = []
-            surfaces_t = []
-            indice_p = ""
-            for triangle in reseau.liste_simplexes[0] :
-                indice = triangle.source
-                if indice != indice_p :
-                    surfaces.append(np.sum(np.array(surfaces_t)))
-                    surfaces_t = []
-                surfaces_t.append(triangle.Surface())
-
-            np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
-
+                np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
+            else:
+                pass #print(n,i)
 
