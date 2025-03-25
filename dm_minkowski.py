@@ -50,13 +50,13 @@ if __name__ == "__main__" :
 
         axs = []
         for row in range(2):
-            for col in range(2):
+            for col in range(4):
                 inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
                 axs += [plt.subplot(cell) for cell in inner]
 
 
 
-        for i in [0,1,2,4]:
+        for i in [2,4]:
             lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
             if i in [2,4]:lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
 
@@ -84,7 +84,7 @@ if __name__ == "__main__" :
 
 
                 for j in range(7):
-                    if j in [0,2,4]:
+                    if j in [0,2,6]:
                         lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
 
                         try:
