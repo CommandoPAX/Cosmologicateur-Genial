@@ -77,7 +77,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(i)*4]
+                axes = axs[(place-1)+(i)*8]
 
                 if d == 0 : 
                     axes.title.set_text (r"$z = $"+str(Redshifts[i]))
