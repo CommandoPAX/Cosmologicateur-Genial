@@ -80,7 +80,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(min(i,3))*8]
 
                 if d == 0 : 
-                    axes.title.set_text (rf"$v_{p} z = $"+str(Redshifts[i]))
+                    axes.title.set_text (rf"$v_{p}$,  $z = $"+str(Redshifts[i]))
 
 
                 for j in range(7):
