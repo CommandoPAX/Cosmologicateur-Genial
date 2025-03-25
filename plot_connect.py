@@ -78,7 +78,7 @@ if __name__ == "__main__" :
 
                 try :
                         
-                    connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_0_c0.1_connect_fil.txt.npy")
+                    connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_smooth2_c0.1_connect_fil.txt.npy")
                     #print(np.shape(data[p]))
                     #print(data)
                     hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
@@ -121,7 +121,7 @@ if __name__ == "__main__" :
         for j in range(5):
             try :
                     
-                connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_0_c0.1_connect_fil.txt.npy")
+                connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
                 moyennes.append(np.mean(connect))
                 err.append(1/sqrt(len(connect)))
                 
