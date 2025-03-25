@@ -87,7 +87,7 @@ if __name__ == "__main__" :
 
                     if d == 0 : 
                         axes.plot(hist, color= couleur, ls = ls, label=label)
-                        axes.set_ylabel("Probabilite")
+                        axes.set_ylabel("Probability")
                         axes.xaxis.set_visible(False)
                         axes.set_ylim(0,0.25)
                     else : 
