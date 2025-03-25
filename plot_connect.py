@@ -59,7 +59,7 @@ if __name__ == "__main__" :
 
 
         for d in range(2):
-            place = places[str(i) + str(d) -1]
+            place = places[str(i) + str(d)]
 
             print(axs)
 
