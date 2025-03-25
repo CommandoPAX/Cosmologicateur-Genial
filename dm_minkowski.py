@@ -41,7 +41,7 @@ if __name__ == "__main__" :
     
 
 
-    for p in range(4) :
+    for i in [2,4] :
         #plt.title(  rf"v$_{p}$")
         plt.axis("off")
         #plt.tight_layout()
@@ -56,7 +56,7 @@ if __name__ == "__main__" :
 
 
 
-        for i in [2,4]:
+        for p in range(4):
             lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
             if i in [2,4]:lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
 
