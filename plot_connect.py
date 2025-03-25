@@ -130,7 +130,7 @@ if __name__ == "__main__" :
         print(moyennes)
         axes = plt.gca()
 
-        a = 1/(1+np.array([32,3,1,0.25,0]))
+        a = 1/(1+np.array([32,3,1,0.25,0]))[:len(moyennes)]
 
         #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
         plt.errorbar(a, moyennes,ls=ls, color=couleur, label=label, yerr = err)
