@@ -77,7 +77,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(max(i,3))*8]
+                axes = axs[(place-1)+(min(i,3))*8]
 
                 if d == 0 : 
                     axes.title.set_text (rf"$v_{p} z = $"+str(Redshifts[i]))
