@@ -42,7 +42,7 @@ if __name__ == "__main__" :
 
 
     for p in range(4) :
-        #plt.title(  rf"v$_{p}$")
+        plt.title(  rf"v$_{p}$")
         plt.axis("off")
         #plt.tight_layout()
 
@@ -80,7 +80,7 @@ if __name__ == "__main__" :
                 axes = axs[place-1]
 
                 if d == 0 : 
-                    axes.title.set_text (Redshifts[i])
+                    axes.title.set_text (f"z = {Redshifts[i]}")
 
 
                 for j in range(7):
