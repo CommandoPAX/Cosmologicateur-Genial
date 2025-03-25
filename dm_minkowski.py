@@ -80,7 +80,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(i-2)*4]
 
                 if d == 0 : 
-                    axes.title.set_text (Redshifts[i])
+                    axes.title.set_text (r"$z = $"+str(Redshifts[i]))
 
 
                 for j in range(7):
@@ -127,8 +127,8 @@ if __name__ == "__main__" :
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
-        plt.savefig(f"v_dm_{i}.pdf")
-        plt.savefig(f"v_dm_{i}.png")
+        plt.savefig(f"v_dm.pdf")
+        plt.savefig(f"v_dm.png")
 
         #plt.clf()
 
