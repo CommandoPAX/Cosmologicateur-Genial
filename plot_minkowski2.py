@@ -21,15 +21,15 @@ if __name__ == "__main__" :
         4 : 0
     }
     
-    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
-    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
+    #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
+    #labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
 
-    #snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
-    #labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
+    snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
+    labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
 
 
     ls = ["-", "-", "-.", "--", "-", "--","-"]
-    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia","green"]
+    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
     plt.figure(figsize=(14,10))
     places = {
@@ -88,7 +88,7 @@ if __name__ == "__main__" :
 
 
                 for j in range(7):
-                    if j in [0,2,6]:
+                    if True:
                         lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
 
                         try:
@@ -132,8 +132,8 @@ if __name__ == "__main__" :
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.tight_layout()
-        plt.savefig(f"v_dm.pdf")
-        plt.savefig(f"v_dm.png")
+        plt.savefig(f"v_tout.pdf")
+        plt.savefig(f"v_tout.png")
 
         #plt.clf()
 
