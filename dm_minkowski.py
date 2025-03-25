@@ -44,7 +44,7 @@ if __name__ == "__main__" :
     plt.axis("off")
     #plt.tight_layout()
 
-    outer = gridspec.GridSpec(nrows=2, ncols=4)
+    outer = gridspec.GridSpec(nrows=4, ncols=4)
 
     axs = []
     for row in range(2):
@@ -52,7 +52,7 @@ if __name__ == "__main__" :
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
 
-    for i in [2,4] :
+    for i in [0,1,2,3] :
 
 
 
@@ -77,7 +77,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(i-2)*4]
+                axes = axs[(place-1)+(i)*4]
 
                 if d == 0 : 
                     axes.title.set_text (r"$z = $"+str(Redshifts[i]))
