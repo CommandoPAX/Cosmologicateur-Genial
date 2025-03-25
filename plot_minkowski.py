@@ -41,7 +41,7 @@ if __name__ == "__main__" :
     
 
 
-    for p in range(4) :
+    for i in [2,4] :
         plt.title(  rf"v$_{p}$")
         plt.axis("off")
         #plt.tight_layout()
@@ -51,12 +51,12 @@ if __name__ == "__main__" :
         axs = []
         for row in range(2):
             for col in range(2):
-                inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+                inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=4, subplot_spec=outer[row, col], hspace=0)
                 axs += [plt.subplot(cell) for cell in inner]
 
 
 
-        for i in [0,1,2,4]:
+        for p in range(4):
             lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
             if i in [2,4]:lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
 
@@ -84,50 +84,51 @@ if __name__ == "__main__" :
 
 
                 for j in range(7):
-                    lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
+                    if j in [0,2,6]:
+                        lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
 
-                    try:
-                        data = np.load(f"/home/fcastillo/minkowski/minkowski_{j}_{i}.txt.npy")
-                    except :
-                        data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski.txt.npy")
-                    if i in [2,4]:
-                        datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
+                        try:
+                            data = np.load(f"/home/fcastillo/minkowski/minkowski_{j}_{i}.txt.npy")
+                        except :
+                            data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski.txt.npy")
+                        if i in [2,4]:
+                            datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
 
-                        data1 = data[:,:20]
-                        data2 = data[:,41:]
-                        print(np.shape(data1), np.shape(data1),np.shape(data2),np.shape(datazoom))
+                            data1 = data[:,:20]
+                            data2 = data[:,41:]
+                            print(np.shape(data1), np.shape(data1),np.shape(data2),np.shape(datazoom))
 
-                        data = np.concatenate([data1,datazoom, data2],axis=1)
-
-
-                        lcdm = np.concatenate([lcdm[:,:20],lcdmzoom, lcdm[:,41:]],axis=1)
-
-                        if p == 0 : 
-                            data = datazoom
-                            lcdm = lcdmzoom
+                            data = np.concatenate([data1,datazoom, data2],axis=1)
 
 
-                    #print(np.shape(data[p]))
-                    #print(data)
-                    if d == 0 : 
-                        axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
-                        axes.set_ylabel(rf"v$_{p}$")
-                        axes.xaxis.set_visible(False)
-                    else : 
-                        axes.plot(X, data[p] - lcdm[p], color=couleurs[j], ls=ls[j],label=labels[j])
-                        axes.set_ylabel(r"$\Delta$")
-                    if d ==1 : axes.set_xlabel(r"threshold [$\sigma$]")
-                    if j == 6 and i == 0 and d == 0: 
-                        axes.legend() 
+                            lcdm = np.concatenate([lcdm[:,:20],lcdmzoom, lcdm[:,41:]],axis=1)
 
-                    if p == 0 and i in [2,4] : axes.set_xlim(-1,1)
-                    else : axes.set_xlim (-3,3)
+                            if p == 0 : 
+                                data = datazoom
+                                lcdm = lcdmzoom
+
+
+                        #print(np.shape(data[p]))
+                        #print(data)
+                        if d == 0 : 
+                            axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(rf"v$_{p}$")
+                            axes.xaxis.set_visible(False)
+                        else : 
+                            axes.plot(X, data[p] - lcdm[p], color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$\Delta$")
+                        if d ==1 : axes.set_xlabel(r"threshold [$\sigma$]")
+                        if j == 6 and i == 0 and d == 0: 
+                            axes.legend() 
+
+                        if p == 0 and i in [2,4] : axes.set_xlim(-1,1)
+                        else : axes.set_xlim (-3,3)
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
-        plt.savefig(f"v_{p}.pdf")
-        plt.savefig(f"v_{p}.png")
+        plt.savefig(f"v_dm_{i}.pdf")
+        plt.savefig(f"v_dm_{i}.png")
 
         plt.clf()
 
