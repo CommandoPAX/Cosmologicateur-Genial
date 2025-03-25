@@ -73,7 +73,7 @@ if __name__ == "__main__" :
         couleur = couleurs[i]
         label = labels[i]
     
-        for j in range(5):
+        for j in range(1,5):
             try :
                     
                 long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
@@ -89,7 +89,7 @@ if __name__ == "__main__" :
 
 
         #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
-        plt.errorbar(a, moyennes[1:],ls=ls, color=couleur, label=label, yerr = err[1:])
+        plt.errorbar(a, moyennes,ls=ls, color=couleur, label=label, yerr = err)
 
         axes.set_xlabel(r"$a$")
         axes.set_ylabel("Mean length")
