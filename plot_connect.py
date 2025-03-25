@@ -93,7 +93,7 @@ if __name__ == "__main__" :
                     else : 
                         axes.plot(hist-hist_lcdm, color=couleurs[j], ls=ls,label=labels[j])
                         axes.set_ylabel(r"$\Delta$")
-                    if d ==1 : axes.set_xlabel("Connectivite")
+                    if d ==1 : axes.set_xlabel("Connectivity")
 
                     if j == 5 and i == 1 and d == 0: 
                         axes.legend() 
