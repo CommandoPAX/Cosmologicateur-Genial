@@ -73,7 +73,7 @@ if __name__ == "__main__" :
             if p == 0 and i in [2,4] : X = X2
 
             for d in range(2):
-                place = places[str(i) + str(d)]
+                place = places[str(p) + str(d)]
 
                 print(axs)
 
