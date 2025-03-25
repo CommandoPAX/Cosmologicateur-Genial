@@ -40,19 +40,19 @@ if __name__ == "__main__" :
     }
     
 
+    #plt.title(  rf"v$_{p}$")
+    plt.axis("off")
+    #plt.tight_layout()
+
+    outer = gridspec.GridSpec(nrows=2, ncols=4)
+
+    axs = []
+    for row in range(2):
+        for col in range(4):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
 
     for i in [2,4] :
-        #plt.title(  rf"v$_{p}$")
-        plt.axis("off")
-        #plt.tight_layout()
-
-        outer = gridspec.GridSpec(nrows=2, ncols=4)
-
-        axs = []
-        for row in range(2):
-            for col in range(4):
-                inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
-                axs += [plt.subplot(cell) for cell in inner]
 
 
 
