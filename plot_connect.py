@@ -130,7 +130,7 @@ if __name__ == "__main__" :
         print(moyennes)
         axes = plt.gca()
 
-        if len(moyennes == 5):
+        if len(moyennes )== 5:
             a = 1/(1+np.array([32,3,1,0.25,0]))
         else :
             a = 1/(1+np.array([3,1,0.25,0]))
