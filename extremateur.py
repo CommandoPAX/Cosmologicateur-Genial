@@ -53,7 +53,7 @@ pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
-R = 5
+R = 2
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -139,7 +139,7 @@ for j in range(4) :
 
         print("points charges")
 
-        r_small = np.linspace(0, 5, 80)
+        r_small = np.linspace(R, 5, 80)
         r_large = np.geomspace(5, 40, 20)
         r_bins = np.concatenate((r_small, r_large))
 
