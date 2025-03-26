@@ -113,3 +113,77 @@ if __name__ == "__main__" :
 
         #plt.clf()
 
+
+    #plt.title(  rf"v$_{p}$")
+    plt.axis("off")
+    #plt.tight_layout()
+
+    outer = gridspec.GridSpec(nrows=2, ncols=4)
+
+    axs = []
+    for row in range(2):
+        for col in range(4):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
+
+    for i in [0,1,2,4] :
+
+
+
+        for p in range(2):
+
+
+            _type = ["PF", "VW"] [p]
+
+            for d in range(2):
+                place = places[str(p) + str(d)]
+
+                print(axs)
+
+                axes = axs[(place-1)+(min(i,3))*8]
+
+                if d == 0 : 
+                    axes.title.set_text (rf"{_type},  $z = $"+str(Redshifts[i]))
+
+
+                for j in range(6):
+                    if True:
+                        if p == 0 : 
+                            a = 1
+                            b = 0
+                        elif p == 1 :
+                            a = 3
+                            b = 2
+                        lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+
+                        zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+                        #zeta[0] = 0
+
+                        r_small = np.linspace(0, 5, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        r_bins = np.concatenate((r_small, r_large))
+
+
+                        #print(np.shape(data[p]))
+                        #print(data)
+                        if d == 0 : 
+                            axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$1 + \zeta (r)$")
+                            axes.xaxis.set_visible(False)
+                        else : 
+                            axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$\Delta$")
+                        if d ==1 and i == 3: axes.set_xlabel("r [Mpc / h]")
+                        if j == 5 and i == 0 and d == 0 and p == 0: 
+                            axes.legend() 
+
+
+        if i == 0:
+            plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
+        plt.tight_layout()
+        plt.savefig(f"PF_VW.pdf")
+        plt.savefig(f"PF_VW.png")
+
+        #plt.clf()
+
