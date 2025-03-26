@@ -53,7 +53,7 @@ pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
-R = 1
+R = 2
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -110,13 +110,29 @@ for j in range(4) :
         Xk, Yk, Zk = result_k[:, 0].astype(int), result_k[:, 1].astype(int), result_k[:, 2].astype(int)
         Xj, Yj, Zj = result_j[:, 0].astype(int), result_j[:, 1].astype(int), result_j[:, 2].astype(int)
 
-        indices_k = (field[Xk, Yk, Zk] >= 2*np.std(field[Xk,Yk,Zk])) | (field[Xk, Yk, Zk] <= -2*np.std(field[Xk,Yk,Zk]))
-        indices_j = (field[Xj, Yj, Zj] >= 2*np.std(field[Xj,Yj,Zj])) | (field[Xj, Yj, Zj] <= -2*np.std(field[Xj,Yj,Zj]))
+
+        seuil_haut_k = np.percentile(result_k, 95)  # 5% des points les plus hauts
+        seuil_bas_k = np.percentile(result_k, 5)    # 5% des points les plus bas
+
+        seuil_haut_j = np.percentile(result_j, 95)  # 5% des points les plus hauts
+        seuil_bas_j = np.percentile(result_j, 5)    # 5% des points les plus bas
+
+
+        if j in (0, 1):  # Peaks et filaments 
+            result_j = result_j[result_j >= seuil_haut_j]
+        elif j in (2, 3):  # Vides et murs 
+            result_j = result_j[(result_j <= seuil_bas_j)]
+            
+        if k in (0, 1):  # Peaks et filaments 
+            result_k = result_k[result_k >= seuil_haut_k]
+        elif j in (2, 3):  # Vides et murs 
+            result_k = result_k[(result_k <= seuil_bas_k)]
+            
 
         data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:] % 512
 
-        tree_k = KDTree(result_k[indices_k],boxsize=512) 
-        tree_j = KDTree(result_j[indices_j],boxsize=512)
+        tree_k = KDTree(result_k,boxsize=512) 
+        tree_j = KDTree(result_j,boxsize=512)
         tree_r = KDTree(data_random,boxsize=512)
 
         print("points charges")
