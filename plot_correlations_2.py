@@ -232,11 +232,11 @@ if __name__ == "__main__" :
                             a = 3
                             b = 0
                         elif p == 2 :
-                            a = 1
-                            b = 2
+                            a = 2
+                            b = 1
                         elif p == 3 :
-                            a = 1
-                            b = 3
+                            a = 3
+                            b = 1
                         lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
 
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
