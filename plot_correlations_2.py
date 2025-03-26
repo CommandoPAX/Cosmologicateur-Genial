@@ -189,3 +189,84 @@ if __name__ == "__main__" :
 
         #plt.clf()
 
+    plt.clf()
+    plt.figure(figsize=(8,6))
+    #plt.title(  rf"v$_{p}$")
+    plt.axis("off")
+    #plt.tight_layout()
+
+    outer = gridspec.GridSpec(nrows=2, ncols=2)
+
+    axs = []
+    for row in range(2):
+        for col in range(4):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
+
+    for i in [2,4] :
+
+
+
+        for p in range(4):
+
+
+            _type = ["PW", "PV", "FW","FV"] [p]
+
+            for d in range(2):
+                place = places[str(p) + str(d)]
+
+                print(axs)
+
+                axes = axs[(place-1)+(i//2 -1)*8]
+
+                if d == 0 : 
+                    axes.title.set_text (rf"{_type},  $z = $"+str(Redshifts[i]))
+
+
+                for j in range(6):
+                    if True:
+                        if p == 0 : 
+                            a = 2
+                            b = 0
+                        elif p == 1 :
+                            a = 3
+                            b = 0
+                        elif p == 2 :
+                            a = 1
+                            b = 2
+                        elif p == 3 :
+                            a = 1
+                            b = 3
+                        lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+
+                        zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+                        #zeta[0] = 0
+
+                        r_small = np.linspace(R, 5, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        r_bins = np.concatenate((r_small, r_large))
+
+
+                        #print(np.shape(data[p]))
+                        #print(data)
+                        if d == 0 : 
+                            axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$1 + \zeta (r)$")
+                            axes.xaxis.set_visible(False)
+                            axes.set_ylim(-1,1)
+                        else : 
+                            axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$\Delta$")
+                        if d ==1 and i == 3: axes.set_xlabel("r [Mpc / h]")
+                        if j == 5 and i == 0 and d == 0 and p == 0: 
+                            axes.legend() 
+
+
+        if i == 0:
+            plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
+        plt.tight_layout()
+        plt.savefig(f"corr_autres.pdf")
+        plt.savefig(f"corr_autres.png")
+
+        #plt.clf()
