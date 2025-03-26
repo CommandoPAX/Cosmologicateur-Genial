@@ -72,7 +72,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(i//2-1)*4]
+                axes = axs[(place-1)+(i//2-1)*8]
 
                 if d == 0 : 
                     axes.title.set_text (rf"{["P","F","W","W"][p]}{["P","F","W","W"][p]},  $z = $"+str(Redshifts[i]))
