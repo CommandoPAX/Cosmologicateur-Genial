@@ -114,19 +114,20 @@ if __name__ == "__main__" :
         #plt.clf()
 
     plt.clf()
+    plt.figure(figsize=(8,6))
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
     #plt.tight_layout()
 
-    outer = gridspec.GridSpec(nrows=4, ncols=2)
+    outer = gridspec.GridSpec(nrows=2, ncols=2)
 
     axs = []
-    for row in range(4):
+    for row in range(2):
         for col in range(2):
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
 
-    for i in [0,1,2,4] :
+    for i in [2,4] :
 
 
 
@@ -140,7 +141,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(min(i,3))*4]
+                axes = axs[(place-1)+(min(i,3))*2]
 
                 if d == 0 : 
                     axes.title.set_text (rf"{_type},  $z = $"+str(Redshifts[i]))
