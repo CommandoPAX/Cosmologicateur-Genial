@@ -251,14 +251,14 @@ if __name__ == "__main__" :
                         #print(data)
                         if d == 0 : 
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(r"$1 + \zeta (r)$")
+                            if p == 0 : axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
                             #axes.set_ylim(-1,1)
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(r"$\Delta$")
-                        if d ==1 and i == 3: axes.set_xlabel("r [Mpc / h]")
-                        if j == 5 and i == 0 and d == 0 and p == 0: 
+                            if p == 0 :axes.set_ylabel(r"$\Delta$")
+                        if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
+                        if j == 5 and i == 2 and d == 0 and p == 0: 
                             axes.legend() 
 
 
