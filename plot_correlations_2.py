@@ -140,7 +140,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(min(i,3))*8]
+                axes = axs[(place-1)+(min(i,3))*4]
 
                 if d == 0 : 
                     axes.title.set_text (rf"{_type},  $z = $"+str(Redshifts[i]))
