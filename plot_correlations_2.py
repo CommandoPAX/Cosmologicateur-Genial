@@ -171,7 +171,7 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            axes.set_ylim(0,1)
+                            axes.set_ylim(-1,1)
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
