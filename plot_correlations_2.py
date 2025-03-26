@@ -51,15 +51,15 @@ if __name__ == "__main__" :
     plt.axis("off")
     #plt.tight_layout()
 
-    outer = gridspec.GridSpec(nrows=4, ncols=4)
+    outer = gridspec.GridSpec(nrows=2, ncols=4)
 
     axs = []
-    for row in range(4):
+    for row in range(2):
         for col in range(4):
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
 
-    for i in [0,1,2,4] :
+    for i in [2,4] :
 
 
 
@@ -72,7 +72,7 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(min(i,3))*8]
+                axes = axs[(place-1)+(i//2-1)*4]
 
                 if d == 0 : 
                     axes.title.set_text (rf"{["P","F","W","W"][p]}{["P","F","W","W"][p]},  $z = $"+str(Redshifts[i]))
@@ -85,7 +85,7 @@ if __name__ == "__main__" :
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
-                        r_small = np.linspace(0, 5, 80)  # 10 points entre 0 et 1
+                        r_small = np.linspace(R, 5, 80)  # 10 points entre 0 et 1
                         r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
