@@ -152,7 +152,7 @@ for j in range(4) :
         DRk_counts[DRk_counts == 0] = 1
         DRj_counts[DRj_counts == 0] = 1
 
-        correlation = DD_counts / np.sqrt(DRk_counts * DRj_counts) *sqrt(len(data_random) * len(data_random) / (len(result_k) * len(result_j))) - 1
+        correlation = DD_counts / np.sqrt(DRk_counts * DRj_counts) *sqrt(len(data_random) * len(data_random) / (len(result_k[indices_k]) * len(result_j[indices_j]))) - 1
 
         print(DD_counts)
         print(DRk_counts)
