@@ -108,8 +108,8 @@ if __name__ == "__main__" :
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.tight_layout()
-        plt.savefig(f"corr_tout.pdf")
-        plt.savefig(f"corr_tout.png")
+        plt.savefig(f"corr_autp.pdf")
+        plt.savefig(f"corr_auto.png")
 
         #plt.clf()
 
@@ -171,6 +171,7 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
+                            axes.set_ylim(0,1)
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
@@ -183,8 +184,8 @@ if __name__ == "__main__" :
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.tight_layout()
-        plt.savefig(f"PF_VW.pdf")
-        plt.savefig(f"PF_VW.png")
+        plt.savefig(f"corr_PF_VW.pdf")
+        plt.savefig(f"corr_PF_VW.png")
 
         #plt.clf()
 
