@@ -139,8 +139,8 @@ for j in range(4) :
 
         print("points charges")
 
-        r_small = np.linspace(R, 5, 80)
-        r_large = np.geomspace(5, 40, 20)
+        r_small = np.linspace(R, 10, 80)
+        r_large = np.geomspace(10, 40, 20)
         r_bins = np.concatenate((r_small, r_large))
 
 
