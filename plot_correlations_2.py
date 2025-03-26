@@ -195,7 +195,7 @@ if __name__ == "__main__" :
     plt.axis("off")
     #plt.tight_layout()
 
-    outer = gridspec.GridSpec(nrows=2, ncols=2)
+    outer = gridspec.GridSpec(nrows=2, ncols=4)
 
     axs = []
     for row in range(2):
