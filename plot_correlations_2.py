@@ -259,7 +259,7 @@ if __name__ == "__main__" :
                             if p == 0 :axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == 5 and i == 2 and d == 0 and p == 0: 
-                            axes.legend() 
+                            pass#axes.legend() 
 
 
         #if i == 0:
