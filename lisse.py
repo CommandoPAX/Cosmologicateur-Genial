@@ -3,10 +3,10 @@ import numpy as np
 from py_extrema.extrema import ExtremaFinder, CriticalPoints
 
 pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+snapshots = ["G_ViVi","NG_ViVi","NG_Fminus500_ViVi"]
 
 for R in [1,2,5]:
-    for n in range(6):
+    for n in range(3):
         for i in range(5):
             print(R, n, i)
             data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"

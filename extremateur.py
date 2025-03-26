@@ -45,7 +45,7 @@ def count_pairs(tree_A, tree_B, r):
 
 n = int(sys.argv[1])
 i = int(sys.argv[2])
-
+P = 20
 
 print(n, i)
 
@@ -53,7 +53,7 @@ pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
-R = 2
+R = 5
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
@@ -111,11 +111,11 @@ for j in range(4) :
         Xj, Yj, Zj = result_j[:, 0].astype(int), result_j[:, 1].astype(int), result_j[:, 2].astype(int)
 
 
-        seuil_haut_k = np.percentile(field[Xk,Yk,Zk], 90)  
-        seuil_bas_k = np.percentile(field[Xk,Yk,Zk], 10)   
+        seuil_haut_k = np.percentile(field[Xk,Yk,Zk], P)
+        seuil_bas_k = np.percentile(field[Xk,Yk,Zk], 100-P)
 
-        seuil_haut_j = np.percentile(field[Xj,Yj,Zj], 90)  
-        seuil_bas_j = np.percentile(field[Xj,Yj,Zj], 10)   
+        seuil_haut_j = np.percentile(field[Xj,Yj,Zj], P)
+        seuil_bas_j = np.percentile(field[Xj,Yj,Zj], 100-P)
 
         indices_k = field[Xk, Yk, Zk] >= seuil_haut_k
         indices_j = field[Xj, Yj, Zj] >= seuil_haut_j
@@ -125,14 +125,13 @@ for j in range(4) :
             indices_j = field[Xj, Yj, Zj] >= seuil_haut_j
         elif j in (2, 3):  # Vides et murs 
             indices_j = field[Xj, Yj, Zj] <= seuil_bas_j
-            
+
         if k in (0, 1):  # Peaks et filaments 
             indices_k = field[Xk, Yk, Zk] >= seuil_haut_k
         elif k in (2, 3):  # Vides et murs 
             indices_k = field[Xk, Yk, Zk] <= seuil_bas_k
-            
 
-        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k),:] % 512
+        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k[indices_k]),:] % 512
 
         tree_k = KDTree(result_k[indices_k],boxsize=512) 
         tree_j = KDTree(result_j[indices_j],boxsize=512)
@@ -140,26 +139,19 @@ for j in range(4) :
 
         print("points charges")
 
-        r_small = np.linspace(0, 5, 80)  # 10 points entre 0 et 1
-        r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+        r_small = np.linspace(0, 5, 80)
+        r_large = np.geomspace(5, 40, 20)
         r_bins = np.concatenate((r_small, r_large))
 
 
-        r_mid = (r_bins[:-1] + r_bins[1:]) / 2  # Centres des intervalles
-
-        # Compter les paires DD (données-données)
         DD_counts = np.array([count_pairs(tree_k, tree_j, r) for r in r_bins[1:]])
 
-        # Compter les paires DR (données-aléatoires)
         DRk_counts = np.array([count_pairs(tree_k, tree_r, r) for r in r_bins[1:]])
         DRj_counts = np.array([count_pairs(tree_j, tree_r, r) for r in r_bins[1:]])
 
-
-        # Éviter la division par zéro
         DRk_counts[DRk_counts == 0] = 1
         DRj_counts[DRj_counts == 0] = 1
 
-        # Calcul de ξ(r) selon Davis & Peebles
         correlation = DD_counts / np.sqrt(DRk_counts * DRj_counts) *sqrt(len(data_random) * len(data_random) / (len(result_k) * len(result_j))) - 1
 
         print(DD_counts)
@@ -167,4 +159,4 @@ for j in range(4) :
         print(DRj_counts)
         print(correlation, np.array(correlation))
 
-        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_varbin.txt", np.array(correlation))
+        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_P{P}.txt", np.array(correlation))

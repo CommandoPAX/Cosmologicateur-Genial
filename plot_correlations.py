@@ -22,6 +22,8 @@ if __name__ == "__main__" :
     
     plt.figure(figsize=(14,10))
     
+    P = 20
+
     places = {
         "00" : 1,
         "01" : 2,
@@ -44,7 +46,7 @@ if __name__ == "__main__" :
     plt.figure(figsize=(14,10))
 
     nbins = 40
-    R = 2
+    R = 5
     x0 = 0
     x1 = 40
 
@@ -69,14 +71,14 @@ if __name__ == "__main__" :
             for i in [0,1,2,4]:
                 
 
-                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_varbin.txt.npy")
+                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
                 
                 for d in range(2):
                     place = places[str(i) + str(d)]
 
                     axes = axs[place-1]
 
-                    if d == 0 : 
+                    if d == 0 :
                         axes.title.set_text (f"{nom_corr[a]}{nom_corr[b]} z = {Redshifts[i]}")
 
 
@@ -89,7 +91,7 @@ if __name__ == "__main__" :
                         label = labels[j]
 
                         if True :#try:
-                            zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_varbin.txt.npy")
+                            zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
                             #zeta[0] = 0
 
                             r_small = np.linspace(0, 5, 80)  # 10 points entre 0 et 1
@@ -103,11 +105,11 @@ if __name__ == "__main__" :
                             #axes.set_ylim(0,0.35)
 
                             if d == 0 : 
-                                axes.plot(r_bins[1:], zeta + 1 , color=couleur, ls=ls,label=label)
+                                axes.plot(r_bins[61:], zeta[60:] + 1 , color=couleur, ls=ls,label=label)
                                 axes.set_ylabel(r"$1 + \zeta (r)$")
                                 axes.xaxis.set_visible(False)
                             else : 
-                                axes.plot(r_bins[1:], zeta-lcdm, color=couleur, ls=ls,label=label)
+                                axes.plot(r_bins[61:], (zeta-lcdm)[60:], color=couleur, ls=ls,label=label)
                                 axes.set_ylabel(r"$\Delta$")
                             if d ==1 : axes.set_xlabel("r [Mpc / h]")
 
@@ -121,7 +123,7 @@ if __name__ == "__main__" :
 
 
                 
-            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}_varbin.pdf")
-            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}_varbin.png")
+            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}_P{P}.pdf")
+            plt.savefig(f"corr_{a}_{b}_s{R}_nbins{nbins}_P{P}.png")
             plt.clf()
 
