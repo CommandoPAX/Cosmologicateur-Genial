@@ -93,11 +93,11 @@ if __name__ == "__main__" :
                         #print(np.shape(data[p]))
                         #print(data)
                         if d == 0 : 
-                            axes.plot(r_bins, zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
                         else : 
-                            axes.plot(r_bins, zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 3: axes.set_xlabel("r [Mpc / h]")
                         if j == 5 and i == 0 and d == 0 and p == 0: 
