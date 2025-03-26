@@ -108,8 +108,8 @@ if __name__ == "__main__" :
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.tight_layout()
-        plt.savefig(f"v_tout.pdf")
-        plt.savefig(f"v_tout.png")
+        plt.savefig(f"corr_tout.pdf")
+        plt.savefig(f"corr_tout.png")
 
         #plt.clf()
 
