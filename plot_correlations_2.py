@@ -113,7 +113,7 @@ if __name__ == "__main__" :
 
         #plt.clf()
 
-
+    plt.clf()
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
     #plt.tight_layout()
