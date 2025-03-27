@@ -75,7 +75,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(i//2-1)*8]
 
                 if d == 0 : 
-                    axes.title.set_text (rf"{["P","F","W","W"][p]}{["P","F","W","W"][p]},  $z = $"+str(Redshifts[i]))
+                    axes.title.set_text (rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]},  $z = $"+str(Redshifts[i]))
 
 
                 for j in range(6):
