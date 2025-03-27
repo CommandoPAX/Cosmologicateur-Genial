@@ -99,7 +99,7 @@ if __name__ == "__main__" :
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 : axes.set_ylabel(r"$\Delta$")
-                        if d ==1 and i == 3: axes.set_xlabel("r [Mpc / h]")
+                        if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == 5 and i == 0 and d == 0 and p == 0: 
                             axes.legend() 
 
@@ -176,7 +176,7 @@ if __name__ == "__main__" :
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
-                        if d ==1 and i == 3: axes.set_xlabel("r [Mpc / h]")
+                        if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == 5 and i == 0 and d == 0 and p == 0: 
                             axes.legend() 
 
