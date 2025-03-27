@@ -50,7 +50,7 @@ P = 20
 print(n, i)
 
 pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
 R = 2
@@ -65,10 +65,10 @@ except:
     data = hdul[0].data
     hdul.close()
     print(np.shape(data))
-    data = data.astype(np.float64)
+    data = data.astype(np.float32)
 
 
-    ef = ExtremaFinder(data, nthreads=32, loglevel=30)
+    ef = ExtremaFinder(data, loglevel=30)
     ef.find_extrema(R)
     pos = ef.extrema[R].pos
     kind = ef.extrema[R].kind
