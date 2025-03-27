@@ -31,7 +31,7 @@ if __name__ == "__main__" :
     ls = ["-", "-", "-.", "--", "-", "--","-"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
-    plt.figure(figsize=(14,10))
+    plt.figure(figsize=(8,6))
     places = {
         "00" : 1,
         "01" : 2,
@@ -85,8 +85,8 @@ if __name__ == "__main__" :
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
-                        r_small = np.linspace(R, 5, 80)  # 10 points entre 0 et 1
-                        r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        r_small = np.linspace(R, 10, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(10, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
 
@@ -94,11 +94,11 @@ if __name__ == "__main__" :
                         #print(data)
                         if d == 0 : 
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(r"$1 + \zeta (r)$")
+                            if p == 0 :axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(r"$\Delta$")
+                            if p == 0 : axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 3: axes.set_xlabel("r [Mpc / h]")
                         if j == 5 and i == 0 and d == 0 and p == 0: 
                             axes.legend() 
@@ -108,7 +108,7 @@ if __name__ == "__main__" :
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.tight_layout()
-        plt.savefig(f"corr_autp.pdf")
+        plt.savefig(f"corr_auto.pdf")
         plt.savefig(f"corr_auto.png")
 
         #plt.clf()
@@ -160,8 +160,8 @@ if __name__ == "__main__" :
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
-                        r_small = np.linspace(R, 5, 80)  # 10 points entre 0 et 1
-                        r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        r_small = np.linspace(R, 10, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(10, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
 
@@ -171,7 +171,8 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            axes.set_ylim(-1,1)
+                            axes.set_ylim(-0.2,1)
+                            if i == 4 and p == 1 : axes.set_ylim(0,0.05)
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
@@ -242,8 +243,8 @@ if __name__ == "__main__" :
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
-                        r_small = np.linspace(R, 5, 80)  # 10 points entre 0 et 1
-                        r_large = np.geomspace(5, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        r_small = np.linspace(R, 10, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(10, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
 
