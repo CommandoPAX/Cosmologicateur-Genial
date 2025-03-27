@@ -43,7 +43,7 @@ if __name__ == "__main__" :
         "31" : 8
     }
 
-    R = 2
+    R = 5
     P = 20
     
 
@@ -171,8 +171,8 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            axes.set_ylim(-0.2,1)
-                            if i == 4 and p == 1 : axes.set_ylim(0,0.05)
+                            #axes.set_ylim(-0.2,1)
+                            if i == 4 and p == 1 : pass #axes.set_ylim(0,0.05)
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
