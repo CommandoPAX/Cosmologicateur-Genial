@@ -21,7 +21,7 @@ snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminu
 Result_Path = "/data100/fcastillo/RESULT/" 
 
 for n in range(6,9):
-    for i in range(5):
+    for i in range(1,5):
         print(n,i)
         file = h5py.File(pre+snapshots[n]+"/fof_subhalo_tab_00"+str(i)+".hdf5")
         print(file, file.keys())
