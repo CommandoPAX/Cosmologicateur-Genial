@@ -34,7 +34,7 @@ file="{i}_halos"
 persistence=1
 smoothing=1
 
-/softs/disperse/0.9.24/bin/delaunay_3D $path_dat$file".fits" -outName $path$file 
+/softs/disperse/0.9.24/bin/delaunay_3D $path_dat$file".txt" -outName $path$file 
 
 /softs/disperse/0.9.24/bin/mse $path_dat$file".NDnet" -nsig $persistence -upSkl -outName $path$file -forceLoops
 /softs/disperse/0.9.24/bin/skelconv $path$file"_s"$persistence".up.NDskl" -outName $path$file"_s"$persistence".up.NDskl" -smooth $smoothing -to NDskl_ascii
