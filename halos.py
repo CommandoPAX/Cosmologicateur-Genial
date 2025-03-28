@@ -27,13 +27,10 @@ for n in range(6):
         print(file, file.keys())
         pos = file["Group"]["GroupPos"][:]
         file.close()
-        header = fits.Header()
-        header['COMMENT'] = 'Position halos'
-        header['NAXIS'] = 3  
-        header['NAXIS1'] = len(pos)  
-        header['NAXIS2'] = len(pos) 
-        header['NAXIS3'] = len(pos)
+        output = open(Result_Path+snapshots[n]+"/"+str(i)+"_halos.txt","w")
 
-        hdu = fits.PrimaryHDU(data=pos, header=header)
+        output.write("# X Y Z")
+        output.write(str(pos))
+        print(str(pos))
 
-        hdu.writeto(f"{Result_Path}/{snapshots[n]}/{i}_halos.fits", overwrite=True)
+        output.close()
