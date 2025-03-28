@@ -36,4 +36,4 @@ for n in range(6,9):
 
         hdu = fits.PrimaryHDU(data=pos, header=header)
 
-        hdu.writeto(f"{Result_Path}/{i}_halos.fits", overwrite=True)
+        hdu.writeto(f"{Result_Path}/{snapshots[n]}/{i}_halos.fits", overwrite=True)
