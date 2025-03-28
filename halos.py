@@ -30,7 +30,9 @@ for n in range(6):
         output = open(Result_Path+snapshots[n]+"/"+str(i)+"_halos.txt","w")
 
         output.write("# X Y Z")
-        output.write(str(pos))
+        pos = str(pos).replace("[","")
+        pos = str(pos).replace("]","")
+        output.write(pos)
         print(str(pos))
 
         output.close()
