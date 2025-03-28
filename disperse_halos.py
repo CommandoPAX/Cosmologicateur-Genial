@@ -43,4 +43,4 @@ smoothing=1
 """)
     fichier.write("exit 0")        
     fichier.close()
-    os.system(f"sbatch /home/fcastillo/bash/mse_{n}_{i}.sh")
+    os.system(f"sbatch /home/fcastillo/bash/mse_{n}.sh")
