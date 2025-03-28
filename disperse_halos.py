@@ -25,16 +25,11 @@ module load disperse/0.9.24""")
 
     for i in range(1,5):
 
-        input_ = pre + snapshots[n]+"/"+str(i)+"_halos"
-
-
-
-
         fichier.write(f"""
 path_dat="{pre+snapshots[n]}/"
 path="{pre+snapshots[n]}/"
 
-file="{i}_densite_smooth2"
+file="{i}_halos"
 
 persistence=1
 smoothing=1
@@ -48,4 +43,4 @@ smoothing=1
 """)
     fichier.write("exit 0")        
     fichier.close()
-    #os.system(f"sbatch ./bash/mse_{n}_{i}.sh")
+    os.system(f"sbatch ./bash/mse_{n}_{i}.sh")
