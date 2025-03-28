@@ -22,7 +22,9 @@ Result_Path = "/data100/fcastillo/RESULT/"
 
 for n in range(6,9):
     for i in range(5):
+        print(n,i)
         file = h5py.File(pre+snapshots[n]+"/fof_subhalo_tab_00"+str(i)+".hdf5")
+        print(file)
         pos = file["Group"]["GroupPos"][:]
         file.close()
         header = fits.Header()
