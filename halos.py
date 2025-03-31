@@ -14,7 +14,7 @@ import os, sys, getopt
 import json, datetime 
 import h5py
 from astropy.io import fits
-
+import pandas as pd
 
 pre = "/data77/stahl/Scale/Nb/WDM/KF/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
@@ -27,12 +27,12 @@ for n in range(6):
         print(file, file.keys())
         pos = file["Group"]["GroupPos"][:]
         file.close()
-        output = open(Result_Path+snapshots[n]+"/"+str(i)+"_halos.txt","w")
 
-        output.write("# X Y Z")
-        pos = str(pos).replace("[","")
-        pos = str(pos).replace("]","")
-        output.write(pos)
-        print(str(pos))
+        X = pos[:,0]
+        Y = pos[:,1]
+        Z = pos[:,2]
 
-        output.close()
+        df = pd.DataFrame(data=pos,columns=["X", "Y", "Z"])
+        df.to_csv(Result_Path+snapshots[n]+"/"+str(i)+"_halos.txt")
+
+        print(df)
