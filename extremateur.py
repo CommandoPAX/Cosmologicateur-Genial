@@ -45,7 +45,7 @@ def count_pairs(tree_A, tree_B, r):
 
 n = int(sys.argv[1])
 i = int(sys.argv[2])
-P = 20
+P = 5
 
 print(n, i)
 
@@ -53,7 +53,7 @@ pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
-R = 5
+R = 2
 
 try : 
     result = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{n}_{i}_{R}.txt.npy")
