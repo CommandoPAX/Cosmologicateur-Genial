@@ -7,10 +7,10 @@ import time
 pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 
-for n in range(6):
+for n in range(6,9):
     for i in range(5):
 
-        input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
+        #input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
 
         fichier = open(f"connect_{n}_{i}.sh","w")

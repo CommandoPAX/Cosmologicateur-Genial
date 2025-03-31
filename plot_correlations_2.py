@@ -43,8 +43,8 @@ if __name__ == "__main__" :
         "31" : 8
     }
 
-    R = 5
-    P = 20
+    R = 2
+    P = 5
     
 
     #plt.title(  rf"v$_{p}$")

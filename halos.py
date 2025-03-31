@@ -16,11 +16,11 @@ import h5py
 from astropy.io import fits
 import pandas as pd
 
-pre = "/data77/stahl/Scale/Nb/WDM/KF/"
+pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
 Result_Path = "/data100/fcastillo/RESULT/" 
 
-for n in range(6):
+for n in range(6,9):
     for i in range(1,5):
         print(n,i)
         file = h5py.File(pre+snapshots[n]+"/fof_subhalo_tab_00"+str(i)+".hdf5")
