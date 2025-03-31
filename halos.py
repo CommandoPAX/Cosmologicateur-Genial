@@ -33,6 +33,6 @@ for n in range(6):
         Z = pos[:,2]
 
         df = pd.DataFrame(data=pos,columns=["X", "Y", "Z"])
-        df.to_csv(Result_Path+snapshots[n]+"/"+str(i)+"_halos.txt",index=False)
+        df.to_csv(Result_Path+snapshots[n]+"/"+str(i)+"_halos.txt",index=False,sep=" ",comment="#")
 
         print(df)
