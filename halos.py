@@ -32,7 +32,7 @@ for n in range(6):
         Y = pos[:,1]
         Z = pos[:,2]
 
-        df = pd.DataFrame(data=pos,columns=["# px", "py", "pz"])
+        df = pd.DataFrame(data=pos,columns=["#px", "py", "pz"])
         df.to_csv(Result_Path+snapshots[n]+"/"+str(i)+"_halos.txt",index=False,sep=" ")
 
         print(df)
