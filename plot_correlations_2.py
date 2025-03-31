@@ -30,7 +30,7 @@ if __name__ == "__main__" :
     indices_hdm = [0,1,4,6,7,8]
 
 
-    lss = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--"]
+    ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia"]
 
     plt.figure(figsize=(8,6))
