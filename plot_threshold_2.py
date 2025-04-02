@@ -83,6 +83,10 @@ if __name__ == "__main__" :
                     Npoints = len(count)
                     X = np.linspace(-6,6,Npoints)
 
+                    couleur = couleurs[j]
+                    label = labels[j]
+                    ls = ls[j]
+
 
 
                     #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
@@ -98,11 +102,11 @@ if __name__ == "__main__" :
                     if i == 2 and p in (2,3) : axes.set_xlim(-4,0)
                     if i == 4 and p in (2,3) : axes.set_xlim(-4,0)
                     if d == 0 : 
-                        axes.plot(X, count[:,b] , color=couleur, ls=ls,label=label)
+                        axes.plot(X, count[:,p] , color=couleur, ls=ls,label=label)
                         axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
                         axes.xaxis.set_visible(False)
                     else : 
-                        axes.plot(X, count[:,b]-lcdm[:,b], color=couleur, ls=ls,label=label)
+                        axes.plot(X, count[:,p]-lcdm[:,p], color=couleur, ls=ls,label=label)
                         axes.set_ylabel(r"$\Delta$")
                     if d ==1 : 
                         axes.set_xlabel(r"$\nu [\sigma]$")
@@ -118,8 +122,8 @@ if __name__ == "__main__" :
 
 
             
-        plt.savefig(f"crit_threshold_{b}_s{R}.pdf")
-        plt.savefig(f"crit_threshold_{b}_s{R}.png")
+        plt.savefig(f"crit_threshold_s{R}.pdf")
+        plt.savefig(f"crit_threshold_s{R}.png")
         plt.clf()
 
 
