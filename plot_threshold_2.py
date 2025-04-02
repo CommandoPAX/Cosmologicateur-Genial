@@ -27,6 +27,7 @@ if __name__ == "__main__" :
     snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
     labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
 
+    Points = ["P","F","W","V"]
 
     lss = ["-", "-", "-.", "--", "-", "--","-"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
@@ -74,7 +75,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(min(i,3))*8]
 
                 if d == 0 : 
-                    axes.title.set_text (rf"$v_{p}$,  $z = $"+str(Redshifts[i]))
+                    axes.title.set_text (rf"{Points[p]},  $z = $"+str(Redshifts[i]))
 
 
                 for j in range(6):
@@ -99,21 +100,22 @@ if __name__ == "__main__" :
                     if i == 1  and p in (2,3) : axes.set_xlim(-6,6)
                     if i == 2 and p in (0,1) : axes.set_xlim(-2,2)
                     if i == 4 and p in (0,1) : axes.set_xlim(-2,2)
-                    if i == 2 and p in (2,3) : axes.set_xlim(-4,0)
-                    if i == 4 and p in (2,3) : axes.set_xlim(-4,0)
+                    if i == 2 and p in (2,3) : axes.set_xlim(-6,0)
+                    if i == 4 and p in (2,3) : axes.set_xlim(-6,0)
                     if d == 0 : 
                         axes.plot(X, count[:,p] , color=couleur, ls=ls,label=label)
-                        axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
                         axes.xaxis.set_visible(False)
+                        if p == 0 : axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
+
                     else : 
                         axes.plot(X, count[:,p]-lcdm[:,p], color=couleur, ls=ls,label=label)
-                        axes.set_ylabel(r"$\Delta$")
-                    if d ==1 : 
+                        if p == 0 : axes.set_ylabel(r"$\Delta$")
+                    if d ==1 and i == 4: 
                         axes.set_xlabel(r"$\nu [\sigma]$")
                         #axes.set_xlim(-6,6)
 
-                    if j == 5 and i == 0 and d == 0: 
-                        axes.legend() 
+                    if j == 5 and i == 0 and d == 0 and p == 0: 
+                        axes.legend(fontsize = 8) 
                 #except: pass
 
         if i == 0:
