@@ -86,6 +86,7 @@ if __name__ == "__main__" :
                     count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
                     #zeta[0] = 0
                     Npoints = len(count)
+                    print(Npoints)
                     X = np.linspace(-6,6,Npoints)
 
                     couleur = couleurs[j]
