@@ -28,12 +28,12 @@ if __name__ == "__main__" :
     labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500 & mixed DM"]
 
     indices_hdm = [0,1,4,6,7,8]
-    #indices_hdm = [0,2,6] #WDM !
+    indices_hdm = [0,2,6] #WDM !
 
     Points = ["P","F","W","V"]
 
 
-    lss = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--"]
+    lss = ["-", "-", "-.", "--", "-", "--", "-", "--", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia"]
 
     plt.figure(figsize=(14,10))
