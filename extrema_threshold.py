@@ -21,16 +21,16 @@ from math import sqrt
 import sys
 
 
-R = int(sys.argv[1])
+R = 2
 
-for n in range(6):
+for n in range(6,9):
     for i in range(5):
 
 
         print(n, i)
 
         pre = "/data100/fcastillo/RESULT/"
-        snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+        snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
         data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
         data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
 
@@ -78,8 +78,8 @@ for n in range(6):
 
         field = ef.smooth(R)
 
-        if i != 4 : Npoints = int(sys.argv[2])
-        else : Npoints = int(sys.argv[2]) *2
+        if i != 4 : Npoints = 100
+        else : Npoints = 200
 
         threshold = np.linspace(-6,6,Npoints)
 
