@@ -122,10 +122,6 @@ if __name__ == "__main__" :
 
 
             
-        plt.savefig(f"crit_threshold_s{R}.pdf")
-        plt.savefig(f"crit_threshold_s{R}.png")
-        plt.clf()
-
-
-        #plt.clf()
-
+    plt.savefig(f"crit_threshold_s{R}.pdf")
+    plt.savefig(f"crit_threshold_s{R}.png")
+    
