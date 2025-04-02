@@ -28,7 +28,7 @@ if __name__ == "__main__" :
     labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
 
 
-    ls = ["-", "-", "-.", "--", "-", "--","-"]
+    lss = ["-", "-", "-.", "--", "-", "--","-"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
     plt.figure(figsize=(14,10))
@@ -85,7 +85,7 @@ if __name__ == "__main__" :
 
                     couleur = couleurs[j]
                     label = labels[j]
-                    ls = ls[j]
+                    ls = lss[j]
 
 
 
