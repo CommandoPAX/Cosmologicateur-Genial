@@ -123,7 +123,7 @@ if __name__ == "__main__" :
 
 
 
-            
+    plt.tight_layout()            
     plt.savefig(f"crit_threshold_s{R}.pdf")
     plt.savefig(f"crit_threshold_s{R}.png")
     
