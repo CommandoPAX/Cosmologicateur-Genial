@@ -24,13 +24,17 @@ if __name__ == "__main__" :
     #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
     #labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
 
-    snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
-    labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
+    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
+    labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500 & mixed DM"]
+
+    indices_hdm = [0,1,4,6,7,8]
+    #indices_hdm = [0,2,6] #WDM !
 
     Points = ["P","F","W","V"]
 
-    lss = ["-", "-", "-.", "--", "-", "--","-"]
-    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
+
+    lss = ["-", "-", "-.", "--", "-", "--", "-", "--", "--"]
+    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia"]
 
     plt.figure(figsize=(14,10))
     places = {
@@ -78,7 +82,7 @@ if __name__ == "__main__" :
                     axes.title.set_text (rf"{Points[p]},  $z = $"+str(Redshifts[i]))
 
 
-                for j in range(6):
+                for j in indices_hdm:
                     count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
                     #zeta[0] = 0
                     Npoints = len(count)
