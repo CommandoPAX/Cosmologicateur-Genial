@@ -62,20 +62,9 @@ if __name__ == "__main__" :
 
 
         for p in range(4):
-            lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
-            if i in [2,4]:lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
+            lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_threshold_s{R}.txt.npy")
 
-            X = np.linspace(-3,3,61)
-            if i in [2,4]: 
-                X1 = X[X<-1]
-                X2 = np.linspace(-1,1,101)
-                X3 = X[X>1]
 
-                print(np.shape(X1))
-
-                X = np.concatenate((X1,X2,X3))
-
-            if p == 0 and i in [2,4] : X = X2
 
             for d in range(2):
                 place = places[str(p) + str(d)]
@@ -91,25 +80,23 @@ if __name__ == "__main__" :
                 for j in range(6):
                     count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
                     #zeta[0] = 0
-
-                    if i != 4 : Npoints = int(sys.argv[2])
-                    else : Npoints = int(sys.argv[2])*2
-
+                    Npoints = len(count)
                     X = np.linspace(-6,6,Npoints)
+
 
 
                     #axes.plot(X,zeta + 1, color= couleur, ls = ls, label=label)
                     #plt.xscale("log")
                     #axes.set_ylim(0,0.35)
 
-                    if i == 0  and b in (0,1) : axes.set_xlim(-6,6)
-                    if i == 1  and b in (0,1) : axes.set_xlim(-6,6)
-                    if i == 0  and b in (2,3) : axes.set_xlim(-6,6)
-                    if i == 1  and b in (2,3) : axes.set_xlim(-6,6)
-                    if i == 2 and b in (0,1) : axes.set_xlim(-2,2)
-                    if i == 4 and b in (0,1) : axes.set_xlim(-2,2)
-                    if i == 2 and b in (2,3) : axes.set_xlim(-4,0)
-                    if i == 4 and b in (2,3) : axes.set_xlim(-4,0)
+                    if i == 0  and p in (0,1) : axes.set_xlim(-6,6)
+                    if i == 1  and p in (0,1) : axes.set_xlim(-6,6)
+                    if i == 0  and p in (2,3) : axes.set_xlim(-6,6)
+                    if i == 1  and p in (2,3) : axes.set_xlim(-6,6)
+                    if i == 2 and p in (0,1) : axes.set_xlim(-2,2)
+                    if i == 4 and p in (0,1) : axes.set_xlim(-2,2)
+                    if i == 2 and p in (2,3) : axes.set_xlim(-4,0)
+                    if i == 4 and p in (2,3) : axes.set_xlim(-4,0)
                     if d == 0 : 
                         axes.plot(X, count[:,b] , color=couleur, ls=ls,label=label)
                         axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
