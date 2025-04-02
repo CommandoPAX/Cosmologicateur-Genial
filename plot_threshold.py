@@ -88,10 +88,9 @@ if __name__ == "__main__" :
 
                     if True :#try:
                         count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
+                        Npoints = len(count)
                         #zeta[0] = 0
 
-                        if i != 4 : Npoints = int(sys.argv[2])
-                        else : Npoints = int(sys.argv[2])*2
 
                         X = np.linspace(-6,6,Npoints)
 
@@ -133,31 +132,3 @@ if __name__ == "__main__" :
         plt.savefig(f"crit_threshold_{b}_s{R}.png")
         plt.clf()
 
-
-    for i in [0,1,2,4]:
-        plt.subplot(2,2,min(i+1,4))
-
-        axes = plt.gca()
-
-        axes.title.set_text (f"z = {Redshifts[i]}")
-
-        for j in range(4):
-                
-                ls = "-"#lss[j]
-                couleur = ["orange","green","blue","red"][3-j]
-                label = nom_corr[j]#labels[j]
-
-                try :
-                    count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_threshold_s{R}.txt.npy")
-
-                    print(count)
-
-                    axes.plot(X, count[:,j] , color=couleur, ls=ls,label=label)
-                    axes.set_xlabel(r"$\nu [\sigma]$")
-                    axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
-                except:
-                     print(j, i)
-                    
-                if j == 3 and i == 0: plt.legend() 
-
-    plt.savefig(f"extrema_lcdm_s{R}.pdf")
