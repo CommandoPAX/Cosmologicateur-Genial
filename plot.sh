@@ -1,4 +1,4 @@
-##!/bin/bash
+#!/bin/bash
 #SBATCH --job-name=plot
 #SBATCH --nodes=1
 #SBATCH --mem=100gb
