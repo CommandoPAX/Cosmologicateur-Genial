@@ -33,7 +33,7 @@ if __name__ == "__main__" :
     Points = ["P","F","W","V"]
 
 
-    lss = ["-", "-", "-.", "--", "-", "--", "-", "--", "--"]
+    lss = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia"]
 
     plt.figure(figsize=(14,10))
@@ -122,7 +122,7 @@ if __name__ == "__main__" :
                         axes.set_xlabel(r"$\nu [\sigma]$")
                         #axes.set_xlim(-6,6)
 
-                    if j == 5 and i == 0 and d == 0 and p == 0: 
+                    if j == 8 and i == 0 and d == 0 and p == 0: 
                         axes.legend(fontsize = 8) 
                 #except: pass
 
