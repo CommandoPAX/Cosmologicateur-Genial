@@ -102,8 +102,8 @@ if __name__ == "__main__" :
                     if i == 4 and p in (0,1) : axes.set_xlim(-2,2)
                     if i == 2 and p == 3 : axes.set_xlim(-6,0)
                     if i == 4 and p == 3 : axes.set_xlim(-6,0)
-                    if i == 2 and p == 3 : axes.set_xlim(-3,2)
-                    if i == 4 and p == 3 : axes.set_xlim(-3,2)
+                    if i == 2 and p == 2 : axes.set_xlim(-3,2)
+                    if i == 4 and p == 2 : axes.set_xlim(-3,2)
 
                     if d == 0 : 
                         axes.plot(X, count[:,p] , color=couleur, ls=ls,label=label)
