@@ -3,11 +3,11 @@ import numpy as np
 from py_extrema.extrema import ExtremaFinder, CriticalPoints
 
 pre = "/data100/fcastillo/RESULT/"
-snapshots = ["G_ViVi","NG_ViVi","NG_Fminus500_ViVi"]
+snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
 
 for R in [1,2,5]:
-    for n in range(3):
-        for i in range(5):
+    for n in range(7):
+        for i in range(10):
             print(R, n, i)
             data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
             hdul = fits.open(data)
