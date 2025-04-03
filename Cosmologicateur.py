@@ -273,46 +273,45 @@ def main(argv):
     SPE = True 
     HAL = False
 
-    pre = /data77/stahl/EDE/Run/Nb/
+    pre = "/data77/stahl/EDE/Run/Nb/"
     snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
 
-    n = int (sys.argv[1])
-    i = int(sys.argv[2])
+    for n in range(7):
+        for i in range(10):
+            name = snapshots[n]
+            file_path = pre + name
 
-    name = snapshots[n]
-    file_path = pre + name
+            cosmology.setCosmology('planck18')
+            
+            os.system(f"mkdir {Result_Path}/{name}")
 
-    cosmology.setCosmology('planck18')
-    
-    os.system(f"mkdir {Result_Path}/{name}")
+            Output_Path = f"{Result_Path}/{name}"
+            Redshifts = [32,3,1,0.25,0]
+            z = Redshifts[i]
+            
 
-    Output_Path = f"{Result_Path}/{name}"
-    Redshifts = [32,3,1,0.25,0]
-    z = Redshifts[i]
-    
+            print(f'---------------------------------{i}----------------------------------------')
+            
+            input_ = f"{file_path}/snapshot_00{i}.hdf5"
 
-    print(f'---------------------------------{i}----------------------------------------')
-    
-    input_ = f"{file_path}/snapshot_00{i}.hdf5"
-
-    units_override =  {"UnitLength_in_cm": 3.08568e24/(1+z)}
+            units_override =  {"UnitLength_in_cm": 3.08568e24/(1+z)}
 
 
-    bbox_lim = 500 
+            bbox_lim = 500 
 
-    bbox = [[-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim]]
+            bbox = [[-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim]]
 
-    Power_Spectrum_gadget(f"{file_path}/snapshot_00{i}", i, Output_Path, name, z)
+            Power_Spectrum_gadget(f"{file_path}/snapshot_00{i}", i, Output_Path, name, z)
 
-    #ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
-    
-    #Predicted_Particle_Mass(ds, i, Output_Path, name)
-    #Get_Simu_Info(ds, i, Output_Path, name)
-    #if POT : Potential(ds, i, Output_Path, name)
-    #if VEL : Velocity(ds, i, Output_Path, name)
-    #if SPE : Power_Spectrum(ds, i, Output_Path, name)
-    if HAL : Halo(ds, i, Output_Path, name)
-    #os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
+            #ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
+            
+            #Predicted_Particle_Mass(ds, i, Output_Path, name)
+            #Get_Simu_Info(ds, i, Output_Path, name)
+            #if POT : Potential(ds, i, Output_Path, name)
+            #if VEL : Velocity(ds, i, Output_Path, name)
+            #if SPE : Power_Spectrum(ds, i, Output_Path, name)
+            #if HAL : Halo(ds, i, Output_Path, name)
+            #os.system(f'cp -r ./output_0000{i} "{Output_Path}/output_0000{i}"')
 
     
 if __name__ == "__main__" :
@@ -326,7 +325,7 @@ if __name__ == "__main__" :
     #snap = snapshots[0]
     #file_path = pre + snap
 
-    main(sys.argv)
+    main(0)
     
     #for snap in snapshots :
     #    

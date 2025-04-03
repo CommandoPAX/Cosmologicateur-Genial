@@ -89,9 +89,9 @@ if __name__ == "__main__" :
 
 
         #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
-        plt.errorbar(a, moyennes,ls=ls, color=couleur, label=label, yerr = err)
+        plt.errorbar(np.log10(1+np.array([3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
 
-        axes.set_xlabel(r"$a$")
+        axes.set_xlabel(r"$\log (1+z)$")
         axes.set_ylabel("Mean length [Mpc / h]")
         axes.invert_xaxis()
 
