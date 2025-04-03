@@ -1,6 +1,6 @@
 import os
 
-for n in range(3):
+for n in range(6):
     for i in range(5):
         fichier = open("bash_"+str(n)+"_"+str(i)+".bash","w")
 

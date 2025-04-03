@@ -273,8 +273,8 @@ def main(argv):
     SPE = True 
     HAL = False
 
-    pre = "../../../data77/stahl/Scale/Nb/WDM/ViVi/"
-    snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
+    pre = /data77/stahl/EDE/Run/Nb/
+    snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
 
     n = int (sys.argv[1])
     i = int(sys.argv[2])
