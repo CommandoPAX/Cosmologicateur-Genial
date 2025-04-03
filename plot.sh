@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=plot
+#SBATCH --job-name=yt
 #SBATCH --nodes=1
 #SBATCH --mem=100gb
-#SBATCH --time=00:02:00
-#SBATCH --output=/home/fcastillo/logs/plot.out
+#SBATCH --time=02:00:00
+#SBATCH --output=/home/fcastillo/logs/yt.out
 
 module purge
 module load intelpython
 
-python plot_threshold_2.py
+python Cosmologicateur.py
