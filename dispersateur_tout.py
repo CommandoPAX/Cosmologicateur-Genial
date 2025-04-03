@@ -11,13 +11,14 @@ snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","N
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
 
-for n in range(3):
+for n in range(6,7):
     fichier = open(f"../bash/mse_{n}.sh","w")
     fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}
 #SBATCH --mem=500gb
 #SBATCH --time=48:00:00
-#SBATCH --nodelist=i{29+n}
+#SBATCH --partition=pscomp
+#SBATCH --nodelist=i{23+n}
 #SBATCH --ntasks=128
 #SBATCH --output=/home/fcastillo/logs/skl2_{n}.out
 """)
