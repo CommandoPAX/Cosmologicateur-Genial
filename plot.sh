@@ -8,4 +8,4 @@
 module purge
 module load intelpython
 
-python lisse.py
+python dispersateur_tout.py
