@@ -286,7 +286,9 @@ def main(argv):
             os.system(f"mkdir {Result_Path}/{name}")
 
             Output_Path = f"{Result_Path}/{name}"
-            Redshifts = [32,3,1,0.25,0]
+            #Redshifts = [32,3,1,0.25,0]
+            Redshifts = [15,12,10,8,5,3,1,0.5,0.25,0]
+
             z = Redshifts[i]
             
 
