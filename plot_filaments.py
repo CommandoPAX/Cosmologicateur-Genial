@@ -84,13 +84,11 @@ if __name__ == "__main__" :
         label = labels[i]
     
         for j in indices_z:
-            try :
-                    
-                long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
-                moyennes.append(np.mean(long))
-                err.append(1/sqrt(len(long))) *np.std(long)
-                
-            except : pass
+
+            long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
+            moyennes.append(np.mean(long))
+            err.append(1/sqrt(len(long))) *np.std(long)
+        
 
         print(moyennes)
         axes = plt.gca()
