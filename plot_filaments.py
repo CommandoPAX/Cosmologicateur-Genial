@@ -48,6 +48,7 @@ if __name__ == "__main__" :
 
         for j in range(7):
                 
+                     
                 ls = lss[j]
                 couleur = couleurs[j]
                 label = labels[j]
@@ -76,6 +77,7 @@ if __name__ == "__main__" :
     plt.figure()
 
     for i in range(7):
+        k = 0
         moyennes = []
         err = []
 
@@ -85,9 +87,12 @@ if __name__ == "__main__" :
     
         for j in indices_z:
 
-            long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
+            if i == 0: long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
+            else :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
             moyennes.append(np.mean(long))
             err.append(1/sqrt(len(long))) *np.std(long)
+
+            k += 1
         
 
         print(moyennes)
