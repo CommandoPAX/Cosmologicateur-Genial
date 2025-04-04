@@ -22,21 +22,31 @@ if __name__ == "__main__" :
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
     labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
-    lss = ["-", "-", "-.", "--", "-", "--"]
-    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
+    snapshots = ["benchM", "NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
+    labels = ["LCDM", "EDE", "fnl = -300", "fnl = -600 eV", "fnl = -1100", "fnl = -300 & EDE", "fnl = -600 & EDE", "fnl = -1100 & EDE"]
+
+
+    lss = ["-", "-.", "-", "-", "-", "--","--","--"]
+    couleurs = ["blue", "#ED1C24", "orange", "orange", "orange", "#ED1C24", "#ED1C24","#ED1C24"]
 
     plt.figure(figsize=(14,10))
 
     nbins = 15
 
-    for i in range(1,5):
-        plt.subplot(2,2,i)
+    z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
+    indices_z = [5,6,8,9]
+
+    k = 0
+
+    for i in indices_z:
+        k += 1
+        plt.subplot(2,2,k)
 
         axes = plt.gca()
 
-        axes.title.set_text (f"z = {Redshifts[i]}")
+        axes.title.set_text (f"z = {z[i]}")
 
-        for j in range(6):
+        for j in range(7):
                 
                 ls = lss[j]
                 couleur = couleurs[j]
@@ -59,13 +69,13 @@ if __name__ == "__main__" :
                     
                 if j == 5 and i == 1: plt.legend() 
 
-    plt.savefig(f"len_{nbins}.pdf")
+    plt.savefig(f"len_{nbins}_EDE.pdf")
 
     plt.clf()
 
     plt.figure()
 
-    for i in range(6):
+    for i in range(7):
         moyennes = []
         err = []
 
@@ -73,7 +83,7 @@ if __name__ == "__main__" :
         couleur = couleurs[i]
         label = labels[i]
     
-        for j in range(1,5):
+        for j in indices_z:
             try :
                     
                 long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
@@ -97,6 +107,6 @@ if __name__ == "__main__" :
 
         plt.legend()
     
-    plt.savefig(f"len_moyenne.pdf")
-    plt.savefig(f"len_moyenne.png")
+    plt.savefig(f"len_moyenne_EDE.pdf")
+    plt.savefig(f"len_moyenne_EDE.png")
 
