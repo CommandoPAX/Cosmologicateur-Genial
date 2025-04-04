@@ -9,13 +9,17 @@ from astropy.io import fits
 n = int(sys.argv[1])
 #i = int(sys.argv[2])
 
-for i in range(2,5):
-        
+
+snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
+
+z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
+indices_z = [5,6,8,9]
+
+for i in indices_z :
+
     print(n, i)
 
     pre = "/data100/fcastillo/RESULT/"
-    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
-
 
     data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 

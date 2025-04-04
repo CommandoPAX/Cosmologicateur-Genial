@@ -9,7 +9,7 @@ import time
 pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
 snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
-for n in range(9):
+for n in range(7):
     if True :#for i in range(5):
 
 
@@ -23,7 +23,7 @@ for n in range(9):
 #SBATCH --time=48:00:00
 #SBATCH --output=/home/fcastillo/logs/minkowski_{n}.out
 #SBATCH --partition=pscomp
-#SBATCH --nodelist=i27
+#SBATCH --nodelist=i29
 """)
         fichier.write("""
 
@@ -42,7 +42,7 @@ module load inteloneapi/2025.0.1
 
 
         fichier.write(f"""
-python minkowski.py {n}
+python /home/fcastillo/Cosmologicateur-Genial/minkowski.py {n}
 """)
             
         fichier.write("exit 0")

@@ -7,7 +7,7 @@ import time
 pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 
-for n in range(6,9):
+for n in range(7):
     for i in range(5):
 
         #input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
@@ -22,7 +22,7 @@ for n in range(6,9):
 #SBATCH --mem=100gb
 #SBATCH --time=2:00:00
 #SBATCH --output=/home/fcastillo/fil_{n}_{i}.out
-#SBATCH --partition=pscomp
+#SBATCH --partition=comp,pscomp
 """)
         fichier.write("""
 
@@ -46,4 +46,4 @@ python len_filaments.py {n} {i}
             
         fichier.write("exit 0")
         fichier.close()
-        os.system(f"sbatch filateur_{n}_{i}.sh")
+        #os.system(f"sbatch filateur_{n}_{i}.sh")
