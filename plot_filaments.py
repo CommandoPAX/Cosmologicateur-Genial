@@ -90,7 +90,7 @@ if __name__ == "__main__" :
             if i == 0: long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
             else :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
             moyennes.append(np.mean(long))
-            err.append(1/sqrt(len(long))) *np.std(long)
+            err.append(1/sqrt(len(long)) *np.std(long))
 
             k += 1
         
