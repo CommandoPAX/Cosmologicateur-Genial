@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python filateur.py
+python plot_filaments.py

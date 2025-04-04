@@ -22,12 +22,13 @@ if __name__ == "__main__" :
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
     labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
-    snapshots = ["benchM", "NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
-    labels = ["LCDM", "EDE", "fnl = -300", "fnl = -600 eV", "fnl = -1100", "fnl = -300 & EDE", "fnl = -600 & EDE", "fnl = -1100 & EDE"]
+    snapshots = ["benchM", "NEDE","NsPNG_F500","NsPNG_EDE_F500","NsPNG_EDE_F1833", "G_ViVi"]
+    labels = ["LCDM", "EDE", "fnl = -300", "fnl = -300 & EDE", "fnl = -1100 & EDE","mixed DM"]
 
 
-    lss = ["-", "-.", "-", "-", "-", "--","--","--"]
-    couleurs = ["blue", "#ED1C24", "orange", "orange", "orange", "#ED1C24", "#ED1C24","#ED1C24"]
+    lss = ["-", "-.", "-", "--", "--","-."]
+    couleurs = ["blue", "red", "orange", "orange", "#FF9900","green"]
+    #ED1C24
 
     plt.figure(figsize=(14,10))
 
@@ -46,7 +47,7 @@ if __name__ == "__main__" :
 
         axes.title.set_text (f"z = {z[i]}")
 
-        for j in range(7):
+        for j in range(6):
                 
                      
                 ls = lss[j]
@@ -66,7 +67,17 @@ if __name__ == "__main__" :
                     axes.set_ylim(0,0.08)
                     #axes.axvline(np.median(longueurs), color= couleur, ls = ls)
                 except:
-                     print(j, i)
+                    longueurs = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
+
+                    hist = np.histogram(longueurs, density= True, range = [0, 30], bins=nbins)
+                    hist = hist[0]
+
+                    axes.plot(hist, color= couleur, ls = ls, label=label)
+                    axes.set_xlabel("length [Mpc / h]")
+                    #plt.xscale("log")
+                    axes.set_ylabel("PDF")
+                    axes.set_ylim(0,0.08)
+                    #axes.axvline(np.median(longueurs), color= couleur, ls = ls)
                     
                 if j == 5 and i == 1: plt.legend() 
 
@@ -76,8 +87,8 @@ if __name__ == "__main__" :
 
     plt.figure()
 
-    for i in range(7):
-        k = 0
+    for i in range(6):
+        k = 1
         moyennes = []
         err = []
 
@@ -87,7 +98,7 @@ if __name__ == "__main__" :
     
         for j in indices_z:
 
-            if i == 0: long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
+            if i == 0 or i == 5 : long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
             else :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
             moyennes.append(np.mean(long))
             err.append(1/sqrt(len(long)) *np.std(long))
@@ -106,10 +117,10 @@ if __name__ == "__main__" :
 
         axes.set_xlabel(r"$\log (1+z)$")
         axes.set_ylabel("Mean length [Mpc / h]")
-        axes.invert_xaxis()
+        #axes.invert_xaxis()
 
         plt.legend()
-    
+    axes.invert_xaxis()
     plt.savefig(f"len_moyenne_EDE.pdf")
     plt.savefig(f"len_moyenne_EDE.png")
 
