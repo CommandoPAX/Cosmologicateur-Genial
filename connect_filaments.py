@@ -5,7 +5,7 @@ import numpy as np
 N = int(sys.argv[1])
 i = int(sys.argv[2])
 
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
+snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
 labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
 
