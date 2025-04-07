@@ -33,7 +33,7 @@ for i in indices_z :
 
     result = np.array([v0,v1,v2,v3])
     print(np.shape(result))
-    np.save(f"{pre+snapshots[n]}/{i}_minkowski_zoom.txt", result)
+    np.save(f"{pre+snapshots[n]}/{i}_minkowski.txt", result)
     print("ok")
 
 """

@@ -23,7 +23,7 @@ for n in range(7):
 #SBATCH --time=48:00:00
 #SBATCH --output=/home/fcastillo/logs/minkowski_{n}.out
 #SBATCH --partition=pscomp
-#SBATCH --nodelist=i29
+#SBATCH --nodelist=i28,i29
 """)
         fichier.write("""
 

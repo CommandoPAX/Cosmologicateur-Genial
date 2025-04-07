@@ -22,12 +22,12 @@ if __name__ == "__main__" :
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
     labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
-    snapshots = ["benchM", "NEDE","NsPNG_F500","NsPNG_EDE_F500","NsPNG_EDE_F1833", "G_ViVi"]
-    labels = ["LCDM", "EDE", "fnl = -300", "fnl = -300 & EDE", "fnl = -1100 & EDE","mixed DM"]
+    snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
+    labels = ["LCDM", "EDE",  "fnl = -1100 & EDE","mixed DM"]
 
 
-    lss = ["-", "-.", "-", "--", "--","-."]
-    couleurs = ["blue", "red", "orange", "orange", "#FF9900","green"]
+    lss = ["-", "-.",  "--","-."]
+    couleurs = ["blue", "red", "#FF9900","green"]
     #ED1C24
 
     plt.figure(figsize=(14,10))
@@ -47,7 +47,7 @@ if __name__ == "__main__" :
 
         axes.title.set_text (f"z = {z[i]}")
 
-        for j in range(6):
+        for j in range(4):
                 
                      
                 ls = lss[j]
@@ -87,7 +87,7 @@ if __name__ == "__main__" :
 
     plt.figure()
 
-    for i in range(6):
+    for i in range(4):
         k = 1
         moyennes = []
         err = []
@@ -98,8 +98,8 @@ if __name__ == "__main__" :
     
         for j in indices_z:
 
-            if i == 0 or i == 5 : long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
-            else :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
+            try : long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
+            except :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
             moyennes.append(np.mean(long))
             err.append(1/sqrt(len(long)) *np.std(long))
 
