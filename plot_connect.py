@@ -28,6 +28,17 @@ if __name__ == "__main__" :
     lss = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
+
+    snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
+    labels = ["LCDM", "EDE",  "fnl = -1100 & EDE","mixed DM"]
+
+
+    lss = ["-", "-.",  "--","-."]
+    couleurs = ["blue", "red", "#FF9900","green"]
+
+
+
+
     plt.figure(figsize=(14,10))
     X = np.linspace(-3,3,61)
     places = {
@@ -42,6 +53,9 @@ if __name__ == "__main__" :
     }
 
     nbins = 10
+
+    z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
+    indices_z = [5,6,8,9]
     
 
 
@@ -54,8 +68,10 @@ if __name__ == "__main__" :
             axs += [plt.subplot(cell) for cell in inner]
 
 
-
+    k = 0
     for i in [1,2,3,4]:
+        k += 1
+        z_k = indices_z[k-1]
         lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{i}_densite_smooth2_c0.1_connect_fil.txt.npy")
         hist_lcdm = np.histogram(lcdm,  density= True, range = [0, 10], bins=nbins)
         hist_lcdm = hist_lcdm[0]
@@ -72,7 +88,7 @@ if __name__ == "__main__" :
                 axes.title.set_text (f"z = {Redshifts[i]}")
 
 
-            for j in range(6):
+            for j in range(4):
 
                 ls = lss[j]
                 couleur = couleurs[j]
@@ -81,7 +97,8 @@ if __name__ == "__main__" :
 
                 try :
                         
-                    connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_smooth2_c0.1_connect_fil.txt.npy")
+                    try : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_densite_smooth2_c0.1_connect_fil.txt.npy")
+                    except : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{z_k}_densite_smooth2_c0.1_connect_fil.txt.npy")
                     #print(np.shape(data[p]))
                     #print(data)
                     hist = np.histogram(connect, density= True, range = [0, 10], bins=nbins)
@@ -113,7 +130,7 @@ if __name__ == "__main__" :
 
     plt.figure()
 
-    for i in range(6):
+    for i in range(4):
         moyennes = []
         err = []
 
@@ -122,9 +139,11 @@ if __name__ == "__main__" :
         label = labels[i]
      
         for j in range(1,5):
+            z_k = indices_z[j-1]
             try :
                     
-                connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
+                try : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
+                except : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_connect_fil.txt.npy")
                 moyennes.append(np.mean(connect))
                 err.append(1/sqrt(len(connect))) *np.std(connect)
                 
