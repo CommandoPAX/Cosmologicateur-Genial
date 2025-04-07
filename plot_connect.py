@@ -19,22 +19,22 @@ if __name__ == "__main__" :
         4 : 0
     }
     
-    #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-    #labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
+    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
-    snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
-    labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
+    #snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
+    #labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
 
     lss = ["-", "-", "-.", "--", "-", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
 
-    snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
-    labels = ["LCDM", "EDE",  "fnl = -1100 & EDE","mixed DM"]
+    #snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
+    #labels = ["LCDM", "EDE",  "fnl = -1100 & EDE","mixed DM"]
 
 
-    lss = ["-", "-.",  "--","-."]
-    couleurs = ["blue", "red", "#FF9900","green"]
+    #lss = ["-", "-.",  "--","-."]
+    #couleurs = ["blue", "red", "#FF9900","green"]
 
 
 
@@ -88,7 +88,7 @@ if __name__ == "__main__" :
                 axes.title.set_text (f"z = {Redshifts[i]}")
 
 
-            for j in range(4):
+            for j in range(len(snapshots)):
 
                 ls = lss[j]
                 couleur = couleurs[j]
@@ -123,14 +123,14 @@ if __name__ == "__main__" :
     if i == 0:
         plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
-    plt.savefig(f"connect_{nbins}.pdf")
-    plt.savefig(f"connect_{nbins}.png")
+    plt.savefig(f"connect_{nbins}_EDE.pdf")
+    plt.savefig(f"connect_{nbins}_EDE.png")
 
     plt.clf()
 
     plt.figure()
 
-    for i in range(4):
+    for i in range(len(snapshots)):
         moyennes = []
         err = []
 
@@ -163,10 +163,11 @@ if __name__ == "__main__" :
 
         axes.set_xlabel(r"$\log (1+ z)$")
         axes.set_ylabel("Mean connectivity")
-        axes.invert_xaxis()
+
 
         plt.legend()
-    
-    plt.savefig(f"connect_moyenne.pdf")
-    plt.savefig(f"connect_moyenne.png")
+
+    axes.invert_xaxis()
+    plt.savefig(f"connect_moyenne_EDE.pdf")
+    plt.savefig(f"connect_moyenne_EDE.png")
 
