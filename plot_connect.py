@@ -192,7 +192,7 @@ if __name__ == "__main__" :
             #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
 
 
-            try : err_ratio = np.sqrt((moyennes_lcdm**2*err**2 + moyennes**2*err_lcdm**2)/err_lcdm**4)
+            try : err_ratio = np.sqrt((moyennes_lcdm**2*err**2 + moyennes**2*err_lcdm**2)/moyennes_lcdm**4)
             except : 
                 print(err,err_lcdm)
                 err_ratio = np.array([0,0,0,0])
