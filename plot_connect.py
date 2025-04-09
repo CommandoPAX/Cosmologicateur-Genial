@@ -162,17 +162,16 @@ if __name__ == "__main__" :
      
         for j in range(1,5):
             z_k = indices_z[j-1]
-            try :
                     
-                connect_lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
-                try : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
-                except : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_connect_fil.txt.npy")
-                moyennes.append(np.mean(connect))
-                moyennes_lcdm.append(np.mean(connect_lcdm))
-                err.append(1/sqrt(len(connect))) *np.std(connect)
-                err_lcdm.append(1/sqrt(len(connect_lcdm))) *np.std(connect_lcdm)
-                
-            except : print(i,j)
+            connect_lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
+            try : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
+            except : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_connect_fil.txt.npy")
+            moyennes.append(np.mean(connect))
+            moyennes_lcdm.append(np.mean(connect_lcdm))
+            err.append(1/sqrt(len(connect))) *np.std(connect)
+            err_lcdm.append(1/sqrt(len(connect_lcdm))) *np.std(connect_lcdm)
+            
+            
 
         print(moyennes)
         axes = plt.gca()
