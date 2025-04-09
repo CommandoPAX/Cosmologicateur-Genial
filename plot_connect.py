@@ -178,8 +178,8 @@ if __name__ == "__main__" :
 
         for d in range(2):
 
-            moyenne = np.array(moyenne)
-            moyenne_lcdm = np.array(moyenne_lcdm)
+            moyennes = np.array(moyennes)
+            moyennes_lcdm = np.array(moyennes_lcdm)
 
             #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
             if d == 0 : axs[d].errorbar(np.log10(1+np.array([3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
