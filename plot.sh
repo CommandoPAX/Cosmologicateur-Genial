@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python plot_minkowski2.py
+python plot_connect.py
