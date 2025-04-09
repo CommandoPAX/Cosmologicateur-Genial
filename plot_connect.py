@@ -43,7 +43,7 @@ if __name__ == "__main__" :
     #couleurs = ["blue", "red", "#FF9900","green"]
 
     snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
-    labels = ["LCDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
+    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
 
 
     lss = ["-", "-", "--",  "--","--"]
@@ -202,7 +202,7 @@ if __name__ == "__main__" :
 
             axes.set_xlabel(r"$z$")
             if d == 0 : axs[d].set_ylabel("Mean connectivity")
-            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda CDM$")
+            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
 
             if d == 0 : axs[d].legend(fontsize=8)
 
