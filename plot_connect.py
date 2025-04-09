@@ -182,6 +182,7 @@ if __name__ == "__main__" :
             moyennes_lcdm = np.array(moyennes_lcdm)
 
             #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
+            print(moyennes, moyennes_lcdm)
             if d == 0 : axs[d].errorbar(np.log10(1+np.array([3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
             if d == 1 : axs[d].errorbar(np.log10(1+np.array([3,1,0.25,0])), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err)
 
