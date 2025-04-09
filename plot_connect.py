@@ -194,7 +194,9 @@ if __name__ == "__main__" :
 
 
             try : err_ratio = np.sqrt((moyennes_lcdm**2*err**2 + moyennes**2*err_lcdm**2)/err_lcdm**4)
-            except : err_ratio = np.array([0,0,0,0])
+            except : 
+                print(err,err_lcdm)
+                err_ratio = np.array([0,0,0,0])
 
             if d == 0 : axs[d].errorbar(np.array([3,1,0.25,0]), moyennes,ls=ls, color=couleur, label=label, yerr = err)
             if d == 1 : axs[d].errorbar(np.array([3,1,0.25,0]), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err_ratio)
