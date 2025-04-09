@@ -36,13 +36,12 @@ if __name__ == "__main__" :
     #lss = ["-", "-.",  "--","-."]
     #couleurs = ["blue", "red", "#FF9900","green"]
 
-    snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
-    labels = ["LCDM", "EDE",  "fnl = -1100 & EDE","mixed DM"]
+    snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
+    labels = ["LCDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
 
 
-    lss = ["-", "-.",  "--","-."]
-    couleurs = ["blue", "red", "#FF9900","green"]
-
+    ls = ["-", "-", "--",  "--","--"]
+    couleurs = ["blue", "green", "green","orange","fuchsia"]
 
 
     plt.figure(figsize=(14,10))
@@ -136,6 +135,15 @@ if __name__ == "__main__" :
 
     plt.figure()
 
+
+    outer = gridspec.GridSpec(nrows=1, ncols=1)
+
+    axs = []
+    for row in range(1):
+        for col in range(1):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
+
     for i in range(len(snapshots)):
         moyennes = []
         err = []
@@ -143,15 +151,20 @@ if __name__ == "__main__" :
         ls = lss[i]
         couleur = couleurs[i]
         label = labels[i]
+        moyennes_lcdm = []
+        err_lcdm = []
      
         for j in range(1,5):
             z_k = indices_z[j-1]
             try :
                     
+                connect_lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
                 try : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
                 except : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_connect_fil.txt.npy")
                 moyennes.append(np.mean(connect))
+                moyennes_lcdm.append(np.mean(moyennes_lcdm))
                 err.append(1/sqrt(len(connect))) *np.std(connect)
+                err_lcdm.append(1/sqrt(len(connect_lcdm))) *np.std(connect)
                 
             except : pass
 
@@ -163,13 +176,15 @@ if __name__ == "__main__" :
         else :
             a = 1/(1+np.array([3,1,0.25,0]))
 
+        for d in range(2):
 
-        #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
-        plt.errorbar(np.log10(1+np.array([3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
+            #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
+            if d == 0 : axs[d].errorbar(np.log10(1+np.array([3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
+            if d == 1 : axs[d].errorbar(np.log10(1+np.array([3,1,0.25,0])), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err)
 
-        axes.set_xlabel(r"$\log (1+ z)$")
-        axes.set_ylabel("Mean connectivity")
-
+            axes.set_xlabel(r"$\log (1+ z)$")
+            if d == 0 : axes.set_ylabel("Mean connectivity")
+            if d == 1 : axes.set_ylabel(r"$\Delta / \Lambda CDM$")
 
         plt.legend()
 
