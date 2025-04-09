@@ -29,17 +29,8 @@ def count_pairs(tree_A, tree_B, r):
     if True : #R >= 2 :
         
         count = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, r))
-
         count0 = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, 0.1))
 
-    else :
-        for i in range(0, len(tree_A.data), 10000):
-            sub_tree_A = KDTree(tree_A.data[i : min(i + 10000,len(tree_A.data))], boxsize=512)
-            sub_count = np.sum(len(neighbors) for neighbors in sub_tree_A.query_ball_tree(tree_B, r))
-            sub_count_0 = np.sum(len(neighbors) for neighbors in sub_tree_A.query_ball_tree(tree_B, 0.1))
-            
-            count += sub_count
-            count0 += sub_count_0
 
     return count - count0
 
@@ -50,7 +41,7 @@ P = 5
 print(n, i)
 
 pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi"]
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
 R = 2
@@ -91,6 +82,7 @@ except:
 
 #for j in range(4):
 #    for k in range(j, 4):
+data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
 hdul = fits.open(data)
 field = hdul[0].data
@@ -131,7 +123,7 @@ for j in range(4) :
         elif k in (2, 3):  # Vides et murs 
             indices_k = field[Xk, Yk, Zk] <= seuil_bas_k
 
-        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k[indices_k])*100,:] % 512
+        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k[indices_k]),:] % 512
 
         tree_k = KDTree(result_k[indices_k],boxsize=512) 
         tree_j = KDTree(result_j[indices_j],boxsize=512)

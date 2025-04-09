@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python plot_connect.py
+python extrema_bash.py
