@@ -36,6 +36,12 @@ if __name__ == "__main__" :
     #lss = ["-", "-.",  "--","-."]
     #couleurs = ["blue", "red", "#FF9900","green"]
 
+    snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
+    labels = ["LCDM", "EDE",  "fnl = -1100 & EDE","mixed DM"]
+
+
+    lss = ["-", "-.",  "--","-."]
+    couleurs = ["blue", "red", "#FF9900","green"]
 
 
 

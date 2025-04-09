@@ -6,10 +6,17 @@ from mpl_toolkits.mplot3d import axes3d
 from astropy.io import fits
 from math import*
 from matplotlib import gridspec
+import matplotlib
 
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
 labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
 
+z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
+indices_z = [5,6,9]
+
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams["figure.facecolor"]='w'
+matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 if __name__ == "__main__" :
 
@@ -20,16 +27,26 @@ if __name__ == "__main__" :
         3 : 0.25,
         4 : 0
     }
-    
+
     #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
     #labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
 
-    snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
-    labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
+    #snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
+    #labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
 
 
-    ls = ["-", "-", "-.", "--", "-", "--","-"]
-    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
+    #ls = ["-", "-", "-.", "--", "-", "--","-"]
+    #couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
+
+
+    snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
+    labels = ["LCDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
+
+
+    ls = ["-", "-", "--",  "--","--"]
+    couleurs = ["blue", "green", "green","orange","fuchsia"]
+
+
 
     plt.figure(figsize=(14,10))
     places = {
@@ -42,23 +59,24 @@ if __name__ == "__main__" :
         "30" : 7,
         "31" : 8
     }
-    
 
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
     #plt.tight_layout()
 
-    outer = gridspec.GridSpec(nrows=4, ncols=4)
+    outer = gridspec.GridSpec(nrows=3, ncols=4)
 
     axs = []
-    for row in range(4):
+    for row in range(3):
         for col in range(4):
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
+    k = 0
 
-    for i in [0,1,2,4] :
+    for i in [1,2,4] :
 
-
+        z_k = indices_z[k]
+        k +=1
 
         for p in range(4):
             lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
@@ -81,23 +99,26 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(min(i,3))*8]
+                axes = axs[(place-1)+(min(i-1,2))*8]
 
                 if d == 0 : 
                     axes.title.set_text (rf"$v_{p}$,  $z = $"+str(Redshifts[i]))
 
 
-                for j in range(6):
+                for j in range(len(snapshots)):
                     if True:
                         lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
 
                         try:
                             data = np.load(f"/home/fcastillo/minkowski/minkowski_{j}_{i}.txt.npy")
                         except :
-                            data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski.txt.npy")
+                            try : data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski.txt.npy")
+                            except: data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{z_k}_minkowski.txt.npy")
                         if i in [2,4]:
-                            datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
-
+                            try :
+                                datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
+                            except :
+                                datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{z_k}_minkowski_zoom.txt.npy")
                             data1 = data[:,:20]
                             data2 = data[:,41:]
                             print(np.shape(data1), np.shape(data1),np.shape(data2),np.shape(datazoom))
@@ -107,7 +128,7 @@ if __name__ == "__main__" :
 
                             lcdm = np.concatenate([lcdm[:,:20],lcdmzoom, lcdm[:,41:]],axis=1)
 
-                            if p == 0 : 
+                            if p == 0 :
                                 data = datazoom
                                 lcdm = lcdmzoom
 
@@ -116,16 +137,17 @@ if __name__ == "__main__" :
                         #print(data)
                         if d == 0 : 
                             axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(rf"v$_{p}$")
+                            axes.set_ylabel(rf"$v_{p}$")
                             axes.xaxis.set_visible(False)
-                        else : 
-                            axes.plot(X, data[p] - lcdm[p], color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(r"$\Delta$")
-                        if d ==1 and i == 3: axes.set_xlabel(r"threshold [$\sigma$]")
-                        if j == 5 and i == 0 and d == 0 and p == 0: 
+                        else :
+                            axes.plot(X, ((data[p] - lcdm[p])/(np.std(lcdm[p]))), color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$\Delta / \sigma$")
+                        if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"threshold [$\sigma$]")
+                        if j == len(snapshots)-1 and i == 1 and d == 0 and p == 0: 
                             axes.legend() 
 
                         if p == 0 and i in [2,4] : axes.set_xlim(-1,1)
+                        elif p!=0 and i in [2,4] : axes.set_xlim(-1,3)
                         else : axes.set_xlim (-3,3)
 
         if i == 0:

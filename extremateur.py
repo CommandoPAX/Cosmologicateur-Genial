@@ -131,7 +131,7 @@ for j in range(4) :
         elif k in (2, 3):  # Vides et murs 
             indices_k = field[Xk, Yk, Zk] <= seuil_bas_k
 
-        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k[indices_k]),:] % 512
+        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k[indices_k])*100,:] % 512
 
         tree_k = KDTree(result_k[indices_k],boxsize=512) 
         tree_j = KDTree(result_j[indices_j],boxsize=512)
@@ -139,8 +139,8 @@ for j in range(4) :
 
         print("points charges")
 
-        r_small = np.linspace(R, 10, 80)
-        r_large = np.geomspace(10, 40, 20)
+        r_small = np.linspace(0.1, 10, 80)
+        r_large = np.geomspace(10, 20, 20)
         r_bins = np.concatenate((r_small, r_large))
 
 

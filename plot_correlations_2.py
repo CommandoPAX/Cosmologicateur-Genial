@@ -20,17 +20,17 @@ if __name__ == "__main__" :
         3 : 0.25,
         4 : 0
     }
-    
+
     #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
     #labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
-   
+
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
     labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500 & mixed DM"]
 
     indices_hdm = [0,1,4,6,7,8]
-    indices_hdm = [0,2,6] #WDM !
+    #indices_hdm = [0,2,6] #WDM !
 
-    ls = ["-", "-", "-.", "--", "-", "--", "-", "--", "--"]
+    ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia"]
 
     fig = plt.figure(figsize=(12,6))
@@ -47,7 +47,7 @@ if __name__ == "__main__" :
 
     R = 2
     P = 5
-    
+
 
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
@@ -76,7 +76,7 @@ if __name__ == "__main__" :
 
                 axes = axs[(place-1)+(i//2-1)*8]
 
-                if d == 0 : 
+                if d == 0 :
                     axes.title.set_text (rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]},  $z = $"+str(Redshifts[i]))
 
 
@@ -87,23 +87,23 @@ if __name__ == "__main__" :
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
-                        r_small = np.linspace(R, 10, 80)  # 10 points entre 0 et 1
-                        r_large = np.geomspace(10, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
 
                         #print(np.shape(data[p]))
                         #print(data)
-                        if d == 0 : 
+                        if d == 0 :
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 :axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                        else : 
+                        else :
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 : axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
-                        if j == 6 and i == 2 and d == 0 and p == 0: 
-                            axes.legend(fontsize=8) 
+                        if j == 6 and i == 2 and d == 0 and p == 0:
+                            axes.legend(fontsize=8)
                         axes.set_xlim(0,10)
 
         if i == 0:
@@ -145,7 +145,7 @@ if __name__ == "__main__" :
 
                 axes = axs[(place-1)+(i//2 -1)*4]
 
-                if d == 0 : 
+                if d == 0 :
                     axes.title.set_text (rf"{_type},  $z = $"+str(Redshifts[i]))
 
 
@@ -162,8 +162,8 @@ if __name__ == "__main__" :
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
-                        r_small = np.linspace(R, 10, 80)  # 10 points entre 0 et 1
-                        r_large = np.geomspace(10, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
 
@@ -173,8 +173,8 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            axes.set_ylim(-0.2,1)
-                            if p == 1 : axes.set_ylim(0,3)
+                            #axes.set_ylim(-0.2,1)
+                            #if p == 1 : axes.set_ylim(0,3)
                         else : 
                             axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
@@ -247,8 +247,8 @@ if __name__ == "__main__" :
                         zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
-                        r_small = np.linspace(R, 10, 80)  # 10 points entre 0 et 1
-                        r_large = np.geomspace(10, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
 
