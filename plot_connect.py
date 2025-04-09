@@ -164,7 +164,7 @@ if __name__ == "__main__" :
                 moyennes.append(np.mean(connect))
                 moyennes_lcdm.append(np.mean(connect_lcdm))
                 err.append(1/sqrt(len(connect))) *np.std(connect)
-                err_lcdm.append(1/sqrt(len(connect_lcdm))) *np.std(connect)
+                err_lcdm.append(1/sqrt(len(connect_lcdm))) *np.std(connect_lcdm)
                 
             except : print(i,j)
 
@@ -175,18 +175,20 @@ if __name__ == "__main__" :
             a = 1/(1+np.array([32,3,1,0.25,0]))
         else :
             a = 1/(1+np.array([3,1,0.25,0]))
+        
+        moyennes_lcdm = np.array(moyennes_lcdm)
+        err_lcdm = np.array(err_lcdm)
+        err= np.array(err)
 
         for d in range(2):
 
             moyennes = np.array(moyennes)
-            moyennes_lcdm = np.array(moyennes_lcdm)
 
             #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
 
-            err_lcdm = np.array(err_lcdm)
-            err= np.array(err)
 
-            err_ratio = np.sqrt((moyennes_lcdm**2*err**2 + moyennes**2*err_lcdm**2)/err_lcdm**4)
+            if j!=0 : err_ratio = np.sqrt((moyennes_lcdm**2*err**2 + moyennes**2*err_lcdm**2)/err_lcdm**4)
+            else : err_ratio = np.array([0,0,0,0])
 
             if d == 0 : axs[d].errorbar(np.array([3,1,0.25,0]), moyennes,ls=ls, color=couleur, label=label, yerr = err)
             if d == 1 : axs[d].errorbar(np.array([3,1,0.25,0]), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err_ratio)
