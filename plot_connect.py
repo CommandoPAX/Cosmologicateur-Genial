@@ -7,6 +7,12 @@ from astropy.io import fits
 from math import*
 from skeletonnateur_hpc import*
 from matplotlib import gridspec
+import matplotlib
+
+
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams["figure.facecolor"]='w'
+matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 
 if __name__ == "__main__" :
@@ -40,7 +46,7 @@ if __name__ == "__main__" :
     labels = ["LCDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
 
 
-    ls = ["-", "-", "--",  "--","--"]
+    lss = ["-", "-", "--",  "--","--"]
     couleurs = ["blue", "green", "green","orange","fuchsia"]
 
 
@@ -197,7 +203,7 @@ if __name__ == "__main__" :
             if d == 0 : axs[d].set_ylabel("Mean connectivity")
             if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda CDM$")
 
-            if d == 0 : plt.legend()
+            if d == 0 : axs[d].legend(fontsize=8)
 
     axs[0].invert_xaxis()
     axs[1].invert_xaxis()
