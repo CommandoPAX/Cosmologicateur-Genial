@@ -6,7 +6,13 @@ from mpl_toolkits.mplot3d import axes3d
 from astropy.io import fits
 from math import*
 from skeletonnateur_hpc import*
+from matplotlib import gridspec
+import matplotlib
 
+
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams["figure.facecolor"]='w'
+matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 
 if __name__ == "__main__" :
@@ -29,8 +35,12 @@ if __name__ == "__main__" :
     #snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
     #labels = ["LCDM", "EDE",  "fnl = -1100 & EDE","mixed DM"]
 
-    lss = ["-", "-", "-.",  "--","-","--"]
-    couleurs = ["blue", "orange", "green","orange","fuchsia","fuchsia"]
+    snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
+    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
+
+
+    lss = ["-", "-", "--",  "--","--"]
+    couleurs = ["blue", "green", "green","orange","fuchsia"]
 
     #lss = ["-", "-.",  "--","-."]
     #couleurs = ["blue", "red", "#FF9900","green"]
@@ -93,6 +103,16 @@ if __name__ == "__main__" :
 
     plt.figure()
 
+
+    outer = gridspec.GridSpec(nrows=1, ncols=1)
+
+    axs = []
+    for row in range(1):
+        for col in range(1):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
+
+
     for i in range(len(snapshots)):
         k = 1
         moyennes = []
@@ -101,14 +121,18 @@ if __name__ == "__main__" :
         ls = lss[i]
         couleur = couleurs[i]
         label = labels[i]
+        moyennes_lcdm =[]
+        err_lcdm = []
     
         for j in indices_z:
 
+            long_lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
             try : long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
             except :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
             moyennes.append(np.mean(long))
             err.append(1/sqrt(len(long)) *np.std(long))
-
+            moyennes_lcdm.append(np.mean(long_lcdm))
+            err_lcdm.append(1/sqrt(len(long_lcdm)) *np.std(long_lcdm))
             k += 1
         
 
@@ -117,16 +141,34 @@ if __name__ == "__main__" :
 
         a = 1/(1+np.array([3,1,0.25,0]))
 
+        
+        moyennes_lcdm = np.array(moyennes_lcdm)
+        err_lcdm = np.array(err_lcdm)
+        err= np.array(err)
 
-        #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
-        plt.errorbar(np.log10(1+np.array([3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
+        for d in range(2):
 
-        axes.set_xlabel(r"$\log (1+z)$")
-        axes.set_ylabel("Mean length [Mpc / h]")
-        #axes.invert_xaxis()
+            moyennes = np.array(moyennes)
 
-        plt.legend()
-    axes.invert_xaxis()
+            #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
+
+
+            try : err_ratio = np.sqrt((moyennes_lcdm**2*err**2 + moyennes**2*err_lcdm**2)/moyennes_lcdm**4)
+            except : 
+                print(err,err_lcdm)
+                err_ratio = np.array([0,0,0,0])
+
+            if d == 0 : axs[d].errorbar(np.array([3,1,0.25,0]), moyennes,ls=ls, color=couleur, label=label, yerr = err)
+            if d == 1 : axs[d].errorbar(np.array([3,1,0.25,0]), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err_ratio)
+
+            axes.set_xlabel(r"$z$")
+            if d == 0 : axs[d].set_ylabel("Mean length [Mpc / h]")
+            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
+
+            if d == 0 : axs[d].legend(fontsize=8)
+
+    axs[0].invert_xaxis()
+    axs[1].invert_xaxis()
     plt.savefig(f"len_moyenne_EDE.pdf")
     plt.savefig(f"len_moyenne_EDE.png")
 
