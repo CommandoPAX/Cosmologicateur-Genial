@@ -162,7 +162,7 @@ if __name__ == "__main__" :
                 try : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_connect_fil.txt.npy")
                 except : connect = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_connect_fil.txt.npy")
                 moyennes.append(np.mean(connect))
-                moyennes_lcdm.append(np.mean(moyennes_lcdm))
+                moyennes_lcdm.append(np.mean(connect_lcdm))
                 err.append(1/sqrt(len(connect))) *np.std(connect)
                 err_lcdm.append(1/sqrt(len(connect_lcdm))) *np.std(connect)
                 
