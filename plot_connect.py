@@ -182,17 +182,24 @@ if __name__ == "__main__" :
             moyennes_lcdm = np.array(moyennes_lcdm)
 
             #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
-            print(moyennes, moyennes_lcdm)
-            if d == 0 : axs[d].errorbar(np.log10(1+np.array([3,1,0.25,0])), moyennes,ls=ls, color=couleur, label=label, yerr = err)
-            if d == 1 : axs[d].errorbar(np.log10(1+np.array([3,1,0.25,0])), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err)
 
-            axes.set_xlabel(r"$\log (1+ z)$")
-            if d == 0 : axes.set_ylabel("Mean connectivity")
-            if d == 1 : axes.set_ylabel(r"$\Delta / \Lambda CDM$")
+            err_lcdm = np.array(err_lcdm)
+            err= np.array(err)
 
-        plt.legend()
+            err_ratio = np.sqrt((moyennes_lcdm**2*err**2 + moyennes**2*err_lcdm**2)/err_lcdm**4)
 
-    axes.invert_xaxis()
+            if d == 0 : axs[d].errorbar(np.array([3,1,0.25,0]), moyennes,ls=ls, color=couleur, label=label, yerr = err)
+            if d == 1 : axs[d].errorbar(np.array([3,1,0.25,0]), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err_ratio)
+
+            axes.set_xlabel(r"$z$")
+            if d == 0 : axs[d].set_ylabel("Mean connectivity")
+            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda CDM$")
+
+            if d == 0 : plt.legend()
+
+    axs[0].invert_xaxis()
+    axs[1].invert_xaxis()
+
     plt.savefig(f"connect_moyenne_EDE.pdf")
     plt.savefig(f"connect_moyenne_EDE.png")
 
