@@ -155,8 +155,6 @@ if __name__ == "__main__" :
                 place = places[str(p) + str(d)]
 
                 print(axs)
-                try:zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
-                except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
 
                 axes = axs[(place-1)+(i//2 -1)*4]
 
