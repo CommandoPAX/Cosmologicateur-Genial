@@ -6,10 +6,15 @@ from mpl_toolkits.mplot3d import axes3d
 from astropy.io import fits
 from math import*
 from matplotlib import gridspec
+import matplotlib
+
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams["figure.facecolor"]='w'
+matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
 labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
-
+indices_z = [8,9]
 
 if __name__ == "__main__" :
 
@@ -25,13 +30,16 @@ if __name__ == "__main__" :
     #labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
 
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
-    labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500 & mixed DM"]
+    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500"]
 
-    indices_hdm = [0,1,4,6,7,8]
+
+    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM", r"EDE", r"$f_{\rm NL} = -300$ \& EDE", r"$f_{\rm NL} = -1100$ \& EDE"]
+
+    indices_hdm = [0,7,8,10,11]
     #indices_hdm = [0,2,6] #WDM !
 
-    ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--"]
-    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia"]
+    ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-","-","--"]
+    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia","red","green","green"]
 
     fig = plt.figure(figsize=(12,6))
     places = {
@@ -61,8 +69,10 @@ if __name__ == "__main__" :
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
 
+    k = 0
     for i in [2,4] :
-
+        z_k = indices_z[k]
+        k +=1
 
 
         for p in range(4):
@@ -84,7 +94,8 @@ if __name__ == "__main__" :
                     if True:
                         lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
 
-                        zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+                        try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+                        except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
@@ -95,14 +106,14 @@ if __name__ == "__main__" :
                         #print(np.shape(data[p]))
                         #print(data)
                         if d == 0 :
-                            axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot(r_bins[1:], 1 + zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 :axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
                         else :
-                            axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
-                            if p == 0 : axes.set_ylabel(r"$\Delta$")
+                            axes.plot(r_bins[1:], (zeta - lcdm)/(1+lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
+                            if p == 0 : axes.set_ylabel(r"$\Delta / \Lambda$CDM")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
-                        if j == 6 and i == 2 and d == 0 and p == 0:
+                        if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0:
                             axes.legend(fontsize=8)
                         axes.set_xlim(0,10)
 
@@ -129,8 +140,10 @@ if __name__ == "__main__" :
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
 
+    k = 0
     for i in [2,4] :
-
+        zk = indices_z[k]
+        k += 1
 
 
         for p in range(2):
@@ -142,6 +155,7 @@ if __name__ == "__main__" :
                 place = places[str(p) + str(d)]
 
                 print(axs)
+zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
 
                 axes = axs[(place-1)+(i//2 -1)*4]
 
@@ -159,7 +173,8 @@ if __name__ == "__main__" :
                             b = 2
                         lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
 
-                        zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+                        try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+                        except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
@@ -173,13 +188,13 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            #axes.set_ylim(-0.2,1)
-                            #if p == 1 : axes.set_ylim(0,3)
+                            axes.set_ylim(-0.2,1)
+                            if p == 1 : axes.set_ylim(0,3)
                         else : 
-                            axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(r"$\Delta$")
+                            axes.plot(r_bins[1:], (zeta - lcdm)/(1+lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$\Delta / \Lambda$CDM")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
-                        if j == 6 and i == 2 and d == 0 and p == 0: 
+                        if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             axes.legend(loc="upper left",fontsize=8) 
 
                         axes.set_xlim(0,10)
@@ -208,8 +223,10 @@ if __name__ == "__main__" :
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
 
+    k = 0
     for i in [2,4] :
-
+        z_k = indices_z[k]
+        k +=1
 
 
         for p in range(4):
@@ -217,6 +234,7 @@ if __name__ == "__main__" :
 
             _type = ["PW", "PV", "FW","FV"] [p]
 
+zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
             for d in range(2):
                 place = places[str(p) + str(d)]
 
@@ -244,7 +262,8 @@ if __name__ == "__main__" :
                             b = 1
                         lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
 
-                        zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+                        try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+                        except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
                         #zeta[0] = 0
 
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
@@ -260,10 +279,10 @@ if __name__ == "__main__" :
                             axes.xaxis.set_visible(False)
                             #axes.set_ylim(-1,1)
                         else : 
-                            axes.plot(r_bins[1:], zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
-                            if p == 0 :axes.set_ylabel(r"$\Delta$")
+                            axes.plot((r_bins[1:])[lcdm>-0.9], ((zeta - lcdm)/(1+lcdm))[lcdm>-0.9], color=couleurs[j], ls=ls[j],label=labels[j])
+                            if p == 0 :axes.set_ylabel(r"$\Delta / \Lambda$CDM")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
-                        if j == 6 and i == 2 and d == 0 and p == 0: 
+                        if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             axes.legend(fontsize=8) 
                         axes.set_xlim(0,20)
 

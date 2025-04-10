@@ -5,11 +5,9 @@ import numpy as np
 import time
 
 pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi", "NG_ViVi","NG_Fminus500_ViVi"]
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi", "NG_ViVi","NG_Fminus500_ViVi","NEDE","NsPNG_EDE_F500","NsPNG_EDE_F1833"]
 
-snapshots=["NsPNG_EDE_F500","NsPNG_EDE_F1833"]
-
-for n in range(3):
+for n in range(9,12):
     for i in [5,6,8,9]:
 
         #input_ = pre + snapshots[n]+"/"+str(i)+"_densite"

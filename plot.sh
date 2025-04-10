@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python extrema_bash.py
+python plot_correlations_2.py
