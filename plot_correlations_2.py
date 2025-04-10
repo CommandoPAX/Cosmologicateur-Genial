@@ -243,7 +243,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(i//2 -1)*8]
 
                 if d == 0 : 
-                    axes.title.set_text (rf"{_type},  $z = $"+str(Redshifts[i]))
+                    axes.title.set_text (rf"$\mathcal{{_type}},  z = {Redshifts[i]}$")
 
 
                 for j in indices_hdm:
