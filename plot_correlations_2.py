@@ -186,7 +186,7 @@ if __name__ == "__main__" :
                         #print(np.shape(data[p]))
                         #print(data)
                         if d == 0 : 
-                            axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
                             axes.set_ylim(-0.2,1)
@@ -276,7 +276,7 @@ if __name__ == "__main__" :
                         #print(np.shape(data[p]))
                         #print(data)
                         if d == 0 : 
-                            axes.plot(r_bins[1:], zeta, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 : axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
                             #axes.set_ylim(-1,1)
