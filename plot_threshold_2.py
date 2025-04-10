@@ -6,10 +6,14 @@ from mpl_toolkits.mplot3d import axes3d
 from astropy.io import fits
 from math import*
 from matplotlib import gridspec
+import matplotlib
 
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
 labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
 
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
+labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ eV", r"f_{\rm WDM}" 
+indices_z = [5,8,9]
 
 if __name__ == "__main__" :
 
@@ -36,6 +40,19 @@ if __name__ == "__main__" :
     lss = ["-", "-", "-.", "--", "-", "--", "-", "--", "--"]
     couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia"]
 
+
+    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "$
+
+
+    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WD$
+
+    indices_hdm = [0,7,8,10,11]
+    #indices_hdm = [0,2,6] #WDM !
+
+    lss = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-","-","--"]
+    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia","red","green","green"]
+
+
     plt.figure(figsize=(14,10))
     places = {
         "00" : 1,
@@ -53,17 +70,19 @@ if __name__ == "__main__" :
     plt.axis("off")
     #plt.tight_layout()
 
-    outer = gridspec.GridSpec(nrows=4, ncols=4)
+    outer = gridspec.GridSpec(nrows=3, ncols=4)
     R = 2
 
     axs = []
-    for row in range(4):
+    for row in range(3):
         for col in range(4):
             inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
             axs += [plt.subplot(cell) for cell in inner]
 
-    for i in [0,1,2,4] :
-
+    k = 0
+    for i in [1,2,4] :
+        z_k = indices_z[k]
+        k += 1
 
 
         for p in range(4):
@@ -83,7 +102,8 @@ if __name__ == "__main__" :
 
 
                 for j in indices_hdm:
-                    count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
+                    try : count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_threshold_s{R}.txt.npy")
+                    except: count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_threshold_s{R}.txt.npy")
                     #zeta[0] = 0
                     Npoints = len(count)
                     print(Npoints)
@@ -122,7 +142,7 @@ if __name__ == "__main__" :
                         axes.set_xlabel(r"$\nu [\sigma]$")
                         #axes.set_xlim(-6,6)
 
-                    if j == 6 and i == 0 and d == 0 and p == 0: 
+                    if j == indices_hdm[len(indices_hdm)-1] and i == 0 and d == 0 and p == 0: 
                         axes.legend(fontsize = 8) 
                 #except: pass
 
@@ -131,6 +151,6 @@ if __name__ == "__main__" :
 
 
 
-    plt.tight_layout()            
+    plt.tight_layout()
     plt.savefig(f"crit_threshold_s{R}.pdf")
     plt.savefig(f"crit_threshold_s{R}.png")

@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python extrema_threshold.py
+python plot_threshold_2.py
