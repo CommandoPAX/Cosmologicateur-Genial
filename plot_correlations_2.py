@@ -235,7 +235,8 @@ if __name__ == "__main__" :
 
             _type = ["PW", "PV", "FW","FV"] [p]
 
-zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+            try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+            except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
             for d in range(2):
                 place = places[str(p) + str(d)]
 
