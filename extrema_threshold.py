@@ -23,16 +23,17 @@ import sys
 
 R = 2
 
-for n in range(6,9):
-    for i in range(5):
+for n in range(9,12):
+    for i in [5,6,9]:
 
 
         print(n, i)
 
         pre = "/data100/fcastillo/RESULT/"
-        snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
+        snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833"]
+
         data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
-        data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
+        #data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"
 
         #R = 5
 
@@ -98,8 +99,8 @@ for n in range(6,9):
         field = field
 
         for j in range(4):
-            type_t = result[result[:, 3] == j]  
-            positions = type_t[:, :3]  
+            type_t = result[result[:, 3] == j]
+            positions = type_t[:, :3]
             densites_interpolees = interpolateur(positions)
             densites_interpolees = densites_interpolees/np.std(densites_interpolees)
 
@@ -113,7 +114,7 @@ for n in range(6,9):
             #    densites_interpolees = densites_interpolees[densites_interpolees >= seuil_haut]
             #elif j in (2, 3):  # Vides et murs : ν < seuil_bas"""
             #    densites_interpolees = densites_interpolees[(densites_interpolees <= seuil_bas)]
-                
+
             #print(len(type_t), len(densites_interpolees))
 
             densites.append(densites_interpolees)

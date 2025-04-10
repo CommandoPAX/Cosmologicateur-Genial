@@ -102,7 +102,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(min(i-1,2))*8]
 
                 if d == 0 : 
-                    axes.title.set_text (rf"$v_{p}$,  $z = $"+str(Redshifts[i]))
+                    axes.title.set_text (rf"$v_{p}$,  $z = "+str(Redshifts[i])+"$")
 
 
                 for j in range(len(snapshots)):
@@ -135,12 +135,15 @@ if __name__ == "__main__" :
 
                         #print(np.shape(data[p]))
                         #print(data)
+
+                        mask = abs(lcdm[p]-lcdm[p][0])>0.1 * abs(np.std(lcdm[p]))
+
                         if d == 0 : 
                             axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(rf"$v_{p}$")
                             axes.xaxis.set_visible(False)
                         else :
-                            axes.plot(X, ((data[p] - lcdm[p])/(np.std(lcdm[p]))), color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot(X, ((data[p] - lcdm[p])/np.std(lcdm[p])), color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta / \sigma$")
                         if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"threshold [$\sigma$]")
                         if j == len(snapshots)-1 and i == 1 and d == 0 and p == 0: 

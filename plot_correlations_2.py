@@ -87,7 +87,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(i//2-1)*8]
 
                 if d == 0 :
-                    axes.title.set_text (rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]},  $z = $"+str(Redshifts[i]))
+                    axes.title.set_text (r"$\mathcal{"+rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]}"+r"},  z = "+str(Redshifts[i])+r"$")
 
 
                 for j in indices_hdm:
@@ -159,8 +159,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(i//2 -1)*4]
 
                 if d == 0 :
-                    axes.title.set_text (rf"{_type},  $z = $"+str(Redshifts[i]))
-
+                    axes.title.set_text (r"$\mathcal{"+_type+r"},  "+rf"z = {Redshifts[i]}$")
 
                 for j in indices_hdm:
                     if True:
@@ -243,7 +242,7 @@ if __name__ == "__main__" :
                 axes = axs[(place-1)+(i//2 -1)*8]
 
                 if d == 0 : 
-                    axes.title.set_text (rf"$\mathcal{{_type}},  z = {Redshifts[i]}$")
+                    axes.title.set_text (r"$\mathcal{"+_type+r"},  "+rf"z = {Redshifts[i]}$")
 
 
                 for j in indices_hdm:
