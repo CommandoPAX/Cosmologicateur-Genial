@@ -187,8 +187,8 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            axes.set_ylim(-0.2,1)
-                            if p == 1 : axes.set_ylim(0,3)
+                            if p == 0 :axes.set_ylim(0.8,2)
+                            #if p == 1 : axes.set_ylim(0,3)
                         else : 
                             axes.plot(r_bins[1:], (zeta - lcdm)/(1+lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta / \Lambda$CDM")
