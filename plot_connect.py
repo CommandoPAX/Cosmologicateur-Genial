@@ -213,6 +213,13 @@ if __name__ == "__main__" :
             if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
 
             if d == 0 : axs[d].legend(fontsize=8)
+            if d == 0 : 
+                #print(snapshots[i]+" & ",end="")
+                for z in [0,1,3]:
+                    print(str(round(100*((moyennes-moyennes_lcdm)/moyennes_lcdm)[z],1))+" \%",end="")
+                    print(" & ",end="")
+                    #else : print(" \\\\")
+
 
     axs[0].invert_xaxis()
     axs[1].invert_xaxis()
