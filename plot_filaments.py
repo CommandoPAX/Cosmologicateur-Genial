@@ -35,16 +35,25 @@ if __name__ == "__main__" :
     #snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
     #labels = ["LCDM", "EDE",  "fnl = -1100 & EDE","mixed DM"]
 
-    snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
-    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
-
-
-    lss = ["-", "-", "--",  "--","--"]
-    couleurs = ["blue", "green", "green","orange","fuchsia"]
-
     #lss = ["-", "-.",  "--","-."]
     #couleurs = ["blue", "red", "#FF9900","green"]
     #ED1C24
+
+    snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
+    labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+
+
+    lss = ["-", "-.", "-",  "-","-"]
+    couleurs = ["blue", "green", "darkorange","violet","darkred"]
+
+
+    #snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
+    #labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -300~\&~{\rm EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~ {\rm mixed~DM}$"]
+
+
+    #lss = ["-", ":", "--",  "--","--"]
+    #couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
+
 
     plt.figure(figsize=(14,10))
 
@@ -136,7 +145,6 @@ if __name__ == "__main__" :
             k += 1
         
 
-        print(moyennes)
         axes = plt.gca()
 
         a = 1/(1+np.array([3,1,0.25,0]))
@@ -158,11 +166,14 @@ if __name__ == "__main__" :
                 print(err,err_lcdm)
                 err_ratio = np.array([0,0,0,0])
 
-            if d == 0 : axs[d].errorbar(np.array([3,1,0.25,0]), moyennes,ls=ls, color=couleur, label=label, yerr = err)
+            if d == 0 : axs[d].errorbar(np.array([3,1,0.25,0]), moyennes/500**3,ls=ls, color=couleur, label=label, yerr = err/500**3)
             if d == 1 : axs[d].errorbar(np.array([3,1,0.25,0]), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err_ratio)
 
+            if d == 0 : 
+                print(snapshots[i]+" & " +str(100*np.round((moyennes-moyennes_lcdm)/moyennes_lcdm,3)))
+
             axes.set_xlabel(r"$z$")
-            if d == 0 : axs[d].set_ylabel("Mean length [Mpc / h]")
+            if d == 0 : axs[d].set_ylabel(r"${\rm Mean~length}~/~V~~[{\rm Mpc / h}]^{-2}$")
             if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
 
             if d == 0 : axs[d].legend(fontsize=8)

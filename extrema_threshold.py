@@ -79,7 +79,7 @@ for n in range(9,12):
 
         field = ef.smooth(R)
 
-        if i != 4 : Npoints = 100
+        if i not in (4,9) : Npoints = 100
         else : Npoints = 200
 
         threshold = np.linspace(-6,6,Npoints)

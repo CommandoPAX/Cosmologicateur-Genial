@@ -11,7 +11,11 @@ import matplotlib
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
 labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
 
-indices_z = [5,8,9]
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams["figure.facecolor"]='w'
+matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
+
+indices_z = [5,6,9]
 
 if __name__ == "__main__" :
 
@@ -42,13 +46,14 @@ if __name__ == "__main__" :
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500"]
 
 
-    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM", r"EDE", r"$f_{\rm NL} = -300$ \& EDE", r"$f_{\rm NL} = -1100$ \& EDE"]
+    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10 {\rm eV}, f_{\rm WDM} = 2\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~ {\rm EDE}$"]
 
     indices_hdm = [0,7,8,10,11]
     #indices_hdm = [0,2,6] #WDM !
 
-    lss = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-","-","--"]
-    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia","red","green","green"]
+    lss = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-",":","--"]
+    couleurs = ["blue", "darkorange", "green", "darkorange", "violet", "violet", "green", "darkorange", "violet","darkred","darkred","darkred"]
+
 
 
     plt.figure(figsize=(14,10))
@@ -93,10 +98,10 @@ if __name__ == "__main__" :
 
                 print(axs)
 
-                axes = axs[(place-1)+(min(i,3))*8]
+                axes = axs[(place-1)+(min(i-1,2))*8]
 
                 if d == 0 : 
-                    axes.title.set_text (rf"{Points[p]},  $z = $"+str(Redshifts[i]))
+                    axes.title.set_text (r"$\mathcal{"+rf"{Points[p]}"+r"},  z = "+str(Redshifts[i])+r"$")
 
 
                 for j in indices_hdm:
@@ -134,13 +139,14 @@ if __name__ == "__main__" :
                         if p == 0 : axes.set_ylabel(r"$\frac{1}{N} \frac{dN}{d\nu}$")
 
                     else : 
-                        axes.plot(X, count[:,p]-lcdm[:,p], color=couleur, ls=ls,label=label)
-                        if p == 0 : axes.set_ylabel(r"$\Delta$")
+                        mask = lcdm[:,p] > 0.1 * np.std(lcdm[:,p])
+                        axes.plot(X, ((count[:,p]-lcdm[:,p])/np.max(lcdm[:,p])), color=couleur, ls=ls,label=label)
+                        if p == 0 : axes.set_ylabel(r"$\Delta / {\rm max}_{\Lambda \text{CDM}}$")
                     if d ==1 and i == 4: 
                         axes.set_xlabel(r"$\nu [\sigma]$")
                         #axes.set_xlim(-6,6)
 
-                    if j == indices_hdm[len(indices_hdm)-1] and i == 0 and d == 0 and p == 0: 
+                    if j == indices_hdm[len(indices_hdm)-1] and i == 1 and d == 0 and p == 0: 
                         axes.legend(fontsize = 8) 
                 #except: pass
 

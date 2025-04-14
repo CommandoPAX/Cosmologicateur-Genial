@@ -40,12 +40,18 @@ if __name__ == "__main__" :
 
 
     snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
-    labels = ["LCDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
+    labels = [r"$\Lambda {\rm CDM}$", r"$f_{\rm NL} = -300~\&~ \rm{EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
 
 
-    ls = ["-", "-", "--",  "--","--"]
-    couleurs = ["blue", "green", "green","orange","fuchsia"]
+    ls = ["-", ":", "--",  "--","--"]
+    couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
+    snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
+    labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+
+
+    ls = ["-", "-.", "-",  "-","-"]
+    couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
 
     plt.figure(figsize=(14,10))
@@ -143,8 +149,8 @@ if __name__ == "__main__" :
                             axes.set_ylabel(rf"$v_{p}$")
                             axes.xaxis.set_visible(False)
                         else :
-                            axes.plot(X, ((data[p] - lcdm[p])/np.std(lcdm[p])), color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(r"$\Delta / \sigma$")
+                            axes.plot(X, ((data[p] - lcdm[p])), color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"threshold [$\sigma$]")
                         if j == len(snapshots)-1 and i == 1 and d == 0 and p == 0: 
                             axes.legend() 

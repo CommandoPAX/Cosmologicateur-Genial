@@ -33,13 +33,16 @@ if __name__ == "__main__" :
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500"]
 
 
-    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM", r"EDE", r"$f_{\rm NL} = -300$ \& EDE", r"$f_{\rm NL} = -1100$ \& EDE"]
+    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
 
     indices_hdm = [0,7,8,10,11]
     #indices_hdm = [0,2,6] #WDM !
 
-    ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-","-","--"]
-    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia", "green", "orange", "fuchsia","red","green","green"]
+    ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-",":","--"]
+    couleurs = ["blue", "darkorange", "green", "darkorange", "violet", "violet", "green", "darkorange", "violet","darkred","darkred","darkred"]
+
+
+
 
     fig = plt.figure(figsize=(12,6))
     places = {
@@ -284,7 +287,9 @@ if __name__ == "__main__" :
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             axes.legend(fontsize=8) 
                         axes.set_xlim(0,20)
-
+                        if p ==2 : 
+                            axes.set_xlim(0,10)
+                            #if d == 1 : axes.set_ylim(-0.1,0.4)
         #if i == 0:
         #    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 

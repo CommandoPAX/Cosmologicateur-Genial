@@ -25,14 +25,14 @@ if __name__ == "__main__" :
         4 : 0
     }
     
-    snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
+    #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
+    #labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
     #snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
     #labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
 
-    lss = ["-", "-", "-.", "--", "-", "--"]
-    couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
+    #lss = ["-", "-", "-.", "--", "-", "--"]
+    #couleurs = ["blue", "orange", "green", "orange", "fuchsia", "fuchsia"]
 
 
     #snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
@@ -43,11 +43,19 @@ if __name__ == "__main__" :
     #couleurs = ["blue", "red", "#FF9900","green"]
 
     snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
-    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -300$ \& EDE",  r"$f_{\rm NL} = -1100$ \& EDE", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM"]
+    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -300~\&~{\rm EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
 
 
-    lss = ["-", "-", "--",  "--","--"]
-    couleurs = ["blue", "green", "green","orange","fuchsia"]
+    lss = ["-", ":", "--",  "--","--"]
+    couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
+
+    #snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
+    #labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+
+
+    #lss = ["-", "-.", "-",  "-","-"]
+    #couleurs = ["blue", "green", "darkorange","violet","darkred"]
+
 
 
     plt.figure(figsize=(14,10))
@@ -126,7 +134,7 @@ if __name__ == "__main__" :
                         axes.set_ylabel(r"$\Delta$")
                     if d ==1 : axes.set_xlabel("Connectivity")
 
-                    if j == 5 and i == 1 and d == 0: 
+                    if j == len(snapshots)-1 and i == 1 and d == 0: 
                         axes.legend() 
                 
                 except : pass
