@@ -103,8 +103,6 @@ if __name__ == "__main__" :
             for d in range(2):
                 place = places[str(p) + str(d)]
 
-                print(axs)
-
                 axes = axs[(place-1)+(min(i-1,2))*8]
 
                 if d == 0 : 
