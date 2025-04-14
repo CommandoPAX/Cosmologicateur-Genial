@@ -94,7 +94,6 @@ if __name__ == "__main__" :
                 X2 = np.linspace(-1,1,101)
                 X3 = X[X>1]
 
-                print(np.shape(X1))
 
                 X = np.concatenate((X1,X2,X3))
 
@@ -125,7 +124,6 @@ if __name__ == "__main__" :
                                 datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{z_k}_minkowski_zoom.txt.npy")
                             data1 = data[:,:20]
                             data2 = data[:,41:]
-                            print(np.shape(data1), np.shape(data1),np.shape(data2),np.shape(datazoom))
 
                             data = np.concatenate([data1,datazoom, data2],axis=1)
 
@@ -137,13 +135,10 @@ if __name__ == "__main__" :
                                 lcdm = lcdmzoom
 
 
-                        #print(np.shape(data[p]))
-                        #print(data)
 
                         mask = abs(lcdm[p]-lcdm[p][0])>0.1 * abs(np.std(lcdm[p]))
 
                         if d == 0 : 
-                            #print(snapshots[i]+" & ",end="")
                             for z in [0,1,3]:
                                 max_delta = np.argmax(np.abs(data[p]-lcdm[p]))
                                 print(str(round(100*((data[p]-lcdm[p])/lcdm[p])[max_delta],1))+" \%",end="")
