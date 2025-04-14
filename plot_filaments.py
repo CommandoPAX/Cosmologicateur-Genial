@@ -169,12 +169,12 @@ if __name__ == "__main__" :
             if d == 0 : axs[d].errorbar(np.array([3,1,0.25,0]), moyennes/500**3,ls=ls, color=couleur, label=label, yerr = err/500**3)
             if d == 1 : axs[d].errorbar(np.array([3,1,0.25,0]), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err_ratio)
 
-            print(snapshots)
+            #print(snapshots)
             if d == 0 : 
                 #print(snapshots[i]+" & ",end="")
                 for z in [0,1,3]:
                     print(str(round(100*((moyennes-moyennes_lcdm)/moyennes_lcdm)[z],3))+" \%",end="")
-                    if not z == 3 : print(" & ",end="")
+                    print(" & ",end="")
                     #else : print(" \\\\")
 
             axes.set_xlabel(r"$z$")
