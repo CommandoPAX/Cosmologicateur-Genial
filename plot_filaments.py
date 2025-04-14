@@ -172,7 +172,7 @@ if __name__ == "__main__" :
             if d == 0 : 
                 print(snapshots[i]+" & ",end="")
                 for z in [0,1,3]:
-                    print(str(round(100*((moyennes-moyennes_lcdm)/moyennes_lcdm)[z]), 3)+" \%",end="")
+                    print(str(round(100*((moyennes-moyennes_lcdm)/moyennes_lcdm)[z],3))+" \%",end="")
                     if not z == 3 : print(" & ",end="")
                     else : print(" \\")
 
