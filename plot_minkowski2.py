@@ -143,6 +143,14 @@ if __name__ == "__main__" :
                         mask = abs(lcdm[p]-lcdm[p][0])>0.1 * abs(np.std(lcdm[p]))
 
                         if d == 0 : 
+                            #print(snapshots[i]+" & ",end="")
+                            for z in [0,1,3]:
+                                max_delta = np.argmax(np.abs(data[p]-lcdm[p]))
+                                print(str(round(100*((data[p]-lcdm[p])/lcdm[p])[max_delta],1))+" \%",end="")
+                                print(" & ",end="")
+                                #else : print(" \\\\")
+
+                        if d == 0 : 
                             axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(rf"$v_{p}$")
                             axes.xaxis.set_visible(False)

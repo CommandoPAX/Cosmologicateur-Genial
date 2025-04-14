@@ -179,7 +179,6 @@ if __name__ == "__main__" :
             err.append(1/sqrt(len(connect)) *np.std(connect))
             err_lcdm.append(1/sqrt(len(connect_lcdm)) *np.std(connect_lcdm))
             
-            
 
         #print(moyennes)
         axes = plt.gca()
