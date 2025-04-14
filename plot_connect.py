@@ -181,7 +181,7 @@ if __name__ == "__main__" :
             
             
 
-        print(moyennes)
+        #print(moyennes)
         axes = plt.gca()
 
         if len(moyennes )== 5:
