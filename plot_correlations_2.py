@@ -36,7 +36,8 @@ if __name__ == "__main__" :
     labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
 
     indices_hdm = [0,7,8,10,11]
-    #indices_hdm = [0,2,6] #WDM !
+    #indices_hdm = [0,2,6]
+    indices_hdm = [0,1,4,6,9]
 
     ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-",":","--"]
     couleurs = ["blue", "darkorange", "green", "darkorange", "violet", "violet", "green", "darkorange", "violet","darkred","darkred","darkred"]
@@ -198,7 +199,21 @@ if __name__ == "__main__" :
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             axes.legend(loc="upper left",fontsize=8) 
 
+
+                        if d == 1 : 
+                            max_delta = np.argmax(np.abs(zeta[p]-lcdm[p]))
+                            if j !=0 : print(labels[j]+f", v{p}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p]))),1))+" \%")
+                            #else : print(" \\\\")
+
+
                         axes.set_xlim(0,10)
+
+                        if d == 1 : 
+                            max_delta = np.argmax(np.abs(zeta[p]-lcdm[p]))
+                            if j !=0 : print(labels[j]+f", v{p}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p]))),1))+" \%")
+                            #else : print(" \\\\")
+
+
 
 
         if i == 0:
@@ -290,6 +305,13 @@ if __name__ == "__main__" :
                         if p ==2 : 
                             axes.set_xlim(0,10)
                             #if d == 1 : axes.set_ylim(-0.1,0.4)
+
+                        if d == 1 : 
+                            max_delta = np.argmax(np.abs(zeta[p]-lcdm[p]))
+                            if j !=0 : print(labels[j]+f", v{p}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p]))),1))+" \%")
+                            #else : print(" \\\\")
+
+
         #if i == 0:
         #    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
