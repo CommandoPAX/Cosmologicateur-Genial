@@ -123,7 +123,7 @@ if __name__ == "__main__" :
                         
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
-                            if j !=0 : print(labels[j]+ r"$\mathcal{"+rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]}"+r"}+  ", z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
+                            if j !=0 : print(labels[j]+ r"$\mathcal{"+rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]}"+r"}+  ", z = "+str(Redshifts[i])"+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
                             #else : print(" \\\\")
 
 
@@ -211,7 +211,7 @@ if __name__ == "__main__" :
 
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
-                            if j !=0 : print(labels[j]+r"$\mathcal{"+_type+r"},  "+ z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
+                            if j !=0 : print(labels[j]+_type+ "z = "+str(Redshifts[i])+" : "+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
                             #else : print(" \\\\")
 
 
