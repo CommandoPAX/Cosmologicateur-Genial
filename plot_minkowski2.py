@@ -136,19 +136,21 @@ if __name__ == "__main__" :
 
 
 
-                        mask = abs(lcdm[p]-lcdm[p][0])>0.1 * abs(np.std(lcdm[p]))
+                        if p == 0 and i in [2,4] : mask = (X > -1) & (X <1)
+                        elif p!=0 and i in [2,4] : mask = (X > -1)&(X < 3)
+                        else : mask = (X>-3)&(X<3)
 
-                        if d == 0 : 
-                            max_delta = np.argmax(np.abs(data[p]-lcdm[p]))
-                            print(labels[j]+f", v{p}, z = "+str(Redshifts[i])+" : "+str(round(100*((data[p]-lcdm[p])/lcdm[p])[max_delta],1))+" \%")
+                        if d == 1 : 
+                            max_delta = np.argmax(np.abs(data[p][mask]-lcdm[p][mask]))
+                            if j !=0 : print(labels[j]+f", v{p}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((data[p][mask][max_delta]-lcdm[p][mask][max_delta])/np.max(np.abs(lcdm[p][mask]))),1))+" \%")
                             #else : print(" \\\\")
 
                         if d == 0 : 
-                            axes.plot(X, data[p], color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot(X[mask], data[p][mask], color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(rf"$v_{p}$")
                             axes.xaxis.set_visible(False)
                         else :
-                            axes.plot(X, ((data[p] - lcdm[p])), color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot(X[mask], ((data[p][mask] - lcdm[p][mask])), color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"threshold [$\sigma$]")
                         if j == len(snapshots)-1 and i == 1 and d == 0 and p == 0: 
