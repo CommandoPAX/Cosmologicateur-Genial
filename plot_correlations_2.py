@@ -86,7 +86,7 @@ if __name__ == "__main__" :
             for d in range(2):
                 place = places[str(p) + str(d)]
 
-                print(axs)
+
 
                 axes = axs[(place-1)+(i//2-1)*8]
 
@@ -123,7 +123,7 @@ if __name__ == "__main__" :
                         
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
-                            if j !=0 : print(labels[j]+f", v{p}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
+                            if j !=0 : print(labels[j]+ r"$\mathcal{"+rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]}"+r"}+  ", z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
                             #else : print(" \\\\")
 
 
@@ -164,7 +164,7 @@ if __name__ == "__main__" :
             for d in range(2):
                 place = places[str(p) + str(d)]
 
-                print(axs)
+
 
                 axes = axs[(place-1)+(i//2 -1)*4]
 
@@ -211,7 +211,7 @@ if __name__ == "__main__" :
 
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
-                            if j !=0 : print(labels[j]+f", v{p}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
+                            if j !=0 : print(labels[j]+r"$\mathcal{"+_type+r"},  "+ z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
                             #else : print(" \\\\")
 
 
@@ -256,7 +256,6 @@ if __name__ == "__main__" :
             for d in range(2):
                 place = places[str(p) + str(d)]
 
-                print(axs)
 
                 axes = axs[(place-1)+(i//2 -1)*8]
 
@@ -309,7 +308,7 @@ if __name__ == "__main__" :
 
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
-                            if j !=0 : print(labels[j]+f", v{p}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
+                            if j !=0 : print(labels[j]+r"$\mathcal{"+_type+r"},  "+" z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
                             #else : print(" \\\\")
 
 
