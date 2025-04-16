@@ -187,7 +187,7 @@ for a in range(4):
 
                 max_delta = np.argmax(np.abs(zeta-lcdm))
 
-                tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(1+np.abs(lcdm)))),1))+ r" \%"
+                tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(1+np.abs(lcdm[1:])))),1))+ r" \%"
 
         tab_corr+=r"\\"
         tab_corr+="\n"
