@@ -54,9 +54,9 @@ for i in range(len(snapshots)) :
     for j in [1,2,4]:
             z_k = indices_z[j-1]
             
-            long_lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
-            try : long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{k}_densite_smooth2_c0.1_len_fil.txt.npy")
-            except :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
+            long_lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
+            try : long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
+            except :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_len_fil.txt.npy")
             moyennes = np.mean(long)
             moyennes_lcdm = np.mean(long_lcdm)
             tab_minko +=" &"+str(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))+ r" \%"
