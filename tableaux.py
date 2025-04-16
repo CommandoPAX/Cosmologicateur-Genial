@@ -36,9 +36,9 @@ tab_corr = r"""
 
 for i in range(1,len(snapshots)):
     
-    tab_minko += r"& \multicolumn{2}{c|}{"+labels[i]+"} "
+    tab_corr += r"& \multicolumn{2}{c|}{"+labels[i]+"} "
 
-tab_minko += r"""
+tab_corr += r"""
  \\
        
          & $z= 1$ & $z = 0$  & $z= 1$ & $z = 0$  & $z= 1$ & $z = 0$  & $z= 1$ & $z = 0$\\
@@ -156,7 +156,7 @@ R = 2
 P = 5
 
 for p in range(4):
-    tab_corr += r"$\mathcal {$" + (["P", "F", "W", "V"][p])*2 + r"}$"
+    tab_corr += r"$\mathcal {" + (["P", "F", "W", "V"][p])*2 + r"}$"
     for i in indices_hdm :
         for j in [2,4]:
             z_k = indices_z[j-1]
