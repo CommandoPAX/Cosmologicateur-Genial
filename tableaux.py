@@ -64,4 +64,14 @@ for i in range(1,len(snapshots)) :
 
 tab_minko += r"\\"
 
+
+
+
+
+tab_minko+=r"""
+\end{tabular}
+\end{table}
+
+"""
+
 print(tab_minko)
