@@ -34,7 +34,7 @@ tab_minko += r"$\langle \kappa \rangle $"
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
 
-for i in range(len(snapshots)) :
+for i in range(1,len(snapshots)) :
     for j in [1,2,4]:
             z_k = indices_z[j-1]
                     
@@ -51,7 +51,7 @@ tab_minko += r"\\" +"\n"
 tab_minko += r"$\langle l \rangle $"
 
 
-for i in range(len(snapshots)) :
+for i in range(1,len(snapshots)) :
     for j in [1,2,4]:
             z_k = indices_z[j-1]
             
