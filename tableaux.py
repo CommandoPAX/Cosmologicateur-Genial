@@ -175,7 +175,7 @@ for p in range(4):
 
 for a in range(4):
     for b in range(a+1,4):
-        tab_corr += r"$\mathcal {" + ["P", "F", "W", "V"][b]+["P", "F", "W", "V"][a] + r"}$"
+        tab_corr += r"$\mathcal {" + ["P", "F", "W", "V"][a]+["P", "F", "W", "V"][b] + r"}$"
         for i in indices_hdm :
             for j in [2,4]:
                 z_k = indices_z[j-1]
