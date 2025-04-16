@@ -173,6 +173,25 @@ for p in range(4):
     tab_corr+=r"\\"
     tab_corr+="\n"
 
+for a in range(4):
+    for b in range(a+1,4):
+        tab_corr += r"$\mathcal {" + ["P", "F", "W", "V"][a]+["P", "F", "W", "V"][b] + r"}$"
+        for i in indices_hdm :
+            for j in [2,4]:
+                z_k = indices_z[j-1]
+            
+                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+
+                try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+                except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{a}_{b}_s{R}_P{P}.txt.npy")
+
+                max_delta = np.argmax(np.abs(zeta-lcdm))
+
+                tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(1+np.abs(lcdm)))),1))+ r" \%"
+
+        tab_corr+=r"\\"
+        tab_corr+="\n"
+
 tab_corr+=r"""
 \hline
 \end{tabular}
