@@ -117,7 +117,7 @@ for p in range(4):
                 tab_minko +=" &"+str(round((data[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))+ r" \%"
 
     tab_minko += r"\\"
-
+    tab_minko+="\n"
         
 
 
