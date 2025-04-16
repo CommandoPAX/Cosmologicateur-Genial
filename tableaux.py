@@ -168,7 +168,7 @@ for p in range(4):
 
             max_delta = np.argmax(np.abs(zeta-lcdm))
 
-            tab_minko +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm))))))+ r" \%"
+            tab_minko +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+ r" \%"
 
 
 tab_corr+=r"""
