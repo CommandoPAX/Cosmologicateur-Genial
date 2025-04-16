@@ -185,9 +185,9 @@ for a in range(4):
                 try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{P}.txt.npy")
                 except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}.txt.npy")
 
-                max_delta = np.argmax(np.abs(zeta[1:]-lcdm[1:]))
+                max_delta = np.argmax(np.abs(zeta[lcdm>-0.9]-lcdm[lcdm>-0.9]))
 
-                tab_corr +=" &"+str(round(100*((zeta[max_delta+1]-lcdm[max_delta+1])/(np.max(np.abs(1+lcdm[1:])))),1))+ r" \%"
+                tab_corr +=" &"+str(round(100*((zeta[lcdm>-0.9]-lcdm[lcdm>-0.9])/(np.max(np.abs(1+lcdm[lcdm>-0.9])))),1))+ r" \%"
 
         tab_corr+=r"\\"
         tab_corr+="\n"
