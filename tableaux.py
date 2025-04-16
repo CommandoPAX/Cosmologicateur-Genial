@@ -70,37 +70,25 @@ tab_minko+="\n"
 for p in range(4):
     tab_minko += rf"$v_{p}$"
 
-    lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
-    if i in [2,4]:lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{i}_minkowski_zoom.txt.npy")
-
-    X = np.linspace(-3,3,61)
-    if i in [2,4]: 
-        X1 = X[X<-1]
-        X2 = np.linspace(-1,1,101)
-        X3 = X[X>1]
-
-
-        X = np.concatenate((X1,X2,X3))
-
-    if p == 0 and i in [2,4] : X = X2
 
 
     for i in range(1,len(snapshots)) :
         for j in [1,2,4]:
         
                 z_k = indices_z[j-1]
-                lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{i}.txt.npy")
+                lcdm = np.load(f"/home/fcastillo/minkowski/minkowski_{0}_{j}.txt.npy")
+                if j in [2,4]:lcdmzoom = np.load(f"/data100/fcastillo/RESULT/benchM/{j}_minkowski_zoom.txt.npy")
 
                 try:
-                    data = np.load(f"/home/fcastillo/minkowski/minkowski_{j}_{i}.txt.npy")
+                    data = np.load(f"/home/fcastillo/minkowski/minkowski_{i}_{j}.txt.npy")
                 except :
-                    try : data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski.txt.npy")
-                    except: data= np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{z_k}_minkowski.txt.npy")
-                if i in [2,4]:
+                    try : data= np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_minkowski.txt.npy")
+                    except: data= np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_minkowski.txt.npy")
+                if j in [2,4]:
                     try :
-                        datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{i}_minkowski_zoom.txt.npy")
+                        datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_minkowski_zoom.txt.npy")
                     except :
-                        datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[j]}/{z_k}_minkowski_zoom.txt.npy")
+                        datazoom = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_minkowski_zoom.txt.npy")
                     data1 = data[:,:20]
                     data2 = data[:,41:]
 
