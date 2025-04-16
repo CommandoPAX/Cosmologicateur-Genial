@@ -148,7 +148,7 @@ labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -5
 
 indices_hdm = [7,8,10,11]
 #indices_hdm = [0,2,6]
-indices_hdm = [1,4,6,9]
+#indices_hdm = [1,4,6,9]
 
 ##### Autocorrelations
 
