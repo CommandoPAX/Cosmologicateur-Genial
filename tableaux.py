@@ -170,6 +170,8 @@ for p in range(4):
 
             tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+ r" \%"
 
+    tab_corr+=r"\\"
+    tab_corr+="\n"
 
 tab_corr+=r"""
 \hline
