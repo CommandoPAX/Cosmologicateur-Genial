@@ -63,6 +63,7 @@ for i in range(1,len(snapshots)) :
             tab_minko +=" &"+str(round((moyenne-moyenne_lcdm)/moyenne_lcdm *100, 1))+ r" \%"
 
 tab_minko += r"\\"
+tab_minko+="\n"
 
 ##### Minkowski
 
