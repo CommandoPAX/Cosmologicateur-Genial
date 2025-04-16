@@ -4,7 +4,7 @@ import pandas as pd
 snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
 labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
 
-tab_minko = """
+tab_minko = r"""
 \begin{table}[]
     \centering
     \begin{tabular}{|c|ccc|ccc|ccc|ccc|}
@@ -21,7 +21,7 @@ tab_minko += r"""
          \hline 
 """
 
-
+tab_minko +="\n"
 
 tab_corr = ""
 
@@ -45,9 +45,10 @@ for i in range(len(snapshots)) :
             moyennes_lcdm = np.mean(connect_lcdm)
             tab_minko +=" &"+str(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))+ r" \%"
 
-tab_minko += r"\\"
+tab_minko += r"\\" +"\n"
 
 ##### Longueur
+tab_minko += r"$\langle l \rangle $"
 
 
 for i in range(len(snapshots)) :
@@ -57,9 +58,9 @@ for i in range(len(snapshots)) :
             long_lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
             try : long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_len_fil.txt.npy")
             except :     long = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_len_fil.txt.npy")
-            moyennes = np.mean(long)
-            moyennes_lcdm = np.mean(long_lcdm)
-            tab_minko +=" &"+str(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))+ r" \%"
+            moyenne = np.mean(long)
+            moyenne_lcdm = np.mean(long_lcdm)
+            tab_minko +=" &"+str(round((moyenne-moyenne_lcdm)/moyenne_lcdm *100, 1))+ r" \%"
 
 tab_minko += r"\\"
 
