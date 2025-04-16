@@ -28,7 +28,22 @@ tab_minko += r"""
 
 tab_minko +="\n"
 
-tab_corr = ""
+tab_corr = r"""
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|cc|cc|cc|cc|}
+    \hline"""
+
+for i in range(1,len(snapshots)):
+    
+    tab_minko += r"& \multicolumn{2}{c|}{"+labels[i]+"} "
+
+tab_minko += r"""
+ \\
+       
+         & $z= 1$ & $z = 0$  & $z= 1$ & $z = 0$  & $z= 1$ & $z = 0$  & $z= 1$ & $z = 0$\\
+         \hline 
+"""
 
 tab_rarete = ""
 
@@ -124,3 +139,42 @@ tab_minko+=r"""
 """
 
 print(tab_minko)
+
+##### Fonctions de correlations
+
+
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500"]
+labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
+
+indices_hdm = [7,8,10,11]
+#indices_hdm = [0,2,6]
+indices_hdm = [1,4,6,9]
+
+##### Autocorrelations
+
+R = 2
+P = 5
+
+for p in range(4):
+    tab_corr += r"$\mathcal {$" + (["P", "F", "W", "V"][p])*2 + r"}$"
+    for i in indices_hdm :
+        for j in [2,4]:
+            z_k = indices_z[j-1]
+           
+            lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+
+            try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+            except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+
+            max_delta = np.argmax(np.abs(zeta-lcdm))
+
+            tab_minko +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm))))))+ r" \%"
+
+
+tab_corr+=r"""
+\hline
+\end{tabular}
+\end{table}
+
+"""
+print(tab_corr)
