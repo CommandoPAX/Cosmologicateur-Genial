@@ -5,8 +5,8 @@ snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
 labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
 
 
-snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
-labels = [r"$\Lambda {\rm CDM}$", r"$f_{\rm NL} = -300~\&~ \rm{EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
+#snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
+#labels = [r"$\Lambda {\rm CDM}$", r"$f_{\rm NL} = -300~\&~ \rm{EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
 
 
 tab_minko = r"""
@@ -163,9 +163,9 @@ print(tab_minko)
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500"]
 labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
 
-indices_hdm = [7,8,10,11]
+#indices_hdm = [7,8,10,11]
 #indices_hdm = [0,2,6]
-#indices_hdm = [1,4,6,9]
+indices_hdm = [1,4,6,9]
 
 ##### Autocorrelations
 
@@ -219,8 +219,6 @@ print(tab_corr)
 
 
 ##### Rarete
-
-##### Minkowski
 
 for p in range(4):
     tab_rarete += r"$\mathcal{" + ["P", "F","W","V"][p] +r"}$ "
