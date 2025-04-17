@@ -45,7 +45,24 @@ tab_corr += r"""
          \hline 
 """
 
-tab_rarete = ""
+tab_rarete = r"""
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|ccc|ccc|ccc|ccc|}
+    \hline"""
+
+for i in range(1,len(snapshots)):
+    
+    tab_rarete += r"& \multicolumn{3}{c|}{"+labels[i]+"} "
+
+tab_rarete += r"""
+ \\
+       
+         &$z = 3$ & $z= 1$ & $z = 0$&$z = 3$ & $z= 1$ & $z = 0$&$z = 3$ & $z= 1$ & $z = 0$&$z = 3$ & $z= 1$ & $z = 0$\\
+         \hline 
+"""
+
+tab_rarete +="\n"
 
 ##### Connectivite
 
@@ -199,3 +216,41 @@ tab_corr+=r"""
 
 """
 print(tab_corr)
+
+
+##### Rarete
+
+##### Minkowski
+
+for p in range(4):
+    tab_rarete += r"$\mathcal{" + ["P", "F","W","V"][p] +r"}$ "
+
+
+
+    for i in range(1,len(snapshots)) :
+        for j in [1,2,4]:
+        
+                z_k = indices_z[j-1]
+                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_threshold_s{R}.txt.npy")
+
+                try : count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_threshold_s{R}.txt.npy")
+                except: count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_threshold_s{R}.txt.npy")
+
+                max_delta = np.argmax(np.abs(count[p]-lcdm[p]))
+
+                tab_rarete +=" &"+str(round((count[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))+ r" \%"
+
+    tab_rarete += r"\\"
+    tab_rarete+="\n"
+        
+
+
+
+tab_rarete+=r"""
+\hline
+\end{tabular}
+\end{table}
+
+"""
+
+print(tab_rarete)
