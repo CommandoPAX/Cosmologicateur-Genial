@@ -227,7 +227,7 @@ for p in range(4):
 
 
 
-    for i in range(1,len(snapshots)) :
+    for i in indices_hdm :
         for j in [1,2,4]:
         
                 z_k = indices_z[j-1]
@@ -236,9 +236,9 @@ for p in range(4):
                 try : count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_threshold_s{R}.txt.npy")
                 except: count = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_threshold_s{R}.txt.npy")
 
-                max_delta = np.argmax(np.abs(count[p]-lcdm[p]))
+                max_delta = np.argmax(np.abs(count[:,p]-lcdm[:,p]))
 
-                tab_rarete +=" &"+str(round((count[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))+ r" \%"
+                tab_rarete +=" &"+str(round((count[:,p][max_delta]-lcdm[:,p][max_delta])/np.max(np.abs(lcdm[:,p])) *100, 1))+ r" \%"
 
     tab_rarete += r"\\"
     tab_rarete+="\n"
