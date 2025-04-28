@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
 labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
@@ -8,6 +9,7 @@ labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\
 #snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
 #labels = [r"$\Lambda {\rm CDM}$", r"$f_{\rm NL} = -300~\&~ \rm{EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
 
+plt.figure(figsize= (10,4))
 
 tab_minko = r"""
 \begin{table}[]
@@ -51,16 +53,20 @@ tab_rarete = r"""
     \begin{tabular}{|c|ccc|ccc|ccc|ccc|}
     \hline"""
 
+dico_snapshots = {}
+
 for i in range(1,len(snapshots)):
     
     tab_rarete += r"& \multicolumn{3}{c|}{"+labels[i]+"} "
-
+    dico_snapshots[snapshots[i]] = []
 tab_rarete += r"""
  \\
        
          &$z = 3$ & $z= 1$ & $z = 0$&$z = 3$ & $z= 1$ & $z = 0$&$z = 3$ & $z= 1$ & $z = 0$&$z = 3$ & $z= 1$ & $z = 0$\\
          \hline 
 """
+
+
 
 tab_rarete +="\n"
 
@@ -82,7 +88,11 @@ for i in range(1,len(snapshots)) :
             moyennes_lcdm = np.mean(connect_lcdm)
             tab_minko +=" &"+str(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))+ r" \%"
 
+            dico_snapshots[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
+ 
 tab_minko += r"\\" +"\n"
+
+print(dico_snapshots)
 
 ##### Longueur
 tab_minko += r"$\langle l \rangle $"
