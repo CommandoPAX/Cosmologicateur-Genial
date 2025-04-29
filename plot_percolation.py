@@ -104,7 +104,7 @@ if __name__ == "__main__" :
                 #print(data)
                 
 
-                axes.plot(np.arange(0.2,1.2,0.01),percole, color= couleur, ls = ls, label=label)
+                axes.plot(np.arange(0.6,1.4,0.01),percole, color= couleur, ls = ls, label=label)
                 axes.set_ylabel(r"$S$")
                 axes.set_xlabel(r"$bb$")
 
@@ -118,5 +118,70 @@ if __name__ == "__main__" :
     plt.savefig(f"percole.pdf")
     plt.savefig(f"percole.png")
 
+    plt.clf()
+    plt.figure()
+
+
+    outer = gridspec.GridSpec(nrows=1, ncols=1)
+
+    axs = []
+    for row in range(1):
+        for col in range(1):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=2, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
+
+    for i in range(len(snapshots)):
+        moyennes = []
+        err = []
+
+        ls = lss[i]
+        couleur = couleurs[i]
+        label = labels[i]
+        transitions_lcdm = []
+        transitions = []
+     
+        for j in range(1,5):
+            z_k = indices_z[j-1]
+                    
+            lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{j}_densite_smooth2_c0.1_percolation_2.txt.npy")
+            try : percole = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_percolation_2.txt.npy")
+            except : percole = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_percolation_2.txt.npy")
+            
+            transitions.append(np.arange(0.6,1.4,0.01)[np.argmax(percole)])
+            transitions_lcdm.append(np.arange(0.6,1.4,0.01)[np.argmax(lcdm)])
+            
+        #print(moyennes)
+        axes = plt.gca()
+
+        if len(moyennes )== 5:
+            a = 1/(1+np.array([32,3,1,0.25,0]))
+        else :
+            a = 1/(1+np.array([3,1,0.25,0]))
+        
+        transitions_lcdm = np.array(transitions_lcdm)
+
+        for d in range(2):
+
+            transitions = np.array(transitions)
+
+            #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
+
+
+            if d == 0 : axs[d].plot(np.array([3,1,0.25,0]), transitions,ls=ls, color=couleur, label=label)
+            if d == 1 : axs[d].plot(np.array([3,1,0.25,0]), (transitions-transitions_lcdm)/transitions_lcdm,ls=ls, color=couleur, label=label)
+
+            axes.set_xlabel(r"$z$")
+            if d == 0 : axs[d].set_ylabel(r"${\rm Phase~transition}$")
+            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
+
+            if d == 0 : axs[d].legend(fontsize=8)
+
+
+
+    axs[0].invert_xaxis()
+    axs[1].invert_xaxis()
+
+    plt.savefig(f"percole_transition.pdf")
+    plt.savefig(f"percole_transition.png")
 
 
