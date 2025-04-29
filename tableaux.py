@@ -109,6 +109,8 @@ for i in range(1,len(snapshots)) :
             
             if j == 4 : dico_snapshots[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
 
+print(dico_snapshots)
+
 tab_minko += r"\\"
 tab_minko+="\n"
 
@@ -284,7 +286,7 @@ print(annotation)
 for s in dico_snapshots.keys() :
     axes = plt.gca()
     plt.plot(np.array(dico_snapshots[s])/100,label = s)
-    axes.set_ylabel(r"$\Delta / \Lambda{\rm CDM}$")
+    axes.set_ylabel(r"$\max \Delta / \Lambda{\rm CDM}$")
 
     for i, txt in enumerate(annotation):
         try : 
