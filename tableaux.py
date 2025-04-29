@@ -284,10 +284,30 @@ for p in range(4):
 print(annotation)
 
 for s in dico_snapshots.keys() :
-    axes = plt.gca()
-    plt.plot(np.array(dico_snapshots[s])/100,label = s)
-    axes.set_ylabel(r"$\max \Delta / \Lambda{\rm CDM}$")
+    if s == "G_ViVi":
+        couleur = "green"
+        label = r"${\rm mixed~DM}$"
+        ls = "."
+    
+    if s == "NG_F500":
+        ls = "-"
+        couleur = "darkorange"
+        label = r"$f_{\rm NL} = -500$"
+    if s == "NG_Fminus500" :
+        ls = "-"
+        couleur = "violet"
+        label = r"$f_{\rm NL} = 500$"       
 
+    if s == "NEDE" :
+        ls = "-"
+        couleur = "darkred"
+        label = r"${\rm EDE}$" 
+
+    axes = plt.gca()
+    plt.plot(np.array(dico_snapshots[s])/100,color=couleur,ls=ls,label=label)
+    axes.set_ylabel(r"$\max~\Delta / \Lambda{\rm CDM}$")
+
+ 
     for i, txt in enumerate(annotation):
         try : 
 
