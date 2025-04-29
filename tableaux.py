@@ -268,8 +268,24 @@ tab_rarete+=r"""
 """
 
 print(tab_rarete)
+annotation = [r"$\langle \kappa \rangle$", r"$\langle l \rangle$",r"$v_0$",r"$v_1$",r"$v_2$",r"$v_3$"]
+for p in range(4):
+    annotation.append(r"$\mathcal {" + (["P", "F", "W", "V"][p])*2 + r"}$")
+
+for a in range(4):
+    for b in range(a+1,4):
+        annotation += r"$\mathcal {" + ["P", "F", "W", "V"][a]+["P", "F", "W", "V"][b] + r"}$"
+
+for p in range(4):
+    annotation += r"$\mathcal{" + ["P", "F","W","V"][p] +r"}$ "
 
 for s in dico_snapshots.keys() :
-    plt.plot(np.array(dico_snapshots[s]),label = s)
+    axes = plt.gca()
+    plt.plot(np.array(dico_snapshots[s])/100,label = s)
+    axes.set_ylabel(r"$\Delta / \Lambda{\rm CDM}$")
+
+    for i, txt in enumerate(annotation):
+        axes.annotate(txt, (i, (np.array(dico_snapshots[s])/100)[i]))
+
     plt.legend()
     plt.savefig(f"tab.pdf")
