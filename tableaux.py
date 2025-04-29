@@ -279,6 +279,8 @@ for a in range(4):
 for p in range(4):
     annotation += r"$\mathcal{" + ["P", "F","W","V"][p] +r"}$ "
 
+print(annotation)
+
 for s in dico_snapshots.keys() :
     axes = plt.gca()
     plt.plot(np.array(dico_snapshots[s])/100,label = s)
