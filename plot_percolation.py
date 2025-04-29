@@ -58,7 +58,7 @@ if __name__ == "__main__" :
 
 
 
-    plt.figure(figsize=(14,10))
+    plt.figure(figsize=(6,6))
     X = np.linspace(-3,3,61)
     places = {
         "10" : 1,
