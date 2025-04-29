@@ -40,7 +40,7 @@ indices_z = [5,6,8,9]
 
 
 
-squelette = Squelette_3d(f"/data100/fcastillo/RESULT/{snapshots[n]}/{indices_z[i]}_densite_smooth2_c0.1.up.NDskl.S001.a.NDskl")
+squelette = Squelette_3d(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1.up.NDskl.S001.a.NDskl")
 xyz = np.array([[p.x, p.y, p.z] for p in squelette.Pointscrit])
 taille = []
 
@@ -49,4 +49,4 @@ for b in np.arange(0.2,1.2,0.01) :
 
     taille.append(max(len(cluster) for cluster in clusters))
 
-np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{indices_z[i]}_densite_smooth2_c0.1_percolation.txt", np.array(taille))
+np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation.txt", np.array(taille))
