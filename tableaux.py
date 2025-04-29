@@ -54,12 +54,17 @@ tab_rarete = r"""
     \begin{tabular}{|c|ccc|ccc|ccc|ccc|}
     \hline"""
 
-dico_snapshots = {}
+dico_snapshots_0 = {}
+dico_snapshots_1 = {}
+dico_snapshots_3 = {}
 
 for i in range(1,len(snapshots)):
     
     tab_rarete += r"& \multicolumn{3}{c|}{"+labels[i]+"} "
-    dico_snapshots[snapshots[i]] = []
+    dico_snapshots_0[snapshots[i]] = []
+    dico_snapshots_1[snapshots[i]] = []
+    dico_snapshots_3[snapshots[i]] = []
+
 tab_rarete += r"""
  \\
        
@@ -87,8 +92,10 @@ for i in range(1,len(snapshots)) :
             moyennes_lcdm = np.mean(connect_lcdm)
             tab_minko +=" &"+str(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))+ r" \%"
 
-            if j == 4 : dico_snapshots[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
- 
+            if j == 4 : dico_snapshots_0[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
+            if j == 1 : dico_snapshots_3[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
+            if j == 2 : dico_snapshots_1[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
+
 tab_minko += r"\\" +"\n"
 
 
@@ -107,9 +114,11 @@ for i in range(1,len(snapshots)) :
             moyenne_lcdm = np.mean(long_lcdm)
             tab_minko +=" &"+str(round((moyenne-moyenne_lcdm)/moyenne_lcdm *100, 1))+ r" \%"
             
-            if j == 4 : dico_snapshots[snapshots[i]].append(round((moyenne-moyenne_lcdm)/moyennes_lcdm *100, 1))
+            if j == 4 : dico_snapshots_0[snapshots[i]].append(round((moyenne-moyenne_lcdm)/moyennes_lcdm *100, 1))
+            if j == 1 : dico_snapshots_3[snapshots[i]].append(round((moyenne-moyenne_lcdm)/moyennes_lcdm *100, 1))
+            if j == 2 : dico_snapshots_1[snapshots[i]].append(round((moyenne-moyenne_lcdm)/moyennes_lcdm *100, 1))
 
-print(dico_snapshots)
+print(dico_snapshots_0)
 
 tab_minko += r"\\"
 tab_minko+="\n"
@@ -153,7 +162,9 @@ for p in range(4):
                 max_delta = np.argmax(np.abs(data[p]-lcdm[p]))
 
                 tab_minko +=" &"+str(round((data[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))+ r" \%"
-                if j == 4 : dico_snapshots[snapshots[i]].append(round((data[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))
+                if j == 4 : dico_snapshots_0[snapshots[i]].append(round((data[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))
+                if j == 1 : dico_snapshots_3[snapshots[i]].append(round((data[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))
+                if j == 2 : dico_snapshots_1[snapshots[i]].append(round((data[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))
 
 
     tab_minko += r"\\"
@@ -220,7 +231,8 @@ for a in range(4):
 
                 tab_corr +=" &"+str(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))+ r" \%"
 
-                if j == 4 : dico_snapshots[snapshots[i]].append(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))
+                if j == 4 : dico_snapshots_0[snapshots[i]].append(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))
+                if j == 2 : dico_snapshots_1[snapshots[i]].append(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))
 
         tab_corr+=r"\\"
         tab_corr+="\n"
@@ -254,7 +266,8 @@ for p in range(4):
 
                 tab_rarete +=" &"+str(round((count[:,p][max_delta]-lcdm[:,p][max_delta])/np.max(np.abs(lcdm[:,p])) *100, 1))+ r" \%"
 
-                if j == 4 : dico_snapshots[snapshots[i]].append(round((count[:,p][max_delta]-lcdm[:,p][max_delta])/np.max(np.abs(lcdm[:,p])) *100, 1))
+                if j == 4 : dico_snapshots_0[snapshots[i]].append(round((count[:,p][max_delta]-lcdm[:,p][max_delta])/np.max(np.abs(lcdm[:,p])) *100, 1))
+                if j == 2 : dico_snapshots_1[snapshots[i]].append(round((count[:,p][max_delta]-lcdm[:,p][max_delta])/np.max(np.abs(lcdm[:,p])) *100, 1))
 
     tab_rarete += r"\\"
     tab_rarete+="\n"
@@ -283,40 +296,51 @@ for p in range(4):
 
 print(annotation)
 
-for s in dico_snapshots.keys() :
-    if s == "G_ViVi":
-        couleur = "green"
-        label = r"${\rm mixed~DM}$"
-        ls = "-."
+
+for z in range(2):
+    plt.subplot(int("22"+str(z+1)))
+    for s in dico_snapshots_0.keys() :
+        if s == "G_ViVi":
+            couleur = "green"
+            label = r"${\rm mixed~DM}$"
+            ls = "-."
+        
+        if s == "NG_F500":
+            ls = "-"
+            couleur = "darkorange"
+            label = r"$f_{\rm NL} = -500$"
+        if s == "NG_Fminus500" :
+            ls = "-"
+            couleur = "violet"
+            label = r"$f_{\rm NL} = 500$"       
+
+        if s == "NEDE" :
+            ls = "-"
+            couleur = "darkred"
+            label = r"${\rm EDE}$" 
+
+        axes = plt.gca()
+        axes.title(r"$z = "+[1,0][z]+r"$")
+        if z == 1 :plt.plot(np.array(dico_snapshots_0[s])/100,color=couleur,ls=ls,label=label)
+        if z == 0 :plt.plot(np.array(dico_snapshots_1[s])/100,color=couleur,ls=ls,label=label)
+
+        axes.set_ylabel(r"$\max~\Delta / \Lambda{\rm CDM}$")
+
     
-    if s == "NG_F500":
-        ls = "-"
-        couleur = "darkorange"
-        label = r"$f_{\rm NL} = -500$"
-    if s == "NG_Fminus500" :
-        ls = "-"
-        couleur = "violet"
-        label = r"$f_{\rm NL} = 500$"       
+        for i, txt in enumerate(annotation):
+            try : 
 
-    if s == "NEDE" :
-        ls = "-"
-        couleur = "darkred"
-        label = r"${\rm EDE}$" 
+                data_dico = []
+                for s2 in dico_snapshots_0.keys() :
+                    if z == 1 :data_dico.append(dico_snapshots_0[s2][i])
+                    if z == 0 :data_dico.append(dico_snapshots_0[s2][i])
+                
+                if z == 1 :
+                    if dico_snapshots_0[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_0[s])/100)[i]))
+                if z == 0: 
+                    if dico_snapshots_1[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_0[s])/100)[i]))
 
-    axes = plt.gca()
-    plt.plot(np.array(dico_snapshots[s])/100,color=couleur,ls=ls,label=label)
-    axes.set_ylabel(r"$\max~\Delta / \Lambda{\rm CDM}$")
+            except : pass
 
- 
-    for i, txt in enumerate(annotation):
-        try : 
-
-            data_dico = []
-            for s2 in dico_snapshots.keys() :
-                data_dico.append(dico_snapshots[s2][i])
-            
-            if dico_snapshots[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots[s])/100)[i]))
-        except : pass
-
-    plt.legend()
+        if z == 0 : plt.legend()
     plt.savefig(f"tab.pdf")
