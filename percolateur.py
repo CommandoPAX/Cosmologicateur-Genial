@@ -49,4 +49,4 @@ for b in np.arange(0.2,1.2,0.01) :
 
     taille.append(max(len(cluster) for cluster in clusters))
 
-np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation.txt", np.array(taille))
+np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation.txt", np.array(taille)/len(squelette.Pointscrit))
