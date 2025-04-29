@@ -298,7 +298,7 @@ print(annotation)
 
 
 for z in range(2):
-    plt.subplot(int("22"+str(z+1)))
+    plt.subplot(int("21"+str(z+1)))
     for s in dico_snapshots_0.keys() :
         if s == "G_ViVi":
             couleur = "green"
@@ -338,7 +338,7 @@ for z in range(2):
                 if z == 1 :
                     if dico_snapshots_0[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_0[s])/100)[i]))
                 if z == 0: 
-                    if dico_snapshots_1[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_0[s])/100)[i]))
+                    if dico_snapshots_1[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_1[s])/100)[i]))
 
             except : pass
 
