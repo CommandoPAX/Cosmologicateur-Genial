@@ -48,9 +48,9 @@ xyz = np.array([[p.x, p.y, p.z] for p in squelette.Pointscrit])
 taille = []
 
 for b in np.arange(0.2,1.2,0.05) :
-    clusters = identify_clusters(xyz, b * (500**3/len(squelette.PointsCrit))**(1/3))
+    clusters = identify_clusters(xyz, b * (500**3/len(squelette.Pointscrit))**(1/3))
 
     taille.append(max(len(cluster) for cluster in clusters))
 
-plt.plot(np.arange(0.2,1.2,0.05), np.array(taille)/len(squelette.PointsCrit))
+plt.plot(np.arange(0.2,1.2,0.05), np.array(taille)/len(squelette.Pointscrit))
 plt.savefig("percolation.pdf")
