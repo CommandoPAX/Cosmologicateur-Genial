@@ -2,6 +2,25 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+def latex_to_tab (tab_latex):
+    lignes = tab_latex.split("\n")
+    lignes_data = []
+    nl = 0
+    for i in range(len(lignes)):
+        ligne = lignes[i]
+        if "\hline" in ligne : nl += 1
+        if nl ==2 : break
+    
+    lignes = lignes[:i]
+    for ligne in lignes :
+        ligne = ligne.replace("&",",")
+        ligne = ligne.replace(r"\%", "")
+        ligne = ligne.replace(r"\\","]")
+        ligne= "[" + ligne
+        ligne = eval(ligne)
+        print(ligne[1:])
+
+
 snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
 labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
 
@@ -28,7 +47,6 @@ tab_minko += r"""
          \hline 
 """
 
-tab_minko +="\n"
 
 tab_corr = r"""
 \begin{table}[]
@@ -67,8 +85,6 @@ tab_rarete += r"""
 """
 
 
-
-tab_rarete +="\n"
 
 ##### Connectivite
 
@@ -262,3 +278,5 @@ tab_rarete+=r"""
 """
 
 print(tab_rarete)
+
+latex_to_tab(tab_minko)
