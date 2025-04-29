@@ -285,7 +285,13 @@ for s in dico_snapshots.keys() :
     axes.set_ylabel(r"$\Delta / \Lambda{\rm CDM}$")
 
     for i, txt in enumerate(annotation):
-        try : axes.annotate(txt, (i, (np.array(dico_snapshots[s])/100)[i]))
+        try : 
+
+            data_dico = []
+            for s2 in dico_snapshots.keys() :
+                data_dico.append(dico_snapshots[s2][i])
+            
+            if dico_snapshots[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots[s])/100)[i]))
         except : pass
 
     plt.legend()
