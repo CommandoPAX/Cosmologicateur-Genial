@@ -30,13 +30,10 @@ def identify_clusters(points, linking_length):
 
     return clusters
 
-n = 0 #int(sys.argv[1])
-i = 4 #int(sys.argv[2])
+n = int(sys.argv[1])
+i = int(sys.argv[2])
 
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
-#labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
-
-#snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833"]
 
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
@@ -47,10 +44,9 @@ squelette = Squelette_3d(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_
 xyz = np.array([[p.x, p.y, p.z] for p in squelette.Pointscrit])
 taille = []
 
-for b in np.arange(0.2,1.2,0.05) :
+for b in np.arange(0.2,1.2,0.01) :
     clusters = identify_clusters(xyz, b * (500**3/len(squelette.Pointscrit))**(1/3))
 
     taille.append(max(len(cluster) for cluster in clusters))
 
-plt.plot(np.arange(0.2,1.2,0.05), np.array(taille)/len(squelette.Pointscrit))
-plt.savefig("percolation.pdf")
+np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation.txt", np.array(taille))
