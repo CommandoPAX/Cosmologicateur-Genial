@@ -46,7 +46,7 @@ module load inteloneapi/2025.0.1
 
 
         fichier.write(f"""
-python percolateur.py {n} {i}
+python /home/fcastillo/Cosmologicateur-Genial/percolateur.py {n} {i}
 """)
             
         fichier.write("exit 0")
