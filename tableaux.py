@@ -287,7 +287,7 @@ for s in dico_snapshots.keys() :
     if s == "G_ViVi":
         couleur = "green"
         label = r"${\rm mixed~DM}$"
-        ls = "."
+        ls = "-."
     
     if s == "NG_F500":
         ls = "-"
