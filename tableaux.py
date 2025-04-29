@@ -325,8 +325,7 @@ for z in range(2):
         if z == 0 :plt.plot(np.array(dico_snapshots_1[s])/100,color=couleur,ls=ls,label=label)
 
         axes.set_ylabel(r"$\max~\Delta / \Lambda{\rm CDM}$")
-        axes.xaxis.xticks([])
-
+        axes.get_xaxis().set_visible(False)
     
         for i, txt in enumerate(annotation):
             try : 
