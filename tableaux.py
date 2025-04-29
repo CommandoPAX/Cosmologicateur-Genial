@@ -274,10 +274,10 @@ for p in range(4):
 
 for a in range(4):
     for b in range(a+1,4):
-        annotation += r"$\mathcal {" + ["P", "F", "W", "V"][a]+["P", "F", "W", "V"][b] + r"}$"
+        annotation.append( r"$\mathcal {" + ["P", "F", "W", "V"][a]+["P", "F", "W", "V"][b] + r"}$")
 
 for p in range(4):
-    annotation += r"$\mathcal{" + ["P", "F","W","V"][p] +r"}$ "
+    annotation.append( r"$\mathcal{" + ["P", "F","W","V"][p] +r"}$ ")
 
 print(annotation)
 
