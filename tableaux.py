@@ -1,7 +1,11 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
 
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams["figure.facecolor"]='w'
+matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 
 snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
