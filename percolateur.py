@@ -43,10 +43,17 @@ indices_z = [5,6,8,9]
 squelette = Squelette_3d(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1.up.NDskl.S001.a.NDskl")
 xyz = np.array([[p.x, p.y, p.z] for p in squelette.Pointscrit])
 taille = []
+taille2 = []
 
-for b in np.arange(0.2,1.2,0.01) :
+for b in np.arange(0.6,1.4,0.01) :
     clusters = identify_clusters(xyz, b * (500**3/len(squelette.Pointscrit))**(1/3))
-
     taille.append(max(len(cluster) for cluster in clusters))
 
+    clusters_sorted = sorted(clusters, key=len, reverse=True)
+
+    if len(clusters_sorted) >= 2:
+        deuxieme = len(clusters_sorted[1])
+        taille2.append(len(deuxieme))
+
 np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation.txt", np.array(taille)/len(squelette.Pointscrit))
+np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation_2.txt", np.array(taille2)/len(squelette.Pointscrit))
