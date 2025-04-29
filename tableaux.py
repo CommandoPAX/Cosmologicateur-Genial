@@ -320,7 +320,7 @@ for z in range(2):
             label = r"${\rm EDE}$" 
 
         axes = plt.gca()
-        axes.title(r"$z = "+["1","0"][z]+r"$")
+        axes.title.set_text(r"$z = "+["1","0"][z]+r"$")
         if z == 1 :plt.plot(np.array(dico_snapshots_0[s])/100,color=couleur,ls=ls,label=label)
         if z == 0 :plt.plot(np.array(dico_snapshots_1[s])/100,color=couleur,ls=ls,label=label)
 
