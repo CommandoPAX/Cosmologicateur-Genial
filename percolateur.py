@@ -53,7 +53,7 @@ for b in np.arange(0.6,1.4,0.01) :
 
     if len(clusters_sorted) >= 2:
         deuxieme = len(clusters_sorted[1])
-        taille2.append(len(deuxieme))
+        taille2.append(deuxieme)
 
 np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation.txt", np.array(taille)/len(squelette.Pointscrit))
 np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation_2.txt", np.array(taille2)/len(squelette.Pointscrit))
