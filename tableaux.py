@@ -2,22 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def latex_to_tab (tab_latex):
-    lignes = tab_latex.split("\n")
-    lignes_data = []
-    nl = 0
-    for i in range(len(lignes)):
-        ligne = lignes[i]
-        if "\hline" in ligne : nl += 1
-        if nl ==2 : break
-    
-    lignes = lignes[:i]
-    for ligne in lignes :
-        ligne = ligne.replace("&",",")
-        ligne = ligne.replace(r"\%", "")
-        ligne= "[" + ligne + "]"
-        ligne = eval(ligne)
-        print(ligne[1:])
 
 
 snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
@@ -103,11 +87,10 @@ for i in range(1,len(snapshots)) :
             moyennes_lcdm = np.mean(connect_lcdm)
             tab_minko +=" &"+str(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))+ r" \%"
 
-            dico_snapshots[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
+            if j == 4 : dico_snapshots[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
  
 tab_minko += r"\\" +"\n"
 
-print(dico_snapshots)
 
 ##### Longueur
 tab_minko += r"$\langle l \rangle $"
@@ -123,6 +106,8 @@ for i in range(1,len(snapshots)) :
             moyenne = np.mean(long)
             moyenne_lcdm = np.mean(long_lcdm)
             tab_minko +=" &"+str(round((moyenne-moyenne_lcdm)/moyenne_lcdm *100, 1))+ r" \%"
+            
+            if j == 4 : dico_snapshots[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
 
 tab_minko += r"\\"
 tab_minko+="\n"
@@ -166,6 +151,8 @@ for p in range(4):
                 max_delta = np.argmax(np.abs(data[p]-lcdm[p]))
 
                 tab_minko +=" &"+str(round((data[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))+ r" \%"
+                if j == 4 : dico_snapshots[snapshots[i]].append(round((data[p][max_delta]-lcdm[p][max_delta])/np.max(np.abs(lcdm[p])) *100, 1))
+
 
     tab_minko += r"\\"
     tab_minko+="\n"
@@ -231,6 +218,8 @@ for a in range(4):
 
                 tab_corr +=" &"+str(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))+ r" \%"
 
+                if j == 4 : dico_snapshots[snapshots[i]].append(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))
+
         tab_corr+=r"\\"
         tab_corr+="\n"
 
@@ -263,6 +252,8 @@ for p in range(4):
 
                 tab_rarete +=" &"+str(round((count[:,p][max_delta]-lcdm[:,p][max_delta])/np.max(np.abs(lcdm[:,p])) *100, 1))+ r" \%"
 
+                if j == 4 : dico_snapshots[snapshots[i]].append(round((count[:,p][max_delta]-lcdm[:,p][max_delta])/np.max(np.abs(lcdm[:,p])) *100, 1))
+
     tab_rarete += r"\\"
     tab_rarete+="\n"
         
@@ -278,4 +269,7 @@ tab_rarete+=r"""
 
 print(tab_rarete)
 
-latex_to_tab(tab_minko)
+for s in dico_snapshots.keys() :
+    plt.plot(np.array(dico_snapshots[s]),label = s)
+    plt.legend()
+    plt.savefig(f"tab.pdf")
