@@ -333,7 +333,7 @@ for z in range(2):
                 data_dico = []
                 for s2 in dico_snapshots_0.keys() :
                     if z == 1 :data_dico.append(dico_snapshots_0[s2][i])
-                    if z == 0 :data_dico.append(dico_snapshots_0[s2][i])
+                    if z == 0 :data_dico.append(dico_snapshots_1[s2][i])
                 
                 if z == 1 :
                     if dico_snapshots_0[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_0[s])/100)[i]))
@@ -343,4 +343,5 @@ for z in range(2):
             except : pass
 
         if z == 0 : plt.legend()
+    plt.tight_layout()
     plt.savefig(f"tab.pdf")
