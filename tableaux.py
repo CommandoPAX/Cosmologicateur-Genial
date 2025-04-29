@@ -107,7 +107,7 @@ for i in range(1,len(snapshots)) :
             moyenne_lcdm = np.mean(long_lcdm)
             tab_minko +=" &"+str(round((moyenne-moyenne_lcdm)/moyenne_lcdm *100, 1))+ r" \%"
             
-            if j == 4 : dico_snapshots[snapshots[i]].append(round((moyenne-moyennes_lcdm)/moyennes_lcdm *100, 1))
+            if j == 4 : dico_snapshots[snapshots[i]].append(round((moyenne-moyenne_lcdm)/moyennes_lcdm *100, 1))
 
 print(dico_snapshots)
 
