@@ -15,8 +15,7 @@ def latex_to_tab (tab_latex):
     for ligne in lignes :
         ligne = ligne.replace("&",",")
         ligne = ligne.replace(r"\%", "")
-        ligne = ligne.replace(r"\\","]")
-        ligne= "[" + ligne
+        ligne= "[" + ligne + "]"
         ligne = eval(ligne)
         print(ligne[1:])
 
