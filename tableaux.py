@@ -268,7 +268,7 @@ tab_rarete+=r"""
 """
 
 print(tab_rarete)
-annotation = [r"$\langle \kappa \rangle$", r"$\langle l \rangle$",r"$v_0$",r"$v_1$",r"$v_2$",r"$v_3$"]
+annotation = [r"$\langle \kappa \rangle$",r"$v_0$",r"$v_1$",r"$v_2$",r"$v_3$"]
 for p in range(4):
     annotation.append(r"$\mathcal {" + (["P", "F", "W", "V"][p])*2 + r"}$")
 
