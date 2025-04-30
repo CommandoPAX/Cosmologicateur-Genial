@@ -24,8 +24,8 @@ pre = "/data100/fcastillo/RESULT/"
 for i in range(4):
     k = 0
 
-    plt.figure()
-    plt.title(r"z = "+str(Redshifts[i]))
+    plt.figure(figsize=(9,9))
+    plt.title(r"$z = "+str(Redshifts[i])+r"$")
     for n in indices_hdm: 
         k +=1 
         if n <= 8 : redshifts = range(1,5)
