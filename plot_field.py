@@ -23,7 +23,7 @@ redshifts = [3,1,0.25,0]
 k = 0
 for i in range(4):
     plt.figure()
-    plt.title(r"z = "+redshifts[i])
+    plt.title(r"z = "+str(redshifts[i]))
     for n in indices_hdm: 
         k +=1 
         if n <= 8 : redshifts = range(1,5)
@@ -43,7 +43,7 @@ for i in range(4):
             hdul.close()
 
 
-            im = axes.imshow(field, origin="lower", vmax = 10, vmin = -2)
+            im = axes.imshow(np.sum(field,axis=2), origin="lower", vmax = 10, vmin = -2)
             axes.colorbar(im)
 
             axes.set_xlim(0,10)
