@@ -54,7 +54,7 @@ if __name__ == "__main__" :
 
 
     lss = ["-", "-.", "-",  "-","-"]
-    couleurs = ["blue", "green", "darkorange","violet","darkred"]"""
+    couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
 
 
