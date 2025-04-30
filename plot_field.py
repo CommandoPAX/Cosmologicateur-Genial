@@ -18,14 +18,14 @@ indices_hdm = [0,1,4,6,7,8,9,10,11]
 #indices_hdm = [0,2,6]
 #indices_hdm = [0,1,4,6,9]
 
-redshifts = [3,1,0.25,0]
+Redshifts = [3,1,0.25,0]
 pre = "/data100/fcastillo/RESULT/"
 
 for i in range(4):
     k = 0
 
     plt.figure()
-    plt.title(r"z = "+str(redshifts[i]))
+    plt.title(r"z = "+str(Redshifts[i]))
     for n in indices_hdm: 
         k +=1 
         if n <= 8 : redshifts = range(1,5)
@@ -52,4 +52,4 @@ for i in range(4):
         axes.set_xlabel(r"$\rm X [Mpc / h]$")
         axes.set_ylabel(r"$\rm Y [Mpc / h]$")
 
-    plt.savefig(f"field_{redshifts[i]}.pdf")
+    plt.savefig(f"field_{Redshifts[i]}.pdf")
