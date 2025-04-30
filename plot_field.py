@@ -19,37 +19,37 @@ indices_hdm = [0,1,4,6,7,8,9,10,11]
 #indices_hdm = [0,1,4,6,9]
 
 redshifts = [3,1,0.25,0]
+pre = "/data100/fcastillo/RESULT/"
 
-k = 0
 for i in range(4):
+    k = 0
+
     plt.figure()
     plt.title(r"z = "+str(redshifts[i]))
     for n in indices_hdm: 
         k +=1 
         if n <= 8 : redshifts = range(1,5)
         else : redshifts = indices_z
-        for i in redshifts:
-            z = redshifts[i]
-            plt.subplot(int("33"+str(k)))
-            axes = plt.gca()
-            axes.title.set_text(labels[n])
-
-            pre = "/data100/fcastillo/RESULT/"
-
-            data = pre + snapshots[n]+"/"+str(i)+"_densite_smooth2.fits"
-
-            hdul = fits.open(data)
-            field = hdul[0].data
-            hdul.close()
+        z = redshifts[i]
+        plt.subplot(int("33"+str(k)))
+        axes = plt.gca()
+        axes.title.set_text(labels[n])
 
 
-            im = axes.imshow(np.sum(field,axis=2), origin="lower", vmax = 10, vmin = -2)
-            axes.colorbar(im)
+        data = pre + snapshots[n]+"/"+str(i)+"_densite_smooth2.fits"
 
-            axes.set_xlim(0,10)
-            axes.set_ylim(0,10)
+        hdul = fits.open(data)
+        field = hdul[0].data
+        hdul.close()
 
-            axes.set_xlabel(r"$\rm X [Mpc / h]$")
-            axes.set_ylabel(r"$\rm Y [Mpc / h]$")
+
+        im = axes.imshow(np.sum(field,axis=2), origin="lower", vmax = 10, vmin = -2)
+        plt.colorbar(im, ax=axes)  
+
+        axes.set_xlim(0,10)
+        axes.set_ylim(0,10)
+
+        axes.set_xlabel(r"$\rm X [Mpc / h]$")
+        axes.set_ylabel(r"$\rm Y [Mpc / h]$")
 
     plt.savefig(f"field_{redshifts[i]}.pdf")
