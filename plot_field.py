@@ -31,7 +31,7 @@ plt.figure(figsize=(9,9))
 axs = []
 for row in range(3):
     for col in range(3):
-        inner = gridspec.GridSpecFromSubplotSpec(nrows=3, ncols=3, subplot_spec=outer[row, col], hspace=0)
+        inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
         axs += [plt.subplot(cell) for cell in inner]
 
 
