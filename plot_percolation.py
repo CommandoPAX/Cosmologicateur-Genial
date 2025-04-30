@@ -49,12 +49,12 @@ if __name__ == "__main__" :
     lss = ["-", ":", "--",  "--","--"]
     couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
-    """snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-    labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+    #snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
+    #labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
 
 
-    lss = ["-", "-.", "-",  "-","-"]
-    couleurs = ["blue", "green", "darkorange","violet","darkred"]"""
+    #lss = ["-", "-.", "-",  "-","-"]
+    #couleurs = ["blue", "green", "darkorange","violet","darkred"]"""
 
 
 
@@ -78,7 +78,7 @@ if __name__ == "__main__" :
     
 
     k = 0
-    for i in [4]:
+    for i in [3]:
         k += 1
         z_k = 9
         lcdm = np.load(f"/data100/fcastillo/RESULT/{snapshots[0]}/{i}_densite_smooth2_c0.1_percolation.txt.npy")
