@@ -30,8 +30,11 @@ for i in range(4):
     lcdm = hdul[0].data
     hdul.close()
 
-    z0 = np.min(np.sum(lcdm,axis=2))    
-    z1 = np.max(np.sum(lcdm,axis=2))
+    sum_ = np.sum(lcdm,axis=2)
+    mean_ = np.mean(sum)
+    std_ = np.std(sum)
+    z0 = mean_ - 2*std_     
+    z1 = mean_ +2*std_
 
 
     plt.figure(figsize=(9,9))
@@ -46,7 +49,7 @@ for i in range(4):
         axes.title.set_text(labels[n])
 
 
-        data = pre + snapshots[n]+"/"+str(i)+"_densite_smooth2.fits"
+        data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
 
         hdul = fits.open(data)
         field = hdul[0].data
