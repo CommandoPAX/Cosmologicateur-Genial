@@ -24,6 +24,16 @@ pre = "/data100/fcastillo/RESULT/"
 for i in range(4):
     k = 0
 
+    data = pre + snapshots[n]+"/"+str(i)+"_densite_smooth2.fits"
+
+    hdul = fits.open(data)
+    lcdm = hdul[0].data
+    hdul.close()
+
+    z0 = np.min(np.sum(lcdm,axis=2))    
+    z1 = np.min(np.sum(lcdm,axis=2))
+
+
     plt.figure(figsize=(9,9))
     plt.title(r"$z = "+str(Redshifts[i])+r"$")
     for n in indices_hdm: 
@@ -43,7 +53,7 @@ for i in range(4):
         hdul.close()
 
 
-        im = axes.imshow(np.sum(field,axis=2), origin="lower",vmin = -100, vmax = 100)
+        im = axes.imshow(np.sum(field,axis=2), origin="lower",vmin = z0, vmax = z1)
         plt.colorbar(im, ax=axes)  
 
         axes.set_xlim(0,100)
