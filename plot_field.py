@@ -47,7 +47,7 @@ for i in range(4):
     lcdm = hdul[0].data
     hdul.close()
 
-    sum_ = np.sum(lcdm[:,:,0:10],axis=2)
+    sum_ = np.sum(lcdm[:,:,0:2],axis=2)
     mean_ = np.mean(sum_)
     std_ = np.std(sum_)
     z0 = mean_ - 2*std_     
@@ -73,9 +73,9 @@ for i in range(4):
 
 
         if n < 8:
-            im = axes.imshow(np.sum(field[:,:,0:10],axis=2), origin="lower",vmin = z0, vmax = z1)
+            im = axes.imshow(np.sum(field[:,:,0:2],axis=2), origin="lower",vmin = z0, vmax = z1)
         else :
-            im = axes.imshow(np.sum(field[:,:,0:10],axis=2), origin="lower",vmin = z0, vmax = z1)
+            im = axes.imshow(np.sum(field[:,:,0:2],axis=2), origin="lower",vmin = z0, vmax = z1)
 
         if (k) % 3 == 0 : plt.colorbar(im, ax=axes)
         if not k-1 > 5 : axes.xaxis.set_visible(False)  
