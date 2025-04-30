@@ -23,19 +23,22 @@ indices_hdm = [0,1,4,6,7,8,9,10,11]
 Redshifts = [3,1,0.25,0]
 pre = "/data100/fcastillo/RESULT/"
 
-outer = gridspec.GridSpec(nrows=3, ncols=3)
-
-plt.figure(figsize=(9,9))
-
-
-axs = []
-for row in range(3):
-    for col in range(3):
-        inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
-        axs += [plt.subplot(cell) for cell in inner]
 
 
 for i in range(4):
+
+    outer = gridspec.GridSpec(nrows=3, ncols=3)
+
+    plt.figure(figsize=(9,9))
+
+
+    axs = []
+    for row in range(3):
+        for col in range(3):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
+
+
     k = 0
 
     data = pre + snapshots[0]+"/"+str(i)+"_densite_smooth2.fits"
