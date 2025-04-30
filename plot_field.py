@@ -23,7 +23,7 @@ indices_hdm = [0,1,4,6,7,8,9,10,11]
 Redshifts = [3,1,0.25,0]
 pre = "/data100/fcastillo/RESULT/"
 
-outer = gridspec.GridSpec(nrows=1, ncols=1)
+outer = gridspec.GridSpec(nrows=3, ncols=3)
 
 plt.figure(figsize=(9,9))
 
