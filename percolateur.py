@@ -66,21 +66,19 @@ indices = field[X, Y, Z] >= seuil_haut
 
 
 result = result[indices]
-xyz = result[result[:,3]==0][:,0:2]
+xyz = result[result[:,3]==0][:,0:3]
 
-print(np.shape(xyz))
 
-squelette = Squelette_3d(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1.up.NDskl.S001.a.NDskl")
-xyz = np.array([[p.x, p.y, p.z] for p in squelette.Pointscrit])
+#squelette = Squelette_3d(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1.up.NDskl.S001.a.NDskl")
+#xyz = np.array([[p.x, p.y, p.z] for p in squelette.Pointscrit])
 
-print(np.shape(xyz))
 taille = []
 taille2 = []
 
 Ntot = len(result)
 print(Ntot)
 
-for b in [0.2]:#np.arange(0.6,10,1) :
+for b in np.arange(0.5,2.1,0.5) :
     clusters = identify_clusters(xyz, b * (500**3/Ntot)**(1/3))
     taille.append(max(len(cluster) for cluster in clusters))
 
