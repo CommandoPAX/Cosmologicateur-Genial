@@ -31,7 +31,7 @@ for i in range(4):
     hdul.close()
 
     z0 = np.min(np.sum(lcdm,axis=2))    
-    z1 = np.min(np.sum(lcdm,axis=2))
+    z1 = np.max(np.sum(lcdm,axis=2))
 
 
     plt.figure(figsize=(9,9))
