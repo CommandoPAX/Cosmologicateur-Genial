@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python plot_lineaire.py
+python plot_percolation.py
