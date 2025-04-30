@@ -104,7 +104,7 @@ if __name__ == "__main__" :
                 #print(data)
                 
 
-                axes.plot(np.arange(0.6,1.4,0.01),percole, color= couleur, ls = ls, label=label)
+                axes.plot(np.arange(0.8,1.2,0.001),percole, color= couleur, ls = ls, label=label)
                 axes.set_ylabel(r"$S$")
                 axes.set_xlabel(r"$bb$")
 
@@ -147,8 +147,8 @@ if __name__ == "__main__" :
             try : percole = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{j}_densite_smooth2_c0.1_percolation_2.txt.npy")
             except : percole = np.load(f"/data100/fcastillo/RESULT/{snapshots[i]}/{z_k}_densite_smooth2_c0.1_percolation_2.txt.npy")
             
-            transitions.append(np.arange(0.6,1.4,0.01)[np.argmax(percole)])
-            transitions_lcdm.append(np.arange(0.6,1.4,0.01)[np.argmax(lcdm)])
+            transitions.append(np.arange(0.8,1.2,0.001)[np.argmax(percole)])
+            transitions_lcdm.append(np.arange(0.8,1.2,0.001)[np.argmax(lcdm)])
             
         #print(moyennes)
         axes = plt.gca()
