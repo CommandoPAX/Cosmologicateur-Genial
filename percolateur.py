@@ -87,5 +87,9 @@ for b in np.arange(0.6,10,1) :
         deuxieme = len(clusters_sorted[1])
         taille2.append(deuxieme)
 
-np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation.txt", np.array(taille)/Ntot)
-np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation_2.txt", np.array(taille2)/Ntot)
+taille = np.array(taille)
+taille2 = np.array(taille2)
+print(taille, taille/Ntot, taille2, taille2/Ntot)
+
+np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation.txt", taille/Ntot)
+np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_c0.1_percolation_2.txt", taille2/Ntot)
