@@ -60,8 +60,8 @@ for i in range(4):
         im = axes.imshow(np.sum(field,axis=2), origin="lower",vmin = z0, vmax = z1)
         plt.colorbar(im, ax=axes)  
 
-        axes.set_xlim(0,100)
-        axes.set_ylim(0,100)
+        axes.set_xlim(0,500)
+        axes.set_ylim(0,500)
 
         axes.set_xlabel(r"$\rm X [Mpc / h]$")
         axes.set_ylabel(r"$\rm Y [Mpc / h]$")
