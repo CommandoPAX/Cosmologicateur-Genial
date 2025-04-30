@@ -43,11 +43,11 @@ for i in range(4):
         hdul.close()
 
 
-        im = axes.imshow(np.sum(field,axis=2), origin="lower", vmax = 10, vmin = -2)
+        im = axes.imshow(np.sum(field,axis=2), origin="lower")
         plt.colorbar(im, ax=axes)  
 
-        axes.set_xlim(0,10)
-        axes.set_ylim(0,10)
+        axes.set_xlim(0,100)
+        axes.set_ylim(0,100)
 
         axes.set_xlabel(r"$\rm X [Mpc / h]$")
         axes.set_ylabel(r"$\rm Y [Mpc / h]$")
