@@ -75,7 +75,7 @@ xyz = result[result[:,3]==0][:,0:3]
 taille = []
 taille2 = []
 
-Ntot = len(result)
+Ntot = len(xyz)
 print(Ntot)
 
 for b in np.arange(0.5,5.1,0.5) :
