@@ -60,7 +60,7 @@ for i in range(4):
         if n < 8:
             im = axes.imshow(np.sum(field,axis=2), origin="lower",vmin = z0, vmax = z1)
         else :
-            im = axes.imshow(np.sum(field,axis=1), origin="lower",vmin = z0, vmax = z1)
+            im = axes.imshow(np.sum(field,axis=0), origin="lower",vmin = z0, vmax = z1)
 
         plt.colorbar(im, ax=axes)  
 
