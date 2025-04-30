@@ -47,7 +47,7 @@ for i in range(4):
     lcdm = hdul[0].data
     hdul.close()
 
-    sum_ = np.sum(lcdm[:,:,0,10],axis=2)
+    sum_ = np.sum(lcdm[:,:,0:10],axis=2)
     mean_ = np.mean(sum_)
     std_ = np.std(sum_)
     z0 = mean_ - 2*std_     
