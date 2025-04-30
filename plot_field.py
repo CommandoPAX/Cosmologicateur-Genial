@@ -44,7 +44,7 @@ for i in range(4):
 
 
         im = axes.imshow(np.sum(field,axis=2), origin="lower")
-        plt.colorbar(im, ax=axes)  
+        plt.colorbar(im, ax=axes,vmin = -50, vmax = 50)  
 
         axes.set_xlim(0,100)
         axes.set_ylim(0,100)
@@ -52,4 +52,5 @@ for i in range(4):
         axes.set_xlabel(r"$\rm X [Mpc / h]$")
         axes.set_ylabel(r"$\rm Y [Mpc / h]$")
 
+    plt.tight_layout()
     plt.savefig(f"field_{Redshifts[i]}.pdf")
