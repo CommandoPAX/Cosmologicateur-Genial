@@ -24,7 +24,7 @@ pre = "/data100/fcastillo/RESULT/"
 for i in range(4):
     k = 0
 
-    data = pre + snapshots[n]+"/"+str(i)+"_densite_smooth2.fits"
+    data = pre + snapshots[0]+"/"+str(i)+"_densite_smooth2.fits"
 
     hdul = fits.open(data)
     lcdm = hdul[0].data
