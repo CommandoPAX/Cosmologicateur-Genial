@@ -77,7 +77,7 @@ taille2 = []
 Ntot = len(result)
 print(Ntot)
 
-for b in [0.2]:#np.arange(0.6,1.4,0.01) :
+for b in np.arange(0.6,10,1) :
     clusters = identify_clusters(xyz, b * (500**3/Ntot)**(1/3))
     taille.append(max(len(cluster) for cluster in clusters))
 
