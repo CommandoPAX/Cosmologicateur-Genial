@@ -54,3 +54,4 @@ for i in range(4):
 
     plt.tight_layout()
     plt.savefig(f"field_{Redshifts[i]}.pdf")
+    plt.clf()
