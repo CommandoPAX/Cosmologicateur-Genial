@@ -43,7 +43,7 @@ for i in range(4):
         hdul.close()
 
 
-        im = axes.imshow(np.sum(field,axis=2), origin="lower",vmin = -50, vmax = 50)
+        im = axes.imshow(np.sum(field,axis=2), origin="lower",vmin = -100, vmax = 100)
         plt.colorbar(im, ax=axes)  
 
         axes.set_xlim(0,100)
