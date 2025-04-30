@@ -57,7 +57,11 @@ for i in range(4):
         hdul.close()
 
 
-        im = axes.imshow(np.sum(field,axis=2), origin="lower",vmin = z0, vmax = z1)
+        if n < 8:
+            im = axes.imshow(np.sum(field,axis=2), origin="lower",vmin = z0, vmax = z1)
+        else :
+            im = axes.imshow(np.sum(field,axis=1), origin="lower",vmin = z0, vmax = z1)
+
         plt.colorbar(im, ax=axes)  
 
         axes.set_xlim(0,500)
