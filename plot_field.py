@@ -58,7 +58,7 @@ for i in range(4):
         else : redshifts = indices_z
         z = redshifts[i]
         print(z)
-        axes = axs[k]
+        axes = axs[k-1]
         axes.title.set_text(labels[n])
 
 
@@ -74,9 +74,9 @@ for i in range(4):
         else :
             im = axes.imshow(np.sum(field,axis=0), origin="lower",vmin = z0, vmax = z1)
 
-        if (k+1) % 3 == 0 : plt.colorbar(im, ax=axes)
-        if not k > 5 : axes.xaxis.set_visible(False)  
-        if not k % 3 == 0 : axes.yaxis.set_visible(False)  
+        if (k) % 3 == 0 : plt.colorbar(im, ax=axes)
+        if not k-1 > 5 : axes.xaxis.set_visible(False)  
+        if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
         axes.set_xlim(0,500)
         axes.set_ylim(0,500)
