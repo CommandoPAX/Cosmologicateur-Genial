@@ -44,6 +44,7 @@ for i in range(4):
         if n <= 8 : redshifts = range(1,5)
         else : redshifts = indices_z
         z = redshifts[i]
+        print(z)
         plt.subplot(int("33"+str(k)))
         axes = plt.gca()
         axes.title.set_text(labels[n])
