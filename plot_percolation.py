@@ -49,12 +49,12 @@ if __name__ == "__main__" :
     lss = ["-", ":", "--",  "--","--"]
     couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
-    snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
+    """snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
     labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
 
 
     lss = ["-", "-.", "-",  "-","-"]
-    couleurs = ["blue", "green", "darkorange","violet","darkred"]
+    couleurs = ["blue", "green", "darkorange","violet","darkred"]"""
 
 
 
