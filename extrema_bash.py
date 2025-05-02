@@ -47,7 +47,7 @@ module load inteloneapi/2025.0.1
 
 
         fichier.write(f"""
-python extremateur.py {n} {i}
+python /home/fcastillo/Cosmologicateur-Genial/extremateur.py {n} {i}
 """)
             
         fichier.write("exit 0")
