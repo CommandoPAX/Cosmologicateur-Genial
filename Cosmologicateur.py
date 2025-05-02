@@ -273,7 +273,7 @@ def main(argv):
     SPE = True 
     HAL = False
 
-    pre = "/data77/stahl/Scale/Nb/WDM/ViVi"
+    pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
     snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
     for n in range(3):
