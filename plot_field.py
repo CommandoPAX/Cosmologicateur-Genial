@@ -76,14 +76,17 @@ if True : #for Xmax in [50,100,500]:
             field = hdul[0].data
             hdul.close()
 
-            sum_ = np.sum(field,axis=2)
 
 
-            if n > 0:
+            if n <9:
+                sum_ = np.sum(field,axis=2)
+
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
             else : 
+                sum_ = np.sum(field,axis=1)
+
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n])
             
