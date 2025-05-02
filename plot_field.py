@@ -80,7 +80,7 @@ for i in range(4):
         else :
             im = axes.imshow(np.sum(field[0:100,0:100,0:2]-z0+0.1,axis=2), origin="lower",norm=LogNorm(vmin = 0.1, vmax = z1-z0+0.1))
 
-        if (k) % 3 == 0 : plt.colorbar(im)
+        #if (k) % 3 == 0 : plt.colorbar(im)
         if not k-1 > 5 : axes.xaxis.set_visible(False)  
         if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
