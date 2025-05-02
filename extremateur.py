@@ -20,17 +20,12 @@ from math import sqrt
 
 import sys
 
-def count_pairs(tree_A, tree_B, r):
-    global R
+def count_pairs_query_ball_point(points_A, tree_B, r):
+    neighbors_list = tree_B.query_ball_point(points_A, r, workers=-1)
+    count = sum(len(n) for n in neighbors_list)
 
-    count = 0
-    count0 = 0
-
-    if True : #R >= 2 :
-        
-        count = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, r))
-        count0 = np.sum(len(neighbors) for neighbors in tree_A.query_ball_tree(tree_B, 0.1))
-
+    neighbors_list0 = tree_B.query_ball_point(points_A, 0.1, workers=-1)
+    count0 = sum(len(n) for n in neighbors_list0)
 
     return count - count0
 
@@ -82,7 +77,7 @@ except:
 
 #for j in range(4):
 #    for k in range(j, 4):
-data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
+data = pre + snapshots[n]+"/"+str(i)+"_densite_smooth2.fits"
 
 hdul = fits.open(data)
 field = hdul[0].data
@@ -123,24 +118,23 @@ for j in range(4) :
         elif k in (2, 3):  # Vides et murs 
             indices_k = field[Xk, Yk, Zk] <= seuil_bas_k
 
-        data_random = np.load(f"/data100/fcastillo/RESULT/extrema/random.txt.npy")[:len(result_k[indices_k])*10,:] % 512
+        data_random = np.random.uniform(low=0,high=512,size=(len(result_k[indices_k])*10,3))
 
-        tree_k = KDTree(result_k[indices_k],boxsize=512) 
-        tree_j = KDTree(result_j[indices_j],boxsize=512)
-        tree_r = KDTree(data_random,boxsize=512)
+        points_k = result_k[indices_k]
+        points_j = result_j[indices_j]
 
-        print("points charges")
+        tree_r = KDTree(data_random, boxsize=512)
 
-        r_small = np.linspace(0.1, 10, 80)
-        r_large = np.geomspace(10, 20, 20)
-        r_bins = np.concatenate((r_small, r_large))
+        r_bins = np.linspace(0.1,20,30)
 
+        DD_counts = np.array([count_pairs_query_ball_point(points_k, KDTree(points_j, boxsize=512), r)
+                            for r in r_bins[1:]])
 
-        DD_counts = np.array([count_pairs(tree_k, tree_j, r) for r in r_bins[1:]])
+        DRk_counts = np.array([count_pairs_query_ball_point(points_k, tree_r, r)
+                            for r in r_bins[1:]])
 
-        DRk_counts = np.array([count_pairs(tree_k, tree_r, r) for r in r_bins[1:]])
-        DRj_counts = np.array([count_pairs(tree_j, tree_r, r) for r in r_bins[1:]])
-
+        DRj_counts = np.array([count_pairs_query_ball_point(points_j, tree_r, r)
+                            for r in r_bins[1:]])
         DRk_counts[DRk_counts == 0] = 1
         DRj_counts[DRj_counts == 0] = 1
 
