@@ -17,7 +17,7 @@ labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -5
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
 
-indices_hdm = [0,1,4,6,7,8]
+indices_hdm = [0,1,4,6,7,8,9,10,11]
 #indices_hdm = [0,2,6]
 #indices_hdm = [0,1,4,6,9]
 
