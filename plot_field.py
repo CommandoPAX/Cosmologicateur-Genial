@@ -16,7 +16,7 @@ labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -5
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
 
-indices_hdm = [0,1,4,6,7,8,9,10,11]
+indices_hdm = [0,1,4,6,7,8]
 #indices_hdm = [0,2,6]
 #indices_hdm = [0,1,4,6,9]
 
@@ -28,13 +28,13 @@ pre = "/data100/fcastillo/RESULT/"
 for Xmax in [10,50,100,500]:
     for i in range(4):
 
-        outer = gridspec.GridSpec(nrows=3, ncols=3)
+        outer = gridspec.GridSpec(nrows=2, ncols=3)
 
         plt.figure(figsize=(9,9))
 
 
         axs = []
-        for row in range(3):
+        for row in range(2):
             for col in range(3):
                 inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
                 axs += [plt.subplot(cell) for cell in inner]
@@ -85,7 +85,7 @@ for Xmax in [10,50,100,500]:
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n])
 
-            if (k) % 3 == 0 : plt.colorbar(im)
+            if (k) % 3 == 0 or k == 1: plt.colorbar(im)
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
             if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
