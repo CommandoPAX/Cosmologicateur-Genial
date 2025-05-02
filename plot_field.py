@@ -80,7 +80,7 @@ if True : #for Xmax in [50,100,500]:
 
 
             if n > 0:
-                im = axes.imshow(sum_, origin="lower",vmin=-0.2,vmax = 0.2,cmap="inferno")
+                im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
             else : 
@@ -104,11 +104,11 @@ if True : #for Xmax in [50,100,500]:
         im_diff = axs[1].images[0]        # image des différences (à droite)
 
         # Créer un axe à gauche pour la colorbar LCDM
-        divider_left = make_axes_locatable(axs[0])
-        cax_left = divider_left.append_axes("left", size="5%", pad=0.1)
-        plt.colorbar(im_lcdm, cax=cax_left)
-        cax_left.yaxis.set_ticks_position('left')
-        cax_left.yaxis.set_label_position('left')
+        #divider_left = make_axes_locatable(axs[0])
+        #cax_left = divider_left.append_axes("left", size="5%", pad=0.1)
+        #plt.colorbar(im_lcdm, cax=cax_left)
+        #cax_left.yaxis.set_ticks_position('left')
+        #cax_left.yaxis.set_label_position('left')
 
         # Créer un axe à droite pour la colorbar des différences
         divider_right = make_axes_locatable(axs[-1])
