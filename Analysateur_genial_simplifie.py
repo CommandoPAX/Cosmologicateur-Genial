@@ -267,9 +267,9 @@ if __name__ == "__main__" :
     lcdm = Simulation(name="benchM")
 
 
-    WDM500 = Simulation(name="G_m500")
-    WDM500fm500 = Simulation(name="NG_F500_m500")
-    WDM500f500 = Simulation(name="NG_Fminus500_m500")
+    WDM500 = Simulation(name="G_ViVi")
+    WDM500fm500 = Simulation(name="NG_ViVi")
+    WDM500f500 = Simulation(name="NG_Fminus500_ViVi")
     fm500 = Simulation(name="NG_F500")
     f500 = Simulation(name="NG_Fminus500")
 
