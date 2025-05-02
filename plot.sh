@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python plot_percolation.py
+python plot_field.py

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from astropy.io import fits
 from matplotlib import gridspec
-
+from matplotlib.colors import LogNorm
 
 
 matplotlib.rcParams['text.usetex'] = True
@@ -47,11 +47,11 @@ for i in range(4):
     lcdm = hdul[0].data
     hdul.close()
 
-    sum_ = np.sum(lcdm[:,:,0:2],axis=2)
+    sum_ = np.sum(lcdm[0:100,0:100,0:2],axis=2)
     mean_ = np.mean(sum_)
     std_ = np.std(sum_)
-    z0 = mean_ - 2*std_     
-    z1 = mean_ +2*std_
+    z0 = np.min(sum_)
+    z1 = np.max(sum_)
 
 
     plt.title(r"$z = "+str(Redshifts[i])+r"$")
@@ -73,16 +73,16 @@ for i in range(4):
 
 
         if n < 8:
-            im = axes.imshow(np.sum(field[:,:,0:2],axis=2), origin="lower",vmin = z0, vmax = z1)
+            im = axes.imshow(np.sum(field[0:100,0:100,0:2]-z0+0.1,axis=2), origin="lower", norm=LogNorm(vmin=0.1,vmax=z1-z0+0.1))
         else :
-            im = axes.imshow(np.sum(field[:,:,0:2],axis=2), origin="lower",vmin = z0, vmax = z1)
+            im = axes.imshow(np.sum(field[0:100,0:100,0:2]-z0+0.1,axis=2), origin="lower",norm=LogNorm(vmin = 0.1, vmax = z1-z0+0.1))
 
-        if (k) % 3 == 0 : plt.colorbar(im, ax=axes)
+        if (k) % 3 == 0 : plt.colorbar(im)
         if not k-1 > 5 : axes.xaxis.set_visible(False)  
         if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
-        axes.set_xlim(0,500)
-        axes.set_ylim(0,500)
+        #axes.set_xlim(0,50)
+        #axes.set_ylim(0,50)
 
         axes.set_xlabel(r"$\rm X [Mpc / h]$")
         axes.set_ylabel(r"$\rm Y [Mpc / h]$")
