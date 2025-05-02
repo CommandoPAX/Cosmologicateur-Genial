@@ -79,10 +79,10 @@ for Xmax in [10,50,100,500]:
 
 
             if True:
-                im = axes.imshow(sum_-sum_lcdm+0.1, origin="lower", norm=LogNorm(vmin=0.1,vmax=0.11),cmap="inferno")
+                im = axes.imshow(sum_-sum_lcdm+0.1, origin="lower",cmap="inferno")
 
 
-            #if (k) % 3 == 0 : plt.colorbar(im)
+            if (k) % 3 == 0 : plt.colorbar(im)
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
             if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
