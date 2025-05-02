@@ -298,8 +298,8 @@ if __name__ == "__main__" :
 
         plt.loglog(lcdm.k[i], lcdm.P[i]/lcdm.P[i], label=r"$\Lambda{\rm CDM}$")
         plt.loglog(WDM500.k[i], WDM500.P[i]/lcdm.P[i], label =r"$m_{\rm WDM} = 500 eV$", ls="--", color="green")
-        plt.loglog(WDM500f500.k[i], WDM500f500.P[i]/lcdm.P[i], label =r"$fnl = 500 & WDM$", color="fuchsia",ls="--")
-        plt.loglog(WDM500fm500.k[i], WDM500fm500.P[i]/lcdm.P[i], label =r"$fnl = -500 & WDM$", color="orange",ls="--")
+        plt.loglog(WDM500f500.k[i], WDM500f500.P[i]/lcdm.P[i], label =r"$fnl = 500 \& WDM$", color="fuchsia",ls="--")
+        plt.loglog(WDM500fm500.k[i], WDM500fm500.P[i]/lcdm.P[i], label =r"$fnl = -500 \& WDM$", color="orange",ls="--")
         plt.loglog(f500.k[i], f500.P[i]/lcdm.P[i], label =r"fnl = 500",color="fuchsia")
         plt.loglog(fm500.k[i], fm500.P[i]/lcdm.P[i], label =r"$fnl = -500$", color="orange")
         n +=1
