@@ -25,12 +25,12 @@ pre = "/data100/fcastillo/RESULT/"
 
 
 
-for Xmax in [10,50,100,500]:
+for Xmax in [50,100,500]:
     for i in range(4):
 
         outer = gridspec.GridSpec(nrows=2, ncols=3)
 
-        plt.figure(figsize=(9,9))
+        plt.figure(figsize=(9,6))
 
 
         axs = []
@@ -85,7 +85,7 @@ for Xmax in [10,50,100,500]:
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n])
 
-            if (k) % 3 == 0 or k == 1: plt.colorbar(im)
+            if (k) == 3: plt.colorbar(im, ax=axs, location='right')
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
             if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
