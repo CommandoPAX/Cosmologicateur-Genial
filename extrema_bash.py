@@ -7,9 +7,16 @@ import time
 pre = "/data100/fcastillo/RESULT/"
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi", "NG_ViVi","NG_Fminus500_ViVi","NEDE","NsPNG_EDE_F500","NsPNG_EDE_F1833"]
 
-for n in range(9,12):
-    for i in [5,6,8,9]:
+indices_hdm = [0,1,4,6,7,8,9,10,11]
+indices_z = [6,9]
 
+#indices_hdm = [0,2,6]
+#indices_hdm = [0,1,4,6,9]
+
+for n in indices_hdm: # 7
+    if n <= 8 : redshifts = [3,4]
+    else : redshifts = indices_z
+    for i in redshifts:
         #input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
 
@@ -20,6 +27,8 @@ for n in range(9,12):
 #SBATCH --time=24:00:00
 #SBATCH --output=/home/fcastillo/logs/extrema_{n}_{i}.out
 #SBATCH --partition=pscomp
+#SBATCH --ntasks-per-node=128
+#SBATCH --nodelist=i30,i31
 """)
         fichier.write("""
 
