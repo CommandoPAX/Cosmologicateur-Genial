@@ -314,7 +314,7 @@ if __name__ == "__main__" :
 
     
 
-    plt.show()
+    plt.savefig("PS.pdf")
     
 
     #superposer(fnl=-1000,wdm=100)
