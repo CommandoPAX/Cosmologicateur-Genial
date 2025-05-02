@@ -4,6 +4,7 @@ import matplotlib
 from astropy.io import fits
 from matplotlib import gridspec
 from matplotlib.colors import LogNorm
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
 matplotlib.rcParams['text.usetex'] = True
@@ -85,7 +86,8 @@ for Xmax in [50,100,500]:
             else : 
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n])
-                ims.append(im)
+            
+            ims.append(im)
                 
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
             if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
@@ -96,9 +98,23 @@ for Xmax in [50,100,500]:
             axes.set_xlabel(r"$\rm X [Mpc / h]$")
             axes.set_ylabel(r"$\rm Y [Mpc / h]$")
 
-        plt.colorbar(ims[0], ax=axs, location='right',pad=0.2)
-        plt.colorbar(ims[0], ax=axs, location='left',pad=0.2)
 
+        # Récupérer les deux images à colorbar
+        im_lcdm = axs[0].images[0]        # image LCDM (à gauche)
+        im_diff = axs[1].images[0]        # image des différences (à droite)
+
+        # Créer un axe à gauche pour la colorbar LCDM
+        divider_left = make_axes_locatable(axs[0])
+        cax_left = divider_left.append_axes("left", size="5%", pad=0.1)
+        plt.colorbar(im_lcdm, cax=cax_left)
+        cax_left.yaxis.set_ticks_position('left')
+        cax_left.yaxis.set_label_position('left')
+
+        # Créer un axe à droite pour la colorbar des différences
+        divider_right = make_axes_locatable(axs[-1])
+        cax_right = divider_right.append_axes("right", size="5%", pad=0.1)
+        plt.colorbar(im_diff, cax=cax_right)
+        
         plt.tight_layout()
         plt.savefig(f"field_diff_{Redshifts[i]}_{Xmax}.pdf")
         plt.clf()
