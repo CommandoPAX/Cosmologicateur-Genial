@@ -313,8 +313,8 @@ if __name__ == "__main__" :
 
 
     
-
-    plt.savefig("PS.pdf")
+    print("test")
+    plt.savefig("/home/fcastillo/Cosmologicateur-Genial/PS.pdf")
     
 
     #superposer(fnl=-1000,wdm=100)
