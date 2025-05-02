@@ -26,16 +26,16 @@ pre = "/data100/fcastillo/RESULT/"
 
 
 
-for Xmax in [50,100,500]:
+if True : #for Xmax in [50,100,500]:
     for i in range(4):
 
-        outer = gridspec.GridSpec(nrows=2, ncols=3)
+        outer = gridspec.GridSpec(nrows=3, ncols=3)
 
-        plt.figure(figsize=(9,6))
+        plt.figure(figsize=(9,9))
 
 
         axs = []
-        for row in range(2):
+        for row in range(3):
             for col in range(3):
                 inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
                 axs += [plt.subplot(cell) for cell in inner]
@@ -49,7 +49,7 @@ for Xmax in [50,100,500]:
         lcdm = hdul[0].data
         hdul.close()
 
-        sum_lcdm = np.sum(lcdm[0:Xmax,0:Xmax,0:2],axis=2)
+        sum_lcdm = np.sum(lcdm,axis=2)
         mean_ = np.mean(sum_lcdm)
         std_ = np.std(sum_lcdm)
         z0 = sum_lcdm.min()
@@ -76,11 +76,11 @@ for Xmax in [50,100,500]:
             field = hdul[0].data
             hdul.close()
 
-            sum_ = np.sum(field[0:Xmax,0:Xmax,0:2],axis=2)
+            sum_ = np.sum(field,axis=2)
 
 
             if n > 0:
-                im = axes.imshow(sum_-sum_lcdm, origin="lower",vmin=-0.2,vmax = 0.2,cmap="inferno")
+                im = axes.imshow(sum_, origin="lower",vmin=-0.2,vmax = 0.2,cmap="inferno")
                 axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
             else : 
@@ -114,7 +114,7 @@ for Xmax in [50,100,500]:
         divider_right = make_axes_locatable(axs[-1])
         cax_right = divider_right.append_axes("right", size="5%", pad=0.1)
         plt.colorbar(im_diff, cax=cax_right)
-        
+
         plt.tight_layout()
-        plt.savefig(f"field_diff_{Redshifts[i]}_{Xmax}.pdf")
+        plt.savefig(f"field_tot_{Redshifts[i]}.pdf")
         plt.clf()
