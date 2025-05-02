@@ -53,6 +53,7 @@ for i in range(4):
     z0 = sum_.min()
     z1 = sum_.max()
     print(np.argmin(sum_))
+    print(sum_)
     rho_m = 1073741824000000
     mass = rho_m * sum_ + rho_m
     
@@ -75,7 +76,7 @@ for i in range(4):
         field = hdul[0].data
         hdul.close()
 
-        sum_ = np.sum(field[0:100,0:100,0:2])
+        sum_ = np.sum(field[0:100,0:100,0:2],axis=2)
 
 
         if True:
