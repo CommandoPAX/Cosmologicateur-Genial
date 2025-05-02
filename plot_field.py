@@ -85,7 +85,7 @@ if True : #for Xmax in [50,100,500]:
                 axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
             else : 
-                sum_ = np.sum(field,axis=1)
+                sum_ = np.sum(field,axis=0)
 
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n])
