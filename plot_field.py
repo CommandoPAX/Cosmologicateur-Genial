@@ -79,7 +79,7 @@ for Xmax in [10,50,100,500]:
 
 
             if True:
-                im = axes.imshow(sum_-sum_lcdm+0.1, origin="lower",vmin=-0.2,vmax = 0.2,cmap="inferno")
+                im = axes.imshow(sum_-sum_lcdm, origin="lower",vmin=-0.2,vmax = 0.2,cmap="inferno")
 
 
             if (k) % 3 == 0 : plt.colorbar(im)
