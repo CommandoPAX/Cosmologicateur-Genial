@@ -37,9 +37,9 @@ def Copy_Mono_Config(path : str) :
 def Predicted_Particle_Mass(DATA, index : int, path : str, SimuName : str) :
 
     if SimuName == "" : 
-        output_ = f"{path}/{index}_PPM.png"
+        output_ = f"{path}/{index}_PPM.pdf"
     else : 
-        output_ = f"{path}/{index}_PPM_{SimuName}.png"
+        output_ = f"{path}/{index}_PPM_{SimuName}.pdf"
     #plot
     PPM = yt.ParticlePlot(DATA, 'particle_position_x', 'particle_position_y','particle_mass')
     PPM.set_unit('particle_mass', 'Msun')
@@ -197,9 +197,9 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
 
 
     if SimuName == "" : 
-        output_ = f"{path}/{index}_POW.png"
+        output_ = f"{path}/{index}_POW.pdf"
     else : 
-        output_ = f"{path}/{index}_POW_{SimuName}.png"
+        output_ = f"{path}/{index}_POW_{SimuName}.pdf"
 
     grid = 512    #grid size
     BoxSize = 500
@@ -234,7 +234,7 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
 
     hdu.writeto(f"{path}/{index}_densite.fits", overwrite=True)
 
-    """
+    
     Pk = PKL.Pk(delta, BoxSize, axis, MAS, threads, verbose)
     k       = Pk.k3D
     Pk0     = Pk.Pk[:,0]
@@ -262,7 +262,7 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     plt.xlabel("k [h/Mpc]")
     plt.ylabel(r"P(k) [$(Mpc/h)^3$]")
     plt.savefig(output_)
-    """
+    
 
 
 def main(argv):
@@ -273,11 +273,11 @@ def main(argv):
     SPE = True 
     HAL = False
 
-    pre = "/data77/stahl/EDE/Run/Nb/"
-    snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
+    pre = "/data77/stahl/Scale/Nb/WDM/ViVi"
+    snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
-    for n in range(7):
-        for i in range(10):
+    for n in range(3):
+        for i in range(5):
             name = snapshots[n]
             file_path = pre + name
 
@@ -305,9 +305,9 @@ def main(argv):
 
             Power_Spectrum_gadget(f"{file_path}/snapshot_00{i}", i, Output_Path, name, z)
 
-            #ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
+            ds=yt.load(input_,unit_base=units_override, bounding_box=bbox)
             
-            #Predicted_Particle_Mass(ds, i, Output_Path, name)
+            Predicted_Particle_Mass(ds, i, Output_Path, name)
             #Get_Simu_Info(ds, i, Output_Path, name)
             #if POT : Potential(ds, i, Output_Path, name)
             #if VEL : Velocity(ds, i, Output_Path, name)
