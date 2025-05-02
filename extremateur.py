@@ -118,7 +118,7 @@ for j in range(4) :
         elif k in (2, 3):  # Vides et murs 
             indices_k = field[Xk, Yk, Zk] <= seuil_bas_k
 
-        data_random = np.random.uniform(low=0,high=512,size=(len(result_k[indices_k])*10,3))
+        data_random = np.random.uniform(low=0,high=512,size=(len(result_k[indices_k])*100,3))
 
         points_k = result_k[indices_k]
         points_j = result_j[indices_j]
@@ -147,4 +147,4 @@ for j in range(4) :
         print(DRj_counts)
         print(correlation, np.array(correlation))
 
-        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_P{P}_grand.txt", np.array(correlation))
+        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_P{P}_tres_grand.txt", np.array(correlation))
