@@ -41,19 +41,21 @@ for i in range(4):
 
     k = 0
 
-    data = pre + snapshots[0]+"/"+str(i)+"_densite_smooth2.fits"
+    data = pre + snapshots[0]+"/"+str(i+1)+"_densite_smooth2.fits"
 
     hdul = fits.open(data)
     lcdm = hdul[0].data
     hdul.close()
 
     sum_ = np.sum(lcdm[0:100,0:100,0:2],axis=2)
+    mean_ = np.mean(sum_)
+    std_ = np.std(sum_)
+    z0 = np.min(sum_)
+    z1 = np.max(sum_)
     rho_m = 1073741824000000
     mass = rho_m * sum_ + rho_m
-    z0 = np.min(mass)
-    z1 = np.max(mass)
     
-    print(z0,z1)
+
 
     plt.title(r"$z = "+str(Redshifts[i])+r"$")
     for n in indices_hdm: 
@@ -73,8 +75,10 @@ for i in range(4):
         hdul.close()
 
 
-        if True:
-            im = axes.imshow(mass, origin="lower", norm=LogNorm(vmin=z0,vmax=z1))
+        if n < 8:
+            im = axes.imshow(np.sum(field[0:100,0:100,0:2]-z0+0.1,axis=2), origin="lower", norm=LogNorm(vmin=0.1,vmax=z1-z0+0.1))
+        else :
+            im = axes.imshow(np.sum(field[0:100,0:100,0:2]-z0+0.1,axis=2), origin="lower",norm=LogNorm(vmin = 0.1, vmax = z1-z0+0.1))
 
         if (k) % 3 == 0 : plt.colorbar(im)
         if not k-1 > 5 : axes.xaxis.set_visible(False)  
