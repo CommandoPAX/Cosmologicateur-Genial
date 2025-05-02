@@ -125,7 +125,9 @@ for j in range(4) :
 
         tree_r = KDTree(data_random, boxsize=512)
 
-        r_bins = np.linspace(0.1,20,30)
+        r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+        r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
+        r_bins = np.concatenate((r_small, r_large))
 
         DD_counts = np.array([count_pairs_query_ball_point(points_k, KDTree(points_j, boxsize=512), r)
                             for r in r_bins[1:]])
