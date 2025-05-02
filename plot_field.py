@@ -66,7 +66,7 @@ for Xmax in [10,50,100,500]:
             z = redshifts[i]
             print(z)
             axes = axs[k-1]
-            axes.title.set_text(labels[n])
+            axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
 
             data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
@@ -79,7 +79,7 @@ for Xmax in [10,50,100,500]:
 
 
             if True:
-                im = axes.imshow(sum_-sum_lcdm+0.1, origin="lower",cmap="inferno")
+                im = axes.imshow(sum_-sum_lcdm+0.1, origin="lower",vmin=-0.2,vmax = 0.2,cmap="inferno")
 
 
             if (k) % 3 == 0 : plt.colorbar(im)
