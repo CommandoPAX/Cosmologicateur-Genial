@@ -48,11 +48,11 @@ for Xmax in [10,50,100,500]:
         lcdm = hdul[0].data
         hdul.close()
 
-        sum_ = np.sum(lcdm[0:Xmax,0:Xmax,0:2],axis=2)
-        mean_ = np.mean(sum_)
-        std_ = np.std(sum_)
-        z0 = sum_.min()
-        z1 = sum_.max()
+        sum_lcdm = np.sum(lcdm[0:Xmax,0:Xmax,0:2],axis=2)
+        mean_ = np.mean(sum_lcdm)
+        std_ = np.std(sum_lcdm)
+        z0 = sum_lcdm.min()
+        z1 = sum_lcdm.max()
         print(np.argmin(sum_))
         print(sum_)
         rho_m = 1073741824000000
@@ -95,5 +95,5 @@ for Xmax in [10,50,100,500]:
             axes.set_ylabel(r"$\rm Y [Mpc / h]$")
 
         plt.tight_layout()
-        plt.savefig(f"field_{Redshifts[i]}_{Xmax}.pdf")
+        plt.savefig(f"field_diff_{Redshifts[i]}_{Xmax}.pdf")
         plt.clf()
