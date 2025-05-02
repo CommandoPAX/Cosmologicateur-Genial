@@ -85,7 +85,9 @@ for Xmax in [50,100,500]:
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n])
 
-            if (k) == 3: plt.colorbar(im, ax=axs, location='right')
+            if (k) == 4: plt.colorbar(im, ax=axs, location='right')
+            if (k) == 1: plt.colorbar(im, ax=axs, location='left')
+
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
             if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
