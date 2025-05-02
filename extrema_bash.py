@@ -20,7 +20,7 @@ for n in indices_hdm: # 7
         #input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
 
-        fichier = open(f"extrema_{n}_{i}.sh","w")
+        fichier = open(f"/home/fcastillo/bash/extrema_{n}_{i}.sh","w")
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=extrema_{n}_{i}
 #SBATCH --nodes=1
