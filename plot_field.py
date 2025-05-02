@@ -53,7 +53,7 @@ for i in range(4):
     z0 = np.min(mass)
     z1 = np.max(mass)
     
-
+    print(z0,z1)
 
     plt.title(r"$z = "+str(Redshifts[i])+r"$")
     for n in indices_hdm: 
