@@ -52,6 +52,7 @@ for i in range(4):
     std_ = np.std(sum_)
     z0 = np.min(sum_)
     z1 = np.max(sum_)
+    print(np.argmin(sum_))
     rho_m = 1073741824000000
     mass = rho_m * sum_ + rho_m
     
