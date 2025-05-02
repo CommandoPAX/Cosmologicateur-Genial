@@ -79,7 +79,7 @@ for i in range(4):
 
 
         if True:
-            im = axes.imshow(sum_-sum_.min()+0.1,axis=2), origin="lower", norm=LogNorm(vmin=0.1,vmax=z1-z0+0.1)
+            im = axes.imshow(sum_-sum_.min()+0.1, origin="lower", norm=LogNorm(vmin=0.1,vmax=z1-z0+0.1))
 
 
         #if (k) % 3 == 0 : plt.colorbar(im)
