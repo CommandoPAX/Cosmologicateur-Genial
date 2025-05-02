@@ -55,7 +55,8 @@ for Xmax in [50,100,500]:
         z1 = sum_lcdm.max()
         rho_m = 1073741824000000
         #mass = rho_m * sum_ + rho_m
-        
+
+        ims = []        
 
 
         plt.title(r"$z = "+str(Redshifts[i])+r"$")
@@ -84,10 +85,8 @@ for Xmax in [50,100,500]:
             else : 
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n])
-
-            if (k) == 4: plt.colorbar(im, ax=axs, location='right')
-            if (k) == 1: plt.colorbar(im, ax=axs, location='left')
-
+                ims.append(im)
+                
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
             if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
@@ -96,6 +95,9 @@ for Xmax in [50,100,500]:
 
             axes.set_xlabel(r"$\rm X [Mpc / h]$")
             axes.set_ylabel(r"$\rm Y [Mpc / h]$")
+
+        plt.colorbar(ims[0], ax=axs, location='right',pad=0.2)
+        plt.colorbar(ims[0], ax=axs, location='left',pad=0.2)
 
         plt.tight_layout()
         plt.savefig(f"field_diff_{Redshifts[i]}_{Xmax}.pdf")
