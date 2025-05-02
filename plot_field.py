@@ -53,8 +53,6 @@ for Xmax in [10,50,100,500]:
         std_ = np.std(sum_lcdm)
         z0 = sum_lcdm.min()
         z1 = sum_lcdm.max()
-        print(np.argmin(sum_))
-        print(sum_)
         rho_m = 1073741824000000
         mass = rho_m * sum_ + rho_m
         
