@@ -217,8 +217,12 @@ for p in range(4):
             if i<= 8 : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
             else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
 
+            mask = r_bins[1:]<= 10
+
+            zeta = zeta[mask]
+            lcdm = lcdm[mask]
+
             max_delta = np.argmax(np.abs(1+zeta))
-            print(p, r_bins[max_delta])
 
             tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))+ r" \%"
                 
