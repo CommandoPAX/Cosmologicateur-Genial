@@ -38,6 +38,7 @@ if __name__ == "__main__" :
     indices_hdm = [0,7,8,10,11]
     #indices_hdm = [0,2,6]
     indices_hdm = [0,1,4,6,9]
+    indices_hdm = [0,1,4,9]
 
     ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-",":","--"]
     couleurs = ["blue", "darkorange", "green", "darkorange", "violet", "violet", "green", "darkorange", "violet","darkred","darkred","darkred"]
