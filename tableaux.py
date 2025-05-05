@@ -211,10 +211,10 @@ for p in range(4):
         for j in [2,4]:
             z_k = indices_z[j-1]
            
-            lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+            lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
 
-            try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
-            except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+            try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+            except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
 
             max_delta = np.argmax(np.abs(zeta))
 
@@ -247,9 +247,13 @@ for a in range(4):
                     lcdm = lcdm[r_bins[1:]>=2]
                     zeta = zeta[r_bins[1:]>=2]
                 
-                if (a == 1 and b == 2) or (a == 0 and b == 1):
+                if a == 0 and b == 1:
                     lcdm = lcdm[r_bins[1:]>=6]
                     zeta = zeta[r_bins[1:]>=6]
+
+                if a == 1 and b == 2:
+                    lcdm = lcdm[(r_bins[1:]>=6)(r_bins[1:]<=15)]
+                    zeta = zeta[(r_bins[1:]>=6)&(r_bins[1:]<=15)]
 
                 if a == 2 and b == 3:
                     lcdm = lcdm[r_bins[1:]>=13.5]
@@ -389,7 +393,7 @@ for z in range(2):
                     if dico_snapshots_1[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_1[s])/100)[i]))
 
             except : pass
-            
+
         axes.axhline(0,label=r"$\Lambda{\rm CDM}$",color="blue")
         if z == 0 : plt.legend()
 
