@@ -384,20 +384,18 @@ for z in range(2):
         axes.get_xaxis().set_visible(False)
     
         for i, txt in enumerate(annotation):
-            try : 
-                print(i, txt)
 
-                data_dico = []
-                for s2 in dico_snapshots_0.keys() :
-                    if z == 1 :data_dico.append(dico_snapshots_0[s2][i])
-                    if z == 0 :data_dico.append(dico_snapshots_1[s2][i])
-                
-                if z == 1 :
-                    if dico_snapshots_0[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_0[s])/100)[i]))
-                if z == 0: 
-                    if dico_snapshots_1[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_1[s])/100)[i]))
 
-            except : pass
+            data_dico = []
+            for s2 in dico_snapshots_0.keys() :
+                if z == 1 :data_dico.append(dico_snapshots_0[s2][i])
+                if z == 0 :data_dico.append(dico_snapshots_1[s2][i])
+            
+            if z == 1 :
+                if dico_snapshots_0[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_0[s])/100)[i]))
+            if z == 0: 
+                if dico_snapshots_1[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_1[s])/100)[i]))
+
 
         axes.axhline(0,label=r"$\Lambda{\rm CDM}$",color="blue")
         if z == 0 : plt.legend()
