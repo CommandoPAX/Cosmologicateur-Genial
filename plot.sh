@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python plot_field.py
+python plot_correlations_2.py

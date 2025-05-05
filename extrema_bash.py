@@ -14,8 +14,8 @@ indices_z = [6,9]
 #indices_hdm = [0,1,4,6,9]
 
 for n in indices_hdm: # 7
-    if n <= 8 : redshifts = [3,4]
-    else : redshifts = indices_z
+    if n <= 8 : redshifts = [2]
+    else : break #redshifts = indices_z
     for i in redshifts:
         #input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
