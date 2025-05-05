@@ -218,7 +218,7 @@ for p in range(4):
             except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
 
             max_delta = np.argmax(np.abs(1+zeta))
-            print(r_bins[max_delta])
+            print(p, r_bins[max_delta])
 
             tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))+ r" \%"
                 
@@ -270,7 +270,6 @@ for a in range(4):
                 zeta = zeta[mask]
 
                 max_delta = np.argmax(np.abs(zeta-lcdm))
-                print(a, b, r_bins[max_delta])
 
                 tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+lcdm[max_delta])),1))+ r" \%"
 
@@ -336,8 +335,6 @@ for a in range(4):
 
 for p in range(4):
     annotation.append( r"$\mathcal{" + ["P", "F","W","V"][p] +r"}$ ")
-
-print(annotation)
 
 
 for z in range(2):
