@@ -257,7 +257,7 @@ for a in range(4):
                 if a == 2 and b == 3:
                     mask = (r_bins[1:]>=6)&(r_bins[1:]<=15)
 
-                r_bins[1:] = r_bins[1:][mask]
+                r_bins = r_bins[1:][mask]
                 lcdm = lcdm[mask]
                 zeta = zeta[mask]
 
