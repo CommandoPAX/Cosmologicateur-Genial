@@ -98,11 +98,11 @@ for j in range(4) :
         Xj, Yj, Zj = result_j[:, 0].astype(int), result_j[:, 1].astype(int), result_j[:, 2].astype(int)
 
 
-        seuil_haut_k = np.percentile(field[Xk,Yk,Zk], P)
-        seuil_bas_k = np.percentile(field[Xk,Yk,Zk], 100-P)
+        seuil_haut_k = np.percentile(field[Xk,Yk,Zk], 100-P)
+        seuil_bas_k = np.percentile(field[Xk,Yk,Zk], P)
 
-        seuil_haut_j = np.percentile(field[Xj,Yj,Zj], P)
-        seuil_bas_j = np.percentile(field[Xj,Yj,Zj], 100-P)
+        seuil_haut_j = np.percentile(field[Xj,Yj,Zj], 100-P)
+        seuil_bas_j = np.percentile(field[Xj,Yj,Zj], P)
 
         indices_k = field[Xk, Yk, Zk] >= seuil_haut_k
         indices_j = field[Xj, Yj, Zj] >= seuil_haut_j
