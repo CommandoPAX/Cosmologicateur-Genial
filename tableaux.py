@@ -214,8 +214,8 @@ for p in range(4):
            
             lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
 
-            try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
-            except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+            if i<= 8 : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+            else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
 
             max_delta = np.argmax(np.abs(1+zeta))
             print(p, r_bins[max_delta])
