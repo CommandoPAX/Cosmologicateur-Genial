@@ -340,8 +340,10 @@ if __name__ == "__main__" :
                             axes.legend(fontsize=8) 
                         axes.set_xlim(0,20)
                         if p ==2 : 
-                            axes.set_xlim(2,20)
-                            axes.set_ylim(1,1.5)
+                            axes.set_xlim(2,15)
+                            if i == 2 and d == 0:axes.set_ylim(1,1.5)
+                            if i == 2 and d == 0 :axes.set_ylim(1,1.2)
+
                             #if d == 1 : axes.set_ylim(-0.1,0.4)
 
                         if d == 1 : 
