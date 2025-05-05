@@ -123,8 +123,8 @@ if __name__ == "__main__" :
                             if p == 0 :axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
                         else :
-                            axes.plot(r_bins[1:], (zeta - lcdm)/(1+lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
-                            if p == 0 : axes.set_ylabel(r"$\Delta / \Lambda$CDM")
+                            axes.plot(r_bins[1:], (zeta - lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
+                            if p == 0 : axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0:
                             axes.legend(fontsize=8)
@@ -217,8 +217,8 @@ if __name__ == "__main__" :
                             #if p == 0 :axes.set_ylim(0.8,2)
                             #if p == 1 : axes.set_ylim(0,3)
                         else : 
-                            axes.plot(r_bins[1:], (zeta - lcdm)/(1+lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
-                            axes.set_ylabel(r"$\Delta / \Lambda$CDM")
+                            axes.plot(r_bins[1:], (zeta - lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             axes.legend(loc="upper left",fontsize=8) 
@@ -321,7 +321,7 @@ if __name__ == "__main__" :
                             axes.xaxis.set_visible(False)
                             #axes.set_ylim(-1,1)
                         else : 
-                            axes.plot((r_bins[1:])[lcdm>-0.9], ((zeta - lcdm)/(1+lcdm))[lcdm>-0.9], color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.plot((r_bins[1:]), ((zeta - lcdm)), color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 :axes.set_ylabel(r"$\Delta / \Lambda$CDM")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
