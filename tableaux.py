@@ -373,6 +373,7 @@ for z in range(2):
 
         axes.set_ylabel(r"$\max~\Delta / \Lambda{\rm CDM}$")
         axes.get_xaxis().set_visible(False)
+        axes.axhline(0,label=r"$\Lambda{\rm CDM}$",color="blue")
     
         for i, txt in enumerate(annotation):
             try : 
@@ -390,5 +391,7 @@ for z in range(2):
             except : pass
 
         if z == 0 : plt.legend()
+
+    
     plt.tight_layout()
     plt.savefig(f"tab.pdf")
