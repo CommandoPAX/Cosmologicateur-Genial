@@ -241,15 +241,15 @@ for a in range(4):
                 except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
 
                 if a == 0 and b in (2,3):
-                    lcdm = lcdm[(r_bins[1:]>=2)]
-                    zeta = zeta[(r_bins[1:]>=2)]
+                    lcdm = lcdm[(r_bins[1:]>=5)]
+                    zeta = zeta[(r_bins[1:]>=5)]
                     
                     zeta = zeta[lcdm > -0.8]
                     lcdm = lcdm[lcdm > -0.8]
 
                 if a==1 and b==3:
-                    lcdm = lcdm[r_bins[1:]>=2]
-                    zeta = zeta[r_bins[1:]>=2]
+                    lcdm = lcdm[r_bins[1:]>=5]
+                    zeta = zeta[r_bins[1:]>=5]
                 
                 if a == 0 and b == 1:
                     lcdm = lcdm[(r_bins[1:]>=6)&(r_bins[1:]<=15)]
