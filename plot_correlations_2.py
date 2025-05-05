@@ -193,14 +193,14 @@ if __name__ == "__main__" :
 
                         if j <= 8 : 
                             try :
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
                             except :
                                 zeta = lcdm
 
 
                         else :
                             try : 
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
                             except: 
                                 zeta = lcdm                        #zeta[0] = 0
 
@@ -298,13 +298,13 @@ if __name__ == "__main__" :
 
                         if j <= 8 : 
                             try :
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
                             except :
                                 zeta = lcdm
 
                         else :
                             try : 
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
                             except: 
                                 zeta = lcdm
                         #zeta[0] = 0
