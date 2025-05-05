@@ -102,7 +102,7 @@ if __name__ == "__main__" :
                             try :
                                 zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
                             except :
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+                                zeta = lcdm
 
                         else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
                         #zeta[0] = 0
@@ -136,8 +136,8 @@ if __name__ == "__main__" :
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.tight_layout()
-        plt.savefig(f"corr_auto.pdf")
-        plt.savefig(f"corr_auto.png")
+        plt.savefig(f"grand_corr_auto.pdf")
+        plt.savefig(f"grand_corr_auto.png")
 
         #plt.clf()
 
@@ -190,7 +190,7 @@ if __name__ == "__main__" :
                             try :
                                 zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
                             except :
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+                                zeta = lcdm
 
                         else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
                         #zeta[0] = 0
@@ -206,7 +206,7 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            if p == 0 :axes.set_ylim(0.8,2)
+                            #if p == 0 :axes.set_ylim(0.8,2)
                             #if p == 1 : axes.set_ylim(0,3)
                         else : 
                             axes.plot(r_bins[1:], (zeta - lcdm)/(1+lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
@@ -231,8 +231,8 @@ if __name__ == "__main__" :
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.tight_layout()
-        plt.savefig(f"corr_PF_VW.pdf")
-        plt.savefig(f"corr_PF_VW.png")
+        plt.savefig(f"grand_corr_PF_VW.pdf")
+        plt.savefig(f"grand_corr_PF_VW.png")
 
         #plt.clf()
 
@@ -293,7 +293,7 @@ if __name__ == "__main__" :
                             try :
                                 zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
                             except :
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
+                                zeta = lcdm
 
                         else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
                         #zeta[0] = 0
@@ -331,7 +331,7 @@ if __name__ == "__main__" :
         #    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
         plt.tight_layout()
-        plt.savefig(f"corr_autres.pdf")
-        plt.savefig(f"corr_autres.png")
+        plt.savefig(f"grand_corr_autres.pdf")
+        plt.savefig(f"grand_corr_autres.png")
 
         #plt.clf()
