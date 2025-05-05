@@ -15,6 +15,10 @@ labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\
 snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
 labels = [r"$\Lambda {\rm CDM}$", r"$f_{\rm NL} = -300~\&~ \rm{EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
 
+snapshots = ["benchM","NG_F500", "NG_Fminus500","NEDE"]
+labels = [r"$\Lambda$CDM",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+
+
 plt.figure(figsize= (10,4))
 
 tab_minko = r"""
@@ -194,7 +198,7 @@ labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -5
 
 indices_hdm = [7,8,10,11]
 #indices_hdm = [0,2,6]
-#indices_hdm = [1,4,6,9]
+indices_hdm = [1,4,9]
 
 ##### Autocorrelations
 
@@ -212,9 +216,9 @@ for p in range(4):
             try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
             except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}.txt.npy")
 
-            max_delta = np.argmax(np.abs(zeta[(lcdm>-0.9)&(zeta>-0.9)]-lcdm[(lcdm>-0.9)&(zeta>-0.9)]))
+            max_delta = np.argmax(np.abs(zeta))
 
-            tab_corr +=" &"+str(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))+ r" \%"
+            tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))+ r" \%"
 
     tab_corr+=r"\\"
     tab_corr+="\n"
@@ -223,13 +227,33 @@ for a in range(4):
     for b in range(a+1,4):
         tab_corr += r"$\mathcal {" + ["P", "F", "W", "V"][a]+["P", "F", "W", "V"][b] + r"}$"
         for i in indices_hdm :
+            
+            r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+            r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
+            r_bins = np.concatenate((r_small, r_large))
+
             for j in [2,4]:
                 z_k = indices_z[j-1]
             
-                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{b}_{a}_s{R}_P{P}.txt.npy")
+                lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
 
-                try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{P}.txt.npy")
-                except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}.txt.npy")
+                try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
+                except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
+
+                if a == 0 and b in (2,3):
+                    lcdm = lcdm[r_bins>=2]
+                    zeta = zeta[r_bins>=2]
+                if a==1 and b==3:
+                    lcdm = lcdm[r_bins>=2]
+                    zeta = zeta[r_bins>=2]
+                
+                if (a == 1 and b == 2) or (a == 0 and b == 1):
+                    lcdm = lcdm[r_bins>=6]
+                    zeta = zeta[r_bins>=6]
+
+                if a == 2 and b == 3:
+                    lcdm = lcdm[r_bins>=13.5]
+                    zeta = zeta[r_bins>=13.5]
 
                 max_delta = np.argmax(np.abs(zeta[(lcdm>-0.9)&(zeta>-0.9)]-lcdm[(lcdm>-0.9)&(zeta>-0.9)]))
 
