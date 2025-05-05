@@ -231,7 +231,9 @@ if __name__ == "__main__" :
                             axes.set_xlim(10,20)
                             if d == 0 : axes.set_ylim(1,1.05)
 
+
                         if d == 1 : 
+                            axes.set_ylim(-0.1,0.1)
                             max_delta = np.argmax(np.abs(zeta-lcdm))
                             if j !=0 : print(labels[j]+_type+ "z = "+str(Redshifts[i])+" : "+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
                             #else : print(" \\\\")
