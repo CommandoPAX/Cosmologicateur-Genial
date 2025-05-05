@@ -226,7 +226,8 @@ if __name__ == "__main__" :
 
 
 
-                        if p == 1 :axes.set_xlim(0,10)
+                        if p == 0 :axes.set_xlim(0,10)
+                        if p == 1 : axes.set_xlim(0,20)
 
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
