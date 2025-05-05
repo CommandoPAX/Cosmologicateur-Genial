@@ -342,7 +342,7 @@ if __name__ == "__main__" :
                         if p ==2 : 
                             axes.set_xlim(2,15)
                             if i == 2 and d == 0:axes.set_ylim(1,1.5)
-                            if i == 2 and d == 0 :axes.set_ylim(1,1.2)
+                            if i == 4 and d == 0 :axes.set_ylim(1,1.2)
 
                             #if d == 1 : axes.set_ylim(-0.1,0.4)
 
