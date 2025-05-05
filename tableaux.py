@@ -226,11 +226,12 @@ for a in range(4):
         tab_corr += r"$\mathcal {" + ["P", "F", "W", "V"][a]+["P", "F", "W", "V"][b] + r"}$"
         for i in indices_hdm :
             
-            r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
-            r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
-            r_bins = np.concatenate((r_small, r_large))
 
             for j in [2,4]:
+                r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
+                r_bins = np.concatenate((r_small, r_large))
+
                 z_k = indices_z[j-1]
             
                 lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
