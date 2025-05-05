@@ -136,7 +136,7 @@ if __name__ == "__main__" :
                             if j !=0 : print(labels[j]+ rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
                             #else : print(" \\\\")
 
-                            if p == 2 and i == 4 : axes.set_ylim(-0.5,0.5)
+                            if p == 2 and i == 4 : axes.set_ylim(-0.1,0.1)
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
