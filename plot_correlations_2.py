@@ -215,7 +215,7 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            axes.set_ylim(0.8,2)
+                            axes.set_ylim(1,1.8)
                             #if p == 1 : axes.set_ylim(0,3)
                         else : 
                             axes.plot(r_bins[1:], (zeta - lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
@@ -226,10 +226,10 @@ if __name__ == "__main__" :
 
 
 
-                        if p == 0 :axes.set_xlim(4,15)
+                        if p == 0 :axes.set_xlim(4,10)
                         if p == 1 : 
                             axes.set_xlim(10,20)
-                            if d == 0 : axes.set_ylim(1,1.02)
+                            if d == 0 : axes.set_ylim(1,1.05)
 
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
