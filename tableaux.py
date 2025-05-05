@@ -241,19 +241,19 @@ for a in range(4):
                 except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
 
                 if a == 0 and b in (2,3):
-                    lcdm = lcdm[r_bins>=2]
-                    zeta = zeta[r_bins>=2]
+                    lcdm = lcdm[r_bins[1:]>=2]
+                    zeta = zeta[r_bins[1:]>=2]
                 if a==1 and b==3:
-                    lcdm = lcdm[r_bins>=2]
-                    zeta = zeta[r_bins>=2]
+                    lcdm = lcdm[r_bins[1:]>=2]
+                    zeta = zeta[r_bins[1:]>=2]
                 
                 if (a == 1 and b == 2) or (a == 0 and b == 1):
-                    lcdm = lcdm[r_bins>=6]
-                    zeta = zeta[r_bins>=6]
+                    lcdm = lcdm[r_bins[1:]>=6]
+                    zeta = zeta[r_bins[1:]>=6]
 
                 if a == 2 and b == 3:
-                    lcdm = lcdm[r_bins>=13.5]
-                    zeta = zeta[r_bins>=13.5]
+                    lcdm = lcdm[r_bins[1:]>=13.5]
+                    zeta = zeta[r_bins[1:]>=13.5]
 
                 max_delta = np.argmax(np.abs(zeta[(lcdm>-0.9)&(zeta>-0.9)]-lcdm[(lcdm>-0.9)&(zeta>-0.9)]))
 
