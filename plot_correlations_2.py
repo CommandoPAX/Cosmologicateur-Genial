@@ -327,6 +327,7 @@ if __name__ == "__main__" :
 
                         #print(np.shape(data[p]))
                         #print(data)
+                        axes.set_xlim(2,20)
                         if d == 0 : 
                             axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 : axes.set_ylabel(r"$1 + \zeta (r)$")
