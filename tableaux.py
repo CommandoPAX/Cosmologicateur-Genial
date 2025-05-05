@@ -207,6 +207,9 @@ for p in range(4):
     tab_corr += r"$\mathcal {" + (["P", "F", "W", "V"][p])*2 + r"}$"
     for i in indices_hdm :
         for j in [2,4]:
+            r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+            r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
+            r_bins = np.concatenate((r_small, r_large))
             z_k = indices_z[j-1]
            
             lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
@@ -215,6 +218,7 @@ for p in range(4):
             except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
 
             max_delta = np.argmax(np.abs(1+zeta))
+            print(r_bins[max_delta])
 
             tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))+ r" \%"
                 
