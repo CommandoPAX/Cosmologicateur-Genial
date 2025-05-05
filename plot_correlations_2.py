@@ -58,7 +58,7 @@ if __name__ == "__main__" :
         "31" : 8
     }
 
-    R = 5
+    R = 2
     P = 5
 
 
@@ -330,7 +330,8 @@ if __name__ == "__main__" :
                         axes.set_xlim(0,20)
                         if p ==2 : 
                             axes.set_xlim(0,10)
-                            #if d == 1 : axes.set_ylim(-0.1,0.4)
+                        
+                        if d == 1 : axes.set_ylim(-0.1,0.4)
 
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
