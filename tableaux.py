@@ -388,7 +388,7 @@ for z in range(2):
 
             data_dico = []
             for s2 in dico_snapshots_0.keys() :
-                print(s2,dico_snapshots_0[s2])
+                print(i,dico_snapshots_0[s2][i])
                 if z == 1 :data_dico.append(dico_snapshots_0[s2][i])
                 if z == 0 :data_dico.append(dico_snapshots_1[s2][i])
             
