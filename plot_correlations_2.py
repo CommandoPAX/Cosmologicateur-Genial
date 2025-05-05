@@ -104,8 +104,12 @@ if __name__ == "__main__" :
                             except :
                                 zeta = lcdm
 
-                        else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
-                        #zeta[0] = 0
+
+                        else :
+                            try : 
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+                            except: 
+                                zeta = lcdm                        #zeta[0] = 0
 
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
                         r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
@@ -192,8 +196,12 @@ if __name__ == "__main__" :
                             except :
                                 zeta = lcdm
 
-                        else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
-                        #zeta[0] = 0
+
+                        else :
+                            try : 
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+                            except: 
+                                zeta = lcdm                        #zeta[0] = 0
 
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
                         r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
@@ -293,7 +301,11 @@ if __name__ == "__main__" :
                             except :
                                 zeta = lcdm
 
-                        else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+                        else :
+                            try : 
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{p}_{p}_s{R}_P{P}_tres_grand.txt.npy")
+                            except: 
+                                zeta = lcdm
                         #zeta[0] = 0
 
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
