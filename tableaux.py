@@ -385,6 +385,7 @@ for z in range(2):
     
         for i, txt in enumerate(annotation):
             try : 
+                print(i, txt)
 
                 data_dico = []
                 for s2 in dico_snapshots_0.keys() :
