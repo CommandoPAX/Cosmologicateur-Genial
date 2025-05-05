@@ -235,8 +235,8 @@ for a in range(4):
             
                 lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
 
-                try : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
-                except : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
+                if i<=8 : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
+                else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
 
                 if a == 0 and b in (2,3):
                     lcdm = lcdm[(r_bins[1:]>=5)]
@@ -261,12 +261,12 @@ for a in range(4):
                     lcdm = lcdm[r_bins[1:]>=13.5]
                     zeta = zeta[r_bins[1:]>=13.5]
 
-                max_delta = np.argmax(np.abs(zeta[(lcdm>-0.9)&(zeta>-0.9)]-lcdm[(lcdm>-0.9)&(zeta>-0.9)]))
+                max_delta = np.argmax(np.abs(zeta-lcdm))
 
-                tab_corr +=" &"+str(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))+ r" \%"
+                tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))+ r" \%"
 
-                if j == 4 : dico_snapshots_0[snapshots[i]].append(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))
-                if j == 2 : dico_snapshots_1[snapshots[i]].append(round(100*((zeta[(lcdm>-0.9)&(zeta>-0.9)][max_delta]-lcdm[(lcdm>-0.9)&(zeta>-0.9)][max_delta])/(np.max(np.abs(1+lcdm[(lcdm>-0.9)&(zeta>-0.9)])))),1))
+                if j == 4 : dico_snapshots_0[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))
+                if j == 2 : dico_snapshots_1[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))
 
         tab_corr+=r"\\"
         tab_corr+="\n"
