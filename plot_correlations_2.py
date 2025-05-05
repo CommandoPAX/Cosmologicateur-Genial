@@ -334,8 +334,8 @@ if __name__ == "__main__" :
                             axes.xaxis.set_visible(False)
                             #axes.set_ylim(-1,1)
                         else : 
-                            axes.plot((r_bins[1:]), ((zeta - lcdm)), color=couleurs[j], ls=ls[j],label=labels[j])
-                            if p == 0 :axes.set_ylabel(r"$\Delta / \Lambda$CDM")
+                            axes.plot((r_bins[1:]), zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                            if p == 0 :axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             axes.legend(fontsize=8) 

@@ -239,8 +239,8 @@ for a in range(4):
                 else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
 
                 if a == 0 and b in (2,3):
-                    lcdm = lcdm[(r_bins[1:]>=5)]
-                    zeta = zeta[(r_bins[1:]>=5)]
+                    lcdm = lcdm[(r_bins[1:]>=6)]
+                    zeta = zeta[(r_bins[1:]>=6)]
                     
                     zeta = zeta[lcdm > -0.8]
                     lcdm = lcdm[lcdm > -0.8]
@@ -265,8 +265,8 @@ for a in range(4):
 
                 tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))+ r" \%"
 
-                if j == 4 : dico_snapshots_0[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))
-                if j == 2 : dico_snapshots_1[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))
+                if j == 4 : dico_snapshots_0[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+lcdm[max_delta])),1))
+                if j == 2 : dico_snapshots_1[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/((1+lcdm[max_delta]))),1))
 
         tab_corr+=r"\\"
         tab_corr+="\n"
