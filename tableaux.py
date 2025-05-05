@@ -326,6 +326,7 @@ print(annotation)
 
 
 for z in range(2):
+
     plt.subplot(int("21"+str(z+1)))
     for s in dico_snapshots_0.keys() :
         if s == "G_ViVi":
@@ -373,7 +374,6 @@ for z in range(2):
 
         axes.set_ylabel(r"$\max~\Delta / \Lambda{\rm CDM}$")
         axes.get_xaxis().set_visible(False)
-        axes.axhline(0,label=r"$\Lambda{\rm CDM}$",color="blue")
     
         for i, txt in enumerate(annotation):
             try : 
@@ -389,7 +389,8 @@ for z in range(2):
                     if dico_snapshots_1[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_1[s])/100)[i]))
 
             except : pass
-
+            
+        axes.axhline(0,label=r"$\Lambda{\rm CDM}$",color="blue")
         if z == 0 : plt.legend()
 
     
