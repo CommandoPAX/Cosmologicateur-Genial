@@ -262,6 +262,7 @@ for a in range(4):
                     zeta = zeta[r_bins[1:]>=13.5]
 
                 max_delta = np.argmax(np.abs(zeta-lcdm))
+                print(a, b, r_bins[max_delta])
 
                 tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))+ r" \%"
 
