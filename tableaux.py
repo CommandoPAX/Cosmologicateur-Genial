@@ -239,27 +239,27 @@ for a in range(4):
                 else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
 
                 if a == 0 and b in (2,3):
-                    lcdm = lcdm[(r_bins[1:]>=6)]
-                    zeta = zeta[(r_bins[1:]>=6)]
-                    
-                    zeta = zeta[lcdm > -0.8]
-                    lcdm = lcdm[lcdm > -0.8]
+                    mask = (r_bins[1:]>=6)&(lcdm > -0.8)
+
 
                 if a==1 and b==3:
-                    lcdm = lcdm[r_bins[1:]>=5]
-                    zeta = zeta[r_bins[1:]>=5]
+                    mask = r_bins[1:]>=5
+
                 
                 if a == 0 and b == 1:
-                    lcdm = lcdm[(r_bins[1:]>=6)&(r_bins[1:]<=15)]
-                    zeta = zeta[(r_bins[1:]>=6)&(r_bins[1:]<=15)]
+                    mask = (r_bins[1:]>=6)&(r_bins[1:]<=15)
+
 
                 if a == 1 and b == 2:
-                    lcdm = lcdm[(r_bins[1:]>=6)&(r_bins[1:]<=15)]
-                    zeta = zeta[(r_bins[1:]>=6)&(r_bins[1:]<=15)]
+                    mask = (r_bins[1:]>=6)&(r_bins[1:]<=15)
+
 
                 if a == 2 and b == 3:
-                    lcdm = lcdm[r_bins[1:]>=13.5]
-                    zeta = zeta[r_bins[1:]>=13.5]
+                    mask = (r_bins[1:]>=6)&(r_bins[1:]<=15)
+
+                r_bins[1:] = r_bins[1:][mask]
+                lcdm = lcdm[mask]
+                zeta = zeta[mask]
 
                 max_delta = np.argmax(np.abs(zeta-lcdm))
                 print(a, b, r_bins[max_delta])
