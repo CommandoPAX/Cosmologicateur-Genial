@@ -265,10 +265,10 @@ for a in range(4):
                 max_delta = np.argmax(np.abs(zeta-lcdm))
                 print(a, b, r_bins[max_delta])
 
-                tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))+ r" \%"
+                tab_corr +=" &"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+lcdm[max_delta])),1))+ r" \%"
 
-                if j == 4 : dico_snapshots_0[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))
-                if j == 2 : dico_snapshots_1[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/(np.max(np.abs(1+lcdm)))),1))
+                if j == 4 : dico_snapshots_0[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+lcdm[max_delta])),1))
+                if j == 2 : dico_snapshots_1[snapshots[i]].append(round(100*((zeta[max_delta]-lcdm[max_delta])/((1+lcdm[max_delta]))),1))
 
         tab_corr+=r"\\"
         tab_corr+="\n"
