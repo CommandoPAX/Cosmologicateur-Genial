@@ -233,10 +233,10 @@ if __name__ == "__main__" :
 
 
                         if d == 1 : 
-                            if p == 0 and j == 2 : axes.set_ylim(-0.3,0.1)
-                            if p == 0 and j == 4 : axes.set_ylim(-0.1,0.1)
-                            if p == 1 and j == 2 : axes.set_ylim(-0.02,0.02)
-                            if p == 1 and j == 4 : axes.set_ylim(-0.02,0.02)
+                            if p == 0 and i == 2 : axes.set_ylim(-0.3,0.1)
+                            if p == 0 and i == 4 : axes.set_ylim(-0.1,0.1)
+                            if p == 1 and i == 2 : axes.set_ylim(-0.02,0.02)
+                            if p == 1 and i == 4 : axes.set_ylim(-0.02,0.02)
 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
                             if j !=0 : print(labels[j]+_type+ "z = "+str(Redshifts[i])+" : "+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
