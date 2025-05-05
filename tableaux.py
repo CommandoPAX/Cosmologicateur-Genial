@@ -346,17 +346,13 @@ for z in range(2):
     plt.subplot(int("21"+str(z+1)))
     axes = plt.gca()
     axes.title.set_text(r"$z = "+["1","0"][z]+r"$")
-    if z == 1 :
-        plt.plot(np.array(dico_snapshots_0[s])/100,color=couleur,ls=ls,label=label)
 
 
     axes.set_ylabel(r"$\max~\Delta / \Lambda{\rm CDM}$")
     axes.get_xaxis().set_visible(False)
     axes.axhline(0,label=r"$\Lambda{\rm CDM}$",color="blue")
     
-    if z == 0 :
-        plt.plot(np.array(dico_snapshots_1[s])/100,color=couleur,ls=ls,label=label)
-        plt.legend()
+
 
     for s in dico_snapshots_0.keys() :
         if s == "G_ViVi":
@@ -396,8 +392,12 @@ for z in range(2):
             couleur="violet"
             label = r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"
             ls = "--"
+        if z == 1 :
+            plt.plot(np.array(dico_snapshots_0[s])/100,color=couleur,ls=ls,label=label)
 
-    
+        if z == 0 :
+            plt.plot(np.array(dico_snapshots_1[s])/100,color=couleur,ls=ls,label=label)
+            plt.legend()
         for i, txt in enumerate(annotation):
 
 
