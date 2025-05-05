@@ -252,7 +252,7 @@ for a in range(4):
                     zeta = zeta[r_bins[1:]>=6]
 
                 if a == 1 and b == 2:
-                    lcdm = lcdm[(r_bins[1:]>=6)(r_bins[1:]<=15)]
+                    lcdm = lcdm[(r_bins[1:]>=6)&(r_bins[1:]<=15)]
                     zeta = zeta[(r_bins[1:]>=6)&(r_bins[1:]<=15)]
 
                 if a == 2 and b == 3:
