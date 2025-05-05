@@ -339,7 +339,6 @@ if __name__ == "__main__" :
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             axes.legend(fontsize=8) 
-                        axes.set_xlim(0,20)
                         if p ==2 : 
                             axes.set_xlim(2,15)
                             if i == 2 and d == 0:axes.set_ylim(1,1.1)
