@@ -77,6 +77,7 @@ if True : #for Xmax in [50,100,500]:
         hdul = fits.open(data)
         lcdm = hdul[0].data
         hdul.close()
+        lcdm = lcdm.reshape(-1,1)
 
         hist_lcdm = np.histogram(lcdm,  density= True,bins=1000,range = [-2,3])
         hist_lcdm = hist[0]
