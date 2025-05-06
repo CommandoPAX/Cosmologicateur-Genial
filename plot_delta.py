@@ -72,7 +72,7 @@ if True : #for Xmax in [50,100,500]:
 
         plt.subplot(212)
 
-        data = pre + snapshots[0]+"/"+str(z)+"_densite_smooth2.fits"
+        data = pre + snapshots[0]+"/"+str(range(1,5)[i])+"_densite_smooth2.fits"
 
         hdul = fits.open(data)
         lcdm = hdul[0].data
