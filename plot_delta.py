@@ -59,7 +59,7 @@ if True : #for Xmax in [50,100,500]:
             field = hdul[0].data
             hdul.close()
             field = field.reshape(-1, 1) 
-            hist = np.histogram(field,  density= True)
+            hist = np.histogram(field,  density= True,bins=100,range = [-5,5])
             hist = hist[0]
 
             plt.plot(hist)
