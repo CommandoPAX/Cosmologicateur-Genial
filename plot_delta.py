@@ -63,10 +63,10 @@ if True : #for Xmax in [50,100,500]:
             field = hdul[0].data
             hdul.close()
             field = field.reshape(-1, 1) 
-            hist = np.histogram(field,  density= True,bins=100,range = [-5,5])
+            hist = np.histogram(field,  density= True,bins=1000,range = [-2,3])
             hist = hist[0]
 
-            plt.plot(np.arange(-5,5,0.1),hist,color=couleurs[n], ls=ls[n],label=labels[n])
+            plt.plot(np.arange(-2,3,5 / 1000),hist,color=couleurs[n], ls=ls[n],label=labels[n])
 
         plt.legend()
         plt.tight_layout()
