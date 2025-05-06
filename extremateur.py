@@ -31,7 +31,7 @@ def count_pairs_query_ball_point(points_A, tree_B, r):
 
 n = int(sys.argv[1])
 i = int(sys.argv[2])
-P = 5
+P = 20
 
 print(n, i)
 

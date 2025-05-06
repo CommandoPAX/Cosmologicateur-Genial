@@ -58,7 +58,7 @@ if __name__ == "__main__" :
     }
 
     R = 2
-    P = 5
+    P = 20
 
 
     #plt.title(  rf"v$_{p}$")
@@ -128,14 +128,14 @@ if __name__ == "__main__" :
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0:
                             axes.legend(fontsize=8)
-                        axes.set_xlim(0,10)
+                        #axes.set_xlim(0,10)
                         
                         if d == 1 : 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
                             if j !=0 : print(labels[j]+ rf"{["P","F","W","V"][p]}{["P","F","W","V"][p]}, z = "+str(Redshifts[i])+r" : $\sim$"+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
                             #else : print(" \\\\")
 
-                            if p == 2 and i == 4 : axes.set_ylim(-0.1,0.1)
+                            #if p == 2 and i == 4 : axes.set_ylim(-0.1,0.1)
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
@@ -215,7 +215,7 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            axes.set_ylim(1,1.8)
+                            #axes.set_ylim(1,1.8)
                             #if p == 1 : axes.set_ylim(0,3)
                         else : 
                             axes.plot(r_bins[1:], (zeta - lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
@@ -226,19 +226,20 @@ if __name__ == "__main__" :
 
 
 
-                        if p == 0 :axes.set_xlim(4,10)
+                        #if p == 0 :axes.set_xlim(4,10)
                         if p == 1 : 
-                            axes.set_xlim(10,20)
+                            #axes.set_xlim(10,20)
                             if d == 0 : 
-                                if i == 2 : axes.set_ylim(1,1.05)
-                                if i == 4 : axes.set_ylim(1,1.02)
+                                pass #if i == 2 : axes.set_ylim(1,1.05)
+                                #if i == 4 : axes.set_ylim(1,1.02)
 
 
                         if d == 1 : 
-                            if p == 0 and i == 2 : axes.set_ylim(-0.3,0.1)
-                            if p == 0 and i == 4 : axes.set_ylim(-0.1,0.1)
-                            if p == 1 and i == 2 : axes.set_ylim(-0.02,0.02)
-                            if p == 1 and i == 4 : axes.set_ylim(-0.02,0.02)
+                            pass
+                            #if p == 0 and i == 2 : axes.set_ylim(-0.3,0.1)
+                            #if p == 0 and i == 4 : axes.set_ylim(-0.1,0.1)
+                            #if p == 1 and i == 2 : axes.set_ylim(-0.02,0.02)
+                            #if p == 1 and i == 4 : axes.set_ylim(-0.02,0.02)
 
                             max_delta = np.argmax(np.abs(zeta-lcdm))
                             if j !=0 : print(labels[j]+_type+ "z = "+str(Redshifts[i])+" : "+str(round(100*((zeta[max_delta]-lcdm[max_delta])/(1+np.max(np.abs(lcdm)))),1))+" \%")
@@ -327,7 +328,7 @@ if __name__ == "__main__" :
 
                         #print(np.shape(data[p]))
                         #print(data)
-                        axes.set_xlim(2,20)
+                        #axes.set_xlim(2,20)
                         if d == 0 : 
                             axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 : axes.set_ylabel(r"$1 + \zeta (r)$")
@@ -340,11 +341,11 @@ if __name__ == "__main__" :
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             axes.legend(fontsize=8) 
                         if p ==2 : 
-                            axes.set_xlim(2,15)
-                            if i == 2 and d == 0:axes.set_ylim(1,1.1)
-                            if i == 4 and d == 0 :axes.set_ylim(1,1.2)
-                            if i == 4 and d == 1 : axes.set_ylim(-0.1,0.1)
-                            if i == 2 and d == 1 : axes.set_ylim(-0.05,0.05)
+                            pass #axes.set_xlim(2,15)
+                            #if i == 2 and d == 0:axes.set_ylim(1,1.1)
+                            #if i == 4 and d == 0 :axes.set_ylim(1,1.2)
+                            #if i == 4 and d == 1 : axes.set_ylim(-0.1,0.1)
+                            #if i == 2 and d == 1 : axes.set_ylim(-0.05,0.05)
 
                             #if d == 1 : axes.set_ylim(-0.1,0.4)
 
