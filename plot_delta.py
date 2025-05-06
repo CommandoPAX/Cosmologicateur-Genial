@@ -39,7 +39,7 @@ if True : #for Xmax in [50,100,500]:
 
         outer = gridspec.GridSpec(nrows=3, ncols=3)
 
-        plt.figure(figsize=(9,9))
+        plt.figure(figsize=(6,6))
 
 
         k = 0
