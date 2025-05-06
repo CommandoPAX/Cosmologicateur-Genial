@@ -24,6 +24,10 @@ indices_z = [5,6,8,9]
 indices_hdm = [0,1,4,6,7,8,9,10,11]
 #indices_hdm = [0,2,6]
 #indices_hdm = [0,1,4,6,9]
+indices_hdm = [0,1,4,6,9]
+
+ls = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-",":","--"]
+couleurs = ["blue", "darkorange", "green", "darkorange", "violet", "violet", "green", "darkorange", "violet","darkred","darkred","darkred"]
 
 Redshifts = [3,1,0.25,0]
 pre = "/data100/fcastillo/RESULT/"
@@ -62,8 +66,9 @@ if True : #for Xmax in [50,100,500]:
             hist = np.histogram(field,  density= True,bins=100,range = [-5,5])
             hist = hist[0]
 
-            plt.plot(hist)
+            plt.plot(np.arange(-5,5,0.1),hist,color=couleurs[n], ls=ls[n],label=labels[n])
 
+        plt.legend()
         plt.tight_layout()
         plt.savefig(f"delta.pdf")
         plt.clf()
