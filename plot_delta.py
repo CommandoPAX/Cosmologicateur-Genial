@@ -48,6 +48,8 @@ if True : #for Xmax in [50,100,500]:
 
 
         plt.title(r"$z = "+str(Redshifts[i])+r"$")
+
+        plt.subplot(211)
         for n in indices_hdm: 
             k +=1 
             if n <= 8 : redshifts = range(1,5)
@@ -67,6 +69,39 @@ if True : #for Xmax in [50,100,500]:
             hist = hist[0]
 
             plt.plot(np.arange(-2,3,5 / 1000),hist,color=couleurs[n], ls=ls[n],label=labels[n])
+
+        plt.subplot(212)
+
+        data = pre + snapshots[0]+"/"+str(z)+"_densite_smooth2.fits"
+
+        hdul = fits.open(data)
+        lcdm = hdul[0].data
+        hdul.close()
+
+        hist_lcdm = np.histogram(lcdm,  density= True,bins=1000,range = [-2,3])
+        hist_lcdm = hist[0]
+
+
+        for n in indices_hdm: 
+            k +=1 
+            if n <= 8 : redshifts = range(1,5)
+            else : redshifts = indices_z
+            z = redshifts[i]
+            print(z)
+            axes = plt.gca()
+
+
+            data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
+
+            hdul = fits.open(data)
+            field = hdul[0].data
+            hdul.close()
+            field = field.reshape(-1, 1) 
+            hist = np.histogram(field,  density= True,bins=1000,range = [-2,3])
+            hist = hist[0]
+
+            plt.plot(np.arange(-2,3,5 / 1000),hist-hist_lcdm,color=couleurs[n], ls=ls[n],label=labels[n])
+
 
         plt.legend()
         plt.tight_layout()
