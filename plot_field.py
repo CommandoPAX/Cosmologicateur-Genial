@@ -27,99 +27,96 @@ pre = "/data100/fcastillo/RESULT/"
 
 
 if True : #for Xmax in [50,100,500]:
-    for i in [0] :#range(4):
-        for a in range(3):
-            for b in range(3):
-                        
-                outer = gridspec.GridSpec(nrows=3, ncols=3)
+    for i in [0] :#range(4):                        
+        outer = gridspec.GridSpec(nrows=3, ncols=3)
 
-                plt.figure(figsize=(9,9))
+        plt.figure(figsize=(9,9))
 
 
-                axs = []
-                for row in range(3):
-                    for col in range(3):
-                        inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
-                        axs += [plt.subplot(cell) for cell in inner]
+        axs = []
+        for row in range(3):
+            for col in range(3):
+                inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
+                axs += [plt.subplot(cell) for cell in inner]
 
 
-                k = 0
+        k = 0
 
-                data = pre + snapshots[0]+"/"+str(i+1)+"_densite_smooth2.fits"
+        data = pre + snapshots[0]+"/"+str(i+1)+"_densite_smooth2.fits"
 
-                hdul = fits.open(data)
-                lcdm = hdul[0].data
-                hdul.close()
+        hdul = fits.open(data)
+        lcdm = hdul[0].data
+        hdul.close()
 
-                sum_lcdm = np.sum(lcdm,axis=2)
-                mean_ = np.mean(sum_lcdm)
-                std_ = np.std(sum_lcdm)
-                z0 = sum_lcdm.min()
-                z1 = sum_lcdm.max()
-                rho_m = 1073741824000000
-                #mass = rho_m * sum_ + rho_m
+        sum_lcdm = np.sum(lcdm,axis=2)
+        mean_ = np.mean(sum_lcdm)
+        std_ = np.std(sum_lcdm)
+        z0 = sum_lcdm.min()
+        z1 = sum_lcdm.max()
+        rho_m = 1073741824000000
+        #mass = rho_m * sum_ + rho_m
 
-                ims = []        
-
-
-                plt.title(r"$z = "+str(Redshifts[i])+r"$")
-                for n in indices_hdm: 
-                    k +=1 
-                    if n <= 8 : redshifts = range(1,5)
-                    else : redshifts = indices_z
-                    z = redshifts[i]
-                    print(z)
-                    axes = axs[k-1]
+        ims = []        
 
 
-                    data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
+        plt.title(r"$z = "+str(Redshifts[i])+r"$")
+        for n in indices_hdm: 
+            k +=1 
+            if n <= 8 : redshifts = range(1,5)
+            else : redshifts = indices_z
+            z = redshifts[i]
+            print(z)
+            axes = axs[k-1]
 
-                    hdul = fits.open(data)
-                    field = hdul[0].data
-                    hdul.close()
+
+            data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
+
+            hdul = fits.open(data)
+            field = hdul[0].data
+            hdul.close()
 
 
 
-                    if n <9:
-                        sum_ = np.sum(field,axis=a)
+            if n <9:
+                sum_ = np.sum(field,axis=2)
 
-                        im = axes.imshow(sum_, origin="lower")
-                        axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
+                im = axes.imshow(sum_, origin="lower")
+                axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
-                    else : 
-                        sum_ = np.sum(field,axis=b)
+            else : 
+                sum_ = np.sum(field,axis=2)
 
-                        im = axes.imshow(sum_, origin="lower")
-                        axes.title.set_text(labels[n])
-                    
-                    ims.append(im)
-                        
-                    if not k-1 > 5 : axes.xaxis.set_visible(False)  
-                    if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
+                im = axes.imshow(sum_, origin="lower")
+                axes.title.set_text(labels[n])
+            
+            ims.append(im)
+                
+            if not k-1 > 5 : axes.xaxis.set_visible(False)  
+            if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
-                    #axes.set_xlim(0,50)
-                    #axes.set_ylim(0,50)
+            #axes.set_xlim(0,50)
+            #axes.set_ylim(0,50)
 
-                    axes.set_xlabel(r"$\rm X [Mpc / h]$")
-                    axes.set_ylabel(r"$\rm Y [Mpc / h]$")
+            axes.set_xlabel(r"$\rm X [Mpc / h]$")
+            axes.set_ylabel(r"$\rm Y [Mpc / h]$")
 
 
-                # Récupérer les deux images à colorbar
-                im_lcdm = axs[0].images[0]        # image LCDM (à gauche)
-                im_diff = axs[1].images[0]        # image des différences (à droite)
+        # Récupérer les deux images à colorbar
+        im_lcdm = axs[0].images[0]        # image LCDM (à gauche)
+        im_diff = axs[1].images[0]        # image des différences (à droite)
 
-                # Créer un axe à gauche pour la colorbar LCDM
-                #divider_left = make_axes_locatable(axs[0])
-                #cax_left = divider_left.append_axes("left", size="5%", pad=0.1)
-                #plt.colorbar(im_lcdm, cax=cax_left)
-                #cax_left.yaxis.set_ticks_position('left')
-                #cax_left.yaxis.set_label_position('left')
+        # Créer un axe à gauche pour la colorbar LCDM
+        #divider_left = make_axes_locatable(axs[0])
+        #cax_left = divider_left.append_axes("left", size="5%", pad=0.1)
+        #plt.colorbar(im_lcdm, cax=cax_left)
+        #cax_left.yaxis.set_ticks_position('left')
+        #cax_left.yaxis.set_label_position('left')
 
-                # Créer un axe à droite pour la colorbar des différences
-                divider_right = make_axes_locatable(axs[-1])
-                cax_right = divider_right.append_axes("right", size="5%", pad=0.1)
-                plt.colorbar(im_diff, cax=cax_right)
+        # Créer un axe à droite pour la colorbar des différences
+        divider_right = make_axes_locatable(axs[-1])
+        cax_right = divider_right.append_axes("right", size="5%", pad=0.1)
+        plt.colorbar(im_diff, cax=cax_right)
 
-                plt.tight_layout()
-                plt.savefig(f"field_tot_{a}_{b}.pdf")
-                plt.clf()
+        plt.tight_layout()
+        plt.savefig(f"field_tot.pdf")
+        plt.clf()
