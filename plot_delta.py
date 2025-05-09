@@ -37,7 +37,6 @@ pre = "/data100/fcastillo/RESULT/"
 if True : #for Xmax in [50,100,500]:
     for i in [0] :#range(4):
 
-        outer = gridspec.GridSpec(nrows=3, ncols=3)
 
         plt.figure(figsize=(6,6))
 
