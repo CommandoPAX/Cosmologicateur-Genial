@@ -38,17 +38,15 @@ if True : #for Xmax in [50,100,500]:
     for i in [0] :#range(4):
 
 
-        plt.figure(figsize=(6,6))
-
-
         k = 0
 
         data = pre + snapshots[0]+"/"+str(i+1)+"_densite_smooth2.fits"
 
 
-        plt.title(r"$z = "+str(Redshifts[i])+r"$")
 
         axes = plt.subplot(211)
+        axes.title(r"$z = "+str(Redshifts[i])+r"$")
+
         for n in indices_hdm: 
             k +=1 
             if n <= 8 : redshifts = range(1,5)
@@ -66,9 +64,9 @@ if True : #for Xmax in [50,100,500]:
             hist = np.histogram(field,  density= True,bins=1000,range = [-2,3])
             hist = hist[0]
 
-            plt.plot(np.arange(-2,3,5 / 1000),hist,color=couleurs[n], ls=ls[n],label=labels[n])
+            axes.plot(np.arange(-2,3,5 / 1000),hist,color=couleurs[n], ls=ls[n],label=labels[n])
         
-        plt.legend()
+        axes.legend()
 
         axes2 = plt.subplot(212)
 
