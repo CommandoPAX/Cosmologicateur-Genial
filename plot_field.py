@@ -24,7 +24,7 @@ Redshifts = [3,1,0.25,0]
 pre = "/data100/fcastillo/RESULT/"
 
 
-
+ims = []
 for Xmax in [50]:
     for i in range(4):
 
@@ -86,9 +86,12 @@ for Xmax in [50]:
             sum_ = np.sum(field[X0-25:X0+25,Y0-25:Y0+25,Z0-1:Z0+1],axis=2)
 
 
-            if True:
-                im = axes.imshow(sum_-sum_lcdm, origin="lower",vmin=-0.2,vmax = 0.2,cmap="inferno")
+            if n > 0:
+                im = axes.imshow(sum_-sum_lcdm, origin="lower",vmin=-0.5,vmax = 0.5,cmap="bwr")
+            else : 
+                im = axes.imshow(sum_, origin="lower",cmap="viridis")
 
+            ims.append[im]
 
             if (k) % 3 == 0 : plt.colorbar(im)
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
