@@ -80,7 +80,7 @@ if True : #for Xmax in [50,100,500]:
         lcdm = lcdm.reshape(-1,1)
 
         hist_lcdm = np.histogram(lcdm,  density= True,bins=1000,range = [-2,3])
-        hist_lcdm = hist[0]
+        hist_lcdm = hist_lcdm[0]
 
 
         for n in indices_hdm: 
