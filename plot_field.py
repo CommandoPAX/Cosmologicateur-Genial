@@ -101,5 +101,5 @@ for Xmax in [50]:
             axes.set_ylabel(r"$\rm Y [Mpc / h]$")
 
         plt.tight_layout()
-        plt.savefig(f"field_diff_{Redshifts[i]}_{Xmax}.pdf")
+        plt.savefig(f"field_diff_max_{Redshifts[i]}_{Xmax}.pdf")
         plt.clf()
