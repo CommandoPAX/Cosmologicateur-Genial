@@ -56,6 +56,8 @@ if True : #for Xmax in [50,100,500]:
             z = redshifts[i]
             print(z)
             axes = plt.gca()
+            for spine in axes.spines.values():
+                spine.set_visible(False)
 
             axes.set_ylabel(r"PDF")
             data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
@@ -68,6 +70,8 @@ if True : #for Xmax in [50,100,500]:
             hist = hist[0]
 
             plt.plot(np.arange(-2,3,5 / 1000),hist,color=couleurs[n], ls=ls[n],label=labels[n])
+        
+        plt.legend()
 
         plt.subplot(212)
 
@@ -92,7 +96,8 @@ if True : #for Xmax in [50,100,500]:
 
             axes.set_xlabel(r"$\delta$")
             axes.set_ylabel(r"$\Delta$")
-
+            for spine in axes.spines.values():
+                spine.set_visible(False)
 
             data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
 
@@ -106,7 +111,6 @@ if True : #for Xmax in [50,100,500]:
             plt.plot(np.arange(-2,3,5 / 1000),hist-hist_lcdm,color=couleurs[n], ls=ls[n],label=labels[n])
 
 
-        plt.legend()
         plt.tight_layout()
         plt.savefig(f"delta.pdf")
         plt.clf()
