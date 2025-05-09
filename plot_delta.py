@@ -58,7 +58,7 @@ if True : #for Xmax in [50,100,500]:
             print(z)
             axes = plt.gca()
 
-
+            axes.set_ylabel(r"PDF")
             data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
 
             hdul = fits.open(data)
@@ -91,6 +91,9 @@ if True : #for Xmax in [50,100,500]:
             print(z)
             axes = plt.gca()
 
+            axes.set_xlabel(r"$\delta$")
+            axes.set_ylabel(r"$\Delta$")
+
 
             data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
 
@@ -100,7 +103,7 @@ if True : #for Xmax in [50,100,500]:
             field = field.reshape(-1, 1) 
             hist = np.histogram(field,  density= True,bins=1000,range = [-2,3])
             hist = hist[0]
-
+            plt.yscale("symlog", linthresh=1e-6) 
             plt.plot(np.arange(-2,3,5 / 1000),hist-hist_lcdm,color=couleurs[n], ls=ls[n],label=labels[n])
 
 
