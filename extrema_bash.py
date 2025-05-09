@@ -28,7 +28,7 @@ for n in indices_hdm: # 7
 #SBATCH --output=/home/fcastillo/logs/extrema_{n}_{i}.out
 #SBATCH --partition=pscomp
 #SBATCH --ntasks-per-node=128
-#SBATCH --nodelist=i34,i35,i36
+#SBATCH --nodelist=i27,i28,i29
 """)
         fichier.write("""
 

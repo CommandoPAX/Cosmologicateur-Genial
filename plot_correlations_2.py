@@ -189,18 +189,18 @@ if __name__ == "__main__" :
                         elif p == 1 :
                             a = 3
                             b = 2
-                        lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
+                        lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{5}_tres_grand.txt.npy")
 
                         if j <= 8 : 
                             try :
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{5}_tres_grand.txt.npy")
                             except :
                                 zeta = lcdm
 
 
                         else :
                             try : 
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{5}_tres_grand.txt.npy")
                             except: 
                                 zeta = lcdm                        #zeta[0] = 0
 
@@ -215,7 +215,7 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$1 + \zeta (r)$")
                             axes.xaxis.set_visible(False)
-                            #axes.set_ylim(1,1.8)
+                            axes.set_ylim(1,20)
                             #if p == 1 : axes.set_ylim(0,3)
                         else : 
                             axes.plot(r_bins[1:], (zeta - lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
