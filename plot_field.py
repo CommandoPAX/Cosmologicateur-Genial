@@ -62,10 +62,6 @@ for minmax in range(2) :
             Z0 = max_position[2]
 
             sum_lcdm = np.sum(lcdm[X0-25:X0+25,Y0-25:Y0+25,Z0-1:Z0+1],axis=2)
-            mean_ = np.mean(sum_lcdm)
-            std_ = np.std(sum_lcdm)
-            z0 = sum_lcdm.min()
-            z1 = sum_lcdm.max()
             rho_m = 1073741824000000
             #mass = rho_m * sum_ + rho_m
             
