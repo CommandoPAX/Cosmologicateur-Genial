@@ -16,7 +16,7 @@ labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -5
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
 
-indices_hdm = [0,1,4,6,7,8,9,10,11]
+indices_hdm = [0,1,4,6,7,8]
 #indices_hdm = [0,2,6]
 #indices_hdm = [0,1,4,6,9]
 
@@ -25,16 +25,16 @@ pre = "/data100/fcastillo/RESULT/"
 
 
 
-for Xmax in [10,50,100,500]:
+for Xmax in [50]:
     for i in range(4):
 
-        outer = gridspec.GridSpec(nrows=3, ncols=3)
+        outer = gridspec.GridSpec(nrows=2, ncols=3)
 
-        plt.figure(figsize=(9,9))
+        plt.figure(figsize=(6,9))
 
 
         axs = []
-        for row in range(3):
+        for row in range(2):
             for col in range(3):
                 inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
                 axs += [plt.subplot(cell) for cell in inner]
@@ -48,7 +48,15 @@ for Xmax in [10,50,100,500]:
         lcdm = hdul[0].data
         hdul.close()
 
-        sum_lcdm = np.sum(lcdm[0:Xmax,0:Xmax,0:2],axis=2)
+
+        max_index_flat = np.argmax(lcdm)
+        max_position = np.unravel_index(max_index_flat, lcdm.shape)
+
+        X0 = max_position[0]
+        Y0 = max_position[1]
+        Z0 = max_position[2]
+
+        sum_lcdm = np.sum(lcdm[X0-25,X0+25,Y0-25,Y0+25,Z0-1,Z0+1],axis=2)
         mean_ = np.mean(sum_lcdm)
         std_ = np.std(sum_lcdm)
         z0 = sum_lcdm.min()
@@ -75,7 +83,7 @@ for Xmax in [10,50,100,500]:
             field = hdul[0].data
             hdul.close()
 
-            sum_ = np.sum(field[0:Xmax,0:Xmax,0:2],axis=2)
+            sum_ = np.sum(field[X0-25,X0+25,Y0-25,Y0+25,Z0-1,Z0+1],axis=2)
 
 
             if True:
