@@ -45,7 +45,7 @@ if True : #for Xmax in [50,100,500]:
 
 
         axes = plt.subplot(211)
-        axes.title(r"$z = "+str(Redshifts[i])+r"$")
+        axes.set_title(r"$z = "+str(Redshifts[i])+r"$")
 
         for n in indices_hdm: 
             k +=1 
