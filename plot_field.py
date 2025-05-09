@@ -55,7 +55,8 @@ for BM in range(2):
 
                 k = 0
 
-                data = pre + snapshots[0]+"/"+str(i+1)+"_densite_smooth2.fits"
+                if BM == 0 : data = pre + snapshots[0]+"/"+str(i+1)+"_densite_smooth2.fits"
+                else : data = pre + snapshots[12]+"/"+str(redshifts[i])+"_densite_smooth2.fits"
 
                 hdul = fits.open(data)
                 lcdm = hdul[0].data
