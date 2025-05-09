@@ -273,11 +273,14 @@ def main(argv):
     SPE = True 
     HAL = False
 
-    pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
-    snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
+    #pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
+    #snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
-    for n in range(3):
-        for i in range(5):
+    pre = "/data77/stahl/EDE/Run/Nb"
+    snapshots = ["NBM"]
+
+    for n in range(1):
+        for i in range(10):
             name = snapshots[n]
             file_path = pre + name
 
