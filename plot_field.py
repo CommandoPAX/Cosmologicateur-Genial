@@ -4,7 +4,6 @@ import matplotlib
 from astropy.io import fits
 from matplotlib import gridspec
 from matplotlib.colors import LogNorm
-from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
 matplotlib.rcParams['text.usetex'] = True
@@ -26,7 +25,7 @@ pre = "/data100/fcastillo/RESULT/"
 
 
 
-if True : #for Xmax in [50,100,500]:
+for Xmax in [10,50,100,500]:
     for i in range(4):
 
         outer = gridspec.GridSpec(nrows=3, ncols=3)
@@ -49,15 +48,14 @@ if True : #for Xmax in [50,100,500]:
         lcdm = hdul[0].data
         hdul.close()
 
-        sum_lcdm = np.sum(lcdm,axis=2)
+        sum_lcdm = np.sum(lcdm[0:Xmax,0:Xmax,0:2],axis=2)
         mean_ = np.mean(sum_lcdm)
         std_ = np.std(sum_lcdm)
         z0 = sum_lcdm.min()
         z1 = sum_lcdm.max()
         rho_m = 1073741824000000
         #mass = rho_m * sum_ + rho_m
-
-        ims = []        
+        
 
 
         plt.title(r"$z = "+str(Redshifts[i])+r"$")
@@ -68,6 +66,7 @@ if True : #for Xmax in [50,100,500]:
             z = redshifts[i]
             print(z)
             axes = axs[k-1]
+            axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
 
             data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
@@ -76,22 +75,14 @@ if True : #for Xmax in [50,100,500]:
             field = hdul[0].data
             hdul.close()
 
+            sum_ = np.sum(field[0:Xmax,0:Xmax,0:2],axis=2)
 
 
-            if n <9:
-                sum_ = np.sum(field,axis=2)
+            if True:
+                im = axes.imshow(sum_-sum_lcdm, origin="lower",vmin=-0.2,vmax = 0.2,cmap="inferno")
 
-                im = axes.imshow(sum_, origin="lower")
-                axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
-            else : 
-                sum_ = np.sum(field,axis=1)
-
-                im = axes.imshow(sum_, origin="lower")
-                axes.title.set_text(labels[n])
-            
-            ims.append(im)
-                
+            if (k) % 3 == 0 : plt.colorbar(im)
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
             if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
@@ -101,23 +92,6 @@ if True : #for Xmax in [50,100,500]:
             axes.set_xlabel(r"$\rm X [Mpc / h]$")
             axes.set_ylabel(r"$\rm Y [Mpc / h]$")
 
-
-        # Récupérer les deux images à colorbar
-        im_lcdm = axs[0].images[0]        # image LCDM (à gauche)
-        im_diff = axs[1].images[0]        # image des différences (à droite)
-
-        # Créer un axe à gauche pour la colorbar LCDM
-        #divider_left = make_axes_locatable(axs[0])
-        #cax_left = divider_left.append_axes("left", size="5%", pad=0.1)
-        #plt.colorbar(im_lcdm, cax=cax_left)
-        #cax_left.yaxis.set_ticks_position('left')
-        #cax_left.yaxis.set_label_position('left')
-
-        # Créer un axe à droite pour la colorbar des différences
-        divider_right = make_axes_locatable(axs[-1])
-        cax_right = divider_right.append_axes("right", size="5%", pad=0.1)
-        plt.colorbar(im_diff, cax=cax_right)
-
         plt.tight_layout()
-        plt.savefig(f"field_tot_{Redshifts[i]}.pdf")
+        plt.savefig(f"field_diff_{Redshifts[i]}_{Xmax}.pdf")
         plt.clf()
