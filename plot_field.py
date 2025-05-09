@@ -27,7 +27,8 @@ pre = "/data100/fcastillo/RESULT/"
 
 
 if True : #for Xmax in [50,100,500]:
-    for i in [0] :#range(4):                        
+    for i in range(4):
+
         outer = gridspec.GridSpec(nrows=3, ncols=3)
 
         plt.figure(figsize=(9,9))
@@ -84,7 +85,7 @@ if True : #for Xmax in [50,100,500]:
                 axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
             else : 
-                sum_ = np.sum(field,axis=2)
+                sum_ = np.sum(field,axis=1)
 
                 im = axes.imshow(sum_, origin="lower")
                 axes.title.set_text(labels[n])
@@ -118,5 +119,5 @@ if True : #for Xmax in [50,100,500]:
         plt.colorbar(im_diff, cax=cax_right)
 
         plt.tight_layout()
-        plt.savefig(f"field_tot.pdf")
+        plt.savefig(f"field_tot_{Redshifts[i]}.pdf")
         plt.clf()
