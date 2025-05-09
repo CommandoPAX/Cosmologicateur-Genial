@@ -129,5 +129,5 @@ for BM in range(2):
 
 
                 plt.tight_layout()
-                plt.savefig(f"field_diff_{["min","max"][minmax]}_{Redshifts[i]}_{Xmax}_{["","EDE"][BM]}.pdf")
+                plt.savefig(f"field_diff_{["max","min"][minmax]}_{Redshifts[i]}_{Xmax}_{["","EDE"][BM]}.pdf")
                 plt.clf()
