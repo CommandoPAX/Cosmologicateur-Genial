@@ -31,7 +31,7 @@ for Xmax in [50]:
 
         outer = gridspec.GridSpec(nrows=2, ncols=3)
 
-        plt.figure(figsize=(6,9))
+        plt.figure(figsize=(9,6))
 
 
         axs = []
