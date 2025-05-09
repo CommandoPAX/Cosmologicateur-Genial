@@ -3,10 +3,10 @@ import numpy as np
 from py_extrema.extrema import ExtremaFinder, CriticalPoints
 
 pre = "/data100/fcastillo/RESULT/"
-snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
+snapshots = ["NBM"]
 
 for R in [1,2,5]:
-    for n in range(7):
+    for n in range(1):
         for i in range(10):
             print(R, n, i)
             data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
@@ -14,7 +14,7 @@ for R in [1,2,5]:
             data = hdul[0].data
             hdul.close()
 
-            ef = ExtremaFinder(data.astype(np.float32), nthreads=32, loglevel=30)  
+            ef = ExtremaFinder(data.astype(np.float32), loglevel=30)  
             field = ef.smooth(R)
 
             header = fits.Header()
