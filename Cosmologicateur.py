@@ -276,7 +276,7 @@ def main(argv):
     #pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
     #snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
-    pre = "/data77/stahl/EDE/Run/Nb"
+    pre = "/data77/stahl/EDE/Run/Nb/"
     snapshots = ["NBM"]
 
     for n in range(1):
