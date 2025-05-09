@@ -4,6 +4,7 @@ import matplotlib
 from astropy.io import fits
 from matplotlib import gridspec
 from matplotlib.colors import LogNorm
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
 matplotlib.rcParams['text.usetex'] = True
@@ -91,9 +92,8 @@ for Xmax in [50]:
             else : 
                 im = axes.imshow(sum_, origin="lower",cmap="viridis")
 
-            ims.append[im]
+            ims.append(im)
 
-            if (k) % 3 == 0 : plt.colorbar(im)
             if not k-1 > 5 : axes.xaxis.set_visible(False)  
             if not (k-1) % 3 == 0 : axes.yaxis.set_visible(False)  
 
@@ -102,6 +102,21 @@ for Xmax in [50]:
 
             axes.set_xlabel(r"$\rm X [Mpc / h]$")
             axes.set_ylabel(r"$\rm Y [Mpc / h]$")
+
+
+        im_lcdm = axs[0].images[0]  
+        im_diff = axs[1].images[0]     
+
+        divider_left = make_axes_locatable(axs[0])
+        cax_left = divider_left.append_axes("left", size="5%", pad=0.1)
+        plt.colorbar(im_lcdm, cax=cax_left)
+        cax_left.yaxis.set_ticks_position('left')
+        cax_left.yaxis.set_label_position('left')
+
+        divider_right = make_axes_locatable(axs[-1])
+        cax_right = divider_right.append_axes("right", size="5%", pad=0.1)
+        plt.colorbar(im_diff, cax=cax_right)
+
 
         plt.tight_layout()
         plt.savefig(f"field_diff_max_{Redshifts[i]}_{Xmax}.pdf")
