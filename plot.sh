@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python Cosmologicateur-Genial.py
+python tableaux.py
