@@ -306,23 +306,28 @@ if __name__ == "__main__" :
                         elif p == 3 :
                             a = 3
                             b = 1
-                        lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
+                        lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
 
                         if j <= 8 : 
                             try :
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
                             except :
                                 zeta = lcdm
 
                         else :
                             try : 
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}_tres_grand.txt.npy")
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
                             except: 
                                 zeta = lcdm
                         #zeta[0] = 0
 
+                        print(i, j, p, np.shape(zeta),np.shape(lcdm))
+
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
                         r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        
+                        r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+       	                r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
 

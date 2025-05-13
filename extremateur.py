@@ -87,8 +87,8 @@ x = np.arange(512)
 y = np.arange(512)
 z = np.arange(512)
 
-for j in range(2) :
-    for k in range(j+2,4) :
+for j in [1] :
+    for k in [2] :
 
         print(j, k)
         result_k = result[result[:,3]==k][:,0:3] % 512
