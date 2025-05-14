@@ -24,5 +24,5 @@ axes.set_xlabel(r"${\rm Wavenumber}~k~[h/{\rm Mpc]}$")
 axes.set_ylabel(r"$P(k) ~[ ({\rm Mpc} / h)^3]$")
 
 plt.legend()
-
+plt.tight_layout()
 plt.savefig("/home/fcastillo/Cosmologicateur-Genial/pow_lcdm.pdf")
