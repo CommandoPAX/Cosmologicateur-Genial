@@ -15,7 +15,7 @@ matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 
-fichier = open("/home/fcastillo/Cosmologicateur-Genial/4_POW_benchM.txt","r")
+fichier = open("/home/fcastillo/Cosmologicateur-Genial/POW/4_POW_benchM.txt","r")
 
 k = []
 P = []
