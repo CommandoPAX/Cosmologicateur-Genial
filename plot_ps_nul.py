@@ -13,6 +13,7 @@ import matplotlib
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
+matplotlib.rcParams.update({'font.size': 20})
 
 toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
 plt.loglog(toL[0],toL[1],label=r"$\Lambda{\rm CDM}$") #plot non-linear CLASS from HaloFit
