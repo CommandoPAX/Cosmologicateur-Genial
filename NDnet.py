@@ -94,7 +94,7 @@ if __name__ == "__main__" :
 
 
             if True :
-                if n <= 6 : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
+                if n <= 6 : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_smooth2_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
                 else : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}_densite_smooth2_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
 
                 surfaces = []
@@ -107,7 +107,9 @@ if __name__ == "__main__" :
                         surfaces_t = []
                     surfaces_t.append(triangle.Surface())
 
-                np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
+                if n <= 6 : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
+                else : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
+
             else:
                 pass #print(n,i)
 
