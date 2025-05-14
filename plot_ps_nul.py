@@ -19,7 +19,9 @@ plt.loglog(toL[0],toL[1],label=r"$\Lambda{\rm CDM}$") #plot non-linear CLASS fro
 
 axes = plt.gca()
 
-axes.set_xlabel(r"${\rm Wavenumber}~k{\rm~[h/Mpc]}$")
-axes.set_ylabel(r"$P(k) ~[{\rm (Mpc / h)}^3]$")
+axes.set_xlabel(r"${\rm Wavenumber}~k~[h/{\rm Mpc]}$")
+axes.set_ylabel(r"$P(k) ~[ ({\rm Mpc} / h)^3]$")
+
+plt.legend()
 
 plt.savefig("/home/fcastillo/Cosmologicateur-Genial/pow_lcdm.pdf")
