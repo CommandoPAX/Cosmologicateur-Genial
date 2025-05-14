@@ -30,10 +30,10 @@ while 1:
     
 fichier.close()
 
-plt.plot(k,P)
+plt.loglog(k,P)
 axes = plt.gca()
 
 axes.set_xlabel(r"${\rm Wavenumber}~k{\rm~[h/Mpc]}$")
-axes.set_ylabel(r"$P(k) {\rm (Mpc / h)}^3$")
+axes.set_ylabel(r"$P(k) [{\rm (Mpc / h)}^3]$")
 
 plt.savefig("/home/fcastillo/Cosmologicateur-Genial/pow_lcdm.pdf")
