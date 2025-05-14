@@ -17,6 +17,7 @@ matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
 plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
 
+axes = plt.gca()
 
 axes.set_xlabel(r"${\rm Wavenumber}~k{\rm~[h/Mpc]}$")
 axes.set_ylabel(r"$P(k) [{\rm (Mpc / h)}^3]$")
