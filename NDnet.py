@@ -28,9 +28,9 @@ class Simplexe ():
 
 class Vertex ():
     def __init__(self, x, y, z):
-        self.x = float(x) * 500/256
-        self.y = float(y) * 500/256
-        self.z = float(z) * 500/256
+        self.x = float(x) * 500/512
+        self.y = float(y) * 500/512
+        self.z = float(z) * 500/512
 
 class Net ():
     def __init__ (self, path) :
@@ -94,8 +94,8 @@ if __name__ == "__main__" :
 
 
             if True :
-                if n <= 6 : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_smooth2_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
-                else : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}_densite_smooth2_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
+                if n <= 6 : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_smooth2_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
+                else : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}_densite_smooth2_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
 
                 surfaces = []
                 surfaces_t = []
@@ -107,8 +107,8 @@ if __name__ == "__main__" :
                         surfaces_t = []
                     surfaces_t.append(triangle.Surface())
 
-                if n <= 6 : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
-                else : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}_densite_0_c0.1_surf_murs.txt", np.array(surfaces))
+                if n <= 6 : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_smooth2_c0.1_surf_murs.txt", np.array(surfaces))
+                else : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}_densite_smooth2_c0.1_surf_murs.txt", np.array(surfaces))
 
             else:
                 pass #print(n,i)
