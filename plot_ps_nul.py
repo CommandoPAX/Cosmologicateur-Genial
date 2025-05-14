@@ -14,24 +14,9 @@ matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
+toL=np.transpose(np.loadtxt("CLASS_NL.dat"))
+plt.loglog(toL[0],toL[1],linestyle="dashdot",label='CLASS_NL') #plot non-linear CLASS from HaloFit
 
-fichier = open("/home/fcastillo/Cosmologicateur-Genial/POW/4_POW_benchM.txt","r")
-
-k = []
-P = []
-
-while 1:
-    l = fichier.readline()
-    if l == "" : break
-    l = l.split(" ")
-
-    k.append(float(l[0]))
-    P.append(float(l[1].replace("\n","")))
-    
-fichier.close()
-
-plt.loglog(k,P)
-axes = plt.gca()
 
 axes.set_xlabel(r"${\rm Wavenumber}~k{\rm~[h/Mpc]}$")
 axes.set_ylabel(r"$P(k) [{\rm (Mpc / h)}^3]$")
