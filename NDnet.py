@@ -80,14 +80,22 @@ class Net ():
         fichier.close()
 
 if __name__ == "__main__" :
-    for n in range(2,6):
-        for i in range(5):
 
-            snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
-            labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
+    snapshots = ["benchM", "NG_ViVi","NG_Fminus500_ViVi","G_ViVi","NG_F500", "NG_Fminus500","NEDE","NsPNG_EDE_F500","NsPNG_EDE_F1833"]
 
-            if (n==2 and i==0) or (n==5 and i ==4) :
-                reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
+
+    z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
+    indices_z = [5,6,8,9]
+
+
+    for n in range(9):
+        for j in range(1,5):
+            z_k = indices_z[j-1]
+
+
+            if True :
+                if n <= 6 : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{i}_densite_smooth2_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
+                else : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}_densite_smooth2_0_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
 
                 surfaces = []
                 surfaces_t = []
