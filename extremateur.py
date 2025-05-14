@@ -87,8 +87,8 @@ x = np.arange(512)
 y = np.arange(512)
 z = np.arange(512)
 
-for j in [1] :
-    for k in [2] :
+for j in [0,1] :
+    for k in [2,3] :
 
         print(j, k)
         result_k = result[result[:,3]==k][:,0:3] % 512
@@ -129,6 +129,8 @@ for j in [1] :
         r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
         r_bins = np.concatenate((r_small, r_large))
 
+        r_bins=np.geomspace(40,80,20)
+
         DD_counts = np.array([count_pairs_query_ball_point(points_k, KDTree(points_j, boxsize=512), r)
                             for r in r_bins[1:]])
 
@@ -147,4 +149,4 @@ for j in [1] :
         print(DRj_counts)
         print(correlation, np.array(correlation))
 
-        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_P{P}_tres_grand_loin.txt", np.array(correlation))
+        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_P{P}_tres_grand_tres_loin.txt", np.array(correlation))
