@@ -6,19 +6,19 @@ import time
 
 pre = "/data100/fcastillo/RESULT/"
 #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
-snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
+snapshots = ["SIM0N_BIG","SIM1N_BIG","SIM2N_BIG","SIM3N_BIG"]
 
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
 
-for n in range(6,7):
+for n in range(4):
     fichier = open(f"../bash/mse_{n}.sh","w")
     fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}
 #SBATCH --mem=500gb
 #SBATCH --time=48:00:00
 #SBATCH --partition=pscomp
-#SBATCH --nodelist=i{23+n}
+#SBATCH --nodelist=i01,i02
 #SBATCH --ntasks=128
 #SBATCH --output=/home/fcastillo/logs/skl2_{n}.out
 """)
@@ -31,7 +31,7 @@ source /etc/profile.d/modules.sh
 module purge
 module load disperse/0.9.24""")
 
-    for i in indices_z:
+    for i in range(4):
 
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
