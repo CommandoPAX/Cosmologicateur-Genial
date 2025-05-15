@@ -84,7 +84,7 @@ def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
     else : 
         output_ = f"{path}/{index}_POW_{SimuName}.png"
 
-    grid = 512    #grid size
+    grid = 1024    #grid size
     pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
     BoxSize = pBoxSize[0].value #Mpc/h
     print(BoxSize)
@@ -201,15 +201,15 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     else : 
         output_ = f"{path}/{index}_POW_{SimuName}.pdf"
 
-    grid = 512    #grid size
-    BoxSize = 500
+    grid = 1024    #grid size
+    BoxSize = 100
     Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
     threads = 1      #number of openmp threads
     verbose = True   #whether to print some information
     axis = 0
     MAS = 'CIC'
     snapshot = snap  #snapshot name
-    grid     = 512                     #grid size
+    grid     = 1024                     #grid size
     ptypes   = [1]                     #CDM + neutrinos
     MAS      = 'CIC'                   #Cloud-in-Cell
     do_RSD   = False                   #dont do redshif-space distortions
@@ -302,7 +302,7 @@ def main(argv):
             units_override =  {"UnitLength_in_cm": 3.08568e24/(1+z)}
 
 
-            bbox_lim = 500 
+            bbox_lim = 100 
 
             bbox = [[-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim]]
 
