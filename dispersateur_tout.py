@@ -16,6 +16,7 @@ for n in range(4):
     fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}
 #SBATCH --mem=500gb
+#SBATCH --nodes=1
 #SBATCH --time=48:00:00
 #SBATCH --partition=pscomp
 #SBATCH --nodelist=i01,i02
