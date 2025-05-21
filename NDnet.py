@@ -88,7 +88,7 @@ if __name__ == "__main__" :
     indices_z = [5,6,8,9]
 
 
-    for n in range(9):
+    for n in range(1,9):
         for j in range(1,5):
             z_k = indices_z[j-1]
 

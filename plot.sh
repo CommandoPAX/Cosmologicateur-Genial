@@ -3,10 +3,10 @@
 #SBATCH --partition=comp,pscomp
 #SBATCH --nodes=1
 #SBATCH --mem=10gb
-#SBATCH --time=02:00:00
+#SBATCH --time=48:00:00
 #SBATCH --output=/home/fcastillo/logs/plot.out
 
 module purge
 module load intelpython
 
-python extrema_bash.py
+python /home/fcastillo/Cosmologicateur-Genial/dispersateur_tout.py

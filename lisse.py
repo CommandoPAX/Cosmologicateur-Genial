@@ -15,7 +15,7 @@ for R in [1,2,5]:
             hdul.close()
 
             ef = ExtremaFinder(data.astype(np.float32), loglevel=30)  
-            field = ef.smooth(R)
+            field = ef.smooth(R*2)
 
             header = fits.Header()
             header['COMMENT'] = 'Champ de densite'

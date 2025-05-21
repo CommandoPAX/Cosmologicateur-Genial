@@ -15,11 +15,11 @@ for n in range(4):
     fichier = open(f"../bash/mse_{n}.sh","w")
     fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}
-#SBATCH --mem=500gb
+#SBATCH --mem=1000gb
 #SBATCH --nodes=1
 #SBATCH --time=48:00:00
 #SBATCH --partition=pscomp
-#SBATCH --nodelist=i01,i02
+#SBATCH --nodelist=i02,i03
 #SBATCH --ntasks=128
 #SBATCH --output=/home/fcastillo/logs/skl2_{n}.out
 """)

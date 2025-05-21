@@ -304,7 +304,7 @@ def main(argv):
 
             bbox_lim = 100 
 
-            bbox = [[-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim], [-bbox_lim, bbox_lim]]
+            bbox = [[-bbox_lim//2, bbox_lim//2], [-bbox_lim//2, bbox_lim//2], [-bbox_lim//2, bbox_lim//2]]
 
             Power_Spectrum_gadget(f"{file_path}/snapshot_00{i}", i, Output_Path, name, z)
 
