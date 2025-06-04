@@ -166,10 +166,10 @@ if __name__ == "__main__" :
         # Récupérer tous les handles/labels
         handles = []
         labels_all = []
-        for ax in axs:
-            h, l = ax.get_legend_handles_labels()
-            handles.extend(h)
-            labels_all.extend(l)
+        ax = axs[0]
+        h, l = ax.get_legend_handles_labels()
+        handles.extend(h)
+        labels_all.extend(l)
 
         # Éliminer les doublons (en conservant l'ordre)
         seen = set()
