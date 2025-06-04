@@ -55,7 +55,7 @@ if __name__ == "__main__" :
     couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
 
-    plt.figure(figsize=(15,10))
+    plt.figure(figsize=(17,10))
     places = {
         "00" : 1,
         "01" : 2,
