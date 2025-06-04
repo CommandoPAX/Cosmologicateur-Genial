@@ -55,7 +55,7 @@ if __name__ == "__main__" :
     couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
 
-    plt.figure(figsize=(17,10))
+    plt.figure(figsize=(15,10))
     places = {
         "00" : 1,
         "01" : 2,
@@ -183,7 +183,7 @@ if __name__ == "__main__" :
         # Ajuster la mise en page pour laisser la place à la légende
 
 
-        plt.tight_layout(rect=[0, 0, 1, 0.95])
+        plt.tight_layout()
         plt.savefig(f"v_tout.pdf")
         plt.savefig(f"v_tout.png")
 
