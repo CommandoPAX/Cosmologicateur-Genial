@@ -43,7 +43,7 @@ if __name__ == "__main__" :
     #couleurs = ["blue", "red", "#FF9900","green"]
 
     snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
-    labels = [ "", r"$f_{\rm NL} = -300~\&~{\rm EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
+    labels = [ "", r"$f_{\rm NL}^0 = -300~\&~{\rm EDE}$",  r"$f_{\rm NL}^0 = -1100~\&~{\rm EDE}$", r"$f_{\rm NL}^0 = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL}^0 = 500~\&~{\rm mixed~DM}$"]
 
 
     lss = ["-", ":", "--",  "--","--"]

@@ -13,6 +13,7 @@ import matplotlib
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
+matplotlib.rcParams.update({'font.size': 18})
 
 
 if __name__ == "__main__" :
@@ -29,7 +30,7 @@ if __name__ == "__main__" :
     #labels = ["LCDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500"]
 
     snapshots = ["benchM","NG_F500","G_ViVi","NG_ViVi","NG_Fminus500","NG_Fminus500_ViVi"]
-    labels = [r"$\Lambda$CDM", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
+    labels = [r"$\Lambda{\rm CDM}$", "fnl = -500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", "fnl = -500 & mixed DM", "fnl = 500", "fnl = 500 & mixed DM"]
 
 
     #snapshots = ["benchM", "NEDE","NsPNG_EDE_F1833", "G_ViVi"]
@@ -40,7 +41,7 @@ if __name__ == "__main__" :
     #ED1C24
 
     snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-    labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+    labels = [r"$\Lambda{\rm CDM}$", r"{\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
 
 
     lss = ["-", "-.", "-",  "-","-"]
@@ -181,7 +182,7 @@ if __name__ == "__main__" :
             if d == 0 : axs[d].set_ylabel(r"${\rm Mean~length}~/~V~~[{\rm Mpc / h}]^{-2}$")
             if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
 
-            if d == 0 : axs[d].legend(fontsize=8)
+            if d == 0 : axs[d].legend(fontsize=11,loc="lower left", ncol=2)
 
     axs[0].invert_xaxis()
     axs[1].invert_xaxis()
