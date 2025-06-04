@@ -41,7 +41,7 @@ if __name__ == "__main__" :
     #ED1C24
 
     snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-    labels = [r"$\Lambda{\rm CDM}$", r"{\rm mixed~DM}$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
+    labels = [r"$\Lambda{\rm CDM}$", r"${\rm mixed~DM}$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
 
 
     lss = ["-", "-.", "-",  "-","-"]
