@@ -48,7 +48,7 @@ if __name__ == "__main__" :
     couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
     snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-    labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
+    labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
 
 
     ls = ["-", "-.", "-",  "-","-"]
@@ -153,7 +153,7 @@ if __name__ == "__main__" :
                         else :
                             axes.plot(X[mask], ((data[p][mask] - lcdm[p][mask])), color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
-                        if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"threshold [$\sigma$]")
+                        if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"${\rm threshold}~\[\sigma\]$")
                         if j == len(snapshots)-1 and i == 1 and d == 0 and p == 0: 
                             axes.legend() 
 
