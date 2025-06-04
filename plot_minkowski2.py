@@ -95,7 +95,6 @@ if __name__ == "__main__" :
                 X2 = np.linspace(-1,1,101)
                 X3 = X[X>1]
 
-
                 X = np.concatenate((X1,X2,X3))
 
             if p == 0 and i in [2,4] : X = X2
@@ -155,7 +154,7 @@ if __name__ == "__main__" :
                             axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"${\rm threshold}~[\sigma]$")
                         if j == len(snapshots)-1 and i == 1 and d == 0 and p == 0: 
-                            axes.legend(fontsize=12) 
+                            pass#axes.legend(fontsize=12) 
 
                         if p == 0 and i in [2,4] : axes.set_xlim(-1,1)
                         elif p!=0 and i in [2,4] : axes.set_xlim(-1,3)
@@ -163,6 +162,26 @@ if __name__ == "__main__" :
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
+        # Récupérer tous les handles/labels
+        handles = []
+        labels_all = []
+        for ax in axs:
+            h, l = ax.get_legend_handles_labels()
+            handles.extend(h)
+            labels_all.extend(l)
+
+        # Éliminer les doublons (en conservant l'ordre)
+        seen = set()
+        unique_handles_labels = [(h, l) for h, l in zip(handles, labels_all) if not (l in seen or seen.add(l))]
+        unique_handles, unique_labels = zip(*unique_handles_labels)
+
+        # Légende globale
+        fig = plt.gcf()
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=4, fontsize='small', frameon=False)
+
+        # Ajuster la mise en page pour laisser la place à la légende
+
 
         plt.tight_layout()
         plt.savefig(f"v_tout.pdf")
