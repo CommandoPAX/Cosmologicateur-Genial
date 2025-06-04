@@ -129,7 +129,7 @@ for j in [0,1] :
         r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
         r_bins = np.concatenate((r_small, r_large))
 
-        r_bins=np.linspace(40,200,20)
+        r_bins=np.linspace(40,80,10)
 
         DD_counts = np.array([count_pairs_query_ball_point(points_k, KDTree(points_j, boxsize=512), r)
                             for r in r_bins[1:]])

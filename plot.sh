@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python /home/fcastillo/Cosmologicateur-Genial/dispersateur_tout.py
+python /home/fcastillo/Cosmologicateur-Genial/plot_connect.py

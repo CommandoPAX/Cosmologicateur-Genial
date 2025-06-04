@@ -13,7 +13,7 @@ import matplotlib
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
-
+matplotlib.rcParams.update({'font.size': 18})
 
 if __name__ == "__main__" :
 
@@ -43,18 +43,18 @@ if __name__ == "__main__" :
     #couleurs = ["blue", "red", "#FF9900","green"]
 
     snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
-    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -300~\&~{\rm EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
+    labels = [ "", r"$f_{\rm NL} = -300~\&~{\rm EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$"]
 
 
     lss = ["-", ":", "--",  "--","--"]
     couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
-    snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-    labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+    #snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
+    #labels = [r"$\Lambda{\rm CDM}$", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
 
 
-    lss = ["-", "-.", "-",  "-","-"]
-    couleurs = ["blue", "green", "darkorange","violet","darkred"]
+    #lss = ["-", "-.", "-",  "-","-"]
+    #couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
 
 
@@ -208,10 +208,10 @@ if __name__ == "__main__" :
             if d == 1 : axs[d].errorbar(np.array([3,1,0.25,0]), (moyennes-moyennes_lcdm)/moyennes_lcdm,ls=ls, color=couleur, label=label, yerr = err_ratio)
 
             axes.set_xlabel(r"$z$")
-            if d == 0 : axs[d].set_ylabel("Mean connectivity")
+            if d == 0 : axs[d].set_ylabel(r"${\rm Mean~connectivity}$")
             if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
 
-            if d == 0 : axs[d].legend(fontsize=8)
+            if d == 0 : axs[d].legend(fontsize=11,loc="lower left", ncol=2)
             if d == 0 : 
                 #print(snapshots[i]+" & ",end="")
                 for z in [0,1,3]:
@@ -222,6 +222,7 @@ if __name__ == "__main__" :
 
     axs[0].invert_xaxis()
     axs[1].invert_xaxis()
+    plt.tight_layout()
 
     plt.savefig(f"connect_moyenne_EDE.pdf")
     plt.savefig(f"connect_moyenne_EDE.png")
