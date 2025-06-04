@@ -55,7 +55,7 @@ if __name__ == "__main__" :
     couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
 
-    plt.figure(figsize=(14,10))
+    plt.figure(figsize=(15,10))
     places = {
         "00" : 1,
         "01" : 2,
@@ -153,9 +153,9 @@ if __name__ == "__main__" :
                         else :
                             axes.plot(X[mask], ((data[p][mask] - lcdm[p][mask])), color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
-                        if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"${\rm threshold}~\[\sigma\]$")
+                        if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"${\rm threshold}~[\sigma]$")
                         if j == len(snapshots)-1 and i == 1 and d == 0 and p == 0: 
-                            axes.legend() 
+                            axes.legend(fontsize=12) 
 
                         if p == 0 and i in [2,4] : axes.set_xlim(-1,1)
                         elif p!=0 and i in [2,4] : axes.set_xlim(-1,3)
