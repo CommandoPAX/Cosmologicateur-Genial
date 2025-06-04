@@ -159,7 +159,7 @@ if __name__ == "__main__" :
 
             moyennes = np.array(moyennes)
 
-            #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)])), moyennes, color=couleur)
+            #plt.scatter(np.log(np.array([32,3,1,0.25,0][:len(moyennes)f])), moyennes, color=couleur)
 
 
             try : err_ratio = np.sqrt((moyennes_lcdm**2*err**2 + moyennes**2*err_lcdm**2)/moyennes_lcdm**4)
@@ -179,7 +179,7 @@ if __name__ == "__main__" :
                     #else : print(" \\\\")
 
             axes.set_xlabel(r"$z$")
-            if d == 0 : axs[d].set_ylabel(r"${\rm Mean~length}~/~V$\n$[{\rm Mpc / h}]^{-2}$")
+            if d == 0 : axs[d].set_ylabel(r"$\mathrm{Mean\ length}/V$" + "\n" + r"$[\mathrm{(Mpc}/h)^{-2}]$")
             if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda{\rm CDM}$")
 
             if d == 0 : axs[d].legend(fontsize=11,loc="lower left", ncol=2)
