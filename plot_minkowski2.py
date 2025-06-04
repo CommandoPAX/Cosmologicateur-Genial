@@ -178,7 +178,7 @@ if __name__ == "__main__" :
 
         # Légende globale
         fig = plt.gcf()
-        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=4, fontsize='small', frameon=False)
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=4, frameon=False)
 
         # Ajuster la mise en page pour laisser la place à la légende
 
