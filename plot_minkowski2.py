@@ -47,12 +47,12 @@ if __name__ == "__main__" :
     ls = ["-", ":", "--",  "--","--"]
     couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
-    #snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-    #labels = [r"$\Lambda{\rm CDM}$", r"${\rm mixed~DM}$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
+    snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
+    labels = [r"$\Lambda{\rm CDM}$", r"${\rm mixed~DM}$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
 
 
-    #ls = ["-", "-.", "-",  "-","-"]
-    #couleurs = ["blue", "green", "darkorange","violet","darkred"]
+    ls = ["-", "-.", "-",  "-","-"]
+    couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
 
     plt.figure(figsize=(15,10))
@@ -178,12 +178,12 @@ if __name__ == "__main__" :
 
         # Légende globale
         fig = plt.gcf()
-        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=18)
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
 
         # Ajuster la mise en page pour laisser la place à la légende
 
 
-        plt.tight_layout(rect=[0, 0, 1, 0.9])
+        plt.tight_layout(rect=[0, 0, 1, 0.95])
         plt.savefig(f"v_tout.pdf")
         plt.savefig(f"v_tout.png")
 
