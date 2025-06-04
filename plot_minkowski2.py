@@ -183,7 +183,7 @@ if __name__ == "__main__" :
         # Ajuster la mise en page pour laisser la place à la légende
 
 
-        plt.tight_layout(rect=[0, 0, 1, 0.95])
+        plt.tight_layout(rect=[0, 0, 1, 0.9])
         plt.savefig(f"v_tout.pdf")
         plt.savefig(f"v_tout.png")
 
