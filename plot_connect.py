@@ -209,7 +209,7 @@ if __name__ == "__main__" :
 
             axes.set_xlabel(r"$z$")
             if d == 0 : axs[d].set_ylabel(r"${\rm Mean~connectivity}$")
-            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
+            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda{\rm CDM}$")
 
             if d == 0 : axs[d].legend(fontsize=11,loc="lower left", ncol=2)
             if d == 0 : 

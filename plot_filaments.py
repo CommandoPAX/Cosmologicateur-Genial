@@ -48,12 +48,12 @@ if __name__ == "__main__" :
     couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
 
-    #snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
-    #labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -300~\&~{\rm EDE}$",  r"$f_{\rm NL} = -1100~\&~{\rm EDE}$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~ {\rm mixed~DM}$"]
+    snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
+    labels = ["", r"$f_{\rm NL}^0 = -300~\&~{\rm EDE}$",  r"$f_{\rm NL}^0 = -1100~\&~{\rm EDE}$", r"$f_{\rm NL}^0 = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL}^0 = 500~\&~ {\rm mixed~DM}$"]
 
 
-    #lss = ["-", ":", "--",  "--","--"]
-    #couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
+    lss = ["-", ":", "--",  "--","--"]
+    couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
 
     plt.figure(figsize=(14,10))
@@ -179,7 +179,7 @@ if __name__ == "__main__" :
                     #else : print(" \\\\")
 
             axes.set_xlabel(r"$z$")
-            if d == 0 : axs[d].set_ylabel(r"$\langle l \rangle/V [\mathrm{(Mpc}/h)^{-2}]$")
+            if d == 0 : axs[d].set_ylabel(r"$\langle l \rangle/V~[\mathrm{(Mpc}/h)^{-2}]$")
             if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda{\rm CDM}$")
 
             if d == 0 : axs[d].legend(fontsize=11,loc="lower left", ncol=2)
