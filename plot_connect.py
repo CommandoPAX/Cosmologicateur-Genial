@@ -50,7 +50,7 @@ if __name__ == "__main__" :
     couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
     #snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-    #labels = [r"$\Lambda{\rm CDM}$", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+    #labels = [r"$\Lambda{\rm CDM}$", r"${\rm mixed~DM}$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
 
 
     #lss = ["-", "-.", "-",  "-","-"]
