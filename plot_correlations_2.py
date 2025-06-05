@@ -64,7 +64,7 @@ if __name__ == "__main__" :
 
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
-    #plt.tight_layout(rect=[0, 0, 1, 0.95])
+    #plt.tight_layout(rect=[0, 0, 1, 0.9])
 
     outer = gridspec.GridSpec(nrows=2, ncols=4)
 
@@ -160,7 +160,7 @@ if __name__ == "__main__" :
         fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
 
 
-        plt.tight_layout(rect=[0, 0, 1, 0.95])
+        plt.tight_layout(rect=[0, 0, 1, 0.9])
         plt.savefig(f"grand_corr_auto.pdf")
         plt.savefig(f"grand_corr_auto.png")
 
@@ -170,7 +170,7 @@ if __name__ == "__main__" :
     fig = plt.figure(figsize=(8,6))
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
-    #plt.tight_layout(rect=[0, 0, 1, 0.95])
+    #plt.tight_layout(rect=[0, 0, 1, 0.9])
 
     outer = gridspec.GridSpec(nrows=2, ncols=2)
 
@@ -288,7 +288,7 @@ if __name__ == "__main__" :
         fig = plt.gcf()
         fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
 
-        plt.tight_layout(rect=[0, 0, 1, 0.95])
+        plt.tight_layout(rect=[0, 0, 1, 0.9])
         plt.savefig(f"grand_corr_PF_VW.pdf")
         plt.savefig(f"grand_corr_PF_VW.png")
 
@@ -298,7 +298,7 @@ if __name__ == "__main__" :
     fig = plt.figure(figsize=(12,6))
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
-    #plt.tight_layout(rect=[0, 0, 1, 0.95])
+    #plt.tight_layout(rect=[0, 0, 1, 0.9])
 
     outer = gridspec.GridSpec(nrows=2, ncols=4)
 
@@ -419,7 +419,7 @@ if __name__ == "__main__" :
         fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
 
 
-        plt.tight_layout(rect=[0, 0, 1, 0.95])
+        plt.tight_layout(rect=[0, 0, 1, 0.9])
         plt.savefig(f"grand_corr_autres.pdf")
         plt.savefig(f"grand_corr_autres.png")
 
