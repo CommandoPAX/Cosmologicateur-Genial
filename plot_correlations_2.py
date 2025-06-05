@@ -374,7 +374,7 @@ if __name__ == "__main__" :
                         #axes.set_xlim(2,20)
                         if d == 0 : 
                             axes.plot(r_bins[1:], 1+zeta, color=couleurs[j], ls=ls[j],label=labels[j])
-                            if p == 0 : axes.set_ylabel(r"$1 + \zeta (r)$")
+                            if p == 0 : axes.set_ylabel(r"$1 + \zeta (r)$",labelpad=20)
                             axes.xaxis.set_visible(False)
                             #axes.set_ylim(-1,1)
                         else : 
