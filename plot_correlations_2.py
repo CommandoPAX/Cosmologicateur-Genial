@@ -160,7 +160,7 @@ if __name__ == "__main__" :
         fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=18)
 
 
-        plt.tight_layout(rect=[0, 0, 1, 0.88])
+        plt.tight_layout(rect=[0, 0, 1, 0.83])
         plt.savefig(f"grand_corr_auto.pdf")
         plt.savefig(f"grand_corr_auto.png")
 
@@ -287,7 +287,7 @@ if __name__ == "__main__" :
 
         # Légende globale
         fig = plt.gcf()
-        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=14)
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=13)
 
         plt.tight_layout(rect=[0, 0, 1, 0.88])
         plt.savefig(f"grand_corr_PF_VW.pdf")
@@ -420,7 +420,7 @@ if __name__ == "__main__" :
         fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=18)
 
 
-        plt.tight_layout(rect=[0, 0, 1, 0.88])
+        plt.tight_layout(rect=[0, 0, 1, 0.83])
         plt.savefig(f"grand_corr_autres.pdf")
         plt.savefig(f"grand_corr_autres.png")
 
