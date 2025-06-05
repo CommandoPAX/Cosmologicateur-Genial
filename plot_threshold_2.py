@@ -36,7 +36,9 @@ if __name__ == "__main__" :
     labels = [r"$\Lambda{\rm CDM}$", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"mixed DM", r"$f_{\rm NL}^0 = -500$ \& mixed DM", r"$f_{\rm NL}^0$ = 500 \& mixed DM", r"EDE", r"$f_{\rm NL}^0 = -300$ \& EDE", r"$f_{\rm NL}^0 = -1100$ \& EDE"]
 
     indices_hdm = [0,1,4,6,7,8]
-    indices_hdm = [0,2,6] #WDM !
+    indices_hdm = [0,1,4,6,9]
+
+    #indices_hdm = [0,2,6] #WDM !
 
     Points = ["P","F","W","V"]
 
@@ -49,7 +51,7 @@ if __name__ == "__main__" :
 
     labels = [r"$\Lambda{\rm CDM}$", r"$f_{\rm NL}^0 = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL}^0 = 500$", "WDM & fnl = 500", r"${\rm mixed~DM}$", r"$f_{\rm NL}^0 = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL}^0 = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL}^0 = -300~\&~{\rm EDE}$", r"$f_{\rm NL}^0 = -1100~\&~ {\rm EDE}$"]
 
-    indices_hdm = [0,7,8,10,11]
+    #indices_hdm = [0,7,8,10,11]
     #indices_hdm = [0,2,6] #WDM !
 
     lss = ["-", "-", "-.", "--", "-", "--", "-.", "--", "--","-",":","--"]
