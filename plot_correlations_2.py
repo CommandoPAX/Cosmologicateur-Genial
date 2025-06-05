@@ -34,7 +34,7 @@ if __name__ == "__main__" :
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833"]
 
 
-    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
+    labels = [r"$\Lambda{\rm CDM}$", r"$f_{\rm NL}^0 = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL}^0 = 500$", "WDM & fnl = 500", r"${\rm mixed~DM}$", r"$f_{\rm NL}^0 = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL}^0 = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL}^0 = -300~\&~{\rm EDE}$", r"$f_{\rm NL}^0 = -1100~\&~{\rm EDE}$"]
 
     indices_hdm = [0,7,8,10,11]
     #indices_hdm = [0,2,6]
@@ -64,7 +64,7 @@ if __name__ == "__main__" :
 
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
-    #plt.tight_layout()
+    #plt.tight_layout(rect=[0, 0, 1, 0.95])
 
     outer = gridspec.GridSpec(nrows=2, ncols=4)
 
@@ -160,7 +160,7 @@ if __name__ == "__main__" :
         fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
 
 
-        plt.tight_layout()
+        plt.tight_layout(rect=[0, 0, 1, 0.95])
         plt.savefig(f"grand_corr_auto.pdf")
         plt.savefig(f"grand_corr_auto.png")
 
@@ -170,7 +170,7 @@ if __name__ == "__main__" :
     fig = plt.figure(figsize=(8,6))
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
-    #plt.tight_layout()
+    #plt.tight_layout(rect=[0, 0, 1, 0.95])
 
     outer = gridspec.GridSpec(nrows=2, ncols=2)
 
@@ -288,7 +288,7 @@ if __name__ == "__main__" :
         fig = plt.gcf()
         fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
 
-        plt.tight_layout()
+        plt.tight_layout(rect=[0, 0, 1, 0.95])
         plt.savefig(f"grand_corr_PF_VW.pdf")
         plt.savefig(f"grand_corr_PF_VW.png")
 
@@ -298,7 +298,7 @@ if __name__ == "__main__" :
     fig = plt.figure(figsize=(12,6))
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
-    #plt.tight_layout()
+    #plt.tight_layout(rect=[0, 0, 1, 0.95])
 
     outer = gridspec.GridSpec(nrows=2, ncols=4)
 
@@ -419,7 +419,7 @@ if __name__ == "__main__" :
         fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
 
 
-        plt.tight_layout()
+        plt.tight_layout(rect=[0, 0, 1, 0.95])
         plt.savefig(f"grand_corr_autres.pdf")
         plt.savefig(f"grand_corr_autres.png")
 
