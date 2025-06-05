@@ -142,7 +142,7 @@ if __name__ == "__main__" :
                     else : 
                         mask = lcdm[:,p] > 0.1 * np.std(lcdm[:,p])
                         axes.plot(X, ((count[:,p]-lcdm[:,p])/np.max(lcdm[:,p])), color=couleur, ls=ls,label=label)
-                        if p == 0 : axes.set_ylabel(r"$\Delta / {\rm max}_{\Lambda \text{CDM}}$")
+                        if p == 0 : axes.set_ylabel(r"$\Delta / {\rm max}_{\Lambda {\rm CDM}}$")
                     if d ==1 and i == 4: 
                         axes.set_xlabel(r"$\nu [\sigma]$")
                         #axes.set_xlim(-6,6)
@@ -169,8 +169,8 @@ if __name__ == "__main__" :
 
         # Légende globale
         fig = plt.gcf()
-        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=18)
 
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.tight_layout(rect=[0, 0, 1, 0.9])
     plt.savefig(f"crit_threshold_s{R}.pdf")
     plt.savefig(f"crit_threshold_s{R}.png")
