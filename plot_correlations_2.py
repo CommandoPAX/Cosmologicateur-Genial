@@ -368,6 +368,7 @@ if __name__ == "__main__" :
                         r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
+                        axes.tick_params(axis='y', labelsize=14)
 
                         #print(np.shape(data[p]))
                         #print(data)
