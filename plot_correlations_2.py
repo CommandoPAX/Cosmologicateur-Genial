@@ -8,6 +8,7 @@ from math import*
 from matplotlib import gridspec
 import matplotlib
 
+matplotlib.rcParams.update({'font.size': 18})
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
@@ -127,7 +128,7 @@ if __name__ == "__main__" :
                             if p == 0 : axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0:
-                            axes.legend(fontsize=8)
+                            pass#axes.legend(fontsize=8)
                         #axes.set_xlim(0,10)
                         
                         if d == 1 : 
@@ -139,6 +140,25 @@ if __name__ == "__main__" :
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
+
+        # Récupérer tous les handles/labels
+        handles = []
+        labels_all = []
+        ax = axs[0]
+        h, l = ax.get_legend_handles_labels()
+        handles.extend(h)
+        labels_all.extend(l)
+
+        # Éliminer les doublons (en conservant l'ordre)
+        seen = set()
+        unique_handles_labels = [(h, l) for h, l in zip(handles, labels_all) if not (l in seen or seen.add(l))]
+        unique_handles, unique_labels = zip(*unique_handles_labels)
+
+        # Légende globale
+        fig = plt.gcf()
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
+
 
         plt.tight_layout()
         plt.savefig(f"grand_corr_auto.pdf")
@@ -222,7 +242,7 @@ if __name__ == "__main__" :
                             axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
-                            axes.legend(loc="upper left",fontsize=8) 
+                            pass#axes.legend(loc="upper left",fontsize=8) 
 
 
 
@@ -250,6 +270,23 @@ if __name__ == "__main__" :
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
+        # Récupérer tous les handles/labels
+        handles = []
+        labels_all = []
+        ax = axs[0]
+        h, l = ax.get_legend_handles_labels()
+        handles.extend(h)
+        labels_all.extend(l)
+
+        # Éliminer les doublons (en conservant l'ordre)
+        seen = set()
+        unique_handles_labels = [(h, l) for h, l in zip(handles, labels_all) if not (l in seen or seen.add(l))]
+        unique_handles, unique_labels = zip(*unique_handles_labels)
+
+        # Légende globale
+        fig = plt.gcf()
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
 
         plt.tight_layout()
         plt.savefig(f"grand_corr_PF_VW.pdf")
@@ -323,11 +360,11 @@ if __name__ == "__main__" :
 
                         print(i, j, p, np.shape(zeta),np.shape(lcdm))
 
-                        r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
-                        r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        #r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                        #r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
                         
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
-       	                r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
+                        r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
 
@@ -344,7 +381,7 @@ if __name__ == "__main__" :
                             if p == 0 :axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: axes.set_xlabel("r [Mpc / h]")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
-                            axes.legend(fontsize=8) 
+                            pass#axes.legend(fontsize=8) 
                         if p ==2 : 
                             pass #axes.set_xlim(2,15)
                             #if i == 2 and d == 0:axes.set_ylim(1,1.1)
@@ -362,6 +399,25 @@ if __name__ == "__main__" :
 
         #if i == 0:
         #    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+
+
+        # Récupérer tous les handles/labels
+        handles = []
+        labels_all = []
+        ax = axs[0]
+        h, l = ax.get_legend_handles_labels()
+        handles.extend(h)
+        labels_all.extend(l)
+
+        # Éliminer les doublons (en conservant l'ordre)
+        seen = set()
+        unique_handles_labels = [(h, l) for h, l in zip(handles, labels_all) if not (l in seen or seen.add(l))]
+        unique_handles, unique_labels = zip(*unique_handles_labels)
+
+        # Légende globale
+        fig = plt.gcf()
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
+
 
         plt.tight_layout()
         plt.savefig(f"grand_corr_autres.pdf")
