@@ -286,7 +286,7 @@ if __name__ == "__main__" :
 
         # Légende globale
         fig = plt.gcf()
-        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=14)
 
         plt.tight_layout(rect=[0, 0, 1, 0.9])
         plt.savefig(f"grand_corr_PF_VW.pdf")
