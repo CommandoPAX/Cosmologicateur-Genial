@@ -11,6 +11,7 @@ import matplotlib
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi"]
 labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500",r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%"]
 
+matplotlib.rcParams.update({'font.size': 18})
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
@@ -32,7 +33,7 @@ if __name__ == "__main__" :
 
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500"]
 
-    labels = [r"$\Lambda$CDM", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"$m_{\rm WDM} = 10$ ev, $f_{\rm WDM}$ = 2%", r"$f_{\rm NL} = -500$ \& mixed DM", r"$f_{\rm NL}$ = 500 \& mixed DM", r"EDE", r"$f_{\rm NL} = -300$ \& EDE", r"$f_{\rm NL} = -1100$ \& EDE"]
+    labels = [r"$\Lambda{\rm CDM}$", "fnl = -500", "m = 500 eV", "WDM & fnl = -500", "fnl = 500", "WDM & fnl = 500", r"mixed DM", r"$f_{\rm NL}^0 = -500$ \& mixed DM", r"$f_{\rm NL}^0$ = 500 \& mixed DM", r"EDE", r"$f_{\rm NL}^0 = -300$ \& EDE", r"$f_{\rm NL}^0 = -1100$ \& EDE"]
 
     indices_hdm = [0,1,4,6,7,8]
     indices_hdm = [0,2,6] #WDM !
@@ -46,7 +47,7 @@ if __name__ == "__main__" :
     snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500"]
 
 
-    labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10 {\rm eV}, f_{\rm WDM} = 2\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~ {\rm EDE}$"]
+    labels = [r"$\Lambda{\rm CDM}$", r"$f_{\rm NL}^0 = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL}^0 = 500$", "WDM & fnl = 500", r"${\rm mixed~DM}$", r"$f_{\rm NL}^0 = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL}^0 = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL}^0 = -300~\&~{\rm EDE}$", r"$f_{\rm NL}^0 = -1100~\&~ {\rm EDE}$"]
 
     indices_hdm = [0,7,8,10,11]
     #indices_hdm = [0,2,6] #WDM !
@@ -147,14 +148,29 @@ if __name__ == "__main__" :
                         #axes.set_xlim(-6,6)
 
                     if j == indices_hdm[len(indices_hdm)-1] and i == 1 and d == 0 and p == 0: 
-                        axes.legend(fontsize = 8) 
+                        pass#axes.legend(fontsize = 8) 
                 #except: pass
 
         if i == 0:
             plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
 
+        handles = []
+        labels_all = []
+        ax = axs[0]
+        h, l = ax.get_legend_handles_labels()
+        handles.extend(h)
+        labels_all.extend(l)
 
-    plt.tight_layout()
+        # Éliminer les doublons (en conservant l'ordre)
+        seen = set()
+        unique_handles_labels = [(h, l) for h, l in zip(handles, labels_all) if not (l in seen or seen.add(l))]
+        unique_handles, unique_labels = zip(*unique_handles_labels)
+
+        # Légende globale
+        fig = plt.gcf()
+        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=5, frameon=True,fontsize=18)
+
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
     plt.savefig(f"crit_threshold_s{R}.pdf")
     plt.savefig(f"crit_threshold_s{R}.png")
