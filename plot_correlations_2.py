@@ -240,7 +240,7 @@ if __name__ == "__main__" :
                         else : 
                             axes.plot(r_bins[1:], (zeta - lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
-                            axes.set_ylim(-10,10)
+                            axes.set_ylim(-6,6)
                         if d ==1 and i == 4: axes.set_xlabel(r"$r {\rm [Mpc / h]}$")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             pass#axes.legend(loc="upper left",fontsize=8) 
