@@ -430,7 +430,7 @@ if __name__ == "__main__" :
         ##### Exclusion radius
 
         plt.clf()
-        fig = plt.figure(figsize=(7,6))
+        fig = plt.figure(figsize=(8,6))
 
         plt.axis("off")
         #plt.tight_layout(rect=[0, 0, 1, 0.9])
