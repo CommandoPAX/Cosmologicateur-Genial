@@ -501,6 +501,7 @@ if __name__ == "__main__" :
                         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
                         r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
+                        matplotlib.rcParams.update({'font.size': 12})
 
                         R_excl = r_bins[1:][1+zeta > 0.01][0]
                         axes.bar(labels[j],R_excl/2, color = couleurs[j],alpha = [1,0.5][i//2 -1],align="edge",fontsize=12)
