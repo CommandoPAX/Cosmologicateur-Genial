@@ -498,8 +498,7 @@ if __name__ == "__main__" :
                         r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
                         r_bins = np.concatenate((r_small, r_large))
 
-                        sup_ = zeta[1+zeta > 0.01]
-                        R_excl = r_bins[sup_][0]
+                        R_excl = r_bins[1+zeta > 0.01][0]
                         print("R = "+str(R_excl))
 
 
