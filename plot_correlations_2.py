@@ -453,7 +453,7 @@ if __name__ == "__main__" :
 
             k = 0
 
-            for i in [2,4] :
+            for i in [2] :
                 print(k)
                 z_k = indices_z[k]
                 k +=1
@@ -504,8 +504,11 @@ if __name__ == "__main__" :
                         r_bins = np.concatenate((r_small, r_large))
 
                         R_excl = r_bins[1:][1+zeta > 0.01][0]
-                        axes.bar(labels[j],R_excl, color = couleurs[j],alpha = [1,0.5][i//2 -1])
+                        axes.bar(labels[j],R_excl/2, color = couleurs[j],alpha = [1,0.5][i//2 -1])
                         axes.tick_params(axis='x', labelrotation=45)
+                        if p == 0 or p == 2 : axes.set_ylabel(r"$R_{ex} / R_s$")
+                        if p ==0 or p == 1 : axes.xaxis.set_visible(False)
+
 
         plt.savefig("R_excl.pdf")
 
