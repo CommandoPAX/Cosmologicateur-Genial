@@ -426,3 +426,80 @@ if __name__ == "__main__" :
         plt.savefig(f"grand_corr_autres.png")
 
         #plt.clf()
+
+        ##### Exclusion radius
+
+        plt.clf()
+        fig = plt.figure(figsize=(6,6))
+
+        plt.axis("off")
+        #plt.tight_layout(rect=[0, 0, 1, 0.9])
+
+        outer = gridspec.GridSpec(nrows=2, ncols=2)
+
+        axs = []
+        for row in range(2):
+            for col in range(2):
+                inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
+                axs += [plt.subplot(cell) for cell in inner]
+
+
+        for i in [2,4] :
+            z_k = indices_z[k]
+            k +=1
+
+
+            for p in range(4):
+
+
+                _type = ["PW", "PV", "FW","FV"] [p]
+
+
+                axes = axs[p]
+
+                if d == 0 : 
+                    axes.title.set_text (r"$\mathcal{"+_type+r"},  "+rf"z = {Redshifts[i]}$")
+
+
+                for j in indices_hdm:
+                    if True:
+                        if p == 0 : 
+                            a = 2
+                            b = 0
+                        elif p == 1 :
+                            a = 3
+                            b = 0
+                        elif p == 2 :
+                            a = 2
+                            b = 1
+                        elif p == 3 :
+                            a = 3
+                            b = 1
+                        lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
+
+                        if j <= 8 : 
+                            try :
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
+                            except :
+                                zeta = lcdm
+
+                        else :
+                            try : 
+                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
+                            except: 
+                                zeta = lcdm
+                        #zeta[0] = 0
+
+
+                        #r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                        #r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
+                        
+                        r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                        r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
+                        r_bins = np.concatenate((r_small, r_large))
+
+                        sup_ = zeta[1+zeta > 0.01]
+                        R_excl = r_bins[sup_][0]
+                        print("R = "+str(R_excl))
+
+
