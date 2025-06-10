@@ -500,7 +500,7 @@ if __name__ == "__main__" :
                         matplotlib.rcParams.update({'font.size': 12})
 
                         R_excl = r_bins[1:][1+zeta > 0.01][0]
-                        axes.bar(labels[j],R_excl/2, color = couleurs[j],rotation=45)
+                        axes.bar(labels[j],R_excl/2, color = couleurs[j],rotation=45,rotation_mode='anchor')
                         ax.set_xticks(np.arange(len(indices_hdm)))
                         xlabels = ax.get_xticklabels()
                         ax.set_xticklabels(xlabels, rotation=45, ha="center", rotation_mode='anchor')  
