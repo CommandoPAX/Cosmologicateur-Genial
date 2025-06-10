@@ -505,6 +505,8 @@ if __name__ == "__main__" :
 
                         R_excl = r_bins[1:][1+zeta > 0.01][0]
                         axes.bar(labels[j],R_excl, color = couleurs[j],alpha = [1,0.5][i//2 -1])
+                        axes.tick_params(axis='x', labelrotation=45)
+
         plt.savefig("R_excl.pdf")
 
                     
