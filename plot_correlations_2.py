@@ -462,8 +462,7 @@ if __name__ == "__main__" :
 
                 axes = axs[p]
 
-                if d == 0 : 
-                    axes.title.set_text (r"$\mathcal{"+_type+r"}$")
+                axes.title.set_text (r"$\mathcal{"+_type+r"}$")
 
 
                 for j in indices_hdm:
@@ -512,7 +511,6 @@ if __name__ == "__main__" :
 
 
         plt.tight_layout()
-        plt.legend()
         plt.savefig("R_excl.pdf")
 
                     
