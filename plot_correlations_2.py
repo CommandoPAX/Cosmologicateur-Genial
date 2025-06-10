@@ -447,7 +447,8 @@ if __name__ == "__main__" :
 
 
 
-
+        xlabels = []
+        for j in indices_hdm : xlabels.append[labels[j]]
 
         for p in range(4):
 
@@ -505,7 +506,7 @@ if __name__ == "__main__" :
 
                         R_excl = r_bins[1:][1+zeta > 0.01][0]
                         axes.bar(labels[j],R_excl/2, color = couleurs[j],alpha = [1,0.5][i//2 -1],align="edge")
-                        axes.tick_params(axis='x', labelrotation=70)
+                        ax.set_xticklabels(xlabels, rotation=45, ha="center")  
                         if p == 0 or p == 2 : axes.set_ylabel(r"$R_{ex} / R_s$")
                         if p ==0 or p == 1 : axes.xaxis.set_visible(False)
                         axes.set_ylim(3.2,3.8)
