@@ -501,9 +501,9 @@ if __name__ == "__main__" :
                         r_bins = np.concatenate((r_small, r_large))
 
                         R_excl = r_bins[1:][1+zeta > 0.01][0]
-                        axes.bar(R_excl, color = couleurs[j])
+                        axes.bar(labels[j],R_excl, color = couleurs[j],alpha = [1,0.5][i//2 -1])
         plt.savefig("R_excl.pdf")
-        
+
                     
 
 
