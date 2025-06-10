@@ -451,6 +451,8 @@ if __name__ == "__main__" :
 
         for p in range(4):
 
+            k = 0
+
             for i in [2,4] :
                 z_k = indices_z[k]
                 k +=1
