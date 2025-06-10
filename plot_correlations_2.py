@@ -437,6 +437,8 @@ if __name__ == "__main__" :
 
         outer = gridspec.GridSpec(nrows=2, ncols=2)
 
+        k = 0
+
         axs = []
         for row in range(2):
             for col in range(2):
@@ -444,21 +446,21 @@ if __name__ == "__main__" :
                 axs += [plt.subplot(cell) for cell in inner]
 
 
-        for i in [2,4] :
-            z_k = indices_z[k]
-            k +=1
 
 
-            for p in range(4):
 
+        for p in range(4):
 
+            for i in [2,4] :
+                z_k = indices_z[k]
+                k +=1
                 _type = ["PW", "PV", "FW","FV"] [p]
 
 
                 axes = axs[p]
 
                 if d == 0 : 
-                    axes.title.set_text (r"$\mathcal{"+_type+r"},  "+rf"z = {Redshifts[i]}$")
+                    axes.title.set_text (r"$\mathcal{"+_type+r"}$")
 
 
                 for j in indices_hdm:
@@ -499,6 +501,9 @@ if __name__ == "__main__" :
                         r_bins = np.concatenate((r_small, r_large))
 
                         R_excl = r_bins[1:][1+zeta > 0.01][0]
-                        print("R = "+str(R_excl))
+                        axes.bar(R_excl, color = couleurs[j])
+        plt.savefig("R_excl.pdf")
+        
+                    
 
 
