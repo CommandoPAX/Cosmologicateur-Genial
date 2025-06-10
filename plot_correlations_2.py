@@ -508,7 +508,7 @@ if __name__ == "__main__" :
                         axes.tick_params(axis='x', labelrotation=45)
                         if p == 0 or p == 2 : axes.set_ylabel(r"$R_{ex} / R_s$")
                         if p ==0 or p == 1 : axes.xaxis.set_visible(False)
-                        axes.set_ylim(2,4)
+                        axes.set_ylim(3.2,3.8)
 
 
         plt.tight_layout()
