@@ -512,6 +512,7 @@ if __name__ == "__main__" :
 
 
         plt.tight_layout()
+        plt.legend()
         plt.savefig("R_excl.pdf")
 
                     
