@@ -453,6 +453,7 @@ if __name__ == "__main__" :
         for p in range(4):
 
             k = 0
+            Rex = []
 
             for i in [2] :
                 print(k)
@@ -505,12 +506,16 @@ if __name__ == "__main__" :
                         matplotlib.rcParams.update({'font.size': 12})
 
                         R_excl = r_bins[1:][1+zeta > 0.01][0]
-                        axes.bar(labels[j],R_excl/2, color = couleurs[j],alpha = [1,0.5][i//2 -1],align="edge")
-                        ax.set_xticks(np.arange(len(indices_hdm)))
-                        ax.set_xticklabels(xlabels, rotation=45, ha="center")  
-                        if p == 0 or p == 2 : axes.set_ylabel(r"$R_{ex} / R_s$")
-                        if p ==0 or p == 1 : axes.xaxis.set_visible(False)
-                        axes.set_ylim(3.2,3.8)
+                        Rex.append(R_excl)
+
+                if p == 0 or p == 2 : axes.set_ylabel(r"$R_{ex} / R_s$")
+                if p ==0 or p == 1 : axes.xaxis.set_visible(False)
+                axes.set_ylim(3.2,3.8)
+
+
+                axes.bar(R_excl/2, color = couleurs[j])
+                ax.set_xticks(np.arange(len(indices_hdm)))
+                ax.set_xticklabels(xlabels, rotation=45, ha="center")  
 
 
         plt.tight_layout()
