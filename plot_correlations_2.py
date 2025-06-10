@@ -448,7 +448,7 @@ if __name__ == "__main__" :
 
 
         xlabels = []
-        for j in indices_hdm : xlabels.append[labels[j]]
+        for j in indices_hdm : xlabels.append(labels[j])
 
         for p in range(4):
 
