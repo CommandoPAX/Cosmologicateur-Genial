@@ -510,9 +510,9 @@ if __name__ == "__main__" :
                         if p == 0 or p == 2 : axes.set_ylabel(r"$R_{ex} / R_s$")
                         if p ==0 or p == 1 : axes.xaxis.set_visible(False)
                         axes.set_ylim(3.2,3.8)
-                        
+
             for label in axes.get_xticklabels():
-                label.set_ha("right")
+                label.set_ha("center")
                 label.set_rotation(45)
 
         plt.tight_layout()
