@@ -101,7 +101,7 @@ for BM in range(2):
                         im = axes.imshow(sum_-sum_lcdm, origin="lower",vmin=-0.5,vmax = 0.5,cmap="bwr")
                     else : 
                         axes.title.set_text(r"$\Lambda{\rm CDM}$")
-                        im = axes.imshow(sum_, origin="lower",cmap="viridis", norm=SymLogNorm(linthresh=1e-3, linscale=1.0, vmin=np.min(sum_), vmax=np.max(sum_))
+                        im = axes.imshow(sum_, origin="lower",cmap="viridis", norm=SymLogNorm(linthresh=1e-3, linscale=1.0, vmin=np.min(sum_), vmax=np.max(sum_)))
 
                     ims.append(im)
 
