@@ -85,8 +85,8 @@ for BM in range(2):
                     Xk, Yk, Zk = minimums[:, 0].astype(int), minimums[:, 1].astype(int), minimums[:, 2].astype(int)
 
                     vals = lcdm[Xk, Yk, Zk]
-                    seuil_haut_k = np.percentile(vals, 100 - P)
-                    seuil_bas_k = np.percentile(vals, P)
+                    seuil_haut_k = np.percentile(vals, 20)
+                    seuil_bas_k = np.percentile(vals, 10)
 
                     mask = (vals >= seuil_bas_k) & (vals <= seuil_haut_k)
                     points_k = minimums[mask]
