@@ -57,36 +57,31 @@ for BM in range(2):
 
                 if BM == 0 : data = pre + snapshots[0]+"/"+str(i+1)+"_densite_smooth2.fits"
                 else : data = pre + snapshots[12]+"/"+str(redshifts[i])+"_densite_smooth2.fits"
-
+        
                 hdul = fits.open(data)
                 lcdm = hdul[0].data
                 hdul.close()
 
-
-                if minmax == 0 : 
+                if minmax == 0:
                     max_index_flat = np.argmax(lcdm)
                     max_position = np.unravel_index(max_index_flat, lcdm.shape)
-
-                else : 
+                else:
                     P = 60
                     extrema = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{0}_{i}_{2}.txt.npy")
-                    minimums =  extrema[extrema[:,3]==3][:,0:3] % 512
+                    minimums = extrema[extrema[:, 3] == 3][:, 0:3] % 512
                     Xk, Yk, Zk = minimums[:, 0].astype(int), minimums[:, 1].astype(int), minimums[:, 2].astype(int)
 
-                    seuil_haut_k = np.percentile(field[Xk,Yk,Zk], 100-P)
-                    seuil_bas_k = np.percentile(field[Xk,Yk,Zk], P)
+                    vals = lcdm[Xk, Yk, Zk]
+                    seuil_haut_k = np.percentile(vals, 100 - P)
+                    seuil_bas_k = np.percentile(vals, P)
 
-                    indices_k = (field[Xk, Yk, Zk] >= seuil_haut_k) & (field[Xk, Yk, Zk] <= seuil_bas_k)
-                    points_k = minimums[indices_k]
+                    mask = (vals >= seuil_bas_k) & (vals <= seuil_haut_k)
+                    points_k = minimums[mask]
 
                     max_position = tuple(points_k[0].astype(int))
 
+                X0, Y0, Z0 = max_position
 
-
-
-                X0 = max_position[0]
-                Y0 = max_position[1]
-                Z0 = max_position[2]
 
                 sum_lcdm = np.sum(lcdm[X0-25:X0+25,Y0-25:Y0+25,Z0-1:Z0+1],axis=2)
                 rho_m = 1073741824000000
