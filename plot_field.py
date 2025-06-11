@@ -69,6 +69,19 @@ for BM in range(2):
                     P = 40
                     extrema = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{0}_{i}_{2}.txt.npy")
                     minimums = extrema[extrema[:, 3] == 3][:, 0:3] % 512
+
+                    # coords filtrées loin du bord
+                    margin_xy = 25
+                    margin_z = 1
+
+                    # Indices valides (dans le cube 512x512x512)
+                    valid = (
+                        (minimums[:, 0] >= margin_xy) & (minimums[:, 0] <= 512 - margin_xy) &
+                        (minimums[:, 1] >= margin_xy) & (minimums[:, 1] <= 512 - margin_xy) &
+                        (minimums[:, 2] >= margin_z)  & (minimums[:, 2] <= 512 - margin_z)
+                    )
+                    minimums = minimums[valid]
+
                     Xk, Yk, Zk = minimums[:, 0].astype(int), minimums[:, 1].astype(int), minimums[:, 2].astype(int)
 
                     vals = lcdm[Xk, Yk, Zk]
