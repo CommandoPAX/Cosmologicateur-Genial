@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from astropy.io import fits
 from matplotlib import gridspec
-from matplotlib.colors import LogNorm
+from matplotlib.colors import LogNorm, SymLogNorm
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
@@ -85,7 +85,6 @@ for BM in range(2):
                     z = redshifts[i]
                     print(z)
                     axes = axs[k-1]
-                    axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
 
 
                     data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
@@ -98,9 +97,11 @@ for BM in range(2):
 
 
                     if n > 0 and n!=12:
+                        axes.title.set_text(labels[n]+r"$ - \Lambda{\rm CDM}$")
                         im = axes.imshow(sum_-sum_lcdm, origin="lower",vmin=-0.5,vmax = 0.5,cmap="bwr")
                     else : 
-                        im = axes.imshow(sum_, origin="lower",cmap="viridis")
+                        axes.title.set_text(r"$\Lambda{\rm CDM}$")
+                        im = axes.imshow(sum_, origin="lower",cmap="viridis", norm=SymLogNorm(linthresh=1e-3, linscale=1.0, vmin=np.min(sum_), vmax=np.max(sum_))
 
                     ims.append(im)
 
