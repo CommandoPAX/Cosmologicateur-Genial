@@ -81,6 +81,7 @@ for BM in range(2):
                     max_position = tuple(points_k[0].astype(int))
 
                 X0, Y0, Z0 = max_position
+                print(X0, Y0, Z0)
 
 
                 sum_lcdm = np.sum(lcdm[X0-25:X0+25,Y0-25:Y0+25,Z0-1:Z0+1],axis=2)
