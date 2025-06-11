@@ -126,7 +126,7 @@ for BM in range(2):
 
                 divider_right = make_axes_locatable(axs[-1])
                 cax_right = divider_right.append_axes("right", size="5%", pad=0.1)
-                plt.colorbar(im_diff, cax=cax_right)
+                plt.colorbar(im_diff, cax=cax_right,pad = 0.05)
 
                 plt.subplots_adjust(left=0.15)
                 plt.tight_layout()
