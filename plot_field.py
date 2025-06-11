@@ -66,7 +66,7 @@ for BM in range(2):
                     max_index_flat = np.argmax(lcdm)
                     max_position = np.unravel_index(max_index_flat, lcdm.shape)
                 else:
-                    P = 60
+                    P = 40
                     extrema = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{0}_{i}_{2}.txt.npy")
                     minimums = extrema[extrema[:, 3] == 3][:, 0:3] % 512
                     Xk, Yk, Zk = minimums[:, 0].astype(int), minimums[:, 1].astype(int), minimums[:, 2].astype(int)
