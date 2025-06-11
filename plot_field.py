@@ -63,7 +63,10 @@ for BM in range(2):
                 hdul.close()
 
 
-                if minmax == 0 : max_index_flat = np.argmax(lcdm)
+                if minmax == 0 : 
+                    max_index_flat = np.argmax(lcdm)
+                    max_position = np.unravel_index(max_index_flat, lcdm.shape)
+
                 else : 
                     P = 60
                     extrema = np.load(f"/data100/fcastillo/RESULT/extrema/extrema_{0}_{i}_{2}.txt.npy")
@@ -76,11 +79,10 @@ for BM in range(2):
                     indices_k = (field[Xk, Yk, Zk] >= seuil_haut_k) & (field[Xk, Yk, Zk] <= seuil_bas_k)
                     points_k = minimums[indices_k]
 
-                    max_index_flat = points_k[0]
+                    max_position = tuple(points_k[0].astype(int))
 
 
 
-                max_position = np.unravel_index(max_index_flat, lcdm.shape)
 
                 X0 = max_position[0]
                 Y0 = max_position[1]
