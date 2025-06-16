@@ -252,28 +252,22 @@ for a in range(4):
                     if i<=8 : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{5}_tres_grand.txt.npy")
                     else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{5}_tres_grand.txt.npy")
 
+                if (a == 0 and b == 2) or (a==0 and b == 3) or (a == 1 and b == 2) or (a==1 and b == 3):
+                    if i<=8 : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand_loin.txt.npy")
+                    else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand_loin.txt.npy")
+                    r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                    r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
+                    r_bins = np.concatenate((r_small, r_large))
+
+
                 else:
                     if i<=8 : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
                     else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand.txt.npy")
 
-                if a == 0 and b in (2,3):
-                    mask = (r_bins[1:]>=6)&(lcdm > -0.8)
+                mask = (lcdm > -0.8)
+                if (a == 0 and b == 1) or (a==2 and b == 3):
+                    mask = (lcdm > -0.8)&(r_bins[1:] >= 6)
 
-
-                if a==1 and b==3:
-                    mask = r_bins[1:]>=5
-
-                
-                if a == 0 and b == 1:
-                    mask = (r_bins[1:]>=6)&(r_bins[1:]<=15)
-
-
-                if a == 1 and b == 2:
-                    mask = (r_bins[1:]>=6)&(r_bins[1:]<=15)
-
-
-                if a == 2 and b == 3:
-                    mask = (r_bins[1:]>=6)&(r_bins[1:]<=15)
 
                 r_bins = r_bins[1:][mask]
                 lcdm = lcdm[mask]
