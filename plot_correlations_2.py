@@ -7,6 +7,7 @@ from astropy.io import fits
 from math import*
 from matplotlib import gridspec
 import matplotlib
+import matplotlib.ticker as ticker
 
 matplotlib.rcParams.update({'font.size': 18})
 matplotlib.rcParams['text.usetex'] = True
@@ -126,6 +127,8 @@ if __name__ == "__main__" :
                         else :
                             axes.plot(r_bins[1:], (zeta - lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 : axes.set_ylabel(r"$\Delta$")
+                            axes.xaxis.set_major_locator(ticker.MaxNLocator(5))
+
                         if d ==1 and i == 4: axes.set_xlabel(r"$r {\rm [Mpc / h]}$")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0:
                             pass#axes.legend(fontsize=8)
@@ -241,6 +244,7 @@ if __name__ == "__main__" :
                             axes.plot(r_bins[1:], (zeta - lcdm), color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
                             axes.set_ylim(-6,6)
+                            axes.xaxis.set_major_locator(ticker.MaxNLocator(5))
                         if d ==1 and i == 4: axes.set_xlabel(r"$r {\rm [Mpc / h]}$")
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             pass#axes.legend(loc="upper left",fontsize=8) 
@@ -381,7 +385,10 @@ if __name__ == "__main__" :
                         else : 
                             axes.plot((r_bins[1:]), zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
                             if p == 0 :axes.set_ylabel(r"$\Delta$")
-                        if d ==1 and i == 4: axes.set_xlabel(r"$r {\rm [Mpc / h]}$")
+                        if d ==1 and i == 4: 
+                            axes.set_xlabel(r"$r {\rm [Mpc / h]}$")
+                            axes.xaxis.set_major_locator(ticker.MaxNLocator(5))
+
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             pass#axes.legend(fontsize=8) 
                         if p ==2 : 
