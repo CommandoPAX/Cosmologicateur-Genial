@@ -433,6 +433,6 @@ for z in range(2):
     fig.legend(unique_handles, unique_labels, loc='upper center', ncol=4, frameon=True,fontsize=18)
 
 
-    plt.tight_layout(rect=[0, 0, 1, 0.83])
+    plt.tight_layout(rect=[0, 0, 1, 0.88])
 
     plt.savefig(f"tab.pdf")
