@@ -89,7 +89,7 @@ if __name__ == "__main__" :
                 place = places[str(p) + str(d)]
 
 
-                print(len(axes))
+                print(len(axs))
                 axes = axs[(place-1)+(i//2-1)*8]
 
                 if d == 0 :
