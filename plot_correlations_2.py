@@ -402,125 +402,125 @@ if __name__ == "__main__" :
                             #else : print(" \\\\")
 
 
-        #if i == 0:
-        #    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
+    #if i == 0:
+    #    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
 
-        # Récupérer tous les handles/labels
-        handles = []
-        labels_all = []
-        ax = axs[0]
-        h, l = ax.get_legend_handles_labels()
-        handles.extend(h)
-        labels_all.extend(l)
+    # Récupérer tous les handles/labels
+    handles = []
+    labels_all = []
+    ax = axs[0]
+    h, l = ax.get_legend_handles_labels()
+    handles.extend(h)
+    labels_all.extend(l)
 
-        # Éliminer les doublons (en conservant l'ordre)
-        seen = set()
-        unique_handles_labels = [(h, l) for h, l in zip(handles, labels_all) if not (l in seen or seen.add(l))]
-        unique_handles, unique_labels = zip(*unique_handles_labels)
+    # Éliminer les doublons (en conservant l'ordre)
+    seen = set()
+    unique_handles_labels = [(h, l) for h, l in zip(handles, labels_all) if not (l in seen or seen.add(l))]
+    unique_handles, unique_labels = zip(*unique_handles_labels)
 
-        # Légende globale
-        fig = plt.gcf()
-        fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=18)
+    # Légende globale
+    fig = plt.gcf()
+    fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=18)
 
 
-        plt.tight_layout(rect=[0, 0, 1, 0.83])
-        plt.savefig(f"grand_corr_autres.pdf")
-        plt.savefig(f"grand_corr_autres.png")
+    plt.tight_layout(rect=[0, 0, 1, 0.83])
+    plt.savefig(f"grand_corr_autres.pdf")
+    plt.savefig(f"grand_corr_autres.png")
 
-        #plt.clf()
+    #plt.clf()
 
-        ##### Exclusion radius
+    ##### Exclusion radius
 
-        plt.clf()
-        fig = plt.figure(figsize=(6,6))
+    plt.clf()
+    fig = plt.figure(figsize=(6,6))
 
-        plt.axis("off")
-        #plt.tight_layout(rect=[0, 0, 1, 0.9])
+    plt.axis("off")
+    #plt.tight_layout(rect=[0, 0, 1, 0.9])
 
-        outer = gridspec.GridSpec(nrows=2, ncols=2)
+    outer = gridspec.GridSpec(nrows=2, ncols=2)
+
+    k = 0
+
+    axs = []
+    for row in range(2):
+        for col in range(2):
+            inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
+            axs += [plt.subplot(cell) for cell in inner]
+
+
+
+
+
+    for p in range(4):
 
         k = 0
 
-        axs = []
-        for row in range(2):
-            for col in range(2):
-                inner = gridspec.GridSpecFromSubplotSpec(nrows=1, ncols=1, subplot_spec=outer[row, col], hspace=0)
-                axs += [plt.subplot(cell) for cell in inner]
+        for i in [2] :
+            print(k)
+            z_k = indices_z[k]
+            k +=1
+            _type = ["PW", "PV", "FW","FV"] [p]
 
 
+            axes = axs[p]
+
+            axes.title.set_text (r"$\mathcal{"+_type+r"}$")
 
 
+            for j in indices_hdm:
+                if True:
+                    if p == 0 : 
+                        a = 2
+                        b = 0
+                    elif p == 1 :
+                        a = 3
+                        b = 0
+                    elif p == 2 :
+                        a = 2
+                        b = 1
+                    elif p == 3 :
+                        a = 3
+                        b = 1
+                    lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
 
-        for p in range(4):
+                    if j <= 8 : 
+                        try :
+                            zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
+                        except :
+                            zeta = lcdm
 
-            k = 0
-
-            for i in [2] :
-                print(k)
-                z_k = indices_z[k]
-                k +=1
-                _type = ["PW", "PV", "FW","FV"] [p]
-
-
-                axes = axs[p]
-
-                axes.title.set_text (r"$\mathcal{"+_type+r"}$")
-
-
-                for j in indices_hdm:
-                    if True:
-                        if p == 0 : 
-                            a = 2
-                            b = 0
-                        elif p == 1 :
-                            a = 3
-                            b = 0
-                        elif p == 2 :
-                            a = 2
-                            b = 1
-                        elif p == 3 :
-                            a = 3
-                            b = 1
-                        lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
-
-                        if j <= 8 : 
-                            try :
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{i}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
-                            except :
-                                zeta = lcdm
-
-                        else :
-                            try : 
-                                zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
-                            except: 
-                                zeta = lcdm
-                        #zeta[0] = 0
+                    else :
+                        try : 
+                            zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{j}_{z_k}_zeta_{a}_{b}_s{R}_P{P}_tres_grand_loin.txt.npy")
+                        except: 
+                            zeta = lcdm
+                    #zeta[0] = 0
 
 
-                        #r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
-                        #r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
-                        
-                        r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
-                        r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
-                        r_bins = np.concatenate((r_small, r_large))
-                        matplotlib.rcParams.update({'font.size': 12})
-
-                        R_excl = r_bins[1:][1+zeta > 0.01][0]
-                        axes.bar(labels[j],R_excl/2, color = couleurs[j],alpha = [1,0.5][i//2 -1])
-
-
-                        if p == 0 or p == 2 : axes.set_ylabel(r"$R_{ex} / R_s$")
-                        if p ==0 or p == 1 : axes.xaxis.set_visible(False)
-                        axes.set_ylim(3.2,3.8)
-
-            for label in axes.get_xticklabels():
-                label.set_ha("center")
-                label.set_rotation(45)
-
-        plt.tight_layout()
-        plt.savefig("R_excl.pdf")
-
+                    #r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                    #r_large = np.geomspace(10, 20, 20)  # 30 points entre 1 et 40 (logarithmique)
                     
+                    r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
+                    r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
+                    r_bins = np.concatenate((r_small, r_large))
+                    matplotlib.rcParams.update({'font.size': 12})
+
+                    R_excl = r_bins[1:][1+zeta > 0.01][0]
+                    axes.bar(labels[j],R_excl/2, color = couleurs[j],alpha = [1,0.5][i//2 -1])
+
+
+                    if p == 0 or p == 2 : axes.set_ylabel(r"$R_{ex} / R_s$")
+                    if p ==0 or p == 1 : axes.xaxis.set_visible(False)
+                    axes.set_ylim(3.2,3.8)
+
+        for label in axes.get_xticklabels():
+            label.set_ha("center")
+            label.set_rotation(45)
+
+    plt.tight_layout()
+    plt.savefig("R_excl.pdf")
+
+                
 
 
