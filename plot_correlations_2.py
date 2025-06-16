@@ -322,14 +322,13 @@ if __name__ == "__main__" :
         for p in range(4):
 
 
-            _type = ["PW", "PV", "FW","FV"] [p]
 
             for d in range(2):
                 place = places[str(p) + str(d)]
 
-                print(place, axes)
-                axes = axs[(place-1)+(i//2 -1)*8]
 
+
+                axes = axs[(place-1)+(i//2-1)*8]
                 if d == 0 : 
                     axes.title.set_text (r"$\mathcal{"+_type+r"},  "+rf"z = {Redshifts[i]}$")
 
