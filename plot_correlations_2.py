@@ -380,10 +380,11 @@ if __name__ == "__main__" :
                             #axes.set_ylim(-1,1)
                         else : 
                             axes.plot((r_bins[1:]), zeta - lcdm, color=couleurs[j], ls=ls[j],label=labels[j])
+                            axes.xaxis.set_major_locator(ticker.MaxNLocator(5))
+
                             if p == 0 :axes.set_ylabel(r"$\Delta$")
                         if d ==1 and i == 4: 
                             axes.set_xlabel(r"$r {\rm [Mpc / h]}$")
-                            axes.xaxis.set_major_locator(ticker.MaxNLocator(5))
 
                         if j == indices_hdm[len(indices_hdm)-1] and i == 2 and d == 0 and p == 0: 
                             pass#axes.legend(fontsize=8) 
