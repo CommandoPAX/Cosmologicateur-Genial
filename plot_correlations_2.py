@@ -89,7 +89,7 @@ if __name__ == "__main__" :
                 place = places[str(p) + str(d)]
 
 
-                print("len = "+str(len(axs)))
+
                 axes = axs[(place-1)+(i//2-1)*8]
 
                 if d == 0 :
@@ -304,7 +304,7 @@ if __name__ == "__main__" :
     #plt.title(  rf"v$_{p}$")
     plt.axis("off")
     #plt.tight_layout(rect=[0, 0, 1, 0.9])
-
+    
     outer = gridspec.GridSpec(nrows=2, ncols=4)
 
     axs = []
@@ -314,7 +314,6 @@ if __name__ == "__main__" :
             axs += [plt.subplot(cell) for cell in inner]
 
     k = 0
-    print(len(axs))
     for i in [2,4] :
         z_k = indices_z[k]
         k +=1
@@ -324,7 +323,9 @@ if __name__ == "__main__" :
             for d in range(2):
                 place = places[str(p) + str(d)]
 
+                print("place "+str(place)+" len "+str(len(axs)))
                 axes = axs[(place-1)+(i//2-1)*8]
+
                 if d == 0 : 
                     axes.title.set_text (r"$\mathcal{"+_type+r"},  "+rf"z = {Redshifts[i]}$")
 
