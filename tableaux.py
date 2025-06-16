@@ -348,7 +348,7 @@ for z in range(2):
 
     plt.subplot(int("21"+str(z+1)))
     axes = plt.gca()
-    axs.append[axs]
+    axs.append(axes)
     axes.title.set_text(r"$z = "+["1","0"][z]+r"$")
 
 
