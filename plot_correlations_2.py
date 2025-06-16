@@ -327,7 +327,7 @@ if __name__ == "__main__" :
             for d in range(2):
                 place = places[str(p) + str(d)]
 
-
+                print(place, axes)
                 axes = axs[(place-1)+(i//2 -1)*8]
 
                 if d == 0 : 
