@@ -430,7 +430,7 @@ for z in range(2):
 
     # Légende globale
     fig = plt.gcf()
-    fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=18)
+    fig.legend(unique_handles, unique_labels, loc='upper center', ncol=4, frameon=True,fontsize=18)
 
 
     plt.tight_layout(rect=[0, 0, 1, 0.83])
