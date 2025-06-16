@@ -6,10 +6,10 @@ import matplotlib
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
-
+matplotlib.rcParams.update({"font.size":18})
 
 snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
 
 
 #snapshots = ["benchM", "NsPNG_EDE_F500","NsPNG_EDE_F1833", "NG_ViVi","NG_Fminus500_ViVi"]
@@ -17,7 +17,7 @@ labels = [r"$\Lambda$CDM", r"${\rm mixed~DM}$",  r"$f_{\rm NL} = -500$", r"$f_{\
 
 
 
-plt.figure(figsize= (10,6))
+plt.figure(figsize= (15,6))
 
 tab_minko = r"""
 \begin{table}[]
@@ -192,7 +192,7 @@ print(tab_minko)
 
 
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500", "NsPNG_EDE_F1833"]
-labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
+labels = [r"$\Lambda$CDM", r"$f_{\rm NL}^0 = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL}^0 = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
 
 #indices_hdm = [7,8,10,11]
 #indices_hdm = [0,2,6]
@@ -253,6 +253,8 @@ for a in range(4):
                     else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{5}_tres_grand.txt.npy")
 
                 if (a == 0 and b == 2) or (a==0 and b == 3) or (a == 1 and b == 2) or (a==1 and b == 3):
+                    lcdm = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{0}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand_loin.txt.npy")
+
                     if i<=8 : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{j}_zeta_{b}_{a}_s{R}_P{P}_tres_grand_loin.txt.npy")
                     else : zeta = np.load(f"/data100/fcastillo/RESULT/extrema/snapshot_{i}_{z_k}_zeta_{b}_{a}_s{R}_P{P}_tres_grand_loin.txt.npy")
                     r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
@@ -363,11 +365,11 @@ for z in range(2):
         if s == "NG_F500":
             ls = "-"
             couleur = "darkorange"
-            label = r"$f_{\rm NL} = -500$"
+            label = r"$f_{\rm NL}^0 = -500$"
         if s == "NG_Fminus500" :
             ls = "-"
             couleur = "violet"
-            label = r"$f_{\rm NL} = 500$"       
+            label = r"$f_{\rm NL}^0 = 500$"       
 
         if s == "NEDE" :
             ls = "-"
