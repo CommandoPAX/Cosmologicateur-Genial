@@ -342,11 +342,13 @@ for a in range(4):
 for p in range(4):
     annotation.append( r"$\mathcal{" + ["P", "F","W","V"][p] +r"}$ ")
 
+axs = []
 
 for z in range(2):
 
     plt.subplot(int("21"+str(z+1)))
     axes = plt.gca()
+    axs.append[axs]
     axes.title.set_text(r"$z = "+["1","0"][z]+r"$")
 
 
@@ -399,7 +401,7 @@ for z in range(2):
 
         if z == 0 :
             plt.plot(np.array(dico_snapshots_1[s])/100,color=couleur,ls=ls,label=label)
-        if z==1:    plt.legend()
+        if z==1:   pass# plt.legend()
         for i, txt in enumerate(annotation):
 
 
@@ -414,6 +416,23 @@ for z in range(2):
             if z == 0: 
                 if dico_snapshots_1[s][i] == np.max(data_dico): axes.annotate(txt, (i, (np.array(dico_snapshots_1[s])/100)[i]))
 
-    
-    plt.tight_layout()
+    handles = []
+    labels_all = []
+    ax = axs[0]
+    h, l = ax.get_legend_handles_labels()
+    handles.extend(h)
+    labels_all.extend(l)
+
+    # Éliminer les doublons (en conservant l'ordre)
+    seen = set()
+    unique_handles_labels = [(h, l) for h, l in zip(handles, labels_all) if not (l in seen or seen.add(l))]
+    unique_handles, unique_labels = zip(*unique_handles_labels)
+
+    # Légende globale
+    fig = plt.gcf()
+    fig.legend(unique_handles, unique_labels, loc='upper center', ncol=3, frameon=True,fontsize=18)
+
+
+    plt.tight_layout(rect=[0, 0, 1, 0.83])
+
     plt.savefig(f"tab.pdf")
