@@ -89,7 +89,7 @@ if __name__ == "__main__" :
                 place = places[str(p) + str(d)]
 
 
-
+                print(len(axes))
                 axes = axs[(place-1)+(i//2-1)*8]
 
                 if d == 0 :
@@ -314,19 +314,15 @@ if __name__ == "__main__" :
             axs += [plt.subplot(cell) for cell in inner]
 
     k = 0
+    print(len(axs))
     for i in [2,4] :
         z_k = indices_z[k]
         k +=1
 
-
         for p in range(4):
-
-
 
             for d in range(2):
                 place = places[str(p) + str(d)]
-
-
 
                 axes = axs[(place-1)+(i//2-1)*8]
                 if d == 0 : 
