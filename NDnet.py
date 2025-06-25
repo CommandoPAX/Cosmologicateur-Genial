@@ -88,13 +88,13 @@ if __name__ == "__main__" :
     indices_z = [5,6,8,9]
 
 
-    for n in range(1,9):
+    for n in range(6,9):
         for j in range(1,5):
             z_k = indices_z[j-1]
 
 
             if True :
-                if n <= 6 : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_smooth2_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
+                if n <= 5 : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_smooth2_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
                 else : reseau = Net(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}_densite_smooth2_c0.1_manifolds_J1a.NDnet.S001.a.NDnet")
 
                 surfaces = []
