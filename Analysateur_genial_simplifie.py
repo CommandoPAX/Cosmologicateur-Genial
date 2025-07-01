@@ -90,7 +90,7 @@ class Simulation ():
 
     def Power_Spectrum(self) :
         
-        for i in range(5) :
+        for i in range(len(self.POW)) :
             fichier = open(self.POW[i],"r")
 
             while 1:
