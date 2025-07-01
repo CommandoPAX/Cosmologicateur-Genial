@@ -76,10 +76,12 @@ class Simulation ():
 
         for i in range(0,15):
             try :
+                print(i)
                 fichier = open("./POW/"+str(i)+"_POW_"+name+".txt","r")
                 self.POW.append("./POW/"+str(i)+"_POW_"+name+".txt")
                 fichier.close()
             except:
+                print("err")
                 break
 
 
