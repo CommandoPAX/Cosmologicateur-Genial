@@ -201,15 +201,15 @@ def Power_Spectrum_gadget(snap, index : int, path : str, SimuName : str, z):
     else : 
         output_ = f"{path}/{index}_POW_{SimuName}.pdf"
 
-    grid = 1024    #grid size
-    BoxSize = 100
+    grid = 512    #grid size
+    BoxSize = 500
     Rayleigh_sampling = 1     #whether sampling the Rayleigh distribution for modes amplitudes
     threads = 1      #number of openmp threads
     verbose = True   #whether to print some information
     axis = 0
     MAS = 'CIC'
     snapshot = snap  #snapshot name
-    grid     = 1024                     #grid size
+    grid     = 512                     #grid size
     ptypes   = [1]                     #CDM + neutrinos
     MAS      = 'CIC'                   #Cloud-in-Cell
     do_RSD   = False                   #dont do redshif-space distortions
