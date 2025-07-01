@@ -54,6 +54,20 @@ if __name__ == "__main__" :
     ls = ["-", "-.", "-",  "-","-"]
     couleurs = ["blue", "green", "darkorange","violet","darkred"]
 
+    snapshots = ["benchM", "G_m500","G_ViVi"]
+    labels = [r"$\Lambda{\rm CDM}$", r"$m_{\rm WDM} = 500 {\rm ~eV}$", r"${\rm mixed~DM}$"]
+
+
+    ls = ["-", "-", "-."]
+    couleurs = ["blue", "green", "green"]
+
+    snapshots = ["benchM", "NBM"]
+    labels = [r"$\Lambda{\rm CDM}$", r"$\Lambda{\rm CDM~2}$"]
+
+
+    ls = ["-", "--"]
+    couleurs = ["blue", "blue"]
+
 
     plt.figure(figsize=(15,10))
     places = {
@@ -152,7 +166,7 @@ if __name__ == "__main__" :
                         else :
                             axes.plot(X[mask], ((data[p][mask] - lcdm[p][mask])), color=couleurs[j], ls=ls[j],label=labels[j])
                             axes.set_ylabel(r"$\Delta$")
-                        if d ==1 and i == len(snapshots)-1: axes.set_xlabel(r"${\rm threshold}~[\sigma]$")
+                        if d ==1 and i == 4: axes.set_xlabel(r"${\rm threshold}~[\sigma]$")
                         if j == len(snapshots)-1 and i == 1 and d == 0 and p == 0: 
                             pass#axes.legend(fontsize=12) 
 

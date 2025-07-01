@@ -23,14 +23,14 @@ import sys
 
 R = 2
 
-for n in range(9,12):
+for n in [12]:
     for i in [5,6,9]:
 
 
         print(n, i)
 
         pre = "/data100/fcastillo/RESULT/"
-        snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833"]
+        snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833","NBM"]
 
         data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
         #data0 = pre + snapshots[n]+"/"+str(0)+"_densite.fits"

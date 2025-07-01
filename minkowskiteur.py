@@ -8,8 +8,9 @@ import time
 #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500"]
 pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
 snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
+snapshots=["NBM"]
 
-for n in range(7):
+for n in range(1):
     if True :#for i in range(5):
 
 
@@ -17,13 +18,13 @@ for n in range(7):
         fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=minkowski_{n}
 #SBATCH --nodes=1
-#SBATCH --ntasks=32
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks=128
+#SBATCH --ntasks-per-node=128
 #SBATCH --mem=100gb
 #SBATCH --time=48:00:00
 #SBATCH --output=/home/fcastillo/logs/minkowski_{n}.out
 #SBATCH --partition=pscomp
-#SBATCH --nodelist=i28,i29
+#SBATCH --nodelist=i31,i32
 """)
         fichier.write("""
 

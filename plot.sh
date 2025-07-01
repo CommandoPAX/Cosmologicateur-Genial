@@ -9,4 +9,4 @@
 module purge
 module load intelpython
 
-python /home/fcastillo/Cosmologicateur-Genial/plot_correlations_2.py
+python /home/fcastillo/Cosmologicateur-Genial/plot_minkowski2.py

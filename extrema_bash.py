@@ -5,7 +5,7 @@ import numpy as np
 import time
 
 pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi", "NG_ViVi","NG_Fminus500_ViVi","NEDE","NsPNG_EDE_F500","NsPNG_EDE_F1833"]
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500","G_ViVi", "NG_ViVi","NG_Fminus500_ViVi","NEDE","NsPNG_EDE_F500","NsPNG_EDE_F1833", "NBM"]
 
 indices_hdm = [0,1,4,6,7,8,9,10,11]
 indices_z = [6,9]
@@ -13,7 +13,7 @@ indices_z = [6,9]
 #indices_hdm = [0,2,6]
 #indices_hdm = [0,1,4,6,9]
 
-for n in indices_hdm: # 7
+for n in [12]: # 7
     if n <= 8 : redshifts = [2,4]
     else : redshifts = indices_z
     for i in redshifts:
@@ -28,7 +28,7 @@ for n in indices_hdm: # 7
 #SBATCH --output=/home/fcastillo/logs/extrema_{n}_{i}.out
 #SBATCH --partition=pscomp
 #SBATCH --ntasks-per-node=128
-#SBATCH --nodelist=i35,i36
+#SBATCH --nodelist=i31,i32
 """)
         fichier.write("""
 

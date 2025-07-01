@@ -16,7 +16,7 @@ matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833"]
-labels = [r"$\Lambda$CDM", r"$f_{\rm NL} = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL} = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
+labels = [r"$\Lambda {\rm CDM}$", r"$f_{\rm NL}^0 = -500$", "m = 500 eV", "WDM & fnl = -500", r"$f_{\rm NL}^0 = 500$", "WDM & fnl = 500", r"$m_{\rm WDM} = 10~{\rm eV}, f_{\rm WDM} = 2~\%$", r"$f_{\rm NL} = -500~\&~{\rm mixed~DM}$", r"$f_{\rm NL} = 500~\&~{\rm mixed~DM}$", r"${\rm EDE}$", r"$f_{\rm NL} = -300~\&~{\rm EDE}$", r"$f_{\rm NL} = -1100~\&~{\rm EDE}$"]
 
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
@@ -54,7 +54,7 @@ if True : #for Xmax in [50,100,500]:
             z = redshifts[i]
             print(z)
 
-            axes.set_ylabel(r"PDF")
+            axes.set_ylabel(r"${\rm PDF}$")
             data = pre + snapshots[n]+"/"+str(z)+"_densite_smooth2.fits"
 
             hdul = fits.open(data)

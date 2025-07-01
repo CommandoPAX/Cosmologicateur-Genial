@@ -302,7 +302,7 @@ def main(argv):
             units_override =  {"UnitLength_in_cm": 3.08568e24/(1+z)}
 
 
-            bbox_lim = 100 
+            bbox_lim = 500 
 
             bbox = [[-bbox_lim//2, bbox_lim//2], [-bbox_lim//2, bbox_lim//2], [-bbox_lim//2, bbox_lim//2]]
 

@@ -11,6 +11,7 @@ n = int(sys.argv[1])
 
 
 snapshots = ["NEDE","NsPNG_F500","NsPNG_F1000","NsPNG_F1833","NsPNG_EDE_F500","NsPNG_EDE_F1000","NsPNG_EDE_F1833"]
+snapshots=["NBM"]
 
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
@@ -35,6 +36,14 @@ for i in indices_z :
     print(np.shape(result))
     np.save(f"{pre+snapshots[n]}/{i}_minkowski.txt", result)
     print("ok")
+
+    v0,v1,v2,v3 = calculateMFs(data,min_sig=-1,max_sig=1,step=0.02)
+
+    result = np.array([v0,v1,v2,v3])
+    print(np.shape(result))
+    np.save(f"{pre+snapshots[n]}/{i}_minkowski_zoom.txt", result)
+    print("zoom ok")
+
 
 """
 plt.plot(v0,label="v0")

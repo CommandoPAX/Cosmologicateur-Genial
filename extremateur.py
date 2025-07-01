@@ -31,12 +31,12 @@ def count_pairs_query_ball_point(points_A, tree_B, r):
 
 n = int(sys.argv[1])
 i = int(sys.argv[2])
-P = 20
+P = 5
 
 print(n, i)
 
 pre = "/data100/fcastillo/RESULT/"
-snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833"]
+snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi","NG_ViVi" , "NG_Fminus500_ViVi","NEDE", "NsPNG_EDE_F500","NsPNG_EDE_F1833","NBM"]
 data = pre + snapshots[n]+"/"+str(i)+"_densite.fits"
 
 R = 2
@@ -87,8 +87,8 @@ x = np.arange(512)
 y = np.arange(512)
 z = np.arange(512)
 
-for j in [0,1] :
-    for k in [2,3] :
+for j in range(4) :
+    for k in range(j,4) :
 
         print(j, k)
         result_k = result[result[:,3]==k][:,0:3] % 512
@@ -126,10 +126,13 @@ for j in [0,1] :
         tree_r = KDTree(data_random, boxsize=512)
 
         r_small = np.linspace(0.1, 10, 80)  # 10 points entre 0 et 1
-        r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
+        if ((j==0 and k==2) or (j==0 and k ==3) or (j==1 and k==2) or (j==1 and k ==3)):
+            r_large = np.geomspace(10, 40, 40)  # 30 points entre 1 et 40 (logarithmique)
+        else :
+            r_large = np.geomspace(10, 40, 20)  # 30 points entre 1 et 40 (logarithmique)
         r_bins = np.concatenate((r_small, r_large))
 
-        r_bins=np.linspace(40,80,10)
+        #r_bins=np.linspace(40,80,10)
 
         DD_counts = np.array([count_pairs_query_ball_point(points_k, KDTree(points_j, boxsize=512), r)
                             for r in r_bins[1:]])
@@ -149,4 +152,8 @@ for j in [0,1] :
         print(DRj_counts)
         print(correlation, np.array(correlation))
 
-        np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_P{P}_tres_grand_tres_loin.txt", np.array(correlation))
+        if ((j==0 and k==2) or (j==0 and k ==3) or (j==1 and k==2) or (j==1 and k ==3)):
+            np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_P{P}_tres_grand_loin.txt", np.array(correlation))
+        else:
+            np.save(f"/data100/fcastillo/RESULT/extrema/snapshot_{n}_{i}_zeta_{k}_{j}_s{R}_P{P}_tres_grand.txt", np.array(correlation))
+

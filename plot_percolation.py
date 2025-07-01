@@ -9,7 +9,7 @@ from skeletonnateur_hpc import*
 from matplotlib import gridspec
 import matplotlib
 
-
+matplotlib.rcParams.update({'font.size': 18})
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams["figure.facecolor"]='w'
 matplotlib.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
@@ -50,7 +50,7 @@ if __name__ == "__main__" :
     couleurs = ["blue", "darkred", "darkred","darkorange","violet"]
 
     snapshots = ["benchM", "G_ViVi","NG_F500", "NG_Fminus500","NEDE"]
-    labels = [r"$\Lambda$CDM", r"$m_{\rm WDM} = 10  {\rm eV}, f_{\rm WDM} = 2 \%$",  r"$f_{\rm NL} = -500$", r"$f_{\rm NL} = 500$ ", r"${\rm EDE}$"]
+    labels = [r"$\Lambda {\rm CDM}$", r"${\rm mixed~DM}$",  r"$f_{\rm NL}^0 = -500$", r"$f_{\rm NL}^0 = 500$ ", r"${\rm EDE}$"]
 
 
     lss = ["-", "-.", "-",  "-","-"]
@@ -86,7 +86,7 @@ if __name__ == "__main__" :
 
         axes = plt.gca()
 
-        axes.title.set_text (f"z = {Redshifts[i]}")
+        axes.title.set_text (r"$z = "+f"{Redshifts[i]}"+r"$")
 
 
         for j in range(len(snapshots)):
@@ -106,7 +106,7 @@ if __name__ == "__main__" :
 
                 axes.plot(np.arange(0.8,1.2,0.001),percole, color= couleur, ls = ls, label=label)
                 axes.set_ylabel(r"$S$")
-                axes.set_xlabel(r"$bb$")
+                axes.set_xlabel(r"$b$")
 
                 axes.legend() 
             
@@ -172,15 +172,16 @@ if __name__ == "__main__" :
 
             axes.set_xlabel(r"$z$")
             if d == 0 : axs[d].set_ylabel(r"${\rm Phase~transition}$")
-            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda$CDM")
+            if d == 1 : axs[d].set_ylabel(r"$\Delta / \Lambda {\rm CDM}$")
 
-            if d == 0 : axs[d].legend(fontsize=8)
+            #if d == 0 : axs[d].legend(fontsize=12)
 
 
 
     axs[0].invert_xaxis()
     axs[1].invert_xaxis()
 
+    plt.tight_layout()
     plt.savefig(f"percole_transition.pdf")
     plt.savefig(f"percole_transition.png")
 

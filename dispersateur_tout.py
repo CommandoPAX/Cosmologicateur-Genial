@@ -6,12 +6,13 @@ import time
 
 pre = "/data100/fcastillo/RESULT/"
 #snapshots = ["benchM","NG_F500","G_m500","NG_F500_m500","NG_Fminus500","NG_Fminus500_m500", "G_ViVi", "NG_ViVi", "NG_Fminus500_ViVi"]
-snapshots = ["SIM0N_BIG","SIM1N_BIG","SIM2N_BIG","SIM3N_BIG"]
+#snapshots = ["SIM0N_BIG","SIM1N_BIG","SIM2N_BIG","SIM3N_BIG"]
+snapshots = ["NBM"]
 
 z= [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 indices_z = [5,6,8,9]
 
-for n in range(4):
+for n in range(1):
     fichier = open(f"../bash/mse_{n}.sh","w")
     fichier.write(f"""#!/bin/bash
 #SBATCH --job-name=skl2_{n}
@@ -19,7 +20,7 @@ for n in range(4):
 #SBATCH --nodes=1
 #SBATCH --time=48:00:00
 #SBATCH --partition=pscomp
-#SBATCH --nodelist=i02,i03
+#SBATCH --nodelist=i31,i32
 #SBATCH --ntasks=128
 #SBATCH --output=/home/fcastillo/logs/skl2_{n}.out
 """)
@@ -36,14 +37,14 @@ module load disperse/0.9.24""")
 
         input_ = pre + snapshots[n]+"/"+str(i)+"_densite"
 
-
+        z = indices_z[i]
 
 
         fichier.write(f"""
 path_dat="{pre+snapshots[n]}/"
 path="{pre+snapshots[n]}/"
 
-file="{i}_densite_smooth2"
+file="{z}_densite_smooth2"
 
 persistence=0.1
 smoothing=1
