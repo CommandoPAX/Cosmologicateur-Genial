@@ -81,7 +81,7 @@ class Simulation ():
         self.P7 = []
         self.P8 = []
         self.P9 = []
-        self.P20 = []
+        self.P10 = []
 
         self.k=[self.k0,self.k1,self.k2,self.k3,self.k4,self.k5,self.k6,self.k7,self.k8,self.k9,self.k10]
         self.P=[self.P0,self.P1,self.P2,self.P3,self.P4,self.P5,self.P6,self.P7,self.P8,self.P9,self.P10]
