@@ -107,7 +107,7 @@ if __name__ == "__main__" :
                         surfaces_t = []
                     surfaces_t.append(triangle.Surface())
 
-                if n <= 6 : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_smooth2_c0.1_surf_murs.txt", np.array(surfaces))
+                if n <= 5 : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{j}_densite_smooth2_c0.1_surf_murs.txt", np.array(surfaces))
                 else : np.save(f"/data100/fcastillo/RESULT/{snapshots[n]}/{z_k}_densite_smooth2_c0.1_surf_murs.txt", np.array(surfaces))
 
             else:
