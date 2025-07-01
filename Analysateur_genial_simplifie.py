@@ -74,7 +74,7 @@ class Simulation ():
         self.k=[self.k0,self.k1,self.k2,self.k3,self.k4]
         self.P=[self.P0,self.P1,self.P2,self.P3,self.P4]
 
-        for i in range(0,5):
+        for i in range(0,15):
             try :
                 fichier = open("./POW/"+str(i)+"_POW_"+name+".txt","r")
                 self.POW.append("./POW/"+str(i)+"_POW_"+name+".txt")
@@ -273,6 +273,13 @@ if __name__ == "__main__" :
     fm500 = Simulation(name="NG_F500")
     f500 = Simulation(name="NG_Fminus500")
 
+    PNG_BM = Simulation(name="NG_F500")
+    PNG_1 = Simulation(name="NG_F500_1")
+    PNG_2 = Simulation(name="NG_F500_2")
+    PNG_3 = Simulation(name="NG_F500_3")
+    PNG_4 = Simulation(name="NG_F500_4")
+
+
     #Plot_sigma_8()
     
 
@@ -287,21 +294,29 @@ if __name__ == "__main__" :
     }
 
 
-    for i in [0,1,2,4]:
+    for i in [1]:
 
 
-        plt.subplot(2,2,n+1)
+        #plt.subplot(2,2,n+1)
 
         axes = plt.gca()
 
         axes.title.set_text (f"z = {Redshifts[i]}")
 
         plt.loglog(lcdm.k[i], lcdm.P[i]/lcdm.P[i], label=r"$\Lambda{\rm CDM}$")
-        plt.loglog(WDM500.k[i], WDM500.P[i]/lcdm.P[i], label =r"$m_{\rm WDM} = 500 eV$", ls="--", color="green")
-        plt.loglog(WDM500f500.k[i], WDM500f500.P[i]/lcdm.P[i], label =r"$fnl = 500 \& WDM$", color="fuchsia",ls="--")
-        plt.loglog(WDM500fm500.k[i], WDM500fm500.P[i]/lcdm.P[i], label =r"$fnl = -500 \& WDM$", color="orange",ls="--")
-        plt.loglog(f500.k[i], f500.P[i]/lcdm.P[i], label =r"fnl = 500",color="fuchsia")
-        plt.loglog(fm500.k[i], fm500.P[i]/lcdm.P[i], label =r"$fnl = -500$", color="orange")
+        #plt.loglog(WDM500.k[i], WDM500.P[i]/lcdm.P[i], label =r"$m_{\rm WDM} = 500 eV$", ls="--", color="green")
+        #plt.loglog(WDM500f500.k[i], WDM500f500.P[i]/lcdm.P[i], label =r"$fnl = 500 \& WDM$", color="fuchsia",ls="--")
+        #plt.loglog(WDM500fm500.k[i], WDM500fm500.P[i]/lcdm.P[i], label =r"$fnl = -500 \& WDM$", color="orange",ls="--")
+        #plt.loglog(f500.k[i], f500.P[i]/lcdm.P[i], label =r"fnl = 500",color="fuchsia")
+        #plt.loglog(fm500.k[i], fm500.P[i]/lcdm.P[i], label =r"$fnl = -500$", color="orange")
+        
+        plt.loglog(f500.k[i], f500.P[i]/lcdm.P[i], label =r"fnl = 500 1")
+        plt.loglog(PNG_1.k[5], PNG_1.P[5]/lcdm.P[i], label =r"fnl = 500 2")
+        plt.loglog(PNG_2.k[5], PNG_2.P[5]/lcdm.P[i], label =r"fnl = 500 3")
+        plt.loglog(PNG_3.k[5], PNG_3.P[5]/lcdm.P[i], label =r"fnl = 500 4")
+        plt.loglog(PNG_4.k[5], PNG_4.P[5]/lcdm.P[i], label =r"fnl = 500 5")
+
+        
         n +=1
 
         if i == 0 or i == 2 : axes.set_ylabel(r"P/P$_{\rm CDM}$")
