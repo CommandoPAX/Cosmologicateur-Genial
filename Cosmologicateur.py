@@ -276,11 +276,13 @@ def main(argv):
     #pre = "/data77/stahl/Scale/Nb/WDM/ViVi/"
     #snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
-    pre = "/data77/stahl/denis/final_Nb/"
-    snapshots = ["SIM0N_BIG","SIM1N_BIG","SIM2N_BIG","SIM3N_BIG"]
+    pre = "/data100/fcastillo/Simus/"
+    snapshots = ["NG_F500_1","NG_F500_2","NG_F500_3","NG_F500_4"]
+    
+    Redshifts = [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 
     for n in range(4):
-        for i in range(4):
+        for i in range(8):
             name = snapshots[n]
             file_path = pre + name
 
@@ -290,7 +292,6 @@ def main(argv):
 
             Output_Path = f"{Result_Path}/{name}"
             #Redshifts = [32,3,1,0.25,0]
-            Redshifts = [32,3,1,0]
 
             z = Redshifts[i]
             
