@@ -282,7 +282,7 @@ def main(argv):
     Redshifts = [15,12, 10, 8, 5,3,1,0.5,0.25,0]
 
     for n in range(4):
-        for i in range(8):
+        for i in range(7):
             name = snapshots[n]
             file_path = pre + name
 
