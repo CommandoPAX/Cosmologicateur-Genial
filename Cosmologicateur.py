@@ -277,7 +277,7 @@ def main(argv):
     #snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
     pre = "/data100/fcastillo/Simus/"
-    pre = "/data77/stahl/Scale/Nb/WDM/KF/"
+    #pre = "/data77/stahl/Scale/Nb/WDM/KF/"
     #snapshots = ["NG_F500_1","NG_F500_2","NG_F500_3","NG_F500_4"]
     snapshots=["NG_F500_1"] 
 
