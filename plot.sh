@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=plot
+#SBATCH --job-name=pow
 #SBATCH --partition=comp,pscomp
 #SBATCH --nodes=1
 #SBATCH --mem=10gb
@@ -9,4 +9,5 @@
 module purge
 module load intelpython
 
-python /home/fcastillo/Cosmologicateur-Genial/plot_minkowski2.py
+python /home/fcastillo/Cosmologicateur-Genial/Cosmologicateur.py
+python /home/fcastillo/Cosmologicateur-Genial/Analysateur_genial_simplifie.py

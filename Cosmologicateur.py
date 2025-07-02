@@ -277,12 +277,15 @@ def main(argv):
     #snapshots = ["G_ViVi","NG_Fminus500_ViVi","NG_ViVi"]
 
     pre = "/data100/fcastillo/Simus/"
-    snapshots = ["NG_F500_1","NG_F500_2","NG_F500_3","NG_F500_4"]
-    
-    Redshifts = [15,12, 10, 8, 5,3,1,0.5,0.25,0]
+    pre = "/data77/stahl/Scale/Nb/WDM/KF/"
+    #snapshots = ["NG_F500_1","NG_F500_2","NG_F500_3","NG_F500_4"]
+    snapshots=["NG_F500", "benchM"] 
 
-    for n in range(4):
-        for i in range(7):
+    Redshifts = [15,12, 10, 8, 5,3,1,0.5,0.25,0]
+    Redshifts = [32,3,1,0.25,0]
+
+    for n in range(2):
+        for i in range(5):
             name = snapshots[n]
             file_path = pre + name
 
