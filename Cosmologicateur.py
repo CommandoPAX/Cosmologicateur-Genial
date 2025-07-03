@@ -84,7 +84,7 @@ def Power_Spectrum(DATA, index : int, path : str, SimuName : str) :
     else : 
         output_ = f"{path}/{index}_POW_{SimuName}.png"
 
-    grid = 1024    #grid size
+    grid = 512    #grid size
     pBoxSize = DATA.domain_width.in_units('Mpc/h') #Mpc/h
     BoxSize = pBoxSize[0].value #Mpc/h
     print(BoxSize)

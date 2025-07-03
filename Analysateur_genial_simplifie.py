@@ -325,10 +325,10 @@ if __name__ == "__main__" :
         #plt.loglog(fm500.k[i], fm500.P[i]/lcdm.P[i], label =r"$fnl = -500$", color="orange")
         
         plt.loglog(f500.k[i], f500.P[i]/lcdm.P[i], label =r"fnl = 500 1")
-        plt.loglog(PNG_1.k[5], PNG_1.P[5]/lcdm.P[i], label =r"fnl = 500 2")
-        plt.loglog(PNG_2.k[5], PNG_2.P[5]/lcdm.P[i], label =r"fnl = 500 3")
-        plt.loglog(PNG_3.k[5], PNG_3.P[5]/lcdm.P[i], label =r"fnl = 500 4")
-        plt.loglog(PNG_4.k[5], PNG_4.P[5]/lcdm.P[i], label =r"fnl = 500 5")
+        plt.loglog(f500.k[i], PNG_1.P[5]/lcdm.P[i], label =r"fnl = 500 2")
+        #plt.loglog(PNG_2.k[5], PNG_2.P[5]/lcdm.P[i], label =r"fnl = 500 3")
+        #plt.loglog(PNG_3.k[5], PNG_3.P[5]/lcdm.P[i], label =r"fnl = 500 4")
+        #plt.loglog(PNG_4.k[5], PNG_4.P[5]/lcdm.P[i], label =r"fnl = 500 5")
 
         
         n +=1
